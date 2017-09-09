@@ -1,12 +1,11 @@
 .App {
     text-align: center;
 }
-
 .App-header {
     overflow: hidden;
     zoom: 1;
     /*修改间隔*/
-    height:70px;
+    height:20%;
     background-color: #fff;
     position: relative;
 }
