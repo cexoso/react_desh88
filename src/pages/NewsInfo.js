@@ -28,7 +28,9 @@ export default class NewsInfo extends Component {
             //微信二次分享
             // const url = {url: "http://www.deshpro.com:3000/race/91/zh"};
             // const url = {url: "http://h5-react.deshpro.com:3000/race/91/zh"};
-            const{title,image,source,date} =data;
+            var image=document.getElementById("images").querySelectorAll('img')[0].src;
+            console.log("image:",image)
+            const{title,source,date} =data;
             const message = {
                 title: title,
                 desc: message_desc(source,date),//分享描述
@@ -37,6 +39,7 @@ export default class NewsInfo extends Component {
                 type: '', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
             }
+            console.log("message:",message)
             const url = {url: window.location.href};
             weiXinShare(url,message);
         }, err => {
@@ -72,7 +75,7 @@ export default class NewsInfo extends Component {
                         <span>来源于: {source}  </span>
                     </div>
                     <div className="App-nav" >
-                        <div  dangerouslySetInnerHTML={this.desc(description)}></div>
+                        <div id="images" dangerouslySetInnerHTML={this.desc(description)}></div>
                   </div>
                 </div>
 
