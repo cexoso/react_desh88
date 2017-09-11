@@ -8,7 +8,10 @@
     height:20%;
     background-color: #fff;
     position: relative;
+    padding: 4.5%;
+    padding-bottom: 3.5%;
 }
+
 .App-header:before{
     content: '';
     position: absolute;
@@ -24,14 +27,9 @@
     font-family: PingFangSC-Regular;
     font-size: 17px;
     color: #444444;
-    /*padding: 0 15%;*/
     margin: 9px 0 4px 0;
-    /*height: 24px;*/
     text-align: left !important;
     line-height: 24px;
-    /*overflow: hidden;*/
-    /*text-overflow:ellipsis;
-    white-space: nowrap;*/
 }
 .App-header span{
     float: left;
@@ -49,7 +47,7 @@
 
 .App-nav {
     padding:4.5%;
-    margin-top: 5px;
+    padding-top: 4%;
 }
 /*markdown里的样式*/
 
