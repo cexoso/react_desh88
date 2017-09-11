@@ -28,12 +28,12 @@ export default class NewsInfo extends Component {
             //微信二次分享
             // const url = {url: "http://www.deshpro.com:3000/race/91/zh"};
             // const url = {url: "http://h5-react.deshpro.com:3000/race/91/zh"};
-            const{title,logo,source,date} =data;
+            const{title,image,source,date} =data;
             const message = {
                 title: title,
                 desc: message_desc(source,date),//分享描述
                 link: window.location.href, // 分享链接，该链接域名必须与当前企业的可信域名一致
-                imgUrl: isEmptyObject(logo)?default_img:logo, // 分享图标
+                imgUrl: isEmptyObject(image)?default_img:image, // 分享图标
                 type: '', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
             }
@@ -71,7 +71,7 @@ export default class NewsInfo extends Component {
                         <span className="App-header-time">{date} </span>
                         <span>来源于: {source}  </span>
                     </div>
-                    <div className="App-nav">
+                    <div className="App-nav" >
                         <div  dangerouslySetInnerHTML={this.desc(description)}></div>
                   </div>
                 </div>
