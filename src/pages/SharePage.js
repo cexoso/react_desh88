@@ -14,7 +14,7 @@ export default class SharePage extends Component {
     componentDidMount() {
         if((window.location.href).toString().indexOf("question")!==-1){
             this.setState({
-                visible: !this.state.visible
+                visible: true
             })
         }
         //微信二次分享
@@ -82,7 +82,7 @@ export default class SharePage extends Component {
                                  onClick={() => {
                                      this.props.history.push("/sharePage/question")
                                      this.setState({
-                                         visible: !this.state.visible
+                                         visible: true
                                      })
                                  }}>
                                 常见问题
@@ -110,7 +110,7 @@ const Question=()=>(
                 <a>常见问题</a>
                 <Link to="/sharePage" onClick={() => {
                     this.setState({
-                        visible: !this.state.visible
+                        visible: false
                     })
                 }}>关闭</Link>
             </div>

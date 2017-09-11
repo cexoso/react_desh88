@@ -50,7 +50,7 @@ export default class GameInfo extends Component {
     render() {
 
         const {
-            race, ranks
+            race, ranks,parent_race
         } = this.state.game;
 
         if (isEmptyObject(race))
@@ -60,10 +60,10 @@ export default class GameInfo extends Component {
                 <Link to={'/race/' + race.race_id + '/zh'}>
                     <div className="top-race">
                         <img className="img-logo"
-                             src={race.big_logo} alt="Big"/>
+                             src={parent_race.logo} alt=""/>
 
                         <div className="race-info">
-                            <p className="title">{race.name}</p>
+                            <p className="title">{parent_race.name}</p>
                             <div className="div_flex"/>
 
                             <span className="race-info-time"><Time value={race.begin_date} format="YYYY.MM.DD"/>-<Time
