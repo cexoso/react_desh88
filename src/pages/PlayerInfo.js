@@ -159,6 +159,7 @@ export default class PlayerInfo extends Component {
                                     </div>
                                     <div className="table-time"><Time value={race.begin_date} format="YYYY.MM.DD" />-<Time value={race.end_date} format="YYYY.MM.DD" /></div>
                                     <div className="table-location">{race.location}</div>
+                                    <div className="line" style={{height:'3px',marginBottom:'2%'}}></div>
                                 </a>
                             </td>
                         </tr>
