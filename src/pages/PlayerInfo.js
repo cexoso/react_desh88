@@ -26,7 +26,7 @@ export default class PlayerInfo extends Component {
                 player: data
             })
 
-            document.title = data.name;
+            document.title = "Porker-"+data.name;
             //微信二次分享
             // const url = {url: "http://www.deshpro.com:3000/race/91/zh"};
             // const url = {url: "http://h5-react.deshpro.com:3000/race/91/zh"};
