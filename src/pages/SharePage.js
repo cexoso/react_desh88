@@ -33,7 +33,6 @@ export default class SharePage extends Component {
     }
 
     render() {
-        const {params} = this.props.match;
         return(
             <div className="sharePage">
 
