@@ -67,36 +67,3 @@
     /*height: 207px;*/
 }
 
-footer a{
-    cursor: pointer;
-    overflow: hidden;
-    position: fixed;
-    bottom: 0;
-    height: 42px;
-    line-height: 42px;
-    /*text-align: center;*/
-    width: 70%;
-    padding-left: 30%;
-    font-family: PingFangSC-Regular;
-    font-size: 16px;
-    color: #D1BC91;
-    background: #161718;
-    opacity: 0.9;
-    background-image: url('../assets/images/load-logo.png');
-    background-repeat: no-repeat;
-    background-position: 36px center;
-    background-size: 28px 28px;
-    text-decoration: none;
-}
-footer a span{
-    float: right;
-    width: 58px;
-    height: 22px;
-    line-height: 22px;
-    font-size: 12px;
-    text-align: center;
-    margin: 10px 20px 0 0;
-    border: 1px solid #D1BC91;
-    color: #D1BC91;
-    border-radius: 2px;
-}

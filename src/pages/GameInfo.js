@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-
+import Footer from '../components/Footer';
 import {getGameInfo, setLang} from '../service/RaceDao';
 import '../styles/GameInfo.css';
+import '../styles/footer.css';
 import Time from 'react-time-format';
 import I18n from '../service/I18n';
 import {isEmptyObject,weiXinShare,message_desc} from '../service/utils';
@@ -47,6 +48,14 @@ export default class GameInfo extends Component {
         })
     }
 
+    isNullOfParentRace=(race,parent_race)=>{
+        if (isEmptyObject(parent_race)){
+            return race;
+        }else{
+            return parent_race;
+        }
+    }
+
     render() {
 
         const {
@@ -55,15 +64,16 @@ export default class GameInfo extends Component {
 
         if (isEmptyObject(race))
             return <div/>;
+
         return (
             <div className="container">
                 <Link to={'/race/' + race.race_id + '/zh'}>
                     <div className="top-race">
                         <img className="img-logo"
-                             src={parent_race.logo} alt=""/>
+                             src={this.isNullOfParentRace(race,parent_race).logo} alt=""/>
 
                         <div className="race-info">
-                            <p className="title">{parent_race.name}</p>
+                            <p className="title">{this.isNullOfParentRace(race,parent_race).name}</p>
                             <div className="div_flex"/>
 
                             <span className="race-info-time"><Time value={race.begin_date} format="YYYY.MM.DD"/>-<Time
@@ -115,8 +125,7 @@ export default class GameInfo extends Component {
                         </tbody>
                     </table>
                 </div>
-                <footer><Link  to="/loadApp">
-                    {I18n.t('app_plant')}<span>{I18n.t('load_app')}</span></Link></footer>
+                <Footer/>
             </div>
         )
     };
