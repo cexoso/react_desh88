@@ -3,8 +3,7 @@ import {getActivitiesInfo,setLang} from '../service/RaceDao';
 import {weiXinShare,isEmptyObject} from '../service/utils';
 import {default_img} from '../components/constant';
 import MarkDown from '../components/MarkDown';
-import I18n from '../service/I18n';
-import {Link} from 'react-router-dom';
+import Footer from '../components/Footer';
 
 export default class activitiesInfo extends Component {
     state = {
@@ -53,8 +52,7 @@ export default class activitiesInfo extends Component {
 
             <div className="activitiesInfo">
                 <MarkDown description={description}/>
-                <footer><Link  to="/loadApp">
-                    {I18n.t('app_plant')}<span>{I18n.t('load_app')}</span></Link></footer>
+                <Footer/>
             </div>
         );
     }

@@ -6,7 +6,7 @@ import React, {PureComponent} from 'react';
 import {getSubInfo, setLang} from '../service/RaceDao'
 import moment from 'moment';
 import I18n from '../service/I18n';
-import {Link} from 'react-router-dom';
+import Footer from '../components/Footer';
 import RaceBlindList from '../components/RaceBlindList';
 import {weiXinShare,isEmptyObject,message_desc} from '../service/utils'
 import {default_img} from '../components/constant';
@@ -78,8 +78,7 @@ export default class SideRace extends PureComponent {
                     {this.mainInfoView()}
                 </div>
             </div>
-            <footer><Link  to="/loadApp">
-                {I18n.t('app_plant')}<span>{I18n.t('load_app')}</span></Link></footer>
+            <Footer/>
         </div>)
     }
 
