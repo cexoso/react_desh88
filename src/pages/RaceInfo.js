@@ -204,7 +204,6 @@ export default class RaceInfo extends Component {
                 {this.content()}
 
                 <Footer/>
-
             </div>
         )
     };
