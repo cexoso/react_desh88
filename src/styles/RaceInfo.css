@@ -16,6 +16,9 @@ body,.content {
     justify-content: center;
 
 }
+.blindStructure{
+    margin-bottom: 48px;
+}
 
 .blindStructure-info {
     display: flex;
