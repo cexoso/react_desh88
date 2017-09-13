@@ -3,8 +3,9 @@ import {getWeiXinSign} from '../service/RaceDao';
 import moment from 'moment';
 
 export function convertDate(date, formate) {
-    if (strNotNull(date))
+    if (strNotNull(date)){
         return moment(date).format(formate)
+    }
 }
 
 export function utcDate(utc, formate) {
@@ -38,10 +39,12 @@ export function moneyFormat(num) {
     }
 
 export function strNotNull(str) {
-    if (str === undefined || str === null || str.length === 0)
+    if (str === undefined || str === null || str.length === 0){
         return false;
-    else
+    }
+    else{
         return true;
+    }
 }
 
 
@@ -76,10 +79,6 @@ export function ticketStatusConvert(status) {
 export function weiXinShare(url,message){
     getWeiXinSign(url, data => {
         console.log('WeiXinSignInfo', data)
-        // this.setState({
-        //     wxData: data
-        // });
-
         window.wx.ready(() =>{
             window.wx.onMenuShareTimeline(message);//分享朋友圈
             window.wx.onMenuShareAppMessage(message);//分享给朋友
