@@ -9,7 +9,7 @@ import '../styles/RaceInfo.css';
 import moment from 'moment';
 import I18n from '../service/I18n';
 import MarkDown from '../components/MarkDown';
-import {weiXinShare,message_desc,isEmptyObject} from '../service/utils';
+import {weiXinShare, message_desc, isEmptyObject} from '../service/utils';
 import RaceBlindList from '../components/RaceBlindList';
 import {default_img} from '../components/constant';
 
@@ -18,12 +18,13 @@ export default class RaceInfo extends Component {
 
     state = {
         data: {},
-        wxData:{},
+        wxData: {},
         menu: 0,
         subItems: [],
         class_name1: 'txtMenu imgMe',
         class_name2: 'txtMenu',
         class_name3: 'txtMenu',
+        showMenu2: false
     };
 
     componentDidMount() {
@@ -34,10 +35,16 @@ export default class RaceInfo extends Component {
 
         getRaceInfo(body, data => {
             console.log('RaceInfo', data)
+            let showMenu2 = false;
+            const {blinds, schedules, ranks} = data;
+            if (blinds.length > 0 || schedules.length > 0 || ranks.length > 0)
+                showMenu2 = true;
+
             this.setState({
-                data: data
+                data: data,
+                showMenu2: showMenu2
             });
-            const {name,logo,location,end_date,begin_date} = data.race;
+            const {name, logo, location, end_date, begin_date} = data.race;
             document.title = name;
 
             //微信二次分享
@@ -45,15 +52,15 @@ export default class RaceInfo extends Component {
             // const url = {url: "http://h5-react.deshpro.com:3000/race/91/zh"};
             const message = {
                 title: name,
-                desc: message_desc(location,begin_date,end_date),//分享描述
+                desc: message_desc(location, begin_date, end_date),//分享描述
                 link: window.location.href, // 分享链接，该链接域名必须与当前企业的可信域名一致
-                imgUrl: isEmptyObject(logo)?default_img:logo, // 分享图标
+                imgUrl: isEmptyObject(logo) ? default_img : logo, // 分享图标
                 type: '', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
             }
             const url = {url: window.location.href};
-            console.log("message:",message);
-            weiXinShare(url,message);
+            console.log("message:", message);
+            weiXinShare(url, message);
         }, err => {
 
         });
@@ -80,7 +87,7 @@ export default class RaceInfo extends Component {
 
         if (!this.isEmptyObject(this.state.data.race)) {
             const {
-                name, location,begin_date, end_date, logo
+                name, location, begin_date, end_date, logo
             } = this.state.data.race;
 
             return (
@@ -110,30 +117,33 @@ export default class RaceInfo extends Component {
                                 }}>
                                     <span className={this.state.class_name1}>{I18n.t('Introduction')}</span>
                                 </div>
-                                <div className="menu1"
-                                     onClick={() => {
-                                         this.setState({
-                                             menu: 1,
-                                             class_name1: 'txtMenu',
-                                             class_name2: 'txtMenu imgMe',
-                                             class_name3: 'txtMenu'
-                                         })
-                                     }}>
-                                    <span className={this.state.class_name2}>{I18n.t('MainInformation')}</span>
 
-                                </div>
-                                <div className="menu1"
-                                     onClick={() => {
-                                         this.setState({
-                                             menu: 2,
-                                             class_name1: 'txtMenu',
-                                             class_name2: 'txtMenu',
-                                             class_name3: 'txtMenu imgMe'
-                                         })
-                                     }}>
-                                    <span className={this.state.class_name3}>{I18n.t('SideInformation')}</span>
+                                {this.state.showMenu2 ? <div className="menu1"
+                                                             onClick={() => {
+                                                                 this.setState({
+                                                                     menu: 1,
+                                                                     class_name1: 'txtMenu',
+                                                                     class_name2: 'txtMenu imgMe',
+                                                                     class_name3: 'txtMenu'
+                                                                 })
+                                                             }}>
+                                        <span className={this.state.class_name2}>{I18n.t('MainInformation')}</span>
 
-                                </div>
+                                    </div> : null}
+
+                                {this.state.subItems.length > 0 ? <div className="menu1"
+                                                                       onClick={() => {
+                                                                           this.setState({
+                                                                               menu: 2,
+                                                                               class_name1: 'txtMenu',
+                                                                               class_name2: 'txtMenu',
+                                                                               class_name3: 'txtMenu imgMe'
+                                                                           })
+                                                                       }}>
+                                        <span className={this.state.class_name3}>{I18n.t('SideInformation')}</span>
+
+                                    </div> : null}
+
 
                             </div>
                         </div>
