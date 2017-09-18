@@ -11,8 +11,8 @@ export default {
     sub_races: sub_races,
     sub_race_info: sub_race_info,
     weixin_js_sign: 'weixin/js_sign',
-    activities_info:activities_info
-
+    activities_info: activities_info,
+    ticket_info: ticket_info
 
 }
 
@@ -52,5 +52,9 @@ function rank_info(body) {
 function activities_info(body) {
     const {activitiesId} = body;
     return 'activities/' + activitiesId;
+}
+function ticket_info(body) {
+    const {ticketId, raceId} = body;
+    return 'races/' + raceId + '/tickets/' + ticketId;
 }
 

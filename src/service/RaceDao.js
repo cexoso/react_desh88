@@ -70,4 +70,9 @@ export function getActivitiesInfo(body, resolve, reject) {
         resolve(ret.data);
     }, reject);
 }
+export function getTicketInfo(body, resolve, reject) {
+    get(Api.ticket_info(body), ret => {
+        resolve(ret.data);
+    }, reject);
+}
 

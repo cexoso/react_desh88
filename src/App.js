@@ -13,6 +13,7 @@ import Download from './pages/Download';
 import PaySuccess from './pages/PaySuccess';
 import PayFail from './pages/PayFail';
 import activitiesInfo from './pages/activitiesInfo';
+import Ticket from  './pages/Ticket';
 
 import SharePage from './pages/SharePage';
 
@@ -35,7 +36,7 @@ class App extends Component {
                     <Route path="/sharePage" component={SharePage}/>
                     <Route path="/activities/:id/:lang" component={activitiesInfo}/>
                     <Route path="/race/:id/:lang/loadAPP" component={Download}/>
-                    <Route path="/package" component={Package}/>
+                    <Route path="/races/:id/tickets/:ticketsId/:lang" component={Ticket}/>
 
                 </div>
             </Router>
