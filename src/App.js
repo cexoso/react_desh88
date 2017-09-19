@@ -14,6 +14,7 @@ import PaySuccess from './pages/PaySuccess';
 import PayFail from './pages/PayFail';
 import activitiesInfo from './pages/activitiesInfo';
 import Ticket from  './pages/Ticket';
+import Video from  './pages/Video';
 
 import SharePage from './pages/SharePage';
 
@@ -37,7 +38,7 @@ class App extends Component {
                     <Route path="/activities/:id/:lang" component={activitiesInfo}/>
                     <Route path="/race/:id/:lang/loadAPP" component={Download}/>
                     <Route path="/races/:id/tickets/:ticketsId/:lang" component={Ticket}/>
-
+                    <Route path="/video" component={Video}/>
                 </div>
             </Router>
         );

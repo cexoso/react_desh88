@@ -12,7 +12,8 @@ export default {
     sub_race_info: sub_race_info,
     weixin_js_sign: 'weixin/js_sign',
     activities_info: activities_info,
-    ticket_info: ticket_info
+    ticket_info: ticket_info,
+    video_Info:video_Info
 
 }
 
@@ -56,5 +57,10 @@ function activities_info(body) {
 function ticket_info(body) {
     const {ticketId, raceId} = body;
     return 'races/' + raceId + '/tickets/' + ticketId;
+
+}
+function video_Info(body) {
+    const {videoId} = body;
+    return 'videos/' + videoId;
 }
 
