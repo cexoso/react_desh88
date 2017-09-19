@@ -57,7 +57,7 @@ export default class Ticket extends Component {
                 <div className="logo">
                     <img src={logo} alt=""/>
                 </div>
-                <span class="title">{name}</span>
+                <span className="title">{name}</span>
                 <div className="ticket-prize">
                     <span>{I18n.t('prize_pool')}</span>
                     <span>{ticket_price}</span>

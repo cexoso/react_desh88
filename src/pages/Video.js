@@ -4,7 +4,6 @@ import {weiXinShare,isEmptyObject} from '../service/utils';
 import {default_img} from '../components/constant';
 import MarkDown from '../components/MarkDown';
 import Footer from '../components/Footer';
-import I18n from '../service/I18n';
 
 export default class Video extends Component {
     state = {
@@ -21,8 +20,8 @@ export default class Video extends Component {
             this.setState({
                 data: data
             });
-            const {title,banner,description} = data.activity;
-            document.title = title;
+            const {name,cover_link,description} = data.items;
+            document.title = name;
 
             //微信二次分享
             // const url = {url: "http://www.deshpro.com:3000/activities/1/zh"};
@@ -31,7 +30,7 @@ export default class Video extends Component {
                 title: title,
                 desc: description,//分享描述
                 link: window.location.href, // 分享链接，该链接域名必须与当前企业的可信域名一致
-                imgUrl: isEmptyObject(banner)?default_img:banner, // 分享图标
+                imgUrl: isEmptyObject(cover_link)?default_img:cover_link, // 分享图标
                 type: '', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
             }
@@ -45,19 +44,16 @@ export default class Video extends Component {
     }
 
     render(){
-        if(isEmptyObject(this.state.data.activity)) {
+        if(isEmptyObject(this.state.data.items)) {
             return <div></div>;
         }
-        const {description,prize,title} = this.state.data.activity;
+        const {description,video_link} = this.state.data.items;
         return(
 
-            <div className="video">
-                <p>{title}</p>
-                <div className="ticket-prize">
-                    <span>{I18n.t('prize_pool')}</span>
-                    <span>{prize}</span>
+            <div className="videoInfo">
+                <div className="video">
+                    <video src={video_link} controls="controls"/>
                 </div>
-                <div className="line"></div>
                 <MarkDown description={description}/>
                 <Footer/>
             </div>
