@@ -52,7 +52,7 @@ export default class Video extends Component {
 
             <div className="videoInfo">
                 <div className="video">
-                    <video width="100%" height:"100%" x-webkit-airplay="allow" src={video_link} controls="controls" style="cursor: pointer;"/>
+                    <video width="100%" height="100%" x-webkit-airplay="allow" src={video_link} controls="controls" style="cursor: pointer;"/>
                 </div>
                 <MarkDown description={description}/>
                 <Footer/>
