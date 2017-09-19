@@ -22,17 +22,17 @@ export default class Ticket extends Component {
             this.setState({
                 data: data
             });
-            const {title,banner,description} = data.activity;
-            document.title = title;
+            const {name,logo,description} = data.race;
+            document.title = name;
 
             //微信二次分享
             // const url = {url: "http://www.deshpro.com:3000/activities/1/zh"};
             // const url = {url: "http://h5-react.deshpro.com:3000/activities/1/zh"};
             const message = {
-                title: title,
+                title: name,
                 desc: description,//分享描述
                 link: window.location.href, // 分享链接，该链接域名必须与当前企业的可信域名一致
-                imgUrl: isEmptyObject(banner)?default_img:banner, // 分享图标
+                imgUrl: isEmptyObject(logo)?default_img:logo, // 分享图标
                 type: '', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
             }
@@ -46,17 +46,21 @@ export default class Ticket extends Component {
     }
 
     render(){
-        if(isEmptyObject(this.state.data.activity)) {
+        if(isEmptyObject(this.state.data.race)) {
             return <div></div>;
         }
-        const {description,prize,title} = this.state.data.activity;
+        const {name,logo,ticket_price} = this.state.data.race;
+        const {description} = this.state.data.tickets;
         return(
 
             <div className="ticket">
-                <p>{title}</p>
+                <div className="logo">
+                    <img src={logo} alt=""/>
+                </div>
+                <span class="title">{name}</span>
                 <div className="ticket-prize">
                     <span>{I18n.t('prize_pool')}</span>
-                    <span>{prize}</span>
+                    <span>{ticket_price}</span>
                 </div>
                 <div className="line"></div>
                 <MarkDown description={description}/>
