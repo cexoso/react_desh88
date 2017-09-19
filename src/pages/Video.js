@@ -27,7 +27,7 @@ export default class Video extends Component {
             // const url = {url: "http://www.deshpro.com:3000/activities/1/zh"};
             // const url = {url: "http://h5-react.deshpro.com:3000/activities/1/zh"};
             const message = {
-                title: title,
+                title: name,
                 desc: description,//分享描述
                 link: window.location.href, // 分享链接，该链接域名必须与当前企业的可信域名一致
                 imgUrl: isEmptyObject(cover_link)?default_img:cover_link, // 分享图标
