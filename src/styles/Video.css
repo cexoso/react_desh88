@@ -1,0 +1,10 @@
+.video{
+    background-color: #000;
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    min-width: 230px;
+    overflow: hidden;
+    z-index: 0;
+}
