@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {getVideoInfo, setLang} from '../service/RaceDao';
-import {weiXinShare, isEmptyObject} from '../service/utils';
+import {weiXinShare, isEmptyObject,getTime} from '../service/utils';
 import {default_img} from '../components/constant';
 import MarkDown from '../components/MarkDown';
 import Footer from '../components/Footer';
@@ -69,15 +69,15 @@ export default class VideoInfo extends Component {
         if (isEmptyObject(this.state.data)) {
             return <div></div>;
         }
-        const {description, video_link} = this.state.data;
+        const {description, video_link ,cover_link} = this.state.data;
 
         return (
             <div className="videoInfo">
 
-                <video controls="true" autoplay="true">
+                <video ref="myVideo" controls="true" autoplay="true" poster={cover_link}>
                     <source src={video_link} type="video/mp4"/>
-                    <source src={video_link} type="video/ogg"/>
-                    <source src={video_link} type="video/webm"/>
+                    {/*<source src={video_link} type="video/ogg"/>*/}
+                    {/*<source src={video_link} type="video/webm"/>*/}
                     <object data={video_link}>
                         <embed src={video_link}/>
                     </object>
