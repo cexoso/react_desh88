@@ -6,7 +6,7 @@ import MarkDown from '../components/MarkDown';
 import Footer from '../components/Footer';
 
 
-export default class Video extends Component {
+export default class VideoInfo extends Component {
     state = {
         data: {
             name: '扑克王品牌形象大使-李思晓',

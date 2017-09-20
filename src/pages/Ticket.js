@@ -56,7 +56,7 @@ export default class Ticket extends Component {
 
             <div className="ticket">
                 <div className="logo">
-                    <img src={logo} alt=""/>
+                    <img src={isEmptyObject(logo)?default_img:logo} alt=""/>
                 </div>
                 <div className="ticket-name">
                     <span className="title">{location}</span>
