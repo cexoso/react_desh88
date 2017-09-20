@@ -4,7 +4,7 @@ import {weiXinShare, isEmptyObject} from '../service/utils';
 import {default_img} from '../components/constant';
 import MarkDown from '../components/MarkDown';
 import Footer from '../components/Footer';
-import VideoPlayer from '../components/VideoPlayer';
+import '../styles/Video.css';
 
 export default class VideoInfo extends Component {
     state = {
@@ -69,23 +69,19 @@ export default class VideoInfo extends Component {
         if (isEmptyObject(this.state.data)) {
             return <div></div>;
         }
-        const {description, video_link, cover_link} = this.state.data;
-        const videoJsOptions = {
-            controls: true,
-            sources: [{
-                src: {video_link},
-                poster:{cover_link}
-            }]
-        }
+        const {description, video_link} = this.state.data;
 
         return (
-
             <div className="videoInfo">
 
-                return <VideoPlayer { ...videoJsOptions } />
-                {/*<div className="video">*/}
-                {/*<video width="100%" height="100%"  src={video_link} controls="controls" style={{cursor: "pointer"}}/>*/}
-                {/*</div>*/}
+                <video controls="true" autoplay="true">
+                    <source src={video_link} type="video/mp4"/>
+                    <source src={video_link} type="video/ogg"/>
+                    <source src={video_link} type="video/webm"/>
+                    <object data={video_link}>
+                        <embed src={video_link}/>
+                    </object>
+                </video>
                 <MarkDown description={description}/>
                 <Footer/>
             </div>
