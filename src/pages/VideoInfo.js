@@ -4,7 +4,7 @@ import {weiXinShare, isEmptyObject} from '../service/utils';
 import {default_img} from '../components/constant';
 import MarkDown from '../components/MarkDown';
 import Footer from '../components/Footer';
-
+import VideoPlayer from '../components/VideoPlayer';
 
 export default class VideoInfo extends Component {
     state = {
@@ -70,14 +70,20 @@ export default class VideoInfo extends Component {
             return <div></div>;
         }
         const {description, video_link, cover_link} = this.state.data;
+        const videoJsOptions = {
+            autoplay: true,
+            controls: true,
+            sources: [{
+                src: {video_link},
+                poster:{cover_link},
+                type: 'video/mp4'
+            }]
+        }
         return (
 
             <div className="videoInfo">
 
-                <Video
-                    src={video_link}
-                    onPlay={this.handlePlay}
-                />
+                return <VideoPlayer { ...videoJsOptions } />
                 {/*<div className="video">*/}
                 {/*<video width="100%" height="100%"  src={video_link} controls="controls" style={{cursor: "pointer"}}/>*/}
                 {/*</div>*/}

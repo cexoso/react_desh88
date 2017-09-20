@@ -21,6 +21,7 @@
     "react-time-format": "0.0.5",
     "serve": "^6.0.6",
     "urllib": "^2.24.0",
+    "video.js": "^6.2.7",
     "weixin-js-sdk": "^1.2.0"
   },
   "scripts": {
