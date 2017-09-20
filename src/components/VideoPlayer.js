@@ -29,6 +29,7 @@ export default class VideoPlayer extends React.Component {
             <video
                 id="videoPlayer"
                 ref={(c) => { this.videoPlayer = c; }}
+
             />
         )
     }
