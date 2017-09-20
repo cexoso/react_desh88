@@ -37,8 +37,8 @@ class App extends Component {
                     <Route path="/sharePage" component={SharePage}/>
                     <Route path="/activities/:id/:lang" component={activitiesInfo}/>
                     <Route path="/race/:id/:lang/loadAPP" component={Download}/>
-                    <Route path="/races/:id/tickets/:ticketsId/:lang" component={Ticket}/>
-                    <Route path="/video" component={Video}/>
+                    <Route path="/races/:id/tickets/:ticketId/:lang" component={Ticket}/>
+                    <Route path="/videos" component={Video}/>
                 </div>
             </Router>
         );

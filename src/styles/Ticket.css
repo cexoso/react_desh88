@@ -4,3 +4,22 @@
     margin-top: 20px;
     font-family: PingFangSC-Medium;
 }
+/*.logo{*/
+    /*width:100%;*/
+    /*height:*/
+/*}*/
+.ticket-name{
+    display: flex;
+    margin-left: 17px;
+    margin-top: 10px;
+}
+.ticket-prize{
+    display: flex;
+    flex-direction: column;
+    margin-left: 17px;
+    margin-top: 10px;
+}
+.ticket-prize span{
+    font-size: 14px;
+    color: #666666;
+}

@@ -5,6 +5,7 @@ import {default_img} from '../components/constant';
 import MarkDown from '../components/MarkDown';
 import Footer from '../components/Footer';
 import I18n from '../service/I18n';
+import '../styles/Ticket.css';
 
 export default class Ticket extends Component {
     state = {
@@ -12,9 +13,9 @@ export default class Ticket extends Component {
     };
 
     componentDidMount(){
-        const {id,ticketsId, lang} = this.props.match.params;
+        const {id,ticketId, lang} = this.props.match.params;
         setLang(lang);
-        const body = {ticketId: ticketsId,
+        const body = {ticketId: ticketId,
                      raceId:id};
 
         getTicketInfo(body, data => {
@@ -49,18 +50,20 @@ export default class Ticket extends Component {
         if(isEmptyObject(this.state.data.race)) {
             return <div></div>;
         }
-        const {name,logo,ticket_price} = this.state.data.race;
-        const {description} = this.state.data.tickets;
+        const {name,ticket_price,location} = this.state.data.race;
+        const {description,logo} = this.state.data.tickets;
         return(
 
             <div className="ticket">
                 <div className="logo">
                     <img src={logo} alt=""/>
                 </div>
-                <span className="title">{name}</span>
+                <div className="ticket-name">
+                    <span className="title">{location}</span>
+                    <span className="title">{name}</span>
+                </div>
                 <div className="ticket-prize">
-                    <span>{I18n.t('prize_pool')}</span>
-                    <span>{ticket_price}</span>
+                    <span>{I18n.t('prize')} ¥{ticket_price}</span>
                 </div>
                 <div className="line"></div>
                 <MarkDown description={description}/>

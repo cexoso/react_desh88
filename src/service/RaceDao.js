@@ -74,7 +74,8 @@ export function getTicketInfo(body, resolve, reject) {
     get(Api.ticket_info(body), ret => {
         resolve(ret.data);
     }, reject);
-}export function getVideoInfo(body, resolve, reject) {
+}
+export function getVideoInfo(body, resolve, reject) {
     get(Api.video_Info(body), ret => {
         resolve(ret.data);
     }, reject);
