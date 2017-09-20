@@ -1,17 +1,19 @@
+.ticket{
+    margin-bottom: 55px;
+}
 .title{
     font-size: 18px;
     color: #444444;
     margin-top: 20px;
     font-family: PingFangSC-Medium;
 }
-/*.logo{*/
-    /*width:100%;*/
-    /*height:*/
-/*}*/
+.logo img{
+    width:100%;
+}
 .ticket-name{
     display: flex;
+    width:50%;
     margin-left: 17px;
-    margin-top: 10px;
 }
 .ticket-prize{
     display: flex;
@@ -19,7 +21,14 @@
     margin-left: 17px;
     margin-top: 10px;
 }
+span{
+    padding-right: 15px;
+}
 .ticket-prize span{
     font-size: 14px;
     color: #666666;
+}
+.ticket-prize span span{
+    font-size: 16px;
+    color: red;
 }

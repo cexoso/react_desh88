@@ -29,7 +29,6 @@ export const items = [
     }
 ]
 export const default_img = "https://www.deshpro.com/pokerpro.png";
-
 export const  image_url   = 'http://cdn.deshpro.com';  //生产环境cdn地址
 // var image_url   = 'http://localhost:3000';  //本地环境
 export const  sharePage01 = image_url + '/static/images/H5SahrePage01.png';

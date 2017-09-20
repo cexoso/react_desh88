@@ -71,14 +71,13 @@ export default class VideoInfo extends Component {
         }
         const {description, video_link, cover_link} = this.state.data;
         const videoJsOptions = {
-            autoplay: true,
             controls: true,
             sources: [{
                 src: {video_link},
-                poster:{cover_link},
-                type: 'video/mp4'
+                poster:{cover_link}
             }]
         }
+
         return (
 
             <div className="videoInfo">

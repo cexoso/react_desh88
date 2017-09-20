@@ -50,8 +50,8 @@ export default class Ticket extends Component {
         if(isEmptyObject(this.state.data.race)) {
             return <div></div>;
         }
-        const {name,ticket_price,location} = this.state.data.race;
-        const {description,logo} = this.state.data.tickets;
+        const {name,location} = this.state.data.race;
+        const {description,price,logo} = this.state.data.tickets;
         return(
 
             <div className="ticket">
@@ -63,9 +63,9 @@ export default class Ticket extends Component {
                     <span className="title">{name}</span>
                 </div>
                 <div className="ticket-prize">
-                    <span>{I18n.t('prize')} ¥{ticket_price}</span>
+                    <span>{I18n.t('prize')} <span>¥{price}</span></span>
                 </div>
-                <div className="line"></div>
+                <div className="line" style={{marginBottom:'20px',marginTop:'20px'}}></div>
                 <MarkDown description={description}/>
                 <Footer/>
             </div>
