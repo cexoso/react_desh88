@@ -23,7 +23,8 @@ export default class Ticket extends Component {
             this.setState({
                 data: data
             });
-            const {name,logo,description} = data.race;
+            const {name,logo} = data.race;
+            const {description} = data.tickets;
             document.title = name;
 
             //微信二次分享
