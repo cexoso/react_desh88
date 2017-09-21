@@ -74,7 +74,7 @@ export default class VideoInfo extends Component {
         return (
             <div className="videoInfo">
 
-                <video ref="myVideo" controls="true" autoplay="true" poster={cover_link}>
+                <video ref="myVideo" controls="true"  poster={cover_link}>
                     <source src={video_link} type="video/mp4"/>
                     {/*<source src={video_link} type="video/ogg"/>*/}
                     {/*<source src={video_link} type="video/webm"/>*/}
