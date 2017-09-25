@@ -60,7 +60,7 @@ function ticket_info(body) {
 
 }
 function video_Info(body) {
-    const {videoId} = body;
-    return 'videos/' + videoId;
+    const {video_id} = body;
+    return 'news/videos/' + video_id;
 }
 
