@@ -10,7 +10,8 @@ let TAG = 'PuKeHttp:';
 // define the api
 const client = create({
     // baseURL: 'http://test.api.deshpro.com/v10',
-    baseURL: 'https://api.deshpro.com/v10',
+    // baseURL: 'https://api.deshpro.com/v10',
+    baseURL: process.env.REACT_APP_API === "product" ? 'https://api.deshpro.com/v10' : 'http://test.api.deshpro.com/v10',
     headers: {
         'X-DP-APP-KEY': '467109f4b44be6398c17f6c058dfa7ee',
         'X-DP-CLIENT-IP': '192.168.2.231'
@@ -22,6 +23,7 @@ const client = create({
 export function setDpLang(lang) {
     client.setHeader('X-DP-LANG', lang)
     I18n.changeLanguage(lang)
+    console.log("DEV", process.env.REACT_APP_API)
 }
 
 

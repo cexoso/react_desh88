@@ -15,7 +15,7 @@ import PayFail from './pages/PayFail';
 import activitiesInfo from './pages/activitiesInfo';
 import Ticket from  './pages/Ticket';
 import VideoInfo from  './pages/VideoInfo';
-
+import DownloadSea from  './pages/DownloadSea';
 import SharePage from './pages/SharePage';
 
 class App extends Component {
@@ -35,6 +35,7 @@ class App extends Component {
                     <Route path="/pay/fail" component={PayFail}/>
 
                     <Route path="/sharePage" component={SharePage}/>
+                    <Route path="/loadAPPSea" component={DownloadSea}/>
                     <Route path="/activities/:id/:lang" component={activitiesInfo}/>
                     <Route path="/race/:id/:lang/loadAPP" component={Download}/>
                     <Route path="/races/:id/tickets/:ticketId/:lang" component={Ticket}/>

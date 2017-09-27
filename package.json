@@ -27,6 +27,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:product": "DOTENV=production npm run build",
+    "build:test": "DOTENV=test npm run build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
