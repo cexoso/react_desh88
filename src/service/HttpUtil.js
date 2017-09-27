@@ -11,7 +11,8 @@ let TAG = 'PuKeHttp:';
 const client = create({
     // baseURL: 'http://test.api.deshpro.com/v10',
     // baseURL: 'https://api.deshpro.com/v10',
-    baseURL: process.env.REACT_APP_API === "product" ? 'https://api.deshpro.com/v10' : 'http://test.api.deshpro.com/v10',
+    // baseURL: (process.env.REACT_APP_API.toString() === "product" ? 'https://api.deshpro.com/v10' : 'http://test.api.deshpro.com/v10'),
+    baseURL:getBaseUrl(),
     headers: {
         'X-DP-APP-KEY': '467109f4b44be6398c17f6c058dfa7ee',
         'X-DP-CLIENT-IP': '192.168.2.231'
@@ -19,11 +20,16 @@ const client = create({
     timeout: 20000,
 });
 
+function getBaseUrl(){
+    return process.env.REACT_APP_ENV === "test" ? 'http://test.api.deshpro.com/v10':'https://api.deshpro.com/v10';
+
+}
 
 export function setDpLang(lang) {
     client.setHeader('X-DP-LANG', lang)
     I18n.changeLanguage(lang)
-    console.log("DEV", process.env.REACT_APP_API)
+    console.log("process.env.REACT_APP_API HttpUtil:", process.env.REACT_APP_ENV)
+
 }
 
 

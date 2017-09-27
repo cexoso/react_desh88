@@ -27,12 +27,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build:product": "DOTENV=production npm run build",
-    "build:test": "DOTENV=test npm run build",
+    "build:test": "cross-env REACT_APP_ENV=test react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "cross-env": "^5.0.5",
     "http-proxy-middleware": "^0.17.4"
   }
 }
