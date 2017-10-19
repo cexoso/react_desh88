@@ -2,10 +2,14 @@ import React, {Component} from 'react';
 import {default_img} from '../components/constant';
 import {weiXinShare} from '../service/utils';
 import '../styles/Download.css';
+import safari from '../assets/images/Safari.png';
 
 export default class Download extends Component {
+    state = {
+        show: false
+    }
 
-    componentDidMount(){
+    componentDidMount() {
         //微信二次分享
         // const url = {url: "http://www.deshpro.com:3000/race/91/zh/loadApp"};
         const message = {
@@ -17,16 +21,30 @@ export default class Download extends Component {
             dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
         }
         const url = {url: window.location.href};
-        weiXinShare(url,message);
-    }
+        weiXinShare(url, message);
+    };
+
+    toIosApp = () => {
+        var ua = navigator.userAgent.toLowerCase();
+        if (/iphone|ipod/.test(ua)) {
+            if (/micromessenger/.test(ua)) {
+                this.setState({
+                    show: true
+
+                })
+            }
+        } else {
+            return "https://itunes.apple.com/cn/app/pokerpro/id1248197817?mt=8";
+        }
+    };
 
 
-    render(){
+    render() {
         return(
             <div className="Download">
                 <div className="black">
                 </div>
-                <a className="ios-app-a" href="https://itunes.apple.com/cn/app/pokerpro/id1248197817?mt=8">
+                <a className="ios-app-a" onClick={this.toIosApp}>
                     <div className="ios-app">
                         ios-app
                     </div>
@@ -36,6 +54,9 @@ export default class Download extends Component {
                         android-app
                     </div>
                 </a>
+                {this.state.show?<div className="iosDownload">
+                        <img className="iosDownloadImg" src={safari} alt=""/>
+                    </div>:null}
             </div>
         )
     }
