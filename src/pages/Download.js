@@ -25,22 +25,16 @@ export default class Download extends Component {
     };
 
     toIosApp = () => {
-        var ua = navigator.userAgent.toLowerCase();
-        if (/iphone|ipod/.test(ua)) {
-            if (/micromessenger/.test(ua)) {
-                this.setState({
-                    show: true
+        this.setState({
+            show: true
+        });
+        window.open('https://itunes.apple.com/cn/app/pokerpro/id1248197817?mt=8');
 
-                })
-            }
-        } else {
-            return "https://itunes.apple.com/cn/app/pokerpro/id1248197817?mt=8";
-        }
     };
 
 
     render() {
-        return(
+        return (
             <div className="Download">
                 <div className="black">
                 </div>
@@ -54,9 +48,9 @@ export default class Download extends Component {
                         android-app
                     </div>
                 </a>
-                {this.state.show?<div className="iosDownload">
+                {this.state.show ? <div className="iosDownload">
                         <img className="iosDownloadImg" src={safari} alt=""/>
-                    </div>:null}
+                    </div> : null}
             </div>
         )
     }
