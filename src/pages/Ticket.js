@@ -52,12 +52,12 @@ export default class Ticket extends Component {
             return <div></div>;
         }
         const {name,location} = this.state.data.race;
-        const {description,price,logo} = this.state.data.tickets;
+        const {description,price,banner} = this.state.data.tickets;
         return(
 
             <div className="ticket">
                 <div className="logo">
-                    <img src={isEmptyObject(logo)?default_img:logo} alt=""/>
+                    <img src={isEmptyObject(banner)?default_img:banner} alt=""/>
                 </div>
                 <div className="ticket-name">
                     <span className="title">{location}</span>
