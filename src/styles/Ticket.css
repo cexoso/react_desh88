@@ -9,6 +9,7 @@
 }
 .logo img{
     width:100%;
+    height:220px;
 }
 .ticket-name{
     display: flex;
