@@ -3,16 +3,14 @@
     height:100%;
     background-color: #F5F5F5;
 }
-.choiseTicket-sace{
+.choiseTicket-race{
     height:100px;
     background-color: #FFFFFF;
     margin-top: 5px;
 }
-.choiseTicket-sace span{
-    font-family: PingFangSC-Medium;
-    font-size: 15px;
-    color: #444444;
-    margin-top: 13px;
+.race-span{
+    height:13px;
+    background-color: #FFFFFF;
 }
 .choiseTicket-name{
     height:50px;
@@ -20,7 +18,11 @@
     font-family: PingFangSC-Regular;
     font-size: 17px;
     color: #161718;
-
+    display: flex;
+    align-items: center;
+}
+.choiseTicket-name span{
+    margin-left:17px;
 }
 .raceButtons{
     margin-top:12px;
@@ -34,10 +36,13 @@
     height:36px;
     background: #F5F5F5;
     border-radius: 2px;
-    font-size: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.raceBotton span{
+    font-family: PingFangSC-Regular;
+    font-size: 15px;
 }
 .raceBottonShow{
     background: #222222;
@@ -45,25 +50,33 @@
 }
 .choiseTicket-contents{
     width:100%;
-    margin-top:10px;
 }
 .choiseTicket-content{
     height:140px;
     background-color: #FFFFFF;
     display: flex;
-
     margin-bottom: 5px;
+    border: 1px solid #FFFFFF;
+}
+
+.choiseTicket-contentBorder{
+    height:140px;
+    background-color: #FFFFFF;
+    display: flex;
+    margin-bottom: 5px;
+    border: 1px solid #DF1D0F;
 }
 .content-right{
     margin-left: 13px;
     margin-right: 17px;
     margin-top: 16px;
-    background-color: yellow;
     flex:1;
 }
 .right-title{
     width:248px;
     height:50px;
+}
+.right-title span{
     font-size: 16px;
     color: #444444;
 }
@@ -83,34 +96,51 @@
 .right-sale{
     width:66px;
     height:22px;
+    ont-family: PingFangSC-Medium;
+    font-size: 16px;
+    color: #DF1D0F;
 }
 .right-remain{
-    width:89px;
     height:20px;
+    font-size: 14px;
+    color: #666666;
+}
+.right-remain span{
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #DF1D0F;
+    line-height: 20px;
 }
 .right-info{
     width:66px;
     height: 25px;
     border: 1px solid #DDDDDD;
     border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 }
+.right-info span{
+    font-family: PingFangSC-Medium;
+    font-size: 12px;
+    color: #666666;
+}
 .choiseTicket-bottom{
-    background-color: #FFFFFF;
     height:60px;
-    width:100%;
+    border-radius:3px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color:#DF1D0F;
-    position: fixed;
-    bottom: 0;
+    background-color:#090909;
+    position:fixed;
+    bottom: 5px;left: 15px;right: 15px;
 }
 
 .choiseTicket-bottom span{
     font-size: 18px;
-    color: #FFFFFF;
+    color: #E0C675;
     align-items: center;
     justify-content: center;
 }
