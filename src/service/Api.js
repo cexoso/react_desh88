@@ -13,7 +13,8 @@ export default {
     weixin_js_sign: 'weixin/js_sign',
     activities_info: activities_info,
     ticket_info: ticket_info,
-    video_Info:video_Info
+    video_Info:video_Info,
+    choiseTicket_Info:choiseTicket_Info
 
 }
 
@@ -62,5 +63,9 @@ function ticket_info(body) {
 function video_Info(body) {
     const {video_id} = body;
     return 'news/videos/' + video_id;
+}
+function choiseTicket_Info(body) {
+    const {choiseTicket_id} = body;
+    return 'races/' + choiseTicket_id+"/tickets";
 }
 

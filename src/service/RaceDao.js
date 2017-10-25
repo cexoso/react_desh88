@@ -3,11 +3,12 @@
  */
 import Api from './Api';
 import {get, post, setDpLang} from './HttpUtil';
+import {strNotNull} from './utils'
 
 var lang = 'zh';
 
-export function setLang(lang) {
-    setDpLang(lang);
+export function setLang(lan) {
+    setDpLang(strNotNull(lan) ? lan : lang);
 
 }
 
@@ -15,7 +16,7 @@ export function getLang() {
     return lang;
 }
 
-export function getWeiXinSign(payload, resolve, reject){
+export function getWeiXinSign(payload, resolve, reject) {
     post(Api.weixin_js_sign, payload, ret => {
         resolve(ret.data);
     }, reject)
@@ -80,5 +81,11 @@ export function getVideoInfo(body, resolve, reject) {
         resolve(ret.data);
     }, reject);
 }
+export function getChoiseTicketInfo(body, resolve, reject) {
+    get(Api.choiseTicket_Info(body), ret => {
+        resolve(ret.data);
+    }, reject);
+}
+
 
 
