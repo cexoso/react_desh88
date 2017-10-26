@@ -17,6 +17,7 @@ import Ticket from  './pages/Ticket';
 import VideoInfo from  './pages/VideoInfo';
 import DownloadSea from  './pages/DownloadSea';
 import SharePage from './pages/SharePage';
+import ChoiseTicketPage from './pages/ChoiseTicketPage';
 
 class App extends Component {
     render() {
@@ -40,6 +41,8 @@ class App extends Component {
                     <Route path="/race/:id/:lang/loadAPP" component={Download}/>
                     <Route path="/races/:id/tickets/:ticketId/:lang" component={Ticket}/>
                     <Route path="/videos/:video_id/:lang" component={VideoInfo}/>
+
+                    <Route path="/raceTickets/:id" component={ChoiseTicketPage}/>
                 </div>
             </Router>
         );

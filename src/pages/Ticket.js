@@ -48,6 +48,7 @@ export default class Ticket extends Component {
     }
 
     render(){
+        console.log("this:",this)
         if(isEmptyObject(this.state.data.race)) {
             return <div></div>;
         }

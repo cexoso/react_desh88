@@ -1,0 +1,146 @@
+.choiseTicket{
+    width:100%;
+    height:100%;
+    background-color: #F5F5F5;
+}
+.choiseTicket-race{
+    height:100px;
+    background-color: #FFFFFF;
+    margin-top: 5px;
+}
+.race-span{
+    height:13px;
+    background-color: #FFFFFF;
+}
+.choiseTicket-name{
+    height:50px;
+    background-color: #FFFFFF;
+    font-family: PingFangSC-Regular;
+    font-size: 17px;
+    color: #161718;
+    display: flex;
+    align-items: center;
+}
+.choiseTicket-name span{
+    margin-left:17px;
+}
+.raceButtons{
+    margin-top:12px;
+    margin-left:17px;
+    display: flex;
+    flex-direction: row;
+}
+
+.raceBotton{
+    width:94px;
+    height:36px;
+    background: #F5F5F5;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.raceBotton span{
+    font-family: PingFangSC-Regular;
+    font-size: 15px;
+}
+.raceBottonShow{
+    background: #222222;
+    color: #E4D57F;
+}
+.choiseTicket-contents{
+    width:100%;
+}
+.choiseTicket-content{
+    height:140px;
+    background-color: #FFFFFF;
+    display: flex;
+    margin-bottom: 5px;
+    border: 1px solid #FFFFFF;
+}
+
+.choiseTicket-contentBorder{
+    height:140px;
+    background-color: #FFFFFF;
+    display: flex;
+    margin-bottom: 5px;
+    border: 1px solid #DF1D0F;
+}
+.content-right{
+    margin-left: 13px;
+    margin-right: 17px;
+    margin-top: 16px;
+    flex:1;
+}
+.right-title{
+    width:248px;
+    height:50px;
+}
+.right-title span{
+    font-size: 16px;
+    color: #444444;
+}
+.right-tl{
+    display: flex;
+    flex-direction: column;
+}
+.right-tl span{
+    font-size: 12px;
+    color: #AAAAAA;
+}
+.right-si{
+    margin-top: 7px;
+    display: flex;
+    flex-direction: row;
+}
+.right-sale{
+    width:66px;
+    height:22px;
+    ont-family: PingFangSC-Medium;
+    font-size: 16px;
+    color: #DF1D0F;
+}
+.right-remain{
+    height:20px;
+    font-size: 14px;
+    color: #666666;
+}
+.right-remain span{
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #DF1D0F;
+    line-height: 20px;
+}
+.right-info{
+    width:66px;
+    height: 25px;
+    border: 1px solid #DDDDDD;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.right-info span{
+    font-family: PingFangSC-Medium;
+    font-size: 12px;
+    color: #666666;
+}
+.choiseTicket-bottom{
+    height:60px;
+    border-radius:3px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color:#090909;
+    position:fixed;
+    bottom: 5px;left: 15px;right: 15px;
+}
+
+.choiseTicket-bottom span{
+    font-size: 18px;
+    color: #E0C675;
+    align-items: center;
+    justify-content: center;
+}
