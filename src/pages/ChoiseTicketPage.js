@@ -50,7 +50,6 @@ export default class ChoiseTicketPage extends Component {
 
 
     render() {
-        console.log(this)
         const {race, tickets} = this.state.choiseTicket;
         if (isEmptyObject(race)) {
             return <div></div>;
@@ -103,8 +102,6 @@ export default class ChoiseTicketPage extends Component {
 
 
     selectItem = (id) => {
-
-        console.log(id)
         this.selectedId = id;
         this.setState({
             selectedIndex: id
