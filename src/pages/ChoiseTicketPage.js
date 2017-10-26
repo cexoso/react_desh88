@@ -50,7 +50,6 @@ export default class ChoiseTicketPage extends Component {
 
 
     render() {
-        console.log(this)
         const {race, tickets} = this.state.choiseTicket;
         if (isEmptyObject(race)) {
             return <div></div>;
@@ -71,7 +70,7 @@ export default class ChoiseTicketPage extends Component {
                                 showButton2: "raceBotton"
                             })
                         }}><span>{I18n.t('mainRace')}</span></div>
-                        <div style={{marginLeft: 20}} className={this.state.showButton2} onClick={() => {
+                        <div style={{marginLeft: 20,display:'none'}} className={this.state.showButton2} onClick={() => {
                             this.setState({
                                 showButton2: "raceBotton raceBottonShow",
                                 showButton1: "raceBotton"
@@ -103,8 +102,6 @@ export default class ChoiseTicketPage extends Component {
 
 
     selectItem = (id) => {
-
-        console.log(id)
         this.selectedId = id;
         this.setState({
             selectedIndex: id
