@@ -39,7 +39,7 @@ export function moneyFormat(num) {
     }
 
 export function strNotNull(str) {
-    if (str === undefined || str === null || str.length === 0){
+    if (str === undefined || str === null || str.length === 0 ||str === 'undefined'){
         return false;
     }
     else{

@@ -42,9 +42,7 @@ class App extends Component {
                     <Route path="/races/:id/tickets/:ticketId/:lang" component={Ticket}/>
                     <Route path="/videos/:video_id/:lang" component={VideoInfo}/>
 
-                    <Route path="/races/:id/tickets" component={ChoiseTicketPage}>
-                        <Route path="/:ticketId/:lang" component={Ticket}/>
-                    </Route>
+                    <Route path="/raceTickets/:id" component={ChoiseTicketPage}/>
                 </div>
             </Router>
         );

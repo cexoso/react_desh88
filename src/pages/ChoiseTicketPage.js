@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {setLang, getChoiseTicketInfo} from '../service/RaceDao';
+import {setLang, getLang, getChoiseTicketInfo} from '../service/RaceDao';
 import I18n from '../service/I18n';
 import  '../styles/ChoiseTicketPage.css';
 import {default_img} from '../components/constant';
-import {isEmptyObject, weiXinShare, message_desc,strNotNull} from '../service/utils';
+import {isEmptyObject, weiXinShare, message_desc, strNotNull} from '../service/utils';
 import Time from 'react-time-format';
 import {Link} from 'react-router-dom';
 
@@ -50,6 +50,7 @@ export default class ChoiseTicketPage extends Component {
 
 
     render() {
+        console.log(this)
         const {race, tickets} = this.state.choiseTicket;
         if (isEmptyObject(race)) {
             return <div></div>;
@@ -79,13 +80,17 @@ export default class ChoiseTicketPage extends Component {
                     </div>
                 </div>
                 <div style={{height: 10}}></div>
-                {tickets.map((item, index) => <ChoiseTicketList key={index} item={item}
-                                                                race={race}
-                                                                selectId={this.selectedId}
-                                                                selectIndex={this.selectItem}/>)}
+                {tickets.map((item, index) => <ChoiseTicketList
+                    {...this.props}
+                    key={index}
+                    item={item}
+                    race={race}
+                    selectId={this.selectedId}
+                    params={this.props.match.params}
+                    selectIndex={this.selectItem}/>)}
 
 
-                <div style={{height:150}}></div>
+                <div style={{height: 150}}></div>
                 <Link to="/loadApp">
                     <div className="choiseTicket-bottom" onClick={() => {
                     }}>
@@ -95,7 +100,6 @@ export default class ChoiseTicketPage extends Component {
             </div>
         );
     }
-
 
 
     selectItem = (id) => {
@@ -114,15 +118,16 @@ class ChoiseTicketList extends Component {
 
     render() {
 
-        const {item, race, selectId, selectIndex} = this.props;
-        console.log("ChoiseTicketList", selectId)
+        const {item, race, params, selectId, selectIndex} = this.props;
+
         return (
             <div className={selectId === item.id ? 'choiseTicket-contentBorder' : 'choiseTicket-content'}
                  onClick={() => {
                      selectIndex(item.id);
 
                  }}>
-                <img style={{marginLeft: 17, width: 80, height: 104, marginTop: 16}} src={strNotNull(item.logo)?item.logo:default_img} alt=""/>
+                <img style={{marginLeft: 17, width: 80, height: 104, marginTop: 16}}
+                     src={strNotNull(item.logo) ? item.logo : default_img} alt=""/>
                 <div className="content-right">
                     <div className="right-title"><span>{item.title}</span></div>
                     <div className="right-tl">
@@ -136,9 +141,12 @@ class ChoiseTicketList extends Component {
                             <span>{item.ticket_info.e_ticket_number}</span>
                             {I18n.t('spread')}</div>
                         <div style={{flex: 1}}/>
-                        <div className="right-info" onClick={()=>{
-                            this.props.history.push(`/race/${race.race_id}/tickets/${item.id}/${this.props.match.params.lang}`)
-                        }}><span>{I18n.t('lookDetail')}</span></div>
+
+                        <div className="right-info" onClick={() => {
+                            this.props.history.push(`/races/${race.race_id}/tickets/${item.id}/${params.lang}`)
+                        }}>
+                            <span>{I18n.t('lookDetail')}</span>
+                        </div>
                     </div>
                 </div>
 
