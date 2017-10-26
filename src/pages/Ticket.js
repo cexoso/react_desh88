@@ -6,7 +6,6 @@ import MarkDown from '../components/MarkDown';
 import Footer from '../components/Footer';
 import I18n from '../service/I18n';
 import '../styles/Ticket.css';
-import {Images} from '../components/Themes';
 
 export default class Ticket extends Component {
     state = {
@@ -58,11 +57,6 @@ export default class Ticket extends Component {
         return(
 
             <div className="ticket">
-                <div className="returnIcon" onClick={()=>{
-                    this.props.history.goBack()
-                }}>
-                    <img  src={Images.returnIcon} alt=""/>
-                </div>
                 <div className="logo">
                     <img src={isEmptyObject(banner)?default_img:banner} alt=""/>
                 </div>
