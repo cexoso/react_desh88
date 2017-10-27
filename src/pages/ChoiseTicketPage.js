@@ -3,7 +3,7 @@ import {setLang, getLang, getChoiseTicketInfo} from '../service/RaceDao';
 import I18n from '../service/I18n';
 import  '../styles/ChoiseTicketPage.css';
 import {default_img} from '../components/constant';
-import {isEmptyObject, weiXinShare, message_desc, strNotNull,ticketStatusConvert} from '../service/utils';
+import {isEmptyObject, weiXinShare, message_desc, strNotNull, ticketStatusConvert} from '../service/utils';
 import Time from 'react-time-format';
 
 export default class ChoiseTicketPage extends Component {
@@ -11,8 +11,8 @@ export default class ChoiseTicketPage extends Component {
         choiseTicket: {},
         showButton1: "raceBotton raceBottonShow",
         showButton2: "raceBotton",
-        selectPrice:0,
-        selectTicket:""
+        selectPrice: 0,
+        selectTicket: ""
 
     }
 
@@ -20,7 +20,7 @@ export default class ChoiseTicketPage extends Component {
         const {id, lang} = this.props.match.params;
         setLang(lang);
         this.selectedId = -1;
-        this.ticket="";
+        this.ticket = "";
 
         const body = {choiseTicket_id: id};
 
@@ -50,150 +50,165 @@ export default class ChoiseTicketPage extends Component {
 
         });
     };
+
     bottomBar = () => {
+        let wConfirm = window.confirm;
+        window.confirm = function (message) {
+            let iframe = document.createElement("IFRAME");
+            iframe.style.display = "none";
+            iframe.setAttribute("src", 'data:text/plain,');
+            document.documentElement.appendChild(iframe);
+            let alertFrame = window.frames[0];
+            let result = alertFrame.window.confirm(message);
+            iframe.parentNode.removeChild(iframe);
+            return result;
+        };
+
         return (<div className="viewBottom">
             <span className="txtMoney">{I18n.t('price')}: </span>
             <span className="txtMoneyNum"> ¥{this.state.selectPrice}</span>
             <div style={{flex: 1}}/>
             <div className={this._btnOkStyle()}
-                onClick={()=>{
-                    var result=window.confirm(I18n.t('app_load'))
-                    if(result){
-                        this.props.history.push("/loadApp")
-                    }
-                }}>
-                <span className="txtBtnOk">{this._txtTicketStatus()}</span>
-            </div>
+                 onClick={() => {
+                     let message = I18n.t('app_load');
+                     let result = wConfirm(message);
+                     if (result) {
+                         this.props.history.push("/loadApp")
+                     }
+                 }}>
+                     <span className="txtBtnOk">{this._txtTicketStatus()}</span>
+                     </div>
 
-        </div>)
-    };
-    _btnOkStyle = () => {
-        let num = this._ticketNum(this.state.selectTicket.ticket_info);
-        return this.state.selectTicket.status === "selling" && num > 0 ?
+                     </div>)
+                     }
+            ;
+            _btnOkStyle = () => {
+            let num = this._ticketNum(this.state.selectTicket.ticket_info);
+            return this.state.selectTicket.status === "selling" && num > 0 ?
             "viewBtnOk" : "btnDisable"
-    };
+        };
 
-    _txtTicketStatus = () => {
-        const {ticket} = this.state.selectTicket;
-        if (isEmptyObject(ticket))
+            _txtTicketStatus = () => {
+            const {ticket} = this.state.selectTicket;
+            if (isEmptyObject(ticket))
             return I18n.t('selectOk');
-        else
+            else
             return ticketStatusConvert(ticket.status)
 
-    };
+        };
 
 
-    render() {
-        const {race, tickets} = this.state.choiseTicket;
-        if (isEmptyObject(race)) {
+            render() {
+            const {race, tickets} = this.state.choiseTicket;
+            if (isEmptyObject(race)) {
             return <div></div>;
         }
-        return (
+            return (
             <div className="choiseTicket">
-                <div className="choiseTicket-name">
-                    <span>{race.name}</span>
-                </div>
-                <div className="choiseTicket-race">
-                    <div className="race-span"></div>
-                    <span
-                        style={{flex: 1, marginLeft: 17, color: '#444444', fontSize: 15}}>{I18n.t('selectRace')}</span>
-                    <div className="raceButtons">
-                        <div className={this.state.showButton1} onClick={() => {
-                            this.setState({
-                                showButton1: "raceBotton raceBottonShow",
-                                showButton2: "raceBotton"
-                            })
-                        }}><span>{I18n.t('mainRace')}</span></div>
-                        <div style={{marginLeft: 20,display:'none'}} className={this.state.showButton2} onClick={() => {
-                            this.setState({
-                                showButton2: "raceBotton raceBottonShow",
-                                showButton1: "raceBotton"
-                            })
-                        }}><span>{I18n.t('sideRace')}</span></div>
-                    </div>
-                </div>
-                <div style={{height: 10}}></div>
-                {tickets.map((item, index) => <ChoiseTicketList
-                    {...this.props}
-                    key={index}
-                    item={item}
-                    race={race}
-                    tickets={this.setTicket}
-                    selectId={this.selectedId}
-                    params={this.props.match.params}
-                    selectIndex={this.selectItem}
-                    _ticketNum={this._ticketNum}/>)}
-
-
-                <div style={{height: 150}}></div>
-                {this.bottomBar()}
+            <div className="choiseTicket-name">
+            <span>{race.name}</span>
             </div>
-        );
-    };
-    _ticketNum = (ticket_info) => {
-        if (!isEmptyObject(ticket_info)) {
+            <div className="choiseTicket-race">
+            <div className="race-span"></div>
+            <span
+            style={{flex: 1, marginLeft: 17, color: '#444444', fontSize: 15}}>{I18n.t('selectRace')}</span>
+            <div className="raceButtons">
+            <div className={this.state.showButton1} onClick={() => {
+                this.setState({
+                    showButton1: "raceBotton raceBottonShow",
+                    showButton2: "raceBotton"
+                })
+            }}><span>{I18n.t('mainRace')}</span></div>
+            <div style={{marginLeft: 20, display: 'none'}} className={this.state.showButton2} onClick={() => {
+                this.setState({
+                    showButton2: "raceBotton raceBottonShow",
+                    showButton1: "raceBotton"
+                })
+            }}><span>{I18n.t('sideRace')}</span></div>
+            </div>
+            </div>
+            <div style={{height: 10}}></div>
+            {tickets.map((item, index) => <ChoiseTicketList
+                {...this.props}
+                key={index}
+                item={item}
+                race={race}
+                tickets={this.setTicket}
+                selectId={this.selectedId}
+                params={this.props.match.params}
+                selectIndex={this.selectItem}
+                _ticketNum={this._ticketNum}/>)}
+
+
+            <div style={{height: 150}}></div>
+            {this.bottomBar()}
+            </div>
+            );
+        };
+            _ticketNum = (ticket_info) => {
+            if (!isEmptyObject(ticket_info)) {
             const {e_ticket_number, e_ticket_sold_number, entity_ticket_number, entity_ticket_sold_number} = ticket_info;
             return e_ticket_number + entity_ticket_number - e_ticket_sold_number - entity_ticket_sold_number;
         }
 
-    };
+        };
 
 
-    selectItem = (id) => {
-        this.selectedId = id;
-        this.setState({
+            selectItem = (id) => {
+            this.selectedId = id;
+            this.setState({
             selectedIndex: id
 
         })
-    };
-    setTicket=(item)=>{
-        this.setState({
-            selectPrice:item.price,
-            selectTicket:item,
-            ticket:item
-        })
-    }
+        };
+            setTicket=(item)=>{
+            this.setState({
+                selectPrice: item.price,
+                selectTicket: item,
+                ticket: item
+            })
+        }
 
 
-}
+            }
 
-class ChoiseTicketList extends Component {
+            class ChoiseTicketList extends Component {
 
-    render() {
-        const {item, race, params,tickets, selectId, selectIndex,_ticketNum} = this.props;
+            render() {
+            const {item, race, params,tickets, selectId, selectIndex,_ticketNum} = this.props;
 
-        return (
+            return (
             <div className={selectId === item.id ? 'choiseTicket-contentBorder' : 'choiseTicket-content'}
-                 onClick={() => {
-                     selectIndex(item.id)
-                     tickets(item)
+            onClick={() => {
+                selectIndex(item.id)
+                tickets(item)
 
-                 }}>
-                <img style={{marginLeft: 17, width: 80, height: 104, marginTop: 16}}
-                     src={strNotNull(item.logo) ? item.logo : default_img} alt=""/>
-                <div className="content-right">
-                    <div className="right-title"><span>{item.title}</span></div>
-                    <div className="right-tl">
-                                <span className="right-time"><Time value={race.begin_date} format="YYYY.MM.DD"/>-<Time
-                                    value={race.end_date} format="YYYY.MM.DD"/></span>
-                        <span className="right-location">{I18n.t('location')} {race.location}</span>
-                    </div>
-                    <div className="right-si">
-                        <span className="right-sale">¥{item.price}</span>
-                        <div className="right-remain">{I18n.t('surplus')}
-                            <span>{_ticketNum(item.ticket_info)}</span>
-                            {I18n.t('spread')}</div>
-                        <div style={{flex: 1}}/>
+            }}>
+            <img style={{marginLeft: 17, width: 80, height: 104, marginTop: 16}}
+            src={strNotNull(item.logo) ? item.logo : default_img} alt=""/>
+            <div className="content-right">
+            <div className="right-title"><span>{item.title}</span></div>
+            <div className="right-tl">
+            <span className="right-time"><Time value={race.begin_date} format="YYYY.MM.DD"/>-<Time
+            value={race.end_date} format="YYYY.MM.DD"/></span>
+            <span className="right-location">{I18n.t('location')} {race.location}</span>
+            </div>
+            <div className="right-si">
+            <span className="right-sale">¥{item.price}</span>
+            <div className="right-remain">{I18n.t('surplus')}
+            <span>{_ticketNum(item.ticket_info)}</span>
+            {I18n.t('spread')}</div>
+            <div style={{flex: 1}}/>
 
-                        <div className="right-info" onClick={() => {
-                            this.props.history.push(`/races/${race.race_id}/tickets/${item.id}/${params.lang}`)
-                        }}>
-                            <span>{I18n.t('lookDetail')}</span>
-                        </div>
-                    </div>
-                </div>
+            <div className="right-info" onClick={() => {
+                this.props.history.push(`/races/${race.race_id}/tickets/${item.id}/${params.lang}`)
+            }}>
+            <span>{I18n.t('lookDetail')}</span>
+            </div>
+            </div>
+            </div>
 
             </div>
-        )
-    }
-}
+            )
+        }
+        }
