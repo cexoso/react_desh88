@@ -19,6 +19,19 @@ import DownloadSea from  './pages/DownloadSea';
 import SharePage from './pages/SharePage';
 import ChoiseTicketPage from './pages/ChoiseTicketPage';
 
+if (!__DEV__) {
+    global.console = {
+        info: () => {
+        },
+        log: () => {
+        },
+        warn: () => {
+        },
+        error: () => {
+        },
+    };
+}
+
 class App extends Component {
     render() {
         return (
