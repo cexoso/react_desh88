@@ -121,7 +121,8 @@ export default class ChoiseTicketPage extends Component {
                     tickets={this.setTicket}
                     selectId={this.selectedId}
                     params={this.props.match.params}
-                    selectIndex={this.selectItem}/>)}
+                    selectIndex={this.selectItem}
+                    _ticketNum={this._ticketNum}/>)}
 
 
                 <div style={{height: 150}}></div>
@@ -157,17 +158,9 @@ export default class ChoiseTicketPage extends Component {
 }
 
 class ChoiseTicketList extends Component {
-    _ticketNum = (ticket_info) => {
-        if (!isEmptyObject(ticket_info)) {
-            const {e_ticket_number, e_ticket_sold_number, entity_ticket_number, entity_ticket_sold_number} = ticket_info;
-            return e_ticket_number + entity_ticket_number - e_ticket_sold_number - entity_ticket_sold_number;
-        }
-
-    };
-
 
     render() {
-        const {item, race, params,tickets, selectId, selectIndex} = this.props;
+        const {item, race, params,tickets, selectId, selectIndex,_ticketNum} = this.props;
 
         return (
             <div className={selectId === item.id ? 'choiseTicket-contentBorder' : 'choiseTicket-content'}
@@ -188,7 +181,7 @@ class ChoiseTicketList extends Component {
                     <div className="right-si">
                         <span className="right-sale">¥{item.price}</span>
                         <div className="right-remain">{I18n.t('surplus')}
-                            <span>{this._ticketNum(item.ticket_info)}</span>
+                            <span>{_ticketNum(item.ticket_info)}</span>
                             {I18n.t('spread')}</div>
                         <div style={{flex: 1}}/>
 
