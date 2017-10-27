@@ -2,7 +2,7 @@
  * Created by lorne on 2017/8/24.
  */
 import React, {Component} from 'react';
-import Footer from '../components/Footer';
+import BuyTicket from '../components/BuyTicket';
 import {getRaceInfo, setLang, getSubRace} from '../service/RaceDao';
 import Time from 'react-time-format';
 import '../styles/RaceInfo.css';
@@ -213,7 +213,10 @@ export default class RaceInfo extends Component {
 
                 {this.content()}
 
-                <Footer/>
+                <BuyTicket
+
+                    history={this.props.history}
+                    load={`/raceTickets/${this.props.match.params.id}/${this.props.match.params.lang}`}/>
             </div>
         )
     };
