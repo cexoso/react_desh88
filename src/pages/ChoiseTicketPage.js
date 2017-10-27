@@ -11,7 +11,9 @@ export default class ChoiseTicketPage extends Component {
     state = {
         choiseTicket: {},
         showButton1: "raceBotton raceBottonShow",
-        showButton2: "raceBotton"
+        showButton2: "raceBotton",
+        selectPrice:0,
+        ticket:{}
     }
 
     componentDidMount() {
@@ -46,7 +48,36 @@ export default class ChoiseTicketPage extends Component {
         }, err => {
 
         });
-    }
+    };
+    bottomBar = () => {
+        return (<div className="viewBottom">
+            <span className="txtMoney">{I18n.t('price')}: </span>
+            <span className="txtMoneyNum"> ¥{this.state.selectPrice}</span>
+            <div style={{flex: 1}}/>
+            <div className={this._btnOkStyle()}
+                onClick={()=>{
+
+                }}>
+                <span className="txtBtnOk">{this._txtTicketStatus()}</span>
+            </div>
+
+        </div>)
+    };
+    _btnOkStyle = () => {
+        console.log("ticket:",this.state.ticket);
+        let num = this._ticketNum(this.state.ticket.ticket_info);
+        return this.state.ticket.status === "selling" && num > 0 ?
+            "viewBtnOk" : "btnDisable"
+    };
+
+    _txtTicketStatus = () => {
+        const {ticket} = this.state;
+        if (isEmptyObject(ticket))
+            return I18n.t('selectOk');
+        else
+            return this.ticketStatusConvert(ticket.status)
+
+    };
 
 
     render() {
@@ -90,12 +121,7 @@ export default class ChoiseTicketPage extends Component {
 
 
                 <div style={{height: 150}}></div>
-                <Link to="/loadApp">
-                    <div className="choiseTicket-bottom" onClick={() => {
-                    }}>
-                        <span>{I18n.t('buy_ticket')}</span>
-                    </div>
-                </Link>
+                {this.bottomBar()}
             </div>
         );
     }
@@ -105,6 +131,7 @@ export default class ChoiseTicketPage extends Component {
         this.selectedId = id;
         this.setState({
             selectedIndex: id
+
         })
     }
 
@@ -128,7 +155,10 @@ class ChoiseTicketList extends Component {
             <div className={selectId === item.id ? 'choiseTicket-contentBorder' : 'choiseTicket-content'}
                  onClick={() => {
                      selectIndex(item.id);
-
+                        this.setState({
+                            selectPrice:item.price,
+                            ticket:item
+                        })
                  }}>
                 <img style={{marginLeft: 17, width: 80, height: 104, marginTop: 16}}
                      src={strNotNull(item.logo) ? item.logo : default_img} alt=""/>
