@@ -57,7 +57,7 @@ export default class ChoiseTicketPage extends Component {
             <div style={{flex: 1}}/>
             <div className={this._btnOkStyle()}
                 onClick={()=>{
-                    var result=window.confirm(I18n.t('goLoadApp'))
+                    var result=window.confirm(`${I18n.t('goLoadApp')}`)
                     if(result){
                         this.props.history.push("/loadApp")
                     }
