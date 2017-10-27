@@ -3,21 +3,24 @@ import {setLang, getLang, getChoiseTicketInfo} from '../service/RaceDao';
 import I18n from '../service/I18n';
 import  '../styles/ChoiseTicketPage.css';
 import {default_img} from '../components/constant';
-import {isEmptyObject, weiXinShare, message_desc, strNotNull} from '../service/utils';
+import {isEmptyObject, weiXinShare, message_desc, strNotNull,ticketStatusConvert} from '../service/utils';
 import Time from 'react-time-format';
-import {Link} from 'react-router-dom';
 
 export default class ChoiseTicketPage extends Component {
     state = {
         choiseTicket: {},
         showButton1: "raceBotton raceBottonShow",
-        showButton2: "raceBotton"
+        showButton2: "raceBotton",
+        selectPrice:0,
+        selectTicket:""
+
     }
 
     componentDidMount() {
         const {id, lang} = this.props.match.params;
         setLang(lang);
         this.selectedId = -1;
+        this.ticket="";
 
         const body = {choiseTicket_id: id};
 
@@ -46,7 +49,38 @@ export default class ChoiseTicketPage extends Component {
         }, err => {
 
         });
-    }
+    };
+    bottomBar = () => {
+        return (<div className="viewBottom">
+            <span className="txtMoney">{I18n.t('price')}: </span>
+            <span className="txtMoneyNum"> ¥{this.state.selectPrice}</span>
+            <div style={{flex: 1}}/>
+            <div className={this._btnOkStyle()}
+                onClick={()=>{
+                    var result=window.confirm(I18n.t('app_load'))
+                    if(result){
+                        this.props.history.push("/loadApp")
+                    }
+                }}>
+                <span className="txtBtnOk">{this._txtTicketStatus()}</span>
+            </div>
+
+        </div>)
+    };
+    _btnOkStyle = () => {
+        let num = this._ticketNum(this.state.selectTicket.ticket_info);
+        return this.state.selectTicket.status === "selling" && num > 0 ?
+            "viewBtnOk" : "btnDisable"
+    };
+
+    _txtTicketStatus = () => {
+        const {ticket} = this.state.selectTicket;
+        if (isEmptyObject(ticket))
+            return I18n.t('selectOk');
+        else
+            return ticketStatusConvert(ticket.status)
+
+    };
 
 
     render() {
@@ -84,34 +118,18 @@ export default class ChoiseTicketPage extends Component {
                     key={index}
                     item={item}
                     race={race}
+                    tickets={this.setTicket}
                     selectId={this.selectedId}
                     params={this.props.match.params}
-                    selectIndex={this.selectItem}/>)}
+                    selectIndex={this.selectItem}
+                    _ticketNum={this._ticketNum}/>)}
 
 
                 <div style={{height: 150}}></div>
-                <Link to="/loadApp">
-                    <div className="choiseTicket-bottom" onClick={() => {
-                    }}>
-                        <span>{I18n.t('buy_ticket')}</span>
-                    </div>
-                </Link>
+                {this.bottomBar()}
             </div>
         );
-    }
-
-
-    selectItem = (id) => {
-        this.selectedId = id;
-        this.setState({
-            selectedIndex: id
-        })
-    }
-
-
-}
-
-class ChoiseTicketList extends Component {
+    };
     _ticketNum = (ticket_info) => {
         if (!isEmptyObject(ticket_info)) {
             const {e_ticket_number, e_ticket_sold_number, entity_ticket_number, entity_ticket_sold_number} = ticket_info;
@@ -120,14 +138,35 @@ class ChoiseTicketList extends Component {
 
     };
 
-    render() {
 
-        const {item, race, params, selectId, selectIndex} = this.props;
+    selectItem = (id) => {
+        this.selectedId = id;
+        this.setState({
+            selectedIndex: id
+
+        })
+    };
+    setTicket=(item)=>{
+        this.setState({
+            selectPrice:item.price,
+            selectTicket:item,
+            ticket:item
+        })
+    }
+
+
+}
+
+class ChoiseTicketList extends Component {
+
+    render() {
+        const {item, race, params,tickets, selectId, selectIndex,_ticketNum} = this.props;
 
         return (
             <div className={selectId === item.id ? 'choiseTicket-contentBorder' : 'choiseTicket-content'}
                  onClick={() => {
-                     selectIndex(item.id);
+                     selectIndex(item.id)
+                     tickets(item)
 
                  }}>
                 <img style={{marginLeft: 17, width: 80, height: 104, marginTop: 16}}
@@ -142,7 +181,7 @@ class ChoiseTicketList extends Component {
                     <div className="right-si">
                         <span className="right-sale">¥{item.price}</span>
                         <div className="right-remain">{I18n.t('surplus')}
-                            <span>{this._ticketNum(item.ticket_info)}</span>
+                            <span>{_ticketNum(item.ticket_info)}</span>
                             {I18n.t('spread')}</div>
                         <div style={{flex: 1}}/>
 
