@@ -3,9 +3,8 @@ import {setLang, getLang, getChoiseTicketInfo} from '../service/RaceDao';
 import I18n from '../service/I18n';
 import  '../styles/ChoiseTicketPage.css';
 import {default_img} from '../components/constant';
-import {isEmptyObject, weiXinShare, message_desc, strNotNull} from '../service/utils';
+import {isEmptyObject, weiXinShare, message_desc, strNotNull,ticketStatusConvert} from '../service/utils';
 import Time from 'react-time-format';
-import {Link} from 'react-router-dom';
 
 export default class ChoiseTicketPage extends Component {
     state = {
@@ -13,13 +12,15 @@ export default class ChoiseTicketPage extends Component {
         showButton1: "raceBotton raceBottonShow",
         showButton2: "raceBotton",
         selectPrice:0,
-        ticket:{}
+        selectTicket:""
+
     }
 
     componentDidMount() {
         const {id, lang} = this.props.match.params;
         setLang(lang);
         this.selectedId = -1;
+        this.ticket="";
 
         const body = {choiseTicket_id: id};
 
@@ -56,7 +57,10 @@ export default class ChoiseTicketPage extends Component {
             <div style={{flex: 1}}/>
             <div className={this._btnOkStyle()}
                 onClick={()=>{
-
+                    var result=window.confirm("Are you sure")
+                    if(result){
+                        this.props.history.push("/loadApp")
+                    }
                 }}>
                 <span className="txtBtnOk">{this._txtTicketStatus()}</span>
             </div>
@@ -64,18 +68,17 @@ export default class ChoiseTicketPage extends Component {
         </div>)
     };
     _btnOkStyle = () => {
-        console.log("ticket:",this.state.ticket);
-        let num = this._ticketNum(this.state.ticket.ticket_info);
-        return this.state.ticket.status === "selling" && num > 0 ?
+        let num = this._ticketNum(this.state.selectTicket.ticket_info);
+        return this.state.selectTicket.status === "selling" && num > 0 ?
             "viewBtnOk" : "btnDisable"
     };
 
     _txtTicketStatus = () => {
-        const {ticket} = this.state;
+        const {ticket} = this.state.selectTicket;
         if (isEmptyObject(ticket))
             return I18n.t('selectOk');
         else
-            return this.ticketStatusConvert(ticket.status)
+            return ticketStatusConvert(ticket.status)
 
     };
 
@@ -115,6 +118,7 @@ export default class ChoiseTicketPage extends Component {
                     key={index}
                     item={item}
                     race={race}
+                    tickets={this.setTicket}
                     selectId={this.selectedId}
                     params={this.props.match.params}
                     selectIndex={this.selectItem}/>)}
@@ -124,7 +128,14 @@ export default class ChoiseTicketPage extends Component {
                 {this.bottomBar()}
             </div>
         );
-    }
+    };
+    _ticketNum = (ticket_info) => {
+        if (!isEmptyObject(ticket_info)) {
+            const {e_ticket_number, e_ticket_sold_number, entity_ticket_number, entity_ticket_sold_number} = ticket_info;
+            return e_ticket_number + entity_ticket_number - e_ticket_sold_number - entity_ticket_sold_number;
+        }
+
+    };
 
 
     selectItem = (id) => {
@@ -132,6 +143,13 @@ export default class ChoiseTicketPage extends Component {
         this.setState({
             selectedIndex: id
 
+        })
+    };
+    setTicket=(item)=>{
+        this.setState({
+            selectPrice:item.price,
+            selectTicket:item,
+            ticket:item
         })
     }
 
@@ -147,18 +165,16 @@ class ChoiseTicketList extends Component {
 
     };
 
-    render() {
 
-        const {item, race, params, selectId, selectIndex} = this.props;
+    render() {
+        const {item, race, params,tickets, selectId, selectIndex} = this.props;
 
         return (
             <div className={selectId === item.id ? 'choiseTicket-contentBorder' : 'choiseTicket-content'}
                  onClick={() => {
-                     selectIndex(item.id);
-                        this.setState({
-                            selectPrice:item.price,
-                            ticket:item
-                        })
+                     selectIndex(item.id)
+                     tickets(item)
+
                  }}>
                 <img style={{marginLeft: 17, width: 80, height: 104, marginTop: 16}}
                      src={strNotNull(item.logo) ? item.logo : default_img} alt=""/>
