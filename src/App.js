@@ -19,7 +19,6 @@ import DownloadSea from  './pages/DownloadSea';
 import SharePage from './pages/SharePage';
 import ChoiseTicketPage from './pages/ChoiseTicketPage';
 
-if (!__DEV__) {
     global.console = {
         info: () => {
         },
@@ -30,7 +29,7 @@ if (!__DEV__) {
         error: () => {
         },
     };
-}
+
 
 class App extends Component {
     render() {
