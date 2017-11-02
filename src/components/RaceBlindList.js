@@ -156,7 +156,7 @@ export default class RaceBlindList extends PureComponent {
                             {moment(schedule.begin_time).format('MM-DD')}
                         </span>
                         <span>
-                            {moment(schedule.begin_time).format('hh:mm')}
+                            {moment(schedule.begin_time).format('HH:mm')}
                         </span>
 
                     </div>
