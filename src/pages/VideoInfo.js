@@ -1,14 +1,17 @@
 import React, {Component} from 'react';
-import {getVideoInfo, setLang} from '../service/RaceDao';
+import {getVideoInfo, getVideoGroup,setLang} from '../service/RaceDao';
 import {weiXinShare, isEmptyObject} from '../service/utils';
 import {default_img} from '../components/constant';
 import MarkDown from '../components/MarkDown';
 import Footer from '../components/Footer';
 import '../styles/Video.css';
+import I18n from '../service/I18n';
+import {Images} from '../components/Themes';
 
 export default class VideoInfo extends Component {
     state = {
-        data: {}
+        data: {},
+        videoGroup:{}
     };
 
     componentDidMount() {
@@ -16,6 +19,15 @@ export default class VideoInfo extends Component {
         setLang(lang);
         const body = {video_id: video_id};
 
+        getVideoGroup(body, data => {
+            console.log('videoGroup', data)
+            this.setState({
+                videoGroup: data
+            });
+
+        }, err => {
+
+        });
 
         getVideoInfo(body, data => {
             console.log('VideoInfo', data)
@@ -53,7 +65,6 @@ export default class VideoInfo extends Component {
 
         return (
             <div className="videoInfo">
-
                 <video ref="myVideo" controls="true"  poster={cover_link}>
                     <source src={video_link} type="video/mp4"/>
                     {/*<source src={video_link} type="video/ogg"/>*/}
@@ -62,6 +73,21 @@ export default class VideoInfo extends Component {
                         <embed src={video_link}/>
                     </object>
                 </video>
+                <div className="videoTop">
+                    <span>{this.state.data.name}</span>
+                </div>
+
+                <div className="videoGroup">
+                    <div className="videoGroupTop">
+                        <span className="videoGroupName">{this.state.data.group_name}</span>
+                        <div style={{flex:1}}/>
+                        <span className="videoGroupTxt">{I18n.t('more')}</span>
+                        <img className="videoGroupImg" src={Images.more} alt=""/>
+                    </div>
+                    {this.state.videoGroup.items.map((item)=>{
+
+                    })}
+                </div>
                 <MarkDown description={description}/>
                 <Footer/>
             </div>

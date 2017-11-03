@@ -1,6 +1,19 @@
 body,.videoInfo{
     margin:0;
     padding:0;
+    background-color: #F5F5F5;
+}
+.videoTop{
+    height:80px;
+    background-color: #FFFFFF;
+
+}
+.videoTop span{
+    line-height: 80px;
+    font-size: 17px;
+    color: #333333;
+    margin-left: 17px;
+    margin-right: 17px;
 }
 .videoInfo{
     /*margin-bottom: 60px;*/
@@ -9,4 +22,34 @@ video{
     margin:0;
     padding:0;
     width:100%;
+}
+.videoGroup{
+    margin-top:5px;
+    margin-bottom: 17px;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.videoGroupTop{
+    margin-top:11px;
+    margin-left:17px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.videoGroupName{
+    font-size: 15px;
+    color: #000000;
+    font-weight: bold;
+    margin-left:17px
+}
+.videoGroupTxt{
+    font-size: 14px;
+    color: #888888;
+}
+.videoGroupImg{
+    width:7px;
+    height:12px;
+    margin-right: 17px;
 }
