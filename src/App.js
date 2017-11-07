@@ -18,6 +18,7 @@ import VideoInfo from  './pages/VideoInfo';
 import DownloadSea from  './pages/DownloadSea';
 import SharePage from './pages/SharePage';
 import ChoiseTicketPage from './pages/ChoiseTicketPage';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
     // global.console = {
     //     info: () => {
@@ -34,6 +35,7 @@ import ChoiseTicketPage from './pages/ChoiseTicketPage';
 class App extends Component {
     render() {
         return (
+        <MuiThemeProvider>
             <Router>
                 <div>
 
@@ -57,6 +59,8 @@ class App extends Component {
                     <Route path="/raceTickets/:id/:lang" component={ChoiseTicketPage}/>
                 </div>
             </Router>
+        </MuiThemeProvider>
+
         );
     }
 }

@@ -7,7 +7,9 @@ import Footer from '../components/Footer';
 import '../styles/Video.css';
 import I18n from '../service/I18n';
 import {Images} from '../components/Themes';
-import ReactSwipe from 'react-swipes'
+import {GridList, GridTile} from 'material-ui/GridList';
+import IconButton from 'material-ui/IconButton';
+import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
 export default class VideoInfo extends Component {
     state = {
@@ -27,6 +29,9 @@ export default class VideoInfo extends Component {
             console.log('videoGroup', data)
             this.setState({
                 videoGroup: data
+            });
+            this.state.videoGroup.items.map(function (x) {
+                x.isSelect = false
             });
 
         }, err => {
@@ -64,6 +69,71 @@ export default class VideoInfo extends Component {
         });
 
     };
+    _onPressItem=(item)=>{
+        const {items} = this.state.videoGroup;
+        const {coverLink,videoLink,changedDes} = this.state;
+        let newSelects = [...items];
+        let coverLink2 ={coverLink};
+        let videoLink2 ={videoLink};
+        let changedDes2 = {changedDes};
+        newSelects.map(function (x) {
+            if (x.id === item.id) {
+                item.isSelect = true;
+                coverLink2 = x.cover_link;
+                videoLink2 = x.video_link;
+                changedDes2 = x.description;
+            }else{
+                item.isSelect =false;
+            }
+        });
+
+        this.setState({newSelects,
+            coverLink:coverLink2,
+            videoLink:videoLink2,
+            changedDes:changedDes2})
+        console.log(this.state.coverLink)
+        console.log(this.state.videoLink)
+    };
+
+    videoGroupList=()=>{
+        const {items} = this.state.videoGroup;
+        return(
+            <div style={styles.root}>
+                <GridList style={styles.gridList} cols={1}>
+                    {items.map((item,index) => (
+                        <div key={index} onClick={()=>{
+                            this._onPressItem(item)
+                        }}>
+                            <GridTile
+                                key={index}
+                                title={item.title}
+
+                                titleStyle={styles.titleStyle}
+                            >
+                                <div style={styles.videoFlex}>
+                                    <div className="videoImgs"
+                                         style={{backgroundImage: `url(${item.cover_link})`, backgroundSize: '100% 100%'}}>
+                                        <div className="videoImg">
+                                            <img src={Images.videoControl} alt=""/>
+                                        </div>
+                                        <div className="videoSpan">
+                                            <span>{item.video_duration}dd</span>
+                                        </div>
+
+                                    </div>
+                                    <div className="videoTxt">
+                                        <span>{item.name}</span>
+                                    </div>
+
+                                </div>
+
+                            </GridTile>
+                        </div>
+                    ))}
+                </GridList>
+            </div>
+        );
+    };
 
     render() {
         if (isEmptyObject(this.state.data)) {
@@ -96,35 +166,7 @@ export default class VideoInfo extends Component {
                         <img className="videoGroupImg" src={Images.more} alt=""/>
                     </div>
 
-
-                    <div className="card-swipe" >
-                        <div className="card-slide">
-                            {this.state.videoGroup.items.map((item,index)=>{
-                                return(
-                                    <div key={index} className="video-slide" onClick={()=>{
-                                        this.setState({
-                                            changedDes:item.description,
-                                            coverLink:item.cover_link,
-                                            videoLink:item.video_link
-                                        })
-                                    }}>
-                                        <div className="videoImgs" style={{backgroundImage:`url(${item.cover_link})`,backgroundSize:'100% 100%'}}>
-                                            <div className="videoImg">
-                                                <img src={Images.videoControl} alt=""/>
-                                            </div>
-                                            <div className="videoSpan">
-                                                <span>{item.video_duration}dd</span>
-                                            </div>
-
-                                        </div>
-                                        <div className="videoTxt">
-                                            <span>yyyyyttbfvsfgsacawrcsdbqwzsaddsfsfdsfdasdsdsdsdsdsdssfdsfgsdgdhchfghf</span>
-                                        </div>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </div>
+                    {this.videoGroupList()}
 
                 </div>
                 <MarkDown description={this.state.changedDes}/>
@@ -134,3 +176,33 @@ export default class VideoInfo extends Component {
         );
     }
 }
+const styles = {
+    root: {
+        width:'100%',
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        marginTop:17,
+
+    },
+    gridList: {
+        display: 'flex',
+        flexWrap: 'nowrap',
+        overflowX: 'auto',
+        marginLeft:12,
+        marginRight:17
+    },
+    titleStyle: {
+
+    },
+    videoImg:{
+        width:149,
+        height:90
+    },
+    videoFlex:{
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'center',
+        width:149
+    }
+};

@@ -126,10 +126,9 @@ video{
     clear: both;
     zoom: 1;
     width:139px;
-    height:60px !important;
-    background-color: red;
     margin:0 auto;
     margin-top: 8px;
+    margin-bottom: 17px;
     white-space: normal;
     word-break:break-all;
     /*word-wrap:break-word;*/
