@@ -8,16 +8,11 @@ import '../styles/Video.css';
 import I18n from '../service/I18n';
 import {Images} from '../components/Themes';
 import {GridList, GridTile} from 'material-ui/GridList';
-import IconButton from 'material-ui/IconButton';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
 export default class VideoInfo extends Component {
     state = {
         data: {},
         videoGroup: {},
-        coverLink:'',
-        videoLink:'',
-        changedDes:''
     };
 
     componentDidMount() {
@@ -43,9 +38,6 @@ export default class VideoInfo extends Component {
 
             this.setState({
                 data: data,
-                coverLink:data.cover_link,
-                videoLink:data.video_link,
-                changedDes:data.description
             });
             const {name, cover_link, description} = data;
             document.title = name;
@@ -71,28 +63,20 @@ export default class VideoInfo extends Component {
     };
     _onPressItem=(item)=>{
         const {items} = this.state.videoGroup;
-        const {coverLink,videoLink,changedDes} = this.state;
+        const {data} = this.state;
         let newSelects = [...items];
-        let coverLink2 ={coverLink};
-        let videoLink2 ={videoLink};
-        let changedDes2 = {changedDes};
+        let data2 =[...data];
         newSelects.map(function (x) {
             if (x.id === item.id) {
                 item.isSelect = true;
-                coverLink2 = x.cover_link;
-                videoLink2 = x.video_link;
-                changedDes2 = x.description;
+                data2 = x;
             }else{
                 item.isSelect =false;
             }
         });
 
         this.setState({newSelects,
-            coverLink:coverLink2,
-            videoLink:videoLink2,
-            changedDes:changedDes2})
-        console.log(this.state.coverLink)
-        console.log(this.state.videoLink)
+            data:data2})
     };
 
     videoGroupList=()=>{
@@ -138,29 +122,30 @@ export default class VideoInfo extends Component {
     render() {
         if (isEmptyObject(this.state.data)) {
             return <div></div>;
-        }
+        };
+        const {description, video_link ,cover_link,name,group_name} = this.state.data;
 
         return (
             <div className="videoInfo">
                 <div className="videoInfoTop">
                     <video autoPlay="autoPlay" controls="controls"
-                           poster={this.state.coverLink}>
+                           poster={cover_link}>
                         <source style={{width: '100%'}}
-                                src={this.state.videoLink}
+                                src={video_link}
                                 type="video/mp4"/>
-                        <object data={this.state.videoLink}>
-                            <embed src={this.state.videoLink}/>
+                        <object data={video_link}>
+                            <embed src={video_link}/>
                         </object>
                     </video>
                     <div className="videoTop">
-                        <span>{this.state.data.name}</span>
+                        <span>{name}</span>
                     </div>
                 </div>
 
 
                 <div className="videoGroup">
                     <div className="videoGroupTop">
-                        <span className="videoGroupName">{this.state.data.group_name}</span>
+                        <span className="videoGroupName">{group_name}</span>
                         <div style={{flex: 1}}/>
                         <span className="videoGroupTxt">{I18n.t('more')}</span>
                         <img className="videoGroupImg" src={Images.more} alt=""/>
@@ -169,7 +154,7 @@ export default class VideoInfo extends Component {
                     {this.videoGroupList()}
 
                 </div>
-                <MarkDown description={this.state.changedDes}/>
+                <MarkDown description={description}/>
                 <div style={{height:60}}/>
                 <Footer/>
             </div>
