@@ -182,12 +182,12 @@ class ChoiseTicketList extends Component {
         return (
             <div className={selectId === item.id ? 'choiseTicket-contentBorder' : 'choiseTicket-content'}
                  onClick={() => {
-                     selectIndex(item.id)
+                     selectIndex(item.id);
                      tickets(item)
 
                  }}>
                 <img style={{marginLeft: 17, width: 80, height: 104, marginTop: 16}}
-                     src={strNotNull(item.logo) ? item.logo : default_img} alt=""/>
+                     src={strNotNull(item.logo) ? item.logo : race.logo} alt=""/>
                 <div className="content-right">
                     <div className="right-title"><span>{item.title}</span></div>
                     <div className="right-tl">
