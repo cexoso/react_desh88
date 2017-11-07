@@ -86,6 +86,11 @@ export function getChoiseTicketInfo(body, resolve, reject) {
         resolve(ret.data);
     }, reject);
 }
+export function getVideoGroup(body, resolve, reject) {
+    get(Api.videoGroup_Info(body), ret => {
+        resolve(ret.data);
+    }, reject);
+}
 
 
 

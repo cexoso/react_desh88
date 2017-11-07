@@ -1,6 +1,21 @@
 body,.videoInfo{
     margin:0;
     padding:0;
+    background-color: #F5F5F5;
+}
+.videoInfoTop{
+    width:100%;
+    background-color: #FFFFFF;
+}
+.videoTop{
+    padding-top:14px;
+    padding-bottom: 18px;
+    margin-left: 17px;
+    margin-right: 17px;
+}
+.videoTop span{
+    font-size: 17px;
+    color: #333333;
 }
 .videoInfo{
     /*margin-bottom: 60px;*/
@@ -10,3 +25,122 @@ video{
     padding:0;
     width:100%;
 }
+.videoGroup{
+    margin-top:5px;
+    margin-bottom: 17px;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.videoGroupTop{
+    width:100%;
+    margin-top:11px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.videoGroupName{
+    margin-left:17px;
+    font-size: 15px;
+    color: #333333;
+    font-weight: bold;
+
+}
+.videoGroupTxt{
+    font-size: 14px;
+    color: #888888;
+}
+.videoGroupImg{
+    width:7px;
+    height:12px;
+    margin-right: 17px;
+    margin-left:5px;
+}
+.card-swipe{
+    width:100%;
+    height:150px;
+    display:flex;
+    justify-content: space-around;
+    position: relative;
+    overflow: auto;
+    margin-top: 10px;
+    margin-bottom: 17px;
+    overflow-y: hidden;
+}
+
+.card-slide{
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    margin-left: 10px;
+    margin-top:12px;
+}
+.video-slide:nth-child(1){
+    margin-left: 0;
+}
+.video-slide{
+    display: inline-block;
+    font-size: 14px;
+    width:149px;
+    height:90px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    text-align: center;
+    margin-left: 10px;
+    -webkit-overflow-scrolling: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.videoFlex {
+    display: flex;
+    flex-direction: column;
+    width:149px;
+}
+.videoImgs{
+    width:149px;
+    height:90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.videoImg{
+    width: 40px;
+    height: 40px;
+    align-self: center;
+
+}
+.videoImg img{
+    width:100%;
+    height:100%;
+}
+.videoSpan{
+    align-self: flex-end;
+}
+.videoSpan span{
+    font-size: 14px;
+    color: #FFFFFF;
+}
+.videoTxt{
+    overflow:auto;
+    clear: both;
+    zoom: 1;
+    width:139px;
+    height:60px !important;
+    background-color: red;
+    margin:0 auto;
+    margin-top: 8px;
+    white-space: normal;
+    word-break:break-all;
+    /*word-wrap:break-word;*/
+    text-align:left;
+    text-overflow: ellipsis !important;
+
+}
+.videoTxt span{
+    font-size: 14px;
+    color: #333333;
+}
+
+
+

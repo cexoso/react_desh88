@@ -14,7 +14,8 @@ export default {
     activities_info: activities_info,
     ticket_info: ticket_info,
     video_Info:video_Info,
-    choiseTicket_Info:choiseTicket_Info
+    choiseTicket_Info:choiseTicket_Info,
+    videoGroup_Info:videoGroup_Info
 
 }
 
@@ -67,5 +68,9 @@ function video_Info(body) {
 function choiseTicket_Info(body) {
     const {choiseTicket_id} = body;
     return 'races/' + choiseTicket_id+"/tickets";
+}
+function videoGroup_Info(body) {
+    const {video_id} = body;
+    return 'videos/group/' + video_id+"/sub_videos";
 }
 
