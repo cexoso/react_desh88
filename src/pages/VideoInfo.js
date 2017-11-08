@@ -2,14 +2,12 @@ import React, {Component} from 'react';
 import {getVideoInfo, getVideoGroup, setLang} from '../service/RaceDao';
 import {weiXinShare, isEmptyObject} from '../service/utils';
 import {default_img} from '../components/constant';
-import MarkDown from '../components/MarkDown';
-import Footer from '../components/Footer';
+import {MarkDown, Footer} from '../components';
 import '../styles/Video.css';
 import I18n from '../service/I18n';
 import {Images} from '../components/Themes';
 import {GridList, GridTile} from 'material-ui/GridList';
-import IconButton from 'material-ui/IconButton';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+
 
 export default class VideoInfo extends Component {
     state = {
@@ -67,7 +65,11 @@ export default class VideoInfo extends Component {
     };
 
     _onPressItem = (item) => {
-        console.log(item)
+        const {cover_link, video_link} = item;
+        this.video.src = video_link;
+        this.video.setAttribute('poster', cover_link);
+
+        console.log( this.video );
         this.setState({
             data: item
         })
@@ -139,6 +141,8 @@ export default class VideoInfo extends Component {
 
 
                 <video
+                    ref={ref => this.video = ref}
+                    id={'video'}
                     style={styles.videoView}
                     autoPlay={false}
                     controls
