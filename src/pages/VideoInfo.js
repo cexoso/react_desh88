@@ -8,11 +8,13 @@ import '../styles/Video.css';
 import I18n from '../service/I18n';
 import {Images} from '../components/Themes';
 import {GridList, GridTile} from 'material-ui/GridList';
+import IconButton from 'material-ui/IconButton';
+import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
 export default class VideoInfo extends Component {
     state = {
         data: {},
-        videoGroup: {},
+        videoGroup: {}
     };
 
     componentDidMount() {
@@ -37,7 +39,7 @@ export default class VideoInfo extends Component {
             console.log('VideoInfo', data)
 
             this.setState({
-                data: data,
+                data: data
             });
             const {name, cover_link, description} = data;
             document.title = name;
@@ -61,53 +63,54 @@ export default class VideoInfo extends Component {
         });
 
     };
-    _onPressItem=(item)=>{
-        const {items} = this.state.videoGroup;
-        const {data} = this.state;
-        let newSelects = [...items];
-        let data2 =[...data];
-        newSelects.map(function (x) {
-            if (x.id === item.id) {
-                item.isSelect = true;
-                data2 = x;
-            }else{
-                item.isSelect =false;
-            }
-        });
 
-        this.setState({newSelects,
-            data:data2})
+    _onPressItem = (item) => {
+        console.log(item)
+        this.setState({
+            data: item
+        })
     };
 
-    videoGroupList=()=>{
+    videoGroupList = () => {
         const {items} = this.state.videoGroup;
-        return(
+        return (
             <div style={styles.root}>
                 <GridList style={styles.gridList} cols={1}>
-                    {items.map((item,index) => (
-                        <div key={index} onClick={()=>{
+                    {items.map((item, index) => (
+                        <div key={index} onClick={() => {
                             this._onPressItem(item)
                         }}>
                             <GridTile
                                 key={index}
                                 title={item.title}
-
-                                titleStyle={styles.titleStyle}
                             >
                                 <div style={styles.videoFlex}>
-                                    <div className="videoImgs"
-                                         style={{backgroundImage: `url(${item.cover_link})`, backgroundSize: '100% 100%'}}>
-                                        <div className="videoImg">
-                                            <img src={Images.videoControl} alt=""/>
-                                        </div>
-                                        <div className="videoSpan">
-                                            <span>{item.video_duration}dd</span>
-                                        </div>
+                                    <div
+                                        style={{
+                                            backgroundImage: `url(${item.cover_link})`,
+                                            backgroundSize: '100% 100%',
+                                            width: 149,
+                                            height: 90,
+                                            display: 'flex',
+                                        }}>
+                                        <img src={Images.videoControl} alt="" style={{
+                                            height: 40, width: 40, alignSelf: 'center',
+                                            marginLeft: 50
+                                        }}/>
+
+                                        <span style={{
+                                            display: 'flex',
+                                            fontSize: 14,
+                                            color: 'white',
+                                            alignSelf: 'flex-end',
+                                            marginLeft: 15
+                                        }}>{`${item.video_duration}`}</span>
 
                                     </div>
-                                    <div className="videoTxt">
-                                        <span>{item.name}</span>
+                                    <div style={styles.title3Div}>
+                                        <span style={styles.title3}>{item.name}</span>
                                     </div>
+
 
                                 </div>
 
@@ -122,40 +125,44 @@ export default class VideoInfo extends Component {
     render() {
         if (isEmptyObject(this.state.data)) {
             return <div></div>;
-        };
-        const {description, video_link ,cover_link,name,group_name} = this.state.data;
+        }
+
+        const {cover_link, video_link, name, group_name, description} = this.state.data;
 
         return (
-            <div className="videoInfo">
-                <div className="videoInfoTop">
-                    <video autoPlay="autoPlay" controls="controls"
-                           poster={cover_link}>
-                        <source style={{width: '100%'}}
-                                src={video_link}
-                                type="video/mp4"/>
-                        <object data={video_link}>
-                            <embed src={video_link}/>
-                        </object>
-                    </video>
-                    <div className="videoTop">
-                        <span>{name}</span>
-                    </div>
+            <div style={styles.page}>
+
+
+                <video
+                    style={styles.videoView}
+                    autoPlay={false}
+                    controls
+                    poster={cover_link}>
+                    <source src={video_link} type="video/mp4"/>
+                    <source src={video_link} type="video/ogg"/>
+                    <source src={video_link} type="video/webm"/>
+
+                    <object data={video_link}>
+                        <embed src={video_link}/>
+                    </object>
+                </video>
+
+                <div style={styles.titleView}>
+                    <span style={styles.title}>{name}</span>
                 </div>
 
-
-                <div className="videoGroup">
-                    <div className="videoGroupTop">
-                        <span className="videoGroupName">{group_name}</span>
-                        <div style={{flex: 1}}/>
-                        <span className="videoGroupTxt">{I18n.t('more')}</span>
-                        <img className="videoGroupImg" src={Images.more} alt=""/>
+                <div style={styles.groupView}>
+                    <div style={styles.title2Div}>
+                        <span style={styles.title2}>{group_name}</span>
                     </div>
 
                     {this.videoGroupList()}
 
                 </div>
+
+
                 <MarkDown description={description}/>
-                <div style={{height:60}}/>
+
                 <Footer/>
             </div>
         );
@@ -163,31 +170,74 @@ export default class VideoInfo extends Component {
 }
 const styles = {
     root: {
-        width:'100%',
+        width: '100%',
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
-        marginTop:17,
-
     },
     gridList: {
         display: 'flex',
         flexWrap: 'nowrap',
         overflowX: 'auto',
-        marginLeft:12,
-        marginRight:17
+        marginLeft: 17,
     },
-    titleStyle: {
+    titleStyle: {},
+    videoImg: {
+        width: 149,
+        height: 90
+    },
+    videoFlex: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: 149
+    },
+    page: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    title: {
+        color: '#333333',
+        fontSize: 17,
+        fontWeight: 'bold'
 
     },
-    videoImg:{
-        width:149,
-        height:90
+    titleView: {
+        padding: 17,
+        backgroundColor: 'white'
     },
-    videoFlex:{
-        display:'flex',
-        flexDirection:'column',
-        alignItems:'center',
-        width:149
+    videoView: {
+        height: 216,
+        width: '100%'
+    },
+    groupView: {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        marginTop: 5,
+        backgroundColor: 'white'
+    },
+    title2Div: {
+        height: 44,
+        display: 'flex',
+        alignItems: 'center'
+    },
+    title2: {
+        fontSize: 15,
+        color: '#333333',
+        marginLeft: 17,
+        fontWeight: 'bold'
+    },
+    title3: {
+        textOverflow: 'ellipsis',
+        fontSize: 14,
+        color: '#333333',
+        overflow: 'hidden',
+        flexWrap: 'noWarp',
+    },
+    title3Div: {
+        paddingTop: 6,
+        height: 50,
     }
+
 };
