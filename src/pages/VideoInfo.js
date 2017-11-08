@@ -18,28 +18,26 @@ export default class VideoInfo extends Component {
     componentDidMount() {
         const {video_id, lang} = this.props.match.params;
         setLang(lang);
-        const body = {video_id: video_id};
 
-        getVideoGroup(body, data => {
-            console.log('videoGroup', data)
-            this.setState({
-                videoGroup: data
-            });
-            this.state.videoGroup.items.map(function (x) {
-                x.isSelect = false
-            });
-
-        }, err => {
-
-        });
-
+        let body = {video_id: video_id}
         getVideoInfo(body, data => {
             console.log('VideoInfo', data)
 
-            this.setState({
-                data: data
+
+            const {name, cover_link, description, group_id} = data;
+            getVideoGroup({video_id: group_id}, data => {
+                console.log('videoGroup', data)
+                this.setState({
+                    videoGroup: data
+                });
+                this.state.videoGroup.items.map(function (x) {
+                    x.isSelect = false
+                });
+
+            }, err => {
+
             });
-            const {name, cover_link, description} = data;
+
             document.title = name;
 
             //微信二次分享
@@ -56,6 +54,10 @@ export default class VideoInfo extends Component {
             const url = {url: window.location.href};
             console.log("message:", message);
             weiXinShare(url, message);
+
+            this.setState({
+                data: data
+            });
         }, err => {
 
         });
@@ -94,18 +96,21 @@ export default class VideoInfo extends Component {
                                             width: 149,
                                             height: 90,
                                             display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center'
                                         }}>
                                         <img src={Images.videoControl} alt="" style={{
-                                            height: 40, width: 40, alignSelf: 'center',
-                                            marginLeft: 50
+                                            height: 40, width: 40,
+
                                         }}/>
 
                                         <span style={{
                                             display: 'flex',
                                             fontSize: 14,
                                             color: 'white',
-                                            alignSelf: 'flex-end',
-                                            marginLeft: 15
+                                            position: 'absolute',
+                                            bottom: 55,
+                                            right: 5
                                         }}>{`${item.video_duration}`}</span>
 
                                     </div>
