@@ -20,16 +20,16 @@ import SharePage from './pages/SharePage';
 import ChoiseTicketPage from './pages/ChoiseTicketPage';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-    // global.console = {
-    //     info: () => {
-    //     },
-    //     log: () => {
-    //     },
-    //     warn: () => {
-    //     },
-    //     error: () => {
-    //     },
-    // };
+    global.console = {
+        info: () => {
+        },
+        log: () => {
+        },
+        warn: () => {
+        },
+        error: () => {
+        },
+    };
 
 
 class App extends Component {
