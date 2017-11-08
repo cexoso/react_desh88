@@ -91,6 +91,11 @@ export function getVideoGroup(body, resolve, reject) {
         resolve(ret.data);
     }, reject);
 }
+export function getProductDetail(body, resolve, reject) {
+    get(Api.product_Detail(body), ret => {
+        resolve(ret.data);
+    }, reject);
+}
 
 
 
