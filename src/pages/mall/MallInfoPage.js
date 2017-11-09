@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {MarkDown, Footer,Images} from '../../components';
-import I18n from 'react-native-i18n';
+import I18n from '../../service/I18n';
 import MallInfoPageTopBar from './MallInfoPageTopBar';
 import ProductSpecification from './ProductSpecification';
 import ShipAddress from './ShipAddress';
@@ -14,14 +14,15 @@ export default class MallInfoPage extends Component {
     state = {
         specShow: false,
         opacity: 0,
-        product: {}
+        product: {},
+        selectProduct: {}
     };
 
     componentDidMount() {
         const {product_id, lang} = this.props.match.params;
         setLang(lang);
 
-        let body = {product_id: product_id}
+        let body = {product_id: product_id};
 
         getProductDetail(body, data => {
 
@@ -38,7 +39,8 @@ export default class MallInfoPage extends Component {
         return (<div style={[styleM.topBar, {backgroundColor: 'rgba(255,255,255,' + this.state.opacity + ')'}]}>
             <div
                 style={styleM.popBtn}
-                onClick={}>
+                onClick={() => {
+                }}>
                 <img style={styleM.backImg}
                        src={Images.mall_return}/>
             </div>
@@ -57,13 +59,34 @@ export default class MallInfoPage extends Component {
 
 
     render() {
-        const {specShow, product} = this.state;
+        const {specShow, product, selectProduct} = this.state;
         return (
-            <div style={styleM.bgContainer}>
+            <div>
+                <div style={styleM.bgContainer}>
+
+                    <MallInfoPageTopBar
+                        product={product}/>
+
+                    <ProductSpecification
+                        selectProduct={selectProduct}
+                        showSpecInfo={this.showSpecInfo}
+                    />
+                    <ShipAddress/>
+                    <MallIntroduction
+                        product={product}/>
+                    <div style={{height: 50}}/>
 
 
+                </div>
+                {this.topBar()}
 
+                <MallInfoBottom
+                    showSpecInfo={this.showSpecInfo}/>
 
+                {specShow ? <ProductSpecificationInfo
+                        selectProduct={selectProduct}
+                        product={product}
+                        showSpecInfo={this.showSpecInfo}/> : null}
             </div>
 
         );

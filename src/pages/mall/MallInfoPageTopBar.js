@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {MarkDown, Footer,Images} from '../../components';
-import I18n from 'react-native-i18n';
-import Swiper from 'react-native-swiper';
-import {isEmptyObject, moneyFormat} from '../../utils/ComonHelper'
+import I18n from '../../service/I18n';
+import {weiXinShare, message_desc, isEmptyObject,moneyFormat} from '../../service/utils';
 
 export default class MallInfoPageTopBar extends Component {
 
@@ -26,23 +25,18 @@ export default class MallInfoPageTopBar extends Component {
         const {images} = this.props.product;
 
 
-        return <View style={styleM.mallInfoBgImg}>
-            <Swiper
-                autoplayTimeout={3}
-                autoplay>
-                {images.map((item, index) => {
-                    return <div
-                        key={`banner${index}`}
-                        onClick={() => this._clickBanner(index)}
-                        >
-                        <img style={{height: 362, width: '100%'}}
-                               src={item.preview}/>
-                    </div>
+        return <div style={styleM.mallInfoBgImg}>
+            {images.map((item, index) => {
+                return <div
+                    key={`banner${index}`}
+                    onClick={() => this._clickBanner(index)}
+                >
+                    <img style={{height: 362, width: '100%'}}
+                         src={item.preview}/>
+                </div>
 
-                })}
-
-            </Swiper>
-        </View>;
+            })}
+        </div>;
     };
 
     _detailView = () => {

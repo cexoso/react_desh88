@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Colors, Fonts, Images} from '../../components';
-import I18n from 'react-native-i18n';
+import I18n from '../../service/I18n';
 import propTypes from 'prop-types';
 
 export default class ProductSpecification extends Component {

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Colors, Fonts, Images} from '../../components';
-import I18n from 'react-native-i18n';
+import I18n from '../../service/I18n';
 import {weiXinShare,isEmptyObject,message_desc} from '../../service/utils';
 
 export default class ShipAddress extends Component {
@@ -10,24 +10,24 @@ export default class ShipAddress extends Component {
     };
 
     componentDidMount() {
-        let adrDefault = global.addressList.filter(item => item.default);
-        console.log('adrDefault', adrDefault);
-        if (adrDefault.length > 0)
-            this.setState({adrDefault: adrDefault[0]})
+        // let adrDefault = global.addressList.filter(item => item.default);
+        // console.log('adrDefault', adrDefault);
+        // if (adrDefault.length > 0)
+        //     this.setState({adrDefault: adrDefault[0]})
 
     }
 
 
     _adrView = () => {
-        const {address, address_detail, consignee, mobile} = this.state.adrDefault;
+        // const {address, address_detail, consignee, mobile} = this.state.adrDefault;
 
         return <div style={styleS.shipAddr}>
             <div style={{marginTop: 12}}>
                 <div style={{flexDirection: 'row'}}>
-                    <span style={styleS.shipAddrTxt1}>{consignee}</span>
-                    <span style={styleS.shipAddrTxt1}>{mobile}</span>
+                    <span style={styleS.shipAddrTxt1}>wewewewe</span>
+                    <span style={styleS.shipAddrTxt1}>2323232323232323</span>
                 </div>
-                <span style={styleS.shipAddrTxt2}>{`${address} ${address_detail}`}</span>
+                <span style={styleS.shipAddrTxt2}>dfdfdfd</span>
             </div>
             <div style={{flex: 1}}/>
             <img style={styleS.shipAddrImg} src={Images.is}/>
@@ -43,10 +43,6 @@ export default class ShipAddress extends Component {
     _emptyAdr = () => {
         return <div
             onClick={() => {
-                if (isEmptyObject(global.login_user))
-                    router.toLoginFirstPage();
-                else
-                    router.toAdrListPage(this.props, this._selectAdr, {});
             }}
             style={{height: 45, width: '100%', backgroundColor: Colors.white}}>
             <div style={{height: 1, backgroundColor: Colors._ECE, width: '100%'}}/>

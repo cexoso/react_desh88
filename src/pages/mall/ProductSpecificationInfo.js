@@ -1,9 +1,7 @@
 import React, {PureComponent} from 'react';
-import {View, Text, Image, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
-import {Colors, Fonts, Images, ApplicationStyles, Metrics} from '../../Themes';
-import * as Animatable from 'react-native-animatable';
-import I18n from 'react-native-i18n';
-import {showToast} from '../../utils/ComonHelper';
+import {Colors, Fonts, Images, ApplicationStyles, Metrics} from '../../components';
+import I18n from '../../service/I18n';
+import {} from '../../service/utils';
 import _ from 'lodash'
 
 export default class ProductSpecificationInfo extends PureComponent {
@@ -31,11 +29,11 @@ export default class ProductSpecificationInfo extends PureComponent {
 
         const {option_values} = x;
         let that = this;
-        return <View style={{flexDirection: 'row', flexWrap: 'wrap', marginLeft: 17, marginTop: 16}}>
+        return <div style={{flexDirection: 'row', flexWrap: 'wrap', marginLeft: 17, marginTop: 16}}>
             {option_values.map(function (item, index) {
 
-                return <TouchableOpacity
-                    onPress={() => {
+                return <div
+                    onClick={() => {
                         x.select = item;
                         let newOptions = Array.from(array);
 
@@ -46,14 +44,14 @@ export default class ProductSpecificationInfo extends PureComponent {
                         backgroundColor: x.hasOwnProperty('select') && x.select.id === item.id ?
                             '#F34A4A' : '#F6F5F5'
                     }]}>
-                    <Text
+                    <span
                         style={[styleP.txtTab, {
                             color: x.hasOwnProperty('select') && x.select.id === item.id ?
                                 Colors.white : Colors.txt_444
-                        }]}>{item.name}</Text>
-                </TouchableOpacity>
+                        }]}>{item.name}</span>
+                </div>
             })}
-        </View>
+        </div>
     };
 
 
@@ -70,65 +68,65 @@ export default class ProductSpecificationInfo extends PureComponent {
 
         return (
 
-            <View style={{marginRight: 29, flexDirection: 'row', alignItems: 'center', marginTop: 14}}>
-                <TouchableOpacity
+            <div style={{marginRight: 29, flexDirection: 'row', alignItems: 'center', marginTop: 14}}>
+                <div
                     style={[styleP.buyTouch, number === 1 ? styleCutDisable : styleCut]}
-                    onPress={() => {
+                    onClick={() => {
                         if (number > 1) {
 
                             this.setState({number: --number})
                         }
 
                     }}>
-                    <Image style={styleP.buyImgCut} source={Images.cut}/>
-                </TouchableOpacity>
+                    <img style={styleP.buyImgCut} src={Images.cut}/>
+                </div>
 
-                <View style={styleP.buyInput}>
-                    <Text>{number}</Text>
-                </View>
+                <div style={styleP.buyInput}>
+                    <span>{number}</span>
+                </div>
 
-                <TouchableOpacity
+                <div
                     style={styleP.buyTouch}
-                    onPress={() => {
+                    onClick={() => {
 
                         if (number < tempStock) {
                             this.setState({
                                 number: ++number
                             })
                         } else {
-                            showToast(I18n.t('max_stock'))
+                            (I18n.t('max_stock'))
                         }
 
                     }}>
-                    <Image style={styleP.buyImgAdd} source={Images.add}/>
-                </TouchableOpacity>
-            </View>
+                    <img style={styleP.buyImgAdd} src={Images.add}/>
+                </div>
+            </div>
         )
     };
 
     optionTypesView = (option_types) => {
         let that = this;
 
-        return <ScrollView>
+        return <div>
             {option_types.map((x, index, array) => {
 
-                return <View
+                return <div
                     key={`option_types${x.id}`}
                     style={styleP.size}>
-                    <Text style={[styleP.sizeTxt1, {marginTop: 11}]}>{x.name}</Text>
+                    <span style={[styleP.sizeTxt1, {marginTop: 11}]}>{x.name}</span>
                     {that.tabBlank(x, array)}
-                </View>
+                </div>
             })}
 
-            <View style={styleP.buyQuantity}>
-                <Text style={[styleP.sizeTxt1, {marginTop: 20}]}>购买数量</Text>
-                <View style={{flex: 1}}/>
+            <div style={styleP.buyQuantity}>
+                <span style={[styleP.sizeTxt1, {marginTop: 20}]}>购买数量</span>
+                <div style={{flex: 1}}/>
                 {this.buyQuantity()}
-            </View>
+            </div>
 
-            <View style={{height: 50}}/>
+            <div style={{height: 50}}/>
 
-        </ScrollView>
+        </div>
     };
 
 
@@ -172,48 +170,45 @@ export default class ProductSpecificationInfo extends PureComponent {
 
 
         return (
-            <Animatable.View
-                duration={300}
-                animation={'fadeInUp'}
+            <div
                 style={styleP.page}>
-                <View style={styleP.specificationInfo}>
+                <div style={styleP.specificationInfo}>
 
-                    <View style={styleP.specificationInfoTop}>
-                        <Image style={styleP.specificationInfoTopImg} source={{uri: tempImg}}/>
-                        <View style={styleP.specificationInfoTopM}>
-                            <Text style={styleP.specificationInfoTopP}>
+                    <div style={styleP.specificationInfoTop}>
+                        <img style={styleP.specificationInfoTopImg} src={{uri: tempImg}}/>
+                        <div style={styleP.specificationInfoTopM}>
+                            <span style={styleP.specificationInfoTopP}>
                                 {tempPrice}
-                            </Text>
-                            <Text style={styleP.specificationInfoTopS}>
+                            </span>
+                            <span style={styleP.specificationInfoTopS}>
                                 {I18n.t('stock') + tempStock + I18n.t('pieces')}
-                            </Text>
-                        </View>
-                    </View>
-                    <TouchableOpacity
+                            </span>
+                        </div>
+                    </div>
+                    <div
                         style={styleP.closeView}
-                        onPress={() => {
-                            this.props.showSpecInfo()
+                        onClick={() => {
                         }}>
-                        <Image style={styleP.closeImg} source={Images.close}/>
-                    </TouchableOpacity>
+                        <img style={styleP.closeImg} src={Images.close}/>
+                    </div>
 
 
                     {this.optionTypesView(optionTypes)}
 
-                </View>
+                </div>
 
 
-                <View style={styleP.confirmView}>
-                    <TouchableOpacity style={styleP.confirm}>
-                        <Text style={styleP.confirmTxt}>{I18n.t('confirm')}</Text>
-                    </TouchableOpacity>
-                </View>
-            </Animatable.View>
+                <div style={styleP.confirmView}>
+                    <div style={styleP.confirm}>
+                        <span style={styleP.confirmTxt}>{I18n.t('confirm')}</span>
+                    </div>
+                </div>
+            </div>
 
         );
     }
 }
-const styleP = StyleSheet.create({
+const styleP = {
     page: {
         backgroundColor: 'rgba(0,0,0,0.5)',
         position: 'absolute',
@@ -355,4 +350,4 @@ const styleP = StyleSheet.create({
         fontSize: 18,
         color: '#FFFFFF'
     }
-})
+}

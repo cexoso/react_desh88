@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, ScrollView, Text, Image} from 'react-native';
-import {Colors, Fonts, Images, ApplicationStyles, Metrics} from '../../Themes';
-import I18n from 'react-native-i18n';
-import {MarkDown, Footer,Images} from '../../components';
+import {Colors, Fonts, Images, ApplicationStyles, MarkDown} from '../../components';
+import I18n from '../../service/I18n';
 
 export default class MallIntroduction extends Component {
 

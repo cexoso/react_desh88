@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Colors, Fonts, Images} from '../../components';
-import I18n from 'react-native-i18n';
+import I18n from '../../service/I18n';
 import PropTypes from 'prop-types';
 
 export default class MallInfoBottom extends Component {
@@ -20,7 +20,6 @@ export default class MallInfoBottom extends Component {
                 <div
                     style={styleB.shoppingCar}
                     onClick={() => {
-                        router.toShippingCart(this.props)
                     }}>
                     <img style={styleB.shoppingCarImg} src={Images.shoppingCart}/>
                     <div style={styleB.shoppingCarView}>
@@ -40,7 +39,7 @@ export default class MallInfoBottom extends Component {
     }
 }
 
-const styleB = StyleSheet.create({
+const styleB ={
     mallBottom: {
         height: 50,
         width: '100%',
@@ -94,4 +93,4 @@ const styleB = StyleSheet.create({
         fontSize: 18,
         color: '#FFFFFF'
     }
-})
+}
