@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {MarkDown, Footer,Images} from '../../components';
+import {MarkDown, Footer, Images} from '../../components';
 import I18n from '../../service/I18n';
 import MallInfoPageTopBar from './MallInfoPageTopBar';
 import ProductSpecification from './ProductSpecification';
@@ -36,23 +36,10 @@ export default class MallInfoPage extends Component {
     }
 
     topBar = () => {
-        return (<div style={[styleM.topBar, {backgroundColor: 'rgba(255,255,255,' + this.state.opacity + ')'}]}>
-            <div
-                style={styleM.popBtn}
-                onClick={() => {
-                }}>
-                <img style={styleM.backImg}
-                       src={Images.mall_return}/>
-            </div>
-            <div style={{flex: 1}}/>
-            <div
-                style={styleM.popBtn}
-                onClick={() => {
-                }}>
-                <img style={styleM.imgShare}
-                       src={Images.mall_share}/>
-            </div>
-
+        return (<div style={styleM.topBar}>
+            <div style={{flex: 1, backgroundColor: 'yellow'}}></div>
+            <div style={{flex: 1, backgroundColor: 'blue'}}></div>
+            <div style={{flex: 1, backgroundColor: 'white'}}></div>
 
         </div>)
     };
@@ -61,32 +48,14 @@ export default class MallInfoPage extends Component {
     render() {
         const {specShow, product, selectProduct} = this.state;
         return (
-            <div>
-                <div style={styleM.bgContainer}>
-
-                    <MallInfoPageTopBar
-                        product={product}/>
-
-                    <ProductSpecification
-                        selectProduct={selectProduct}
-                        showSpecInfo={this.showSpecInfo}
-                    />
-                    <ShipAddress/>
-                    <MallIntroduction
-                        product={product}/>
-                    <div style={{height: 50}}/>
-
-
-                </div>
+            <div style={{display: 'flex', flex: 1, flexDirection: 'column'}}>
                 {this.topBar()}
+                <div style={{height: 300, width: 100, display: 'flex'}}>
+                    <div style={{flex: 1, backgroundColor: 'red'}}></div>
+                    <div style={{flex: 1, backgroundColor: 'yellow'}}></div>
+                    <div style={{flex: 1, backgroundColor: 'pink'}}></div>
+                </div>
 
-                <MallInfoBottom
-                    showSpecInfo={this.showSpecInfo}/>
-
-                {specShow ? <ProductSpecificationInfo
-                        selectProduct={selectProduct}
-                        product={product}
-                        showSpecInfo={this.showSpecInfo}/> : null}
             </div>
 
         );
@@ -114,26 +83,23 @@ export default class MallInfoPage extends Component {
 }
 
 const styleM = {
-    bgContainer:{
-        display:'flex',
-        flex:1
+    bgContainer: {
+        display: 'flex',
+        flex: 1
     },
     topView: {
         backgroundColor: 'rgba(255,255,255,0.98)'
     },
     topBar: {
-        height:'100%',
+        display: 'flex',
         flexDirection: 'row',
-        alignItems: 'center',
-        // paddingTop: Metrics.statusBarHeight,
-        position: 'absolute',
-        top: 0,
-        width: '100%'
+        width: '100%',
+        height: 44,
     },
     popBtn: {
         height: 44,
         width: 50,
-        justifyContent: 'center'
+
     },
     backImg: {
         width: 23,

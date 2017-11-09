@@ -3,7 +3,7 @@ import {getTicketInfo,setLang} from '../service/RaceDao';
 import {weiXinShare,isEmptyObject} from '../service/utils';
 import {default_img} from '../components/constant';
 import MarkDown from '../components/MarkDown';
-import Footer from '../components/Footer';
+import BuyTicket from '../components/BuyTicket';
 import I18n from '../service/I18n';
 import '../styles/Ticket.css';
 
@@ -69,7 +69,9 @@ export default class Ticket extends Component {
                 </div>
                 <div className="line" style={{marginBottom:'20px',marginTop:'20px'}}></div>
                 <MarkDown description={description}/>
-                <Footer/>
+                <div style={{height:80}}/>
+                <BuyTicket history={this.props.history}
+                           load={`/loadApp`}/>
             </div>
         );
     }
