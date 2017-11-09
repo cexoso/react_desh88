@@ -15,7 +15,8 @@ export default {
     ticket_info: ticket_info,
     video_Info:video_Info,
     choiseTicket_Info:choiseTicket_Info,
-    videoGroup_Info:videoGroup_Info
+    videoGroup_Info:videoGroup_Info,
+    product_Detail:product_Detail
 
 }
 
@@ -72,5 +73,10 @@ function choiseTicket_Info(body) {
 function videoGroup_Info(body) {
     const {video_id} = body;
     return 'videos/group/' + video_id+"/sub_videos";
+}
+
+function product_Detail(body) {
+    const {product_id} = body;
+    return 'products/' + product_id;
 }
 
