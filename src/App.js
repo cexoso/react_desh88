@@ -18,18 +18,19 @@ import VideoInfo from  './pages/VideoInfo';
 import DownloadSea from  './pages/DownloadSea';
 import SharePage from './pages/SharePage';
 import ChoiseTicketPage from './pages/ChoiseTicketPage';
+import MallInfoPage from './pages/mall/MallInfoPage';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-    // global.console = {
-    //     info: () => {
-    //     },
-    //     log: () => {
-    //     },
-    //     warn: () => {
-    //     },
-    //     error: () => {
-    //     },
-    // };
+    global.console = {
+        info: () => {
+        },
+        log: () => {
+        },
+        warn: () => {
+        },
+        error: () => {
+        },
+    };
 
 
 class App extends Component {
@@ -57,6 +58,8 @@ class App extends Component {
                     <Route path="/videos/:video_id/:lang" component={VideoInfo}/>
 
                     <Route path="/raceTickets/:id/:lang" component={ChoiseTicketPage}/>
+
+                    <Route path="/products/:id/:lang" component={MallInfoPage}/>
                 </div>
             </Router>
         </MuiThemeProvider>
