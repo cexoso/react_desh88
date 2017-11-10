@@ -12,8 +12,6 @@ import {getProductDetail, setLang} from '../../service/RaceDao';
 
 export default class MallInfoPage extends Component {
     state = {
-        specShow: false,
-        opacity: 0,
         product: {},
         selectProduct: {}
     };
@@ -22,64 +20,28 @@ export default class MallInfoPage extends Component {
         const {product_id, lang} = this.props.match.params;
         setLang(lang);
 
-        let body = {product_id: product_id};
+        const body = {product_id: product_id};
 
         getProductDetail(body, data => {
-
+            console.log("products:",data);
             this.setState({
                 product: data.product
             })
         }, err => {
 
         })
-
+        console.log("products:",this.state.product);
     }
-
-    topBar = () => {
-        return (<div style={styleM.topBar}>
-            <div style={{flex: 1, backgroundColor: 'yellow'}}></div>
-            <div style={{flex: 1, backgroundColor: 'blue'}}></div>
-            <div style={{flex: 1, backgroundColor: 'white'}}></div>
-
-        </div>)
-    };
 
 
     render() {
-        const {specShow, product, selectProduct} = this.state;
         return (
-            <div style={{display: 'flex', flex: 1, flexDirection: 'column'}}>
-                {this.topBar()}
-                <div style={{height: 300, width: 100, display: 'flex'}}>
-                    <div style={{flex: 1, backgroundColor: 'red'}}></div>
-                    <div style={{flex: 1, backgroundColor: 'yellow'}}></div>
-                    <div style={{flex: 1, backgroundColor: 'pink'}}></div>
-                </div>
-
+            <div style={styleM.bgContainer}>
+                <MallInfoPageTopBar product={this.state.product}/>
             </div>
-
         );
     }
 
-    _onScroll = (event) => {
-        let offsetY = Math.abs(event.nativeEvent.contentOffset.y);
-        const offsetHeight = 360;
-
-        if (offsetY >= offsetHeight) {
-            this.setState({
-                opacity: 1
-            })
-        } else {
-            let opacity = offsetY / offsetHeight;
-            this.setState({opacity})
-        }
-    };
-
-    showSpecInfo = () => {
-        this.setState({
-            specShow: !this.state.specShow
-        })
-    }
 }
 
 const styleM = {
