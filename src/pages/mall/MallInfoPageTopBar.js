@@ -55,8 +55,8 @@ export default class MallInfoPageTopBar extends Component {
                 <span style={styleM.discount}>2.3折</span>
             </div>
             <div style={styleM.locations}>
-                <div style={styleM.return7}><span style={styleM.return7Txt}>7天退换</span></div>
-                <span style={styleM.freight}>运费：¥12.00</span>
+                <div style={styleM.return7}><span style={styleM.return7Txt}>{I18n.t('returned')}</span></div>
+                <span style={styleM.freight}>{I18n.t('cost')}：¥12.00</span>
                 <div style={{flex: 1}}/>
                 <span style={styleM.location}>{origin_point}</span>
             </div>
