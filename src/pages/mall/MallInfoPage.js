@@ -8,17 +8,21 @@ import ProductBottom from './ProductBottom';
 import {setLang, getProductDetail} from '../../service/RaceDao';
 import {weiXinShare, message_desc, isEmptyObject} from '../../service/utils';
 import {default_img} from '../../components/constant';
-
+import I18n from '../../service/I18n';
 
 export default class MallInfoPage extends Component {
     state = {
         product: {}
     };
 
-    componentDidMount(){
-        const {product_id, lang} = this.props.match.params;
+
+    componentDidMount() {
+        const {id, lang} = this.props.match.params;
+
+        console.log(this.props.match)
+
         setLang(lang);
-        const body = {product_id: product_id};
+        const body = {product_id: id};
 
         getProductDetail(body, data => {
             console.log('productInfo', data);
@@ -49,13 +53,12 @@ export default class MallInfoPage extends Component {
 
     render() {
 
-
         return (
 
             <div >
                 <div style={styles.container}>
                     <AppBar
-                        title="商品详情"
+                        title={I18n.t('productIntro')}
                     />
                     <ProductBanner/>
 
@@ -65,7 +68,7 @@ export default class MallInfoPage extends Component {
 
                     <ProductIntro/>
 
-                    <div style={{height:80}}/>
+                    <div style={{height: 80}}/>
                 </div>
 
 
@@ -82,7 +85,7 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         flex: 1,
-        overflow:'scroll'
+        overflow: 'scroll'
     }
 
 };

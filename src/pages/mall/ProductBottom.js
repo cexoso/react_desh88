@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {Colors} from '../../components';
 import I18n from '../../service/I18n';
-import {MarkDown, Images, RaisedButton} from '../../components';
+import {Paper, Images, RaisedButton} from '../../components';
 
 export default class ProductBottom extends Component {
 
     render() {
         return (
-            <div style={styles.bottom}>
+            <Paper style={styles.bottom}>
                 <RaisedButton
                     backgroundColor={'#FFFFFF'}
                     icon={<img style={styles.bottomLeftImg} src={Images.cart}/>}
@@ -23,7 +23,7 @@ export default class ProductBottom extends Component {
                     style={styles.bottomRight}
                     labelStyle={styles.bottomRightTxt}
                 />
-            </div>
+            </Paper>
         )
     }
 }
