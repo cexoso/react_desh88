@@ -27,7 +27,6 @@ function getBaseUrl() {
 export function setDpLang(lang) {
     client.setHeader('X-DP-LANG', lang )
     I18n.changeLanguage(lang);
-    console.log("process.env.REACT_APP_API HttpUtil:", process.env.REACT_APP_ENV)
 
 }
 

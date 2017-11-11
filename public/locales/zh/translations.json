@@ -319,6 +319,12 @@
   "app_load": "前往扑克下载APP",
   "more":"查看更多",
   "returned":"7天退换",
-  "cost":"运费："
+  "cost":"运费",
+  "productSpec":"产品规格",
+  "unSelected":"未选",
+  "selected":"已选",
+  "package":"套餐",
+  "productIntro":"商品介绍",
+  "addCart":"加入购物车"
 }
 

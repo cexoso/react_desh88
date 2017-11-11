@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Colors} from '../../components';
+import I18n from '../../service/I18n';
+import {MarkDown} from '../../components';
 
 export default class ProductInfo extends Component {
 
@@ -15,9 +17,9 @@ export default class ProductInfo extends Component {
             </div>
 
             <div style={styles.viewLogistics}>
-                <span style={styles.logistics1}>7天退换</span>
+                <span style={styles.logistics1}>{I18n.t('returned')}</span>
 
-                <span style={styles.logistics2}>运费：¥12.00</span>
+                <span style={styles.logistics2}>{I18n.t('cost')}：¥12.00</span>
                 <div style={{flex: 1}}/>
                 <span style={styles.logistics3}>深圳</span>
 
@@ -63,13 +65,13 @@ const styles = {
         color: Colors._CCC,
         marginLeft: 10,
         textDecorationLine: 'line-through',
-        marginBottom: 5
+        marginBottom: 3
     },
     price4: {
         fontSize: 14,
         color: Colors._CCC,
         marginLeft: 10,
-        marginBottom: 5
+        marginBottom: 3
     },
     viewLogistics: {
         display: 'flex',
