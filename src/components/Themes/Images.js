@@ -15,5 +15,7 @@ const images = {
     add: require('../../assets/mall/add.png'),
     mall_return: require('../../assets/mall/mall_return.png'),
     mall_share: require('../../assets/mall/mall_share.png'),
+    cart: require('../../assets/mall/cart.png'),
+    is: require('../../assets/images/is>.png'),
 }
 export default images
