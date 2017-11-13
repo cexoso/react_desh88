@@ -74,7 +74,7 @@ export default class MallInfoPage extends Component {
                 </div>
 
 
-                <ProductBottom/>
+                <ProductBottom history={this.props.history}/>
 
             </div>
         );

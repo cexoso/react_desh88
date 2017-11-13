@@ -11,8 +11,10 @@ export default class ProductBottom extends Component {
                 <RaisedButton
                     backgroundColor={'#FFFFFF'}
                     icon={<img style={styles.bottomLeftImg} src={Images.cart}/>}
-
                     style={styles.bottomLeft}
+                    onClick={()=>{
+                        this.props.history.push("/loadApp")
+                    }}
                 />
 
                 <div style={{display: 'flex', flex: 1}}/>
@@ -22,6 +24,9 @@ export default class ProductBottom extends Component {
                     label={I18n.t('addCart')}
                     style={styles.bottomRight}
                     labelStyle={styles.bottomRightTxt}
+                    onClick={()=>{
+                        this.props.history.push("/loadApp")
+                    }}
                 />
             </Paper>
         )
