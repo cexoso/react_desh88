@@ -1,20 +1,34 @@
 import React, {Component} from 'react';
 import {Colors} from '../../components';
 import I18n from '../../service/I18n';
-import {MarkDown, Images} from '../../components';
+import {MarkDown, Images,Drawer} from '../../components';
+import {isEmptyObject} from '../../service/utils';
 
 export default class ProductSpec extends Component {
+    state = {open: false};
 
     render() {
+        const {product} = this.props;
+        if(isEmptyObject(product)){
+            return <div style={styles.page}/>
+        }
         return (
-            <div style={styles.page}>
-                <span style={styles.spec}>{I18n.t('productSpec')}</span>
-                <span style={styles.unSelected}>{I18n.t('unSelected')}</span>
-                <span style={styles.selected}>{I18n.t('selected')}</span>
-                <span style={styles.package}>A{I18n.t('package')}，1件</span>
-                <div style={{display: 'flex', flex: 1}}/>
-                <img style={styles.img} src={Images.is}/>
+            <div>
+                <div style={styles.page} onClick={()=>{
+                    this.setState({
+                        open:!this.state.open
+                    })
+                }}>
+                    <span style={styles.spec}>{I18n.t('productSpec')}</span>
+                    <span style={styles.unSelected}>{I18n.t('unSelected')}</span>
+                    <span style={styles.selected}>{I18n.t('selected')}</span>
+                    <span style={styles.package}>A{I18n.t('package')}，{product.master.stock}件</span>
+                    <div style={{display: 'flex', flex: 1}}/>
+                    <img style={styles.img} src={Images.is} alt=""/>
+                </div>
+
             </div>
+
         )
     }
 }
@@ -22,7 +36,6 @@ export default class ProductSpec extends Component {
 const styles = {
     page: {
         marginTop: 7,
-
         backgroundColor: '#FFFFFF',
         display: 'flex',
         flexDirection: 'row',
@@ -54,5 +67,5 @@ const styles = {
     img: {
         width: 8, height: 16,
         marginRight: 16
-    }
+    },
 };

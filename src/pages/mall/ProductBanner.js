@@ -1,18 +1,21 @@
 import React, {Component} from 'react';
 import {Carousel} from '../../components';
-
+import {setLang, getProductDetail} from '../../service/RaceDao';
+import {isEmptyObject} from '../../service/utils';
 
 export default class ProductBanner extends Component {
 
     render() {
-        let banners = [1, 2, 3, 4, 5];
-
+        const{banners} = this.props;
+        if(isEmptyObject(banners)){
+            return <div style={styles.banner}></div>
+        }
         return <Carousel>
             {banners.map((item, index) => {
                 return <div
                     key={`banner${index}`}
                     style={styles.banner}>
-                    {item}
+                    <img style={styles.bannerImg} src={item.preview}/>
 
                 </div>
             })}
@@ -24,9 +27,13 @@ export default class ProductBanner extends Component {
 const styles = {
 
     banner: {
-        height: 360,
+        height: 362,
         width: '100%',
-        backgroundColor: 'yellow'
+
+    },
+    bannerImg:{
+        width:'100%',
+        height:'100%'
     }
 
 };
