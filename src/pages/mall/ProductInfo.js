@@ -2,26 +2,31 @@ import React, {Component} from 'react';
 import {Colors} from '../../components';
 import I18n from '../../service/I18n';
 import {MarkDown} from '../../components';
+import {isEmptyObject} from '../../service/utils';
 
 export default class ProductInfo extends Component {
 
     render() {
+        const {master} = this.props;
+        if(isEmptyObject(master)){
+            return <div style={styles.page}/>
+        }
         return <div style={styles.page}>
-            <span style={styles.title}>筹码套装无面值 德州扑克筹码百家乐麻将筹码币11.5克单色子100码</span>
+            <span style={styles.title}>{master.title}</span>
             <div style={styles.viewPrice}>
                 <span style={styles.price1}>¥</span>
-                <span style={styles.price2}>4999.00</span>
+                <span style={styles.price2}>{master.price}</span>
 
-                <span style={styles.price3}>5999.00</span>
-                <span style={styles.price4}>2.3折</span>
+                <span style={styles.price3}>{master.original_price}</span>
+                <span style={styles.price4}>{isEmptyObject(master.sku)?0:master.sku}折</span>
             </div>
 
             <div style={styles.viewLogistics}>
                 <span style={styles.logistics1}>{I18n.t('returned')}</span>
 
-                <span style={styles.logistics2}>{I18n.t('cost')}：¥12.00</span>
+                <span style={styles.logistics2}>{I18n.t('cost')}：¥{master.weight}</span>
                 <div style={{flex: 1}}/>
-                <span style={styles.logistics3}>深圳</span>
+                <span style={styles.logistics3}>{master.origin_point}</span>
 
             </div>
 

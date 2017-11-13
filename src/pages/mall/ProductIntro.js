@@ -6,7 +6,7 @@ import {MarkDown,Images} from '../../components';
 export default class ProductIntro extends Component {
 
     render() {
-        let description = "dhsiodnsigfsifhjbsufgsiubfjkxbcijxhfiushfdiu";
+        let description = this.props.description;
         return (
             <div style={styles.page}>
                 <div style={styles.pageTop}>

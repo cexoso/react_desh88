@@ -19,8 +19,6 @@ export default class MallInfoPage extends Component {
     componentDidMount() {
         const {id, lang} = this.props.match.params;
 
-        console.log(this.props.match)
-
         setLang(lang);
         const body = {product_id: id};
 
@@ -30,14 +28,14 @@ export default class MallInfoPage extends Component {
             this.setState({
                 product: data
             });
-            const {name, logo, location, end_date, begin_date} = data.race;
-            document.title = name;
+            const {title, icon, description, end_date, begin_date} = data.product;
+            document.title = title;
 
             const message = {
-                title: name,
-                desc: message_desc(location, begin_date, end_date),//分享描述
+                title: title,
+                desc: message_desc(description, begin_date, end_date),//分享描述
                 link: window.location.href, // 分享链接，该链接域名必须与当前企业的可信域名一致
-                imgUrl: isEmptyObject(logo) ? default_img : logo, // 分享图标
+                imgUrl: isEmptyObject(icon) ? default_img : icon, // 分享图标
                 type: '', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
             };
@@ -52,21 +50,25 @@ export default class MallInfoPage extends Component {
 
 
     render() {
+        const{product} = this.state.product;
+        if(isEmptyObject(product)){
+            return <div/>
+        }
 
         return (
 
             <div >
                 <div style={styles.container}>
-                    <AppBar
-                        title={I18n.t('productIntro')}
-                    />
-                    <ProductBanner/>
+                    {/*<AppBar*/}
+                        {/*title={I18n.t('productIntro')}*/}
+                    {/*/>*/}
+                    <ProductBanner banners={product.images}/>
 
-                    <ProductInfo/>
+                    <ProductInfo master={product.master}/>
 
-                    <ProductSpec/>
+                    <ProductSpec product={product}/>
 
-                    <ProductIntro/>
+                    <ProductIntro description={product.description}/>
 
                     <div style={{height: 80}}/>
                 </div>
