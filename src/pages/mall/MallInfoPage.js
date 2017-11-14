@@ -5,6 +5,7 @@ import ProductInfo from './ProductInfo';
 import ProductSpec from './ProductSpec';
 import ProductIntro from './ProductIntro';
 import ProductBottom from './ProductBottom';
+import Tip from './Tip';
 import {setLang, getProductDetail} from '../../service/RaceDao';
 import {weiXinShare, message_desc, isEmptyObject} from '../../service/utils';
 import {default_img} from '../../components/constant';
@@ -12,7 +13,8 @@ import I18n from '../../service/I18n';
 
 export default class MallInfoPage extends Component {
     state = {
-        product: {}
+        product: {},
+        showTip:true
     };
 
 
@@ -46,7 +48,13 @@ export default class MallInfoPage extends Component {
 
         });
 
-    }
+    };
+
+    _clickTip=()=>{
+        this.setState({
+            showTip:!this.state.showTip
+        })
+    };
 
 
     render() {
@@ -59,9 +67,8 @@ export default class MallInfoPage extends Component {
 
             <div >
                 <div style={styles.container}>
-                    {/*<AppBar*/}
-                        {/*title={I18n.t('productIntro')}*/}
-                    {/*/>*/}
+
+                    {this.state.showTip?<Tip clickTip={this._clickTip} history={this.props.history}/>:null}
                     <ProductBanner banners={product.images}/>
 
                     <ProductInfo master={product.master}/>
