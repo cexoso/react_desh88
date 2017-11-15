@@ -30,7 +30,42 @@ export default class SharePage extends Component {
         }
         const url = {url: window.location.href};
         weiXinShare(url,message);
-    }
+    };
+
+    Question=()=>(
+
+        <div className="questions-unScroll">
+            <div className="questions">
+
+                <div className="question-nav">
+                    <a>常见问题</a>
+                    <Link to="/sharePage" onClick={() => {
+                        this.setState({
+                            visible: false
+                        })
+                    }}>关闭</Link>
+                </div>
+
+                <div className="content">
+                    {
+                        items.map((value,key) =>
+                            <div key={key} className="box">
+                                <div className="question">
+                                    <div className="image1">Q</div>
+                                    <div className="question1">{value.question1}</div>
+                                </div>
+                                <div className="question">
+                                    <div className="image2">A</div>
+                                    <div className="question2">{value.question2}</div>
+                                </div>
+                            </div>
+                        )
+                    }
+                    <div style={{height:"60px"}}></div>
+                </div>
+            </div>
+        </div>
+    );
 
     render() {
         return(
@@ -70,16 +105,14 @@ export default class SharePage extends Component {
                         <img src={sharePage08} alt="" />
                     </div>
 
-                    {/*弹出问题框*/}
-                    <Route path="/sharePage/question" component={Question}/>
 
                     <div className="fixed"></div>
+                    {this.state.visible?this.Question():null}
                     <footer >
 
                         <div className="sharePage-btn">
                             <div className="sharePage-btn-question"
                                  onClick={() => {
-                                     this.props.history.push("/sharePage/question")
                                      this.setState({
                                          visible: true
                                      })
@@ -100,37 +133,3 @@ export default class SharePage extends Component {
 
 }
 
-const Question=()=>(
-
-    <div className="questions-unScroll">
-        <div className="questions">
-
-            <div className="question-nav">
-                <a>常见问题</a>
-                <Link to="/sharePage" onClick={() => {
-                    this.setState({
-                        visible: false
-                    })
-                }}>关闭</Link>
-            </div>
-
-            <div className="content">
-                {
-                    items.map((value,key) =>
-                        <div key={key} className="box">
-                            <div className="question">
-                                <div className="image1">Q</div>
-                                <div className="question1">{value.question1}</div>
-                            </div>
-                            <div className="question">
-                                <div className="image2">A</div>
-                                <div className="question2">{value.question2}</div>
-                            </div>
-                        </div>
-                    )
-                }
-                <div style={{height:"60px"}}></div>
-            </div>
-        </div>
-    </div>
-)
