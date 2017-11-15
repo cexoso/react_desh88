@@ -17,9 +17,6 @@ export default class SharePage extends Component {
                 visible: true
             })
         }
-        //微信二次分享
-        // const url = {url: "http://www.deshpro.com:3000/sharePage"};
-        //const url = {url: "http://h5-react.deshpro.com:3000/sharePage"};
         const message = {
             title: 'PokerPro',
             desc: '德扑精彩尽在扑克 全球最新赛事票务服务',//分享描述
