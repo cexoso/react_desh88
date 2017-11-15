@@ -212,6 +212,7 @@ export default class RaceInfo extends Component {
             <div className='content'>
 
                 {this.content()}
+                <div style={{height:50}}/>
 
                 <BuyTicket
 
