@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import {default_img} from '../components/constant';
 import {weiXinShare} from '../service/utils';
 import '../styles/Download.css';
-import safari from '../assets/images/Safari.png';
+import {MarkDown, Images,Drawer} from '../components';
 
 export default class Download extends Component {
     state = {
         show: false
-    }
+    };
 
     componentDidMount() {
         //微信二次分享
@@ -19,7 +19,7 @@ export default class Download extends Component {
             imgUrl: default_img, // 分享图标
             type: '', // 分享类型,music、video或link，不填默认为link
             dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-        }
+        };
         const url = {url: window.location.href};
         weiXinShare(url, message);
     };
@@ -49,7 +49,7 @@ export default class Download extends Component {
                     </div>
                 </a>
                 {this.state.show ? <div className="iosDownload">
-                        <img className="iosDownloadImg" src={safari} alt=""/>
+                        <img className="iosDownloadImg" src={Images.safari} alt=""/>
                     </div> : null}
             </div>
         )

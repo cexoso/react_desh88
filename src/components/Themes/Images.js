@@ -22,5 +22,7 @@ const images = {
     puke: require('../../assets/mall/puke.png'),
     load_ios: require('../../assets/images/load-ios.png'),
     load_android: require('../../assets/images/android-load.png'),
+    safari: require('../../assets/images/Safari.png'),
+
 }
 export default images
