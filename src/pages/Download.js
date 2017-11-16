@@ -38,13 +38,13 @@ export default class Download extends Component {
             <div className="Download">
                 <div className="black">
                 </div>
-                <a className="ios-app-a" onClick={this.toIosApp}>
-                    <div className="ios-app">
+                <a className="ios_app_a" onClick={this.toIosApp}>
+                    <div className="ios_app">
                         ios-app
                     </div>
                 </a>
-                <a className="android-app-a" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.deshpro.pokerpro">
-                    <div className="android-app">
+                <a className="android_app_a" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.deshpro.pokerpro">
+                    <div className="android_app">
                         android-app
                     </div>
                 </a>

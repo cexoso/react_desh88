@@ -8,11 +8,12 @@ export default class ProductInfo extends Component {
 
     render() {
         const {master} = this.props;
+        console.log(master)
         if(isEmptyObject(master)){
             return <div style={styles.page}/>
         }
         return <div style={styles.page}>
-            <span style={styles.title}>{master.title}</span>
+            <span style={styles.title}>{this.props.title}</span>
             <div style={styles.viewPrice}>
                 <span style={styles.price1}>¥</span>
                 <span style={styles.price2}>{master.price}</span>
