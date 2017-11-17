@@ -242,7 +242,9 @@ const styles = {
         fontSize: 14,
         color: '#333333',
         overflow: 'hidden',
-        flexWrap: 'noWarp',
+        display: '-webkit-box',
+        WebkitLineClamp: 2,
+        WebkitBoxOrient: 'vertical'
     },
     title3Div: {
         height: 50,
