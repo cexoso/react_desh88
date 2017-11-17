@@ -171,7 +171,7 @@ export default class VideoInfo extends Component {
 
 
                 <MarkDown description={description}/>
-                <div style={{height:80}}/>
+
                 <Footer/>
             </div>
         );
