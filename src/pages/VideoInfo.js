@@ -69,7 +69,7 @@ export default class VideoInfo extends Component {
         this.video.src = video_link;
         this.video.setAttribute('poster', cover_link);
 
-        console.log( this.video );
+        console.log(this.video);
         this.setState({
             data: item
         })
@@ -160,13 +160,13 @@ export default class VideoInfo extends Component {
                     <span style={styles.title}>{name}</span>
                 </div>
 
-                <div style={styles.groupView}>
-                    <div style={styles.title2Div}>
-                        <span style={styles.title2}>{group_name}</span>
-                    </div>
-                    {this.state.videoGroup>1?this.videoGroupList():null}
+                {this.state.videoGroup.items.length > 1 ? <div style={styles.groupView}>
+                        <div style={styles.title2Div}>
+                            <span style={styles.title2}>{group_name}</span>
+                        </div>
+                        {this.videoGroupList()}
 
-                </div>
+                    </div> : null}
 
 
                 <MarkDown description={description}/>

@@ -20,7 +20,7 @@ export default class MarkDown extends Component {
     render() {
         const {description} =this.props;
         return (
-            <div style={{width:'100%',height:'100%',backgroundColor:'#FFFFFF',paddingTop:20}}>
+            <div style={{width:'100%',height:'100%',paddingTop:20}}>
                 <div className="introduceGame" dangerouslySetInnerHTML={this.desc(description)}></div>
             </div>
 
