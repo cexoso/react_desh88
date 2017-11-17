@@ -19,6 +19,10 @@ const images = {
     is: require('../../assets/images/is>.png'),
     download_close: require('../../assets/mall/download_close.png'),
     right: require('../../assets/mall/right.png'),
-    puke: require('../../assets/mall/puke.png')
+    puke: require('../../assets/mall/puke.png'),
+    load_ios: require('../../assets/images/load-ios.png'),
+    load_android: require('../../assets/images/android-load.png'),
+    safari: require('../../assets/images/Safari.png'),
+
 }
 export default images

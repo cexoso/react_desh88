@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import {default_img} from '../components/constant';
 import {weiXinShare} from '../service/utils';
 import '../styles/Download.css';
-import safari from '../assets/images/Safari.png';
+import {MarkDown, Images,Drawer} from '../components';
 
 export default class Download extends Component {
     state = {
         show: false
-    }
+    };
 
     componentDidMount() {
         //微信二次分享
@@ -19,7 +19,7 @@ export default class Download extends Component {
             imgUrl: default_img, // 分享图标
             type: '', // 分享类型,music、video或link，不填默认为link
             dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-        }
+        };
         const url = {url: window.location.href};
         weiXinShare(url, message);
     };
@@ -38,18 +38,18 @@ export default class Download extends Component {
             <div className="Download">
                 <div className="black">
                 </div>
-                <a className="ios-app-a" onClick={this.toIosApp}>
-                    <div className="ios-app">
+                <a className="ios_app_a" onClick={this.toIosApp}>
+                    <div className="ios_app">
                         ios-app
                     </div>
                 </a>
-                <a className="android-app-a" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.deshpro.pokerpro">
-                    <div className="android-app">
+                <a className="android_app_a" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.deshpro.pokerpro">
+                    <div className="android_app">
                         android-app
                     </div>
                 </a>
                 {this.state.show ? <div className="iosDownload">
-                        <img className="iosDownloadImg" src={safari} alt=""/>
+                        <img className="iosDownloadImg" src={Images.safari} alt=""/>
                     </div> : null}
             </div>
         )

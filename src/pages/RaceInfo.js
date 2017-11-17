@@ -207,11 +207,11 @@ export default class RaceInfo extends Component {
 
 
     render() {
-        const {params} = this.props.match;
         return (
             <div className='content'>
 
                 {this.content()}
+                <div style={{height:50}}/>
 
                 <BuyTicket
 
