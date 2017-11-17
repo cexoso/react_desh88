@@ -8,7 +8,6 @@ export default class ProductInfo extends Component {
 
     render() {
         const {master} = this.props;
-        console.log(master)
         if(isEmptyObject(master)){
             return <div style={styles.page}/>
         }

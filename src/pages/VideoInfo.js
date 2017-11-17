@@ -164,8 +164,7 @@ export default class VideoInfo extends Component {
                     <div style={styles.title2Div}>
                         <span style={styles.title2}>{group_name}</span>
                     </div>
-
-                    {this.videoGroupList()}
+                    {this.state.videoGroup>1?this.videoGroupList():null}
 
                 </div>
 
