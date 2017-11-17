@@ -43,6 +43,7 @@ export default class VideoInfo extends Component {
             //微信二次分享
             // const url = {url: "http://www.deshpro.com:3000/activities/1/zh"};
             // const url = {url: "http://h5-react.deshpro.com:3000/activities/1/zh"};
+            let img=cover_link;
             const message = {
                 title: name,
                 desc: description,//分享描述
@@ -50,9 +51,9 @@ export default class VideoInfo extends Component {
                 imgUrl: isEmptyObject(cover_link) ? default_img : cover_link, // 分享图标
                 type: "", // 分享类型,music、video或link，不填默认为link
                 dataUrl: "", // 如果type是music或video，则要提供数据链接，默认为空
-            }
+            };
             const url = {url: window.location.href};
-            console.log("message:", message);
+            console.log("message:", message.imgUrl);
             weiXinShare(url, message);
 
             this.setState({
@@ -241,10 +242,11 @@ const styles = {
         fontSize: 14,
         color: '#333333',
         overflow: 'hidden',
-        flexWrap: 'noWarp',
+        display: '-webkit-box',
+        WebkitLineClamp: 2,
+        WebkitBoxOrient: 'vertical'
     },
     title3Div: {
-        paddingTop: 6,
         height: 50,
     }
 
