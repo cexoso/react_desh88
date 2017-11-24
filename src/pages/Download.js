@@ -6,7 +6,8 @@ import {MarkDown, Images,Drawer} from '../components';
 
 export default class Download extends Component {
     state = {
-        show: false
+        show: false,
+        showAndroid:false
     };
 
     componentDidMount() {
@@ -31,6 +32,13 @@ export default class Download extends Component {
         window.open('https://itunes.apple.com/cn/app/pokerpro/id1248197817?mt=8');
 
     };
+    toAndroidApp = () => {
+        this.setState({
+            showAndroid: true
+        });
+        window.open('http://cdn-upyun.deshpro.com/deshpro_public/pokerpro.apk');
+
+    };
 
 
     render() {
@@ -43,13 +51,16 @@ export default class Download extends Component {
                         ios-app
                     </div>
                 </a>
-                <a className="android_app_a" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.deshpro.pokerpro">
+                <a className="android_app_a" onClick={this.toAndroidApp}>
                     <div className="android_app">
                         android-app
                     </div>
                 </a>
                 {this.state.show ? <div className="iosDownload">
                         <img className="iosDownloadImg" src={Images.safari} alt=""/>
+                    </div> : null}
+                {this.state.showAndroid ? <div className="iosDownload">
+                        <img className="iosDownloadImg" src={Images.andorid} alt=""/>
                     </div> : null}
             </div>
         )

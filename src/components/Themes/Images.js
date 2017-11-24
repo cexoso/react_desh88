@@ -23,6 +23,7 @@ const images = {
     load_ios: require('../../assets/images/load-ios.png'),
     load_android: require('../../assets/images/android-load.png'),
     safari: require('../../assets/images/Safari.png'),
+    andorid: require('../../assets/images/andorid.png'),
 
 }
 export default images
