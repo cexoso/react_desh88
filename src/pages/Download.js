@@ -43,7 +43,7 @@ export default class Download extends Component {
                         ios-app
                     </div>
                 </a>
-                <a className="android_app_a" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.deshpro.pokerpro">
+                <a className="android_app_a" href="http://cdn-upyun.deshpro.com/deshpro_public/pokerpro.apk">
                     <div className="android_app">
                         android-app
                     </div>
