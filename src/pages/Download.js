@@ -56,11 +56,21 @@ export default class Download extends Component {
                         android-app
                     </div>
                 </a>
-                {this.state.show ? <div className="iosDownload">
+                {this.state.show ? <div className="iosDownload" onClick={()=>{
+                        this.setState({
+                            show: false,
+                            showAndroid:false
+                        })
+                    }}>
                         <img className="iosDownloadImg" src={Images.safari} alt=""/>
                     </div> : null}
-                {this.state.showAndroid ? <div className="iosDownload">
-                        <img className="iosDownloadImg" src={Images.andorid} alt=""/>
+                {this.state.showAndroid ? <div className="andoridDownload" onClick={()=>{
+                        this.setState({
+                            show: false,
+                            showAndroid:false
+                        })
+                    }}>
+                        <img className="andoridDownloadImg" src={Images.andorid} alt=""/>
                     </div> : null}
             </div>
         )
