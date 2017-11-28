@@ -19,6 +19,7 @@ import DownloadSea from  './pages/DownloadSea';
 import SharePage from './pages/SharePage';
 import ChoiseTicketPage from './pages/ChoiseTicketPage';
 import MallInfoPage from './pages/mall/MallInfoPage';
+import LogisticsPage from './pages/mall/LogisticsPage';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
     // global.console = {
@@ -60,6 +61,9 @@ class App extends Component {
                     <Route path="/raceTickets/:id/:lang" component={ChoiseTicketPage}/>
 
                     <Route path="/products/:id/:lang" component={MallInfoPage}/>
+
+
+                    <Route path="shipments/search/:shipping_number/:express_code/:order_number/:lang" component={LogisticsPage}/>
                 </div>
             </Router>
         </MuiThemeProvider>

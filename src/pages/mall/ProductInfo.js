@@ -7,7 +7,7 @@ import {isEmptyObject} from '../../service/utils';
 export default class ProductInfo extends Component {
 
     render() {
-        const {master} = this.props;
+        const {master} = this.props.product;
         if(isEmptyObject(master)){
             return <div style={styles.page}/>
         }
@@ -24,7 +24,7 @@ export default class ProductInfo extends Component {
             <div style={styles.viewLogistics}>
                 <span style={styles.logistics1}>{I18n.t('returned')}</span>
 
-                <span style={styles.logistics2}>{I18n.t('cost')}：¥{master.weight}</span>
+                <span style={styles.logistics2}>{I18n.t('cost')}：¥{this.props.product.freight_fee}</span>
                 <div style={{flex: 1}}/>
                 <span style={styles.logistics3}>{master.origin_point}</span>
 

@@ -22,6 +22,12 @@ export function getWeiXinSign(payload, resolve, reject) {
     }, reject)
 }
 
+export function getLogisticsInfo(body, resolve, reject){
+    get(Api.logistics_info(body), ret => {
+        resolve(ret.data);
+    },reject)
+}
+
 export function getSubInfo(body, resolve, reject) {
     get(Api.sub_race_info(body), ret => {
         resolve(ret.data);

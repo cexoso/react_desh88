@@ -71,7 +71,7 @@ export default class MallInfoPage extends Component {
                     {this.state.showTip?<Tip clickTip={this._clickTip} history={this.props.history}/>:null}
                     <ProductBanner banners={product.images}/>
 
-                    <ProductInfo master={product.master} title={product.title}/>
+                    <ProductInfo product={product} title={product.title}/>
 
                     <ProductSpec product={product}/>
 

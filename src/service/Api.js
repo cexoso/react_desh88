@@ -13,10 +13,11 @@ export default {
     weixin_js_sign: 'weixin/js_sign',
     activities_info: activities_info,
     ticket_info: ticket_info,
-    video_Info:video_Info,
-    choiseTicket_Info:choiseTicket_Info,
-    videoGroup_Info:videoGroup_Info,
-    product_Detail:product_Detail
+    video_Info: video_Info,
+    choiseTicket_Info: choiseTicket_Info,
+    videoGroup_Info: videoGroup_Info,
+    product_Detail: product_Detail,
+    logistics_info: logistics_info
 
 }
 
@@ -68,15 +69,20 @@ function video_Info(body) {
 }
 function choiseTicket_Info(body) {
     const {choiseTicket_id} = body;
-    return 'races/' + choiseTicket_id+"/tickets";
+    return 'races/' + choiseTicket_id + "/tickets";
 }
 function videoGroup_Info(body) {
     const {video_id} = body;
-    return 'videos/group/' + video_id+"/sub_videos";
+    return 'videos/group/' + video_id + "/sub_videos";
 }
 
 function product_Detail(body) {
     const {product_id} = body;
     return 'products/' + product_id;
+}
+
+function logistics_info(body) {
+    const {shipping_number, express_code, order_number} = body;
+    return 'shipments/search?shipping_number=' + shipping_number + "&express_code=" + express_code + "&order_number=" + order_number;
 }
 
