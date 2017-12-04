@@ -1,4 +1,13 @@
-.price3{
-    -moz-text-decoration-line:line-through;
-    -o-text-decoration-line:line-through;
+.price3 {
+    -moz-text-decoration-line: line-through;
+    -o-text-decoration-line: line-through;
+}
+
+.swper {
+    height: 362px;
+    width: 100%;
+}
+
+.dotsClass {
+    bottom: 10px;
 }
