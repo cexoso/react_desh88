@@ -326,6 +326,12 @@
   "package":"套餐",
   "productIntro":"商品介绍",
   "addCart":"加入购物车",
-  "puke_app":"下载扑客APP立即下单！"
+  "puke_app":"下载扑客APP立即下单！",
+  "discount":"折",
+  "pieces":"件",
+  "confirm_order": "确认订单",
+  "stock": "库存",
+  "max_stock": "库存不足",
+  "buy_count": "购买数量",
 }
 
