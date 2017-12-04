@@ -11,13 +11,7 @@ export default class ProductBanner extends Component {
 
     render() {
         const {banners} = this.props;
-        var settings = {
-            dots: true,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1
-        };
+
         if (isEmptyObject(banners)) {
             return <div style={styles.banner}></div>
         }
@@ -59,8 +53,8 @@ const styles = {
 
     },
     bannerImg: {
-        width: 'contain',
-        height: 'contain'
+        width: 'auto',
+        height: 'auto'
     }
 
 };
