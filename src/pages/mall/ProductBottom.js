@@ -2,47 +2,61 @@ import React, {Component} from 'react';
 import {Colors} from '../../components';
 import I18n from '../../service/I18n';
 import {Paper, Images, RaisedButton} from '../../components';
+import '../../styles/mall.css';
 
 export default class ProductBottom extends Component {
 
     render() {
         return (
-            <Paper style={styles.bottom}>
-                <RaisedButton
-                    backgroundColor={'#FFFFFF'}
-                    icon={<img style={styles.bottomLeftImg} src={Images.cart}/>}
-                    style={styles.bottomLeft}
-                    onClick={() => {
-                        this.props.history.push("/loadApp")
-                    }}
-                />
+            <div style={styles.page}>
+                <Paper style={styles.bottom}>
+                    <RaisedButton
+                        backgroundColor={'#FFFFFF'}
+                        icon={<img style={styles.bottomLeftImg} src={Images.cart}/>}
+                        style={styles.bottomLeft}
+                        onClick={() => {
+                            this.props.history.push("/loadApp")
+                        }}
+                    />
 
-                <div style={{display: 'flex', flex: 1}}/>
+                    <div style={{display: 'flex', flex: 1}}/>
 
-                <RaisedButton
-                    backgroundColor={'#F34A4A'}
-                    label={I18n.t('addCart')}
-                    style={styles.bottomRight}
-                    labelStyle={styles.bottomRightTxt}
-                    onClick={() => {
-                        this.props.history.push("/loadApp")
-                    }}
-                />
-            </Paper>
+                    <RaisedButton
+                        backgroundColor={'#F34A4A'}
+                        label={I18n.t('addCart')}
+                        style={styles.bottomRight}
+                        labelStyle={styles.bottomRightTxt}
+                        onClick={() => {
+                            this.props.history.push("/loadApp")
+                        }}
+                    />
+                </Paper>
+            </div>
+
         )
     }
 }
 
 const styles = {
-    bottom: {
+    page: {
         width: '100%',
         height: 50,
         backgroundColor: '#FFFFFF',
         position: 'fixed',
+        left: 0,
+        right: 0,
         bottom: 0,
         display: 'flex',
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        zIndex: 999,
+    },
+    bottom: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: '100%',
+        height: 50
     },
     bottomLeft: {
         width: '31%',
@@ -67,7 +81,7 @@ const styles = {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        marginLeft:10
+        marginLeft: 10
     },
     bottomRightTxt: {
         fontSize: 18,

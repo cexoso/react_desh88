@@ -12,3 +12,7 @@
 .dotsClass {
     bottom: 10px;
 }
+.page{
+    overflow: hidden;
+    z-index: 999 !important;
+}
