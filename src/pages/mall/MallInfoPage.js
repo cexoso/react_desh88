@@ -10,11 +10,14 @@ import {setLang, getProductDetail} from '../../service/RaceDao';
 import {weiXinShare, message_desc, isEmptyObject} from '../../service/utils';
 import {default_img} from '../../components/constant';
 import I18n from '../../service/I18n';
+import ProductSpecInfo from './ProductSpecInfo';
 
 export default class MallInfoPage extends Component {
     state = {
         product: {},
-        showTip:true
+        showTip:true,
+        specShow:false,
+        selectProduct: {}
     };
 
 
@@ -55,25 +58,46 @@ export default class MallInfoPage extends Component {
             showTip:!this.state.showTip
         })
     };
+    showSpecInfo = (temp) => {
+
+        if (isEmptyObject(temp)) {
+            this.setState({
+                specShow: !this.state.specShow
+            })
+        } else
+            this.setState({
+                specShow: !this.state.specShow,
+                selectProduct: temp
+            })
+    };
 
 
     render() {
         const{product} = this.state.product;
+        const{specShow,selectProduct} = this.state;
         if(isEmptyObject(product)){
             return <div/>
         }
-
+        console.log("specShow:",specShow)
         return (
 
-            <div >
+            <div style={styles.page}>
                 <div style={styles.container}>
 
                     {this.state.showTip?<Tip clickTip={this._clickTip} history={this.props.history}/>:null}
                     <ProductBanner banners={product.images}/>
 
-                    <ProductInfo master={product.master} title={product.title}/>
+                    <ProductInfo product={product} title={product.title}/>
 
-                    <ProductSpec product={product}/>
+                    <ProductSpec product={product}
+                                 selectProduct={selectProduct}
+                                 showSpecInfo={this.showSpecInfo}
+                                 history={this.props.history}/>
+
+                    {/*{specShow ? <ProductSpecInfo*/}
+                            {/*selectProduct={selectProduct}*/}
+                            {/*product={product}*/}
+                            {/*showSpecInfo={this.showSpecInfo}/> : null}*/}
 
                     <ProductIntro description={product.description}/>
 
@@ -90,11 +114,16 @@ export default class MallInfoPage extends Component {
 }
 
 const styles = {
+    page:{
+        display: 'flex',
+        flex: 1,
+    },
     container: {
         display: 'flex',
         flexDirection: 'column',
         flex: 1,
-        overflow: 'scroll'
+        overflowY: 'scroll',
+        overflowX:'none'
     }
 
 };

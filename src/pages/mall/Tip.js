@@ -42,7 +42,7 @@ const styles = {
         position:'fixed',
         width:'100%',
         top:0,
-        zIndex:999,
+        zIndex:99,
         display:'flex',
         alignItems:'center'
     },
