@@ -19,7 +19,7 @@ export default class ProductSpec extends Component {
         }
         return (
             <div onClick={()=>{
-                this.props.showSpecInfo()
+                this.props.history.push("/loadApp")
             }}>
                 <div style={styles.page} onClick={()=>{
                     this.setState({
@@ -28,8 +28,8 @@ export default class ProductSpec extends Component {
                 }}>
                     <span style={styles.spec}>{I18n.t('productSpec')}</span>
                     <span style={styles.unSelected}>{I18n.t('unSelected')}</span>
-                    <span style={styles.selected}>{I18n.t('selected')}</span>
-                    <span style={styles.package}>A{I18n.t('package')}，{product.master.stock}{I18n.t('pieces')}</span>
+                    {/*<span style={styles.selected}>{I18n.t('selected')}</span>*/}
+                    {/*<span style={styles.package}>A{I18n.t('package')}，{product.master.stock}{I18n.t('pieces')}</span>*/}
                     <div style={{display: 'flex', flex: 1}}/>
                     <img style={styles.img} src={Images.is} alt=""/>
                 </div>

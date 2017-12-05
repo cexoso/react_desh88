@@ -91,12 +91,13 @@ export default class MallInfoPage extends Component {
 
                     <ProductSpec product={product}
                                  selectProduct={selectProduct}
-                                 showSpecInfo={this.showSpecInfo}/>
+                                 showSpecInfo={this.showSpecInfo}
+                                 history={this.props.history}/>
 
-                    {specShow ? <ProductSpecInfo
-                            selectProduct={selectProduct}
-                            product={product}
-                            showSpecInfo={this.showSpecInfo}/> : null}
+                    {/*{specShow ? <ProductSpecInfo*/}
+                            {/*selectProduct={selectProduct}*/}
+                            {/*product={product}*/}
+                            {/*showSpecInfo={this.showSpecInfo}/> : null}*/}
 
                     <ProductIntro description={product.description}/>
 

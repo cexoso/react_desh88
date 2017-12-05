@@ -1,6 +1,7 @@
 .price3 {
     -moz-text-decoration-line: line-through;
     -o-text-decoration-line: line-through;
+    text-decoration-line: line-through;
 }
 
 .swper {
