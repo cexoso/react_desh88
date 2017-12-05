@@ -122,7 +122,8 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         flex: 1,
-        overflow: 'scroll'
+        overflowY: 'scroll',
+        overflowX:'none'
     }
 
 };

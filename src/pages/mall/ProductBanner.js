@@ -16,25 +16,23 @@ export default class ProductBanner extends Component {
             return <div style={styles.banner}></div>
         }
         return (
-            <Slider
-                className='swper'
-                dotsClass="slick-dots dotsClass"
-                dots
-                infinite
-                autoplay
-                draggable
-                focusOnSelect
-                pauseOnHover
-                adaptiveHeight
-                autoplaySpeed={4000}>
-                {banners.map((item, index) => {
-                    return <div
-                        key={`banner${index}`}
-                        style={styles.banner}>
-                        <img key={`banner${index}`} style={styles.bannerImg} src={item.preview}/>
-                    </div>
-                })}
-            </Slider>
+            <div>
+                <Slider
+                    arrows={false}
+                    dotsClass="slick-dots dotsClass"
+                    dots
+                    infinite
+                    autoplay
+                    autoplaySpeed={4000}>
+                    {banners.map((item, index) => {
+                        return <div
+                            key={`banner${index}`}
+                            style={styles.banner}>
+                            <img key={`banner${index}`} style={styles.bannerImg} src={item.large}/>
+                        </div>
+                    })}
+                </Slider>
+            </div>
         )
 
     }
@@ -53,8 +51,8 @@ const styles = {
 
     },
     bannerImg: {
-        width: 'auto',
-        height: 'auto'
+        maxWidth: '100%',
+        maxHeight: '100%'
     }
 
 };

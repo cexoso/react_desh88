@@ -12,7 +12,7 @@ export default class ProductBottom extends Component {
                     backgroundColor={'#FFFFFF'}
                     icon={<img style={styles.bottomLeftImg} src={Images.cart}/>}
                     style={styles.bottomLeft}
-                    onClick={()=>{
+                    onClick={() => {
                         this.props.history.push("/loadApp")
                     }}
                 />
@@ -24,7 +24,7 @@ export default class ProductBottom extends Component {
                     label={I18n.t('addCart')}
                     style={styles.bottomRight}
                     labelStyle={styles.bottomRightTxt}
-                    onClick={()=>{
+                    onClick={() => {
                         this.props.history.push("/loadApp")
                     }}
                 />
@@ -40,18 +40,17 @@ const styles = {
         backgroundColor: '#FFFFFF',
         position: 'fixed',
         bottom: 0,
-        zIndex: 99,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center'
     },
     bottomLeft: {
-        width: 118,
+        width: '31%',
         height: 40,
         borderWidth: 1,
         borderRadius: 3,
         borderColor: '#CCCCCC',
-        marginLeft: 27,
+        marginLeft: 17,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -61,13 +60,14 @@ const styles = {
         height: 24,
     },
     bottomRight: {
-        width: 208,
+        width: '55%',
         height: 40,
         borderRadius: 3,
         marginRight: 16,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginLeft:10
     },
     bottomRightTxt: {
         fontSize: 18,
