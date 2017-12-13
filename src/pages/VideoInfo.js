@@ -169,8 +169,10 @@ export default class VideoInfo extends Component {
 
                     </div> : null}
 
+                <div style={{marginTop:1}}>
+                    <MarkDown description={description}/>
+                </div>
 
-                <MarkDown description={description}/>
 
                 <Footer/>
             </div>
@@ -179,7 +181,6 @@ export default class VideoInfo extends Component {
 }
 const styles = {
     root: {
-        width: '100%',
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
