@@ -25,5 +25,12 @@ const images = {
     safari: require('../../assets/images/Safari.png'),
     andorid: require('../../assets/images/andorid.png'),
 
+    comment: require('../../assets/comment/comment.png'),
+    pen: require('../../assets/comment/pen.png'),
+    commentWhite: require('../../assets/comment/commentWhite.png'),
+    like: require('../../assets/comment/like.png'),
+    likeRed: require('../../assets/comment/likeRed.png'),
+    forward: require('../../assets/comment/forward.png')
+
 }
 export default images

@@ -8,7 +8,6 @@ import I18n from '../service/I18n';
 import {Images} from '../components/Themes';
 import {GridList, GridTile} from 'material-ui/GridList';
 
-
 export default class VideoInfo extends Component {
     state = {
         data: {},
@@ -76,55 +75,64 @@ export default class VideoInfo extends Component {
         })
     };
 
+    renderItem=(item)=>{
+        return(
+            <div style={styles.videoFlex}
+                 onClick={() => {
+                     this._onPressItem(item)
+                 }}>
+                <div
+                    style={{
+                        backgroundImage: `url(${item.cover_link})`,
+                        backgroundSize: '100% 100%',
+                        width: 149,
+                        height: 90,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}>
+                    <img src={Images.videoControl} alt="" style={{
+                        height: 40, width: 40,
+
+                    }}/>
+
+                    <span style={{
+                        display: 'flex',
+                        fontSize: 14,
+                        color: 'white',
+                        position: 'absolute',
+                        bottom: 55,
+                        right: 5
+                    }}>{`${item.video_duration}`}</span>
+
+                </div>
+                <div style={styles.title3Div}>
+                    <span style={styles.title3}>{item.name}</span>
+                </div>
+
+
+            </div>
+        )
+    };
+
     videoGroupList = () => {
         const {items} = this.state.videoGroup;
         return (
             <div style={styles.root}>
                 <GridList style={styles.gridList} cols={1}>
-                    {items.map((item, index) => (
-                        <div key={index} onClick={() => {
-                            this._onPressItem(item)
-                        }}>
+
+                        {items.map((item, index) => (
                             <GridTile
                                 key={index}
                                 title={item.title}
                             >
-                                <div style={styles.videoFlex}>
-                                    <div
-                                        style={{
-                                            backgroundImage: `url(${item.cover_link})`,
-                                            backgroundSize: '100% 100%',
-                                            width: 149,
-                                            height: 90,
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center'
-                                        }}>
-                                        <img src={Images.videoControl} alt="" style={{
-                                            height: 40, width: 40,
-
-                                        }}/>
-
-                                        <span style={{
-                                            display: 'flex',
-                                            fontSize: 14,
-                                            color: 'white',
-                                            position: 'absolute',
-                                            bottom: 55,
-                                            right: 5
-                                        }}>{`${item.video_duration}`}</span>
-
-                                    </div>
-                                    <div style={styles.title3Div}>
-                                        <span style={styles.title3}>{item.name}</span>
-                                    </div>
-
-
+                                <div style={{width:149,height:90}}>
+                                    {this.renderItem(item)}
                                 </div>
-
                             </GridTile>
-                        </div>
-                    ))}
+                        ))}
+
+
                 </GridList>
             </div>
         );
@@ -187,9 +195,12 @@ const styles = {
     },
     gridList: {
         display: 'flex',
+        display:'-webkit-box',
         flexWrap: 'nowrap',
         overflowX: 'auto',
         marginLeft: 17,
+        backgroundColor:'red'
+
     },
     titleStyle: {},
     videoImg: {
@@ -199,8 +210,10 @@ const styles = {
     videoFlex: {
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
-        width: 149
+        alignItems: 'flex-start',
+        width: 149,
+        backgroundColor:'yellow',
+        boxSizing: 'border-box',
     },
     page: {
         display: 'flex',
@@ -214,16 +227,18 @@ const styles = {
     },
     titleView: {
         padding: 17,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        display:'flex',
+        alignItems:'flex-start',
+        justifyContent:'flex-start'
     },
     videoView: {
         height: 216,
-        width: '100%'
+        marginTop:2
     },
     groupView: {
         display: 'flex',
         flexDirection: 'column',
-        width: '100%',
         marginTop: 5,
         backgroundColor: 'white'
     },
