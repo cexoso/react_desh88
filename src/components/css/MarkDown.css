@@ -16,9 +16,11 @@
     margin: 0;
     font-family: PingFangSC-Regular;
     font-size: 14px;
-    color: #000000;
-}
-p{
+    color: #000000 !important;
     line-height: 2 !important;
-    color:#000000;
+}
+.introduceGame li{
+    font-size: 14px;
+    color:#000000 !important;
+    line-height: 2 !important;
 }

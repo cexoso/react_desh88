@@ -8,11 +8,10 @@ import Time from 'react-time-format';
 import '../styles/RaceInfo.css';
 import moment from 'moment';
 import I18n from '../service/I18n';
-import MarkDown from '../components/MarkDown';
 import {weiXinShare, message_desc, isEmptyObject} from '../service/utils';
 import RaceBlindList from '../components/RaceBlindList';
 import {default_img} from '../components/constant';
-import Footer from '../components/Footer';
+import {MarkDown, Footer} from '../components';
 
 export default class RaceInfo extends Component {
 
@@ -181,11 +180,13 @@ export default class RaceInfo extends Component {
     };
 
     mainInfoView = () => {
-        const {schedules, blinds, ranks} = this.state.data;
+        const {schedules, blinds, ranks,blind_memo,schedule_memo} = this.state.data;
         return <RaceBlindList
             ranks={ranks}
             schedules={schedules}
-            blinds={blinds}/>
+            blinds={blinds}
+            schedule_memo={schedule_memo}
+            blind_memo={blind_memo}/>
 
     };
 
@@ -220,7 +221,6 @@ export default class RaceInfo extends Component {
             return <div/>;
         const{race} = this.state.data;
         const{ticket_sellable} = race;
-        console.log("race:",race);
 
         return (
             <div className='content'>

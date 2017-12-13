@@ -6,7 +6,7 @@ import moment from 'moment';
 import '../styles/RaceInfo.css';
 import I18n from '../service/I18n';
 import {isEmptyObject} from '../service/utils';
-
+import {MarkDown, Footer} from '../components';
 
 export default class RaceBlindList extends PureComponent {
 
@@ -16,29 +16,56 @@ export default class RaceBlindList extends PureComponent {
     };
 
     render() {
-        return (<div>
+        return (<div style={{marginBottom:-10}}>
             {this.mainInfoView()}
         </div>)
     }
 
+    blind_memo=()=>{
+        const {
+            blind_memo
+        } = this.props;
+        return(
+            <div style={{marginBottom:-10}}>
 
+                <MarkDown description={blind_memo}/>
+            </div>
+        )
+    };
+    schedule_memo=()=>{
+        const {schedule_memo
+        } = this.props;
+        return(
+            <div>
+
+                <MarkDown description={schedule_memo}/>
+            </div>
+        )
+    };
     btnActive = () => {
         const {selectBtn, btns} = this.state;
+        if(btns.length === 0){
+            return <div/>
+        }
         if (btns.length === 1) {
 
             return (<div className="infoView-nav">
+
                 <div className={selectBtn === btns[0] ? 'btn2' : 'btn1'} onClick={() => {
                     this.setState({
                         selectBtn: btns[0]
                     })
                 }}>
+
                     <span>{this._btnName(btns[0])}</span>
                 </div>
+
             </div>)
         }
         if (btns.length === 2) {
 
             return (<div className="infoView-nav">
+
                 <div className={selectBtn === btns[0] ? 'btn2' : 'btn1'} onClick={() => {
                     this.setState({
                         selectBtn: btns[0]
@@ -103,14 +130,15 @@ export default class RaceBlindList extends PureComponent {
     };
 
     componentDidMount() {
-        const {schedules, blinds, ranks} = this.props;
+        const {schedules, blinds, ranks,blind_memo,schedule_memo} = this.props;
         let btns = [];
-        if (!isEmptyObject(schedules) && schedules.length > 0) {
+        if ((!isEmptyObject(schedules) && schedules.length > 0) || !isEmptyObject(schedule_memo)) {
             btns.push(0)
         }
-        if (!isEmptyObject(blinds) && blinds.length > 0) {
+        if ((!isEmptyObject(blinds) && blinds.length > 0) || !isEmptyObject(blind_memo)) {
             btns.push(1)
         }
+
         if (!isEmptyObject(ranks) && ranks.length > 0) {
             btns.push(2)
         }
@@ -124,11 +152,13 @@ export default class RaceBlindList extends PureComponent {
 
 
         return <div className="infoView">
-            {this.btnActive()}
 
+            {this.btnActive()}
             {this.select_mainInfoMenu()}
         </div>
     };
+
+
 
 
     scheduleView = () => {
@@ -137,33 +167,43 @@ export default class RaceBlindList extends PureComponent {
         } = this.props;
 
         return <div className="schedule">
+            {this.schedule_memo()}
+            {(isEmptyObject(schedules)||schedules.length <1)?<div/>:this.schuleContent()}
 
-            <div className="schedule-nav">
-                <div>{I18n.t('race_day')}</div>
-                <div>{I18n.t('date')}</div>
-                <div>{I18n.t('beginDate')}</div>
-            </div>
-            <div className="schedule-items">
-                {schedules.map((schedule, i) => {
+        </div>
+    };
+    schuleContent=()=>{
+        const {
+            schedules
+        } = this.props;
+        return(
+            <div>
+                <div className="schedule-nav">
+                    <div>{I18n.t('race_day')}</div>
+                    <div>{I18n.t('date')}</div>
+                    <div>{I18n.t('beginDate')}</div>
+                </div>
+                <div className="schedule-items">
+                    {schedules.map((schedule, i) => {
 
-                    return <div className='schedule-info' key={i}>
+                        return <div className='schedule-info' key={i}>
 
                         <span>
                              {this.scheduleMessage(schedule.schedule)}
                         </span>
 
-                        <span>
+                            <span>
                             {moment(schedule.begin_time).format('MM-DD')}
                         </span>
-                        <span>
+                            <span>
                             {moment(schedule.begin_time).format('HH:mm')}
                         </span>
 
-                    </div>
-                })}
+                        </div>
+                    })}
+                </div>
             </div>
-
-        </div>
+        )
     };
 
     blindStructureView = () => {
@@ -171,18 +211,29 @@ export default class RaceBlindList extends PureComponent {
             blinds
         } = this.props;
         return <div className="blindStructure">
-            <div className="blindStructure-nav">
-                <span>{I18n.t('Level')}</span>
-                <span>{I18n.t('Level')}</span>
-                <span>{I18n.t('Ante')}</span>
-                <span>{I18n.t('time')}</span>
-            </div>
-            <div>
-                {blinds.map((blind, i) => <BlindStructureInfo key={i} blind={blind}/>)}
-
-            </div>
+            {this.blind_memo()}
+            {(isEmptyObject(blinds)||blinds.length <1)?<div/>:this.blindContent()}
 
         </div>
+    };
+    blindContent=()=>{
+        const {
+            blinds
+        } = this.props;
+        return(
+            <div>
+                <div className="blindStructure-nav">
+                    <span>{I18n.t('Level')}</span>
+                    <span>{I18n.t('Level')}</span>
+                    <span>{I18n.t('Ante')}</span>
+                    <span>{I18n.t('time')}</span>
+                </div>
+                <div>
+                    {blinds.map((blind, i) => <BlindStructureInfo key={i} blind={blind}/>)}
+
+                </div>
+            </div>
+        )
     }
 
     //主赛信息选择显示页面
