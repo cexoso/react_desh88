@@ -20,6 +20,7 @@ import SharePage from './pages/SharePage';
 import ChoiseTicketPage from './pages/ChoiseTicketPage';
 import MallInfoPage from './pages/mall/MallInfoPage';
 import LogisticsPage from './pages/mall/LogisticsPage';
+import AntDemo from './pages/AntDemo';
     //
     // global.console = {
     //     info: () => {
@@ -38,7 +39,7 @@ class App extends Component {
         return (
             <Router>
                 <div>
-
+                <Route exact path="/ant" component={AntDemo}/>
                     <Route exact path="/race/:id/:lang" component={RaceInfo}/>
 
                     <Route path="/loadApp" component={Download}/>
