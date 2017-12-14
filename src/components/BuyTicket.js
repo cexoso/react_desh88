@@ -1,19 +1,14 @@
 import React, {Component} from 'react';
 import I18n from '../service/I18n';
-import {RaisedButton} from '../components';
 
 export default class BuyTicket extends Component {
     render(){
         return(
-        <RaisedButton
-            backgroundColor={'#090909'}
-            style={styles.view}
-            label={I18n.t('buy_ticket')}
-           labelStyle={styles.txt}
-            onClick={()=>{
+            <div style={styles.view} onClick={() => {
                 this.props.history.push(this.props.load)
-            }}
-        />
+            }}>
+                <span style={styles.txt}>{I18n.t('buy_ticket')}</span>
+            </div>
         );
     }
 }

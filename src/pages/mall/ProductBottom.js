@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Colors} from '../../components';
 import I18n from '../../service/I18n';
-import {Paper, Images, RaisedButton} from '../../components';
+import { Images} from '../../components';
 import '../../styles/mall.css';
 
 export default class ProductBottom extends Component {
@@ -9,28 +9,28 @@ export default class ProductBottom extends Component {
     render() {
         return (
             <div style={styles.page}>
-                <Paper style={styles.bottom}>
-                    <RaisedButton
-                        backgroundColor={'#FFFFFF'}
-                        icon={<img style={styles.bottomLeftImg} src={Images.cart}/>}
-                        style={styles.bottomLeft}
-                        onClick={() => {
-                            this.props.history.push("/loadApp")
-                        }}
-                    />
+                <div style={styles.bottom}>
+                    <div style={styles.bottomLeftView}>
+                        <div  style={styles.bottomLeft}
+                              onClick={() => {
+                                  this.props.history.push("/loadApp")
+                              }}
+                        >
+                            <img style={styles.bottomLeftImg} src={Images.cart}/>
+                        </div>
+                    </div>
 
                     <div style={{display: 'flex', flex: 1}}/>
 
-                    <RaisedButton
-                        backgroundColor={'#F34A4A'}
-                        label={I18n.t('addCart')}
+                    <div
                         style={styles.bottomRight}
-                        labelStyle={styles.bottomRightTxt}
                         onClick={() => {
                             this.props.history.push("/loadApp")
                         }}
-                    />
-                </Paper>
+                    >
+                        <span style={styles.bottomRightTxt}>{I18n.t('addCart')}</span>
+                    </div>
+                </div>
             </div>
 
         )
@@ -58,16 +58,25 @@ const styles = {
         width: '100%',
         height: 50
     },
-    bottomLeft: {
+    bottomLeftView:{
         width: '31%',
         height: 40,
-        borderWidth: 1,
-        borderRadius: 3,
-        borderColor: '#CCCCCC',
         marginLeft: 17,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        backgroundColor:'#CCCCCC',
+        borderRadius: 3,
+    },
+    bottomLeft: {
+        width: '98%',
+        height: 38,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor:'#FFFFFF',
+        borderWidth: 1,
+        borderRadius: 3,
     },
     bottomLeftImg: {
         width: 24,
@@ -81,7 +90,8 @@ const styles = {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        marginLeft: 10
+        marginLeft: 10,
+        backgroundColor:'#F34A4A'
     },
     bottomRightTxt: {
         fontSize: 18,
