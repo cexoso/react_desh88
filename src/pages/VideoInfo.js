@@ -119,7 +119,7 @@ export default class VideoInfo extends Component {
     videoGroupList = () => {
         const {items} = this.state.videoGroup;
         return (
-            <div style={styles.root}>
+            <div style={styles.root} className="videoRoot">
                 <Slider
                     slidesToShow={3}
                     slidesToScroll={1}

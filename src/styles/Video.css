@@ -141,9 +141,8 @@ video{
     /*width:149px !important;*/
     margin-right: 10px !important;
 }
-.slick-track{
-}
-.slick-active{
+
+.videoRoot .slick-active{
     width:149px !important;
     margin-right: 10px !important;
 }
