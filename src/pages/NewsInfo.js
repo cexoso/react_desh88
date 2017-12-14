@@ -79,21 +79,26 @@ export default class NewsInfo extends Component {
                         <div id="images" dangerouslySetInnerHTML={this.desc(description)}></div>
                   </div>
 
-                    <div style={styles.readView}>
-                        <div style={styles.likesView}>
-                            <img style={{width:16,height:16,marginRight:5}} src={Images.like}/>
-                            <span style={styles.readTxt}>425</span>
-                        </div>
-
-                        <span style={styles.readTxt}>阅读2444</span>
-                        <div style={{flex:1}}/>
-                    </div>
+                    {/*{this.read()}*/}
 
                 </div>
 
             );
         }
 
+    };
+    read=()=>{
+        return(
+            <div style={styles.readView}>
+                <div style={styles.likesView}>
+                    <img style={{width:16,height:16,marginRight:5}} src={Images.like}/>
+                    <span style={styles.readTxt}>425</span>
+                </div>
+
+                <span style={styles.readTxt}>阅读2444</span>
+                <div style={{flex:1}}/>
+            </div>
+        )
     }
 
 
