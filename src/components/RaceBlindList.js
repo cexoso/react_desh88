@@ -25,6 +25,9 @@ export default class RaceBlindList extends PureComponent {
         const {
             blind_memo
         } = this.props;
+        if(isEmptyObject(blind_memo)){
+            return<div/>
+        }
         return(
             <div style={{marginBottom:-10}}>
 
@@ -35,6 +38,9 @@ export default class RaceBlindList extends PureComponent {
     schedule_memo=()=>{
         const {schedule_memo
         } = this.props;
+        if(isEmptyObject(schedule_memo)){
+            return<div/>
+        }
         return(
             <div>
 

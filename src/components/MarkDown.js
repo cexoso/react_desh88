@@ -22,7 +22,7 @@ export default class MarkDown extends Component {
         return (
             <div style={{width:'100%',height:'100%',paddingTop:20}}>
                 <div className="introduceGame" dangerouslySetInnerHTML={this.desc(description)}></div>
-                <div style={{height:80}}/>
+                <div style={{height:40}}/>
             </div>
 
         );
