@@ -19,6 +19,7 @@ export default class ProductInfo extends Component {
                 <span style={styles.price2}>{master.price}</span>
 
                 <span style={styles.price3} className="price3">{master.original_price}</span>
+
                 {/*<span style={styles.price4}>{isEmptyObject(master.sku)?0:master.sku}{I18n.t('discount')}</span>*/}
             </div>
 
