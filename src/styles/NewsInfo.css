@@ -59,6 +59,7 @@
     font-family: PingFangSC-Regular;
     font-size: 14px;
     color: #444444;
+    line-height: 2;
 }
 .App div p img{
     display: inline-block;
