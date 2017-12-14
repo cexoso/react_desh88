@@ -103,7 +103,7 @@ export default class NewsInfo extends Component {
 
                 {this.content()}
 
-                <Comment/>
+                {/*<Comment/>*/}
                 <Footer/>
             </div>
         )
