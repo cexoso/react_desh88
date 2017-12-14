@@ -256,7 +256,9 @@ const styles = {
         overflow: 'hidden',
         display: '-webkit-box',
         WebkitLineClamp: 2,
-        WebkitBoxOrient: 'vertical'
+        WebkitBoxOrient: 'vertical',
+        lineHeight:1.5,
+        marginTop:2
     },
     title3Div: {
         height: 50,
