@@ -84,13 +84,15 @@ export default class SideRace extends PureComponent {
 
     mainInfoView = () => {
 
-        const {schedules, blinds, ranks} = this.state.data;
+        const {schedules, blinds, ranks,blind_memo,schedule_memo} = this.state.data;
         console.log('side',this.state.data)
         if (!isEmptyObject(this.state.data))
             return <RaceBlindList
                 ranks={ranks}
                 schedules={schedules}
-                blinds={blinds}/>
+                blinds={blinds}
+                schedule_memo={schedule_memo}
+                blind_memo={blind_memo}/>
 
     };
 

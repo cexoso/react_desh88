@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {AppBar} from 'material-ui';
 import ProductBanner from './ProductBanner';
 import ProductInfo from './ProductInfo';
 import ProductSpec from './ProductSpec';

@@ -20,24 +20,22 @@ import SharePage from './pages/SharePage';
 import ChoiseTicketPage from './pages/ChoiseTicketPage';
 import MallInfoPage from './pages/mall/MallInfoPage';
 import LogisticsPage from './pages/mall/LogisticsPage';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-    global.console = {
-        info: () => {
-        },
-        log: () => {
-        },
-        warn: () => {
-        },
-        error: () => {
-        },
-    };
+    //
+    // global.console = {
+    //     info: () => {
+    //     },
+    //     log: () => {
+    //     },
+    //     warn: () => {
+    //     },
+    //     error: () => {
+    //     },
+    // };
 
 
 class App extends Component {
     render() {
         return (
-        <MuiThemeProvider>
             <Router>
                 <div>
 
@@ -66,7 +64,6 @@ class App extends Component {
                     <Route path="shipments/search/:shipping_number/:express_code/:order_number/:lang" component={LogisticsPage}/>
                 </div>
             </Router>
-        </MuiThemeProvider>
 
         );
     }
