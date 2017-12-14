@@ -16,7 +16,7 @@ export default class RaceBlindList extends PureComponent {
     };
 
     render() {
-        return (<div style={{marginBottom:-10}}>
+        return (<div >
             {this.mainInfoView()}
         </div>)
     }
@@ -29,7 +29,7 @@ export default class RaceBlindList extends PureComponent {
             return<div/>
         }
         return(
-            <div style={{marginBottom:-10}}>
+            <div>
 
                 <MarkDown description={blind_memo}/>
             </div>
