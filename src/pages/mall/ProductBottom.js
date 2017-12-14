@@ -40,7 +40,7 @@ export default class ProductBottom extends Component {
 const styles = {
     page: {
         width: '100%',
-        height: 50,
+        height: 54,
         backgroundColor: '#FFFFFF',
         position: 'fixed',
         left: 0,
@@ -56,7 +56,7 @@ const styles = {
         flexDirection: 'row',
         alignItems: 'center',
         width: '100%',
-        height: 50
+        height: 54
     },
     bottomLeftView:{
         width: '31%',
