@@ -36,7 +36,7 @@ export default class MallInfoPage extends Component {
             document.title = title;
 
             const message = {
-                title: title,
+                title: I18n.t('ads_poker'),
                 desc: message_desc(description, begin_date, end_date),//分享描述
                 link: window.location.href, // 分享链接，该链接域名必须与当前企业的可信域名一致
                 imgUrl: isEmptyObject(icon) ? default_img : icon, // 分享图标
