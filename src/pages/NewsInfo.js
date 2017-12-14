@@ -5,6 +5,8 @@ import '../styles/NewsInfo.css';
 import {weiXinShare,isEmptyObject,message_desc} from '../service/utils';
 import {default_img} from '../components/constant';
 import Footer from '../components/Footer';
+import Comment from './comment/Comment';
+import {Colors, Fonts, Images} from '../components/Themes';
 
 export default class NewsInfo extends Component {
 
@@ -76,6 +78,17 @@ export default class NewsInfo extends Component {
                     <div className="App-nav" >
                         <div id="images" dangerouslySetInnerHTML={this.desc(description)}></div>
                   </div>
+
+                    <div style={styles.readView}>
+                        <div style={styles.likesView}>
+                            <img style={{width:16,height:16,marginRight:5}} src={Images.like}/>
+                            <span style={styles.readTxt}>425</span>
+                        </div>
+
+                        <span style={styles.readTxt}>阅读2444</span>
+                        <div style={{flex:1}}/>
+                    </div>
+
                 </div>
 
             );
@@ -89,8 +102,32 @@ export default class NewsInfo extends Component {
             <div className='content'>
 
                 {this.content()}
+
+                {/*<Comment/>*/}
                 <Footer/>
             </div>
         )
     };
+}
+
+const styles={
+    readView:{
+        paddingBottom:16,
+        backgroundColor:'#FFFFFF',
+        display:'flex',
+        flexDirection:'row-reverse',
+        alignItems:'center',
+        justifyContent:'flex-end'
+    },
+    readTxt:{
+        fontSize: 14,
+        color: '#AAAAAA',
+        marginRight:29
+    },
+    likesView:{
+        display:'flex',
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'center'
+    }
 }

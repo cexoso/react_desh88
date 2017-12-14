@@ -6,6 +6,7 @@ import {MarkDown, Footer} from '../components';
 import '../styles/Video.css';
 import I18n from '../service/I18n';
 import {Images} from '../components/Themes';
+import Slider from 'react-slick';
 
 export default class VideoInfo extends Component {
     state = {
@@ -76,7 +77,8 @@ export default class VideoInfo extends Component {
 
     renderItem=(item)=>{
         return(
-            <div style={styles.videoFlex}
+            <div className="videoFlex"
+                style={styles.videoFlex}
                  onClick={() => {
                      this._onPressItem(item)
                  }}>
@@ -116,12 +118,21 @@ export default class VideoInfo extends Component {
 
     videoGroupList = () => {
         const {items} = this.state.videoGroup;
-
         return (
             <div style={styles.root}>
-                {items.map((item, index) => (
-                    this.renderItem(item)
-                ))}
+                <Slider
+                    slidesToShow={3}
+                    slidesToScroll={1}
+                    FocusOnSelect={true}
+                    arrows={false}
+                    infinite={false}
+                    autoplay={false}>
+                    {items.map((item, index) => {
+                        return <div key={index}>
+                            {this.renderItem(item)}
+                        </div>
+                    })}
+                </Slider>
             </div>
         );
     };
@@ -177,9 +188,7 @@ export default class VideoInfo extends Component {
 }
 const styles = {
     root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
+        marginLeft:17
     },
     gridList: {
         display: 'flex',
@@ -199,8 +208,7 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        width: 149,
-        backgroundColor:'yellow',
+
         boxSizing: 'border-box',
     },
     page: {

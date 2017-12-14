@@ -92,11 +92,7 @@ video{
     -webkit-overflow-scrolling: auto;
     -webkit-overflow-scrolling: touch;
 }
-.videoFlex {
-    display: flex;
-    flex-direction: column;
-    width:149px;
-}
+
 .videoImgs{
     width:149px;
     height:90px;
@@ -141,6 +137,15 @@ video{
     font-size: 14px;
     color: #333333;
 }
-
+.videoFlex{
+    /*width:149px !important;*/
+    margin-right: 10px !important;
+}
+.slick-track{
+}
+.slick-active{
+    width:149px !important;
+    margin-right: 10px !important;
+}
 
 
