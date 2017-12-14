@@ -2,7 +2,6 @@ import React,{Component} from 'react';
 import {Colors, Fonts, Images} from '../../components/Themes';
 import I18n from '../../service/I18n';
 import CommentItem from './CommentItem';
-import {List, ListItem} from 'material-ui/List';
 
 export default class Comment extends Component {
     state={
@@ -33,6 +32,9 @@ export default class Comment extends Component {
                 <div style={{width:'100%',height:3,backgroundColor:'#ECECEE'}}/>
                 <div style={styles.top}>
                     <span style={styles.topTxt}>全部评论（555）</span>
+                </div>
+                <div style={{paddingTop: 6,marginTop:1,backgroundColor:'#F5F5F5'}}>
+
                 </div>
                 {/*<FlatList*/}
                     {/*style={{paddingTop: 6,marginTop:1,backgroundColor:'#F5F5F5'}}*/}

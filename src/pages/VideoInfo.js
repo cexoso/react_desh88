@@ -6,7 +6,6 @@ import {MarkDown, Footer} from '../components';
 import '../styles/Video.css';
 import I18n from '../service/I18n';
 import {Images} from '../components/Themes';
-import {GridList, GridTile} from 'material-ui/GridList';
 
 export default class VideoInfo extends Component {
     state = {
@@ -117,23 +116,12 @@ export default class VideoInfo extends Component {
 
     videoGroupList = () => {
         const {items} = this.state.videoGroup;
+
         return (
             <div style={styles.root}>
-                <GridList style={styles.gridList} cols={1}>
-
-                        {items.map((item, index) => (
-                            <GridTile
-                                key={index}
-                                title={item.title}
-                            >
-                                <div style={{width:149,height:90}}>
-                                    {this.renderItem(item)}
-                                </div>
-                            </GridTile>
-                        ))}
-
-
-                </GridList>
+                {items.map((item, index) => (
+                    this.renderItem(item)
+                ))}
             </div>
         );
     };
