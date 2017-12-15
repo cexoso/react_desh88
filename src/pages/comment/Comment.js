@@ -2,6 +2,8 @@ import React,{Component} from 'react';
 import {Colors, Fonts, Images} from '../../components/Themes';
 import I18n from '../../service/I18n';
 import CommentItem from './CommentItem';
+import {List} from '../../components';
+const Item = List.Item;
 
 export default class Comment extends Component {
     state={
@@ -29,13 +31,28 @@ export default class Comment extends Component {
         let dataHosts =[1,2,3,4,5,6,7,8];
         return(
             <div style={styles.container}>
-                <div style={{width:'100%',height:3,backgroundColor:'#ECECEE'}}/>
+
+                <div style={{width:'100%',height:2,backgroundColor:'#ECECEE',marginLeft:16,marginRight:17}}/>
                 <div style={styles.top}>
                     <span style={styles.topTxt}>全部评论（555）</span>
                 </div>
                 <div style={{paddingTop: 6,marginTop:1,backgroundColor:'#F5F5F5'}}>
 
                 </div>
+
+                <List>
+                    {dataHosts.map((item, index) => {
+                        return (
+                            <Item
+                                style={styles.ItemView}
+                                thumb={Images.cart}
+                                arrow="horizontal"
+                                onClick={() => {}}
+                            >My wallet</Item>
+                        )
+
+                    })}
+                </List>
                 {/*<FlatList*/}
                     {/*style={{paddingTop: 6,marginTop:1,backgroundColor:'#F5F5F5'}}*/}
                     {/*data={dataHosts}*/}
@@ -53,7 +70,6 @@ export default class Comment extends Component {
 const styles= {
     container:{
         backgroundColor:'#ECECEE',
-        marginTop:1,
         paddingBottom:50
     },
     top:{
@@ -140,6 +156,10 @@ const styles= {
         // paddingLeft:10,
         // paddingRight:10,
         // marginRight:17
+    },
+    ItemView:{
+
     }
+
 
 }
