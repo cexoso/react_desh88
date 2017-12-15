@@ -7590,10 +7590,6 @@ weixin-js-sdk@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/weixin-js-sdk/-/weixin-js-sdk-1.2.0.tgz#5132949eb65b3d4e5f3e052bd3b6b10abdf47d55"
 
-weui@^1.1.0:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/weui/-/weui-1.1.2.tgz#e33f771e2248edfe0fd07a2c6eadb3e7931a00cc"
-
 whatwg-encoding@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/whatwg-encoding/-/whatwg-encoding-1.0.1.tgz#3c6c451a198ee7aec55b1ec61d0920c67801a5f4"
