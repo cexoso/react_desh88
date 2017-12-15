@@ -2,8 +2,16 @@ import I18n from '../service/I18n';
 import {getWeiXinSign} from '../service/RaceDao';
 import moment from 'moment';
 
+
+export function getURLParamKey(name, search) {
+    let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    let r = search.substr(1).match(reg);
+    if (r !== null) return unescape(r[2]);
+    return '';
+}
+
 export function convertDate(date, formate) {
-    if (strNotNull(date)){
+    if (strNotNull(date)) {
         return moment(date).format(formate)
     }
 }
@@ -11,11 +19,13 @@ export function convertDate(date, formate) {
 export function utcDate(utc, formate) {
     return moment.unix(utc).format(formate)
 }
+
 export function getGetOrdinal(n) {
     let s = ["th", "st", "nd", "rd"],
         v = n % 100;
     return n + (s[(v - 20) % 10] || s[v] || s[0]);
 }
+
 /*金额千分转换*/
 export function moneyFormat(num) {
     var num = (num || 0).toString(), result = '';
@@ -30,19 +40,19 @@ export function moneyFormat(num) {
     return result;
 }
 
-    /*对象是否为空对象*/
-    export function isEmptyObject(e) {
-        var t;
-        for (t in e)
-            return !1;
-        return !0
-    }
+/*对象是否为空对象*/
+export function isEmptyObject(e) {
+    var t;
+    for (t in e)
+        return !1;
+    return !0
+}
 
 export function strNotNull(str) {
-    if (str === undefined || str === null || str.length === 0 ||str === 'undefined'){
+    if (str === undefined || str === null || str.length === 0 || str === 'undefined') {
         return false;
     }
-    else{
+    else {
         return true;
     }
 }
@@ -61,6 +71,7 @@ export function raceStatusConvert(status) {
             return I18n.t('closed');
     }
 }
+
 /*票务状态*/
 export function ticketStatusConvert(status) {
     switch (status) {
@@ -76,10 +87,10 @@ export function ticketStatusConvert(status) {
 }
 
 //微信二次分享
-export function weiXinShare(url,message){
+export function weiXinShare(url, message) {
     getWeiXinSign(url, data => {
         console.log('WeiXinSignInfo', data)
-        window.wx.ready(() =>{
+        window.wx.ready(() => {
             window.wx.onMenuShareTimeline(message);//分享朋友圈
             window.wx.onMenuShareAppMessage(message);//分享给朋友
             window.wx.onMenuShareQQ(message);//分享到QQ
@@ -93,7 +104,7 @@ export function weiXinShare(url,message){
             timestamp: data.timestamp,
             nonceStr: data.nonceStr,
             signature: data.signature,
-            jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage','onMenuShareQQ', 'onMenuShareWeibo',"onMenuShareQZone"]
+            jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', "onMenuShareQZone"]
         });
 
     }, err => {
@@ -101,11 +112,11 @@ export function weiXinShare(url,message){
     });
 }
 
-export function message_desc (location,begin_date,end_date) {
-    var time=convertDate(begin_date,"YYYY.MM.DD")+"-"+convertDate(end_date,"YYYY.MM.DD");
-    if(location===null){
+export function message_desc(location, begin_date, end_date) {
+    var time = convertDate(begin_date, "YYYY.MM.DD") + "-" + convertDate(end_date, "YYYY.MM.DD");
+    if (location === null) {
         return time;
-    }else{
+    } else {
         return location;
     }
 }
