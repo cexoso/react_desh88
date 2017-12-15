@@ -17,7 +17,6 @@ export default class CommentBottom extends Component {
 
 
 
-
     render() {
 
         const {likeButton} = this.state;
