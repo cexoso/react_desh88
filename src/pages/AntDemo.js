@@ -11,7 +11,9 @@ import CommentBottom from './comment/CommentBottom';
 
 export default class AntDemo extends PureComponent {
 
+
     render() {
+        console.log('AntDemo',this);
         return <div>
             <CommentList/>
             <CommentBottom/>

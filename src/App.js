@@ -22,16 +22,16 @@ import MallInfoPage from './pages/mall/MallInfoPage';
 import LogisticsPage from './pages/mall/LogisticsPage';
 import AntDemo from './pages/AntDemo';
 
-    global.console = {
-        info: () => {
-        },
-        log: () => {
-        },
-        warn: () => {
-        },
-        error: () => {
-        },
-    };
+    // global.console = {
+    //     info: () => {
+    //     },
+    //     log: () => {
+    //     },
+    //     warn: () => {
+    //     },
+    //     error: () => {
+    //     },
+    // };
 
 
 class App extends Component {
