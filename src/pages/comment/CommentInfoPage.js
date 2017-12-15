@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Colors, Fonts, Images} from '../../components/Themes';
+import {Colors, Fonts, Images} from '../../components';
 import I18n from '../../service/I18n';
 import CommentBottom from './CommentBottom';
 import CommentItem from './CommentItem';
@@ -38,7 +38,7 @@ export default class CommentInfoPage extends Component {
                     <CommentItem releaseInfo={this.releaseInfo}/>
                 </div>
 
-                <CommentBottom/>
+
 
                 <div  style={{backgroundColor:'#ECECEE',marginBottom:80,overflowX:'scroll'}}>
 
@@ -58,6 +58,7 @@ export default class CommentInfoPage extends Component {
 
                 {releaseShow ? <ReleaseCommentInfo
                         releaseInfo={this.releaseInfo}/> : null}
+                <CommentBottom/>
             </div>
         )
     }

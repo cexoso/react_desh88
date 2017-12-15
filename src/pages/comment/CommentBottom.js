@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Colors, Fonts, Images} from '../../components/Themes';
 import I18n from '../../service/I18n';
 import PropTypes from 'prop-types';
+import {Button,WhiteSpace} from '../../components';
 
 export default class CommentBottom extends Component {
 
@@ -21,19 +22,17 @@ export default class CommentBottom extends Component {
 
         const {likeButton} = this.state;
         return (
+        <footer>
             <div style={styles.bottom}>
                 <div
                     style={styles.search}>
                     <img
                         style={styles.searchImg}
                         src={Images.pen}/>
+                    <span style={styles.input}>{I18n.t('write_comment')}</span>
 
-                    <input
-                        type="text"
-                        placeholder={I18n.t('write_comment')}
-                        style={styles.input}
-                        defaultValue={I18n.t('certain')}/>
                 </div>
+                <div style={{flex:1}}/>
 
                 <div
                     style={styles.commentWhiteView}>
@@ -43,8 +42,8 @@ export default class CommentBottom extends Component {
                 <div
                     style={styles.likeView}
                     onClick={()=>{
-                    this.setState({likeButton:!likeButton})
-                }}>
+                        this.setState({likeButton:!likeButton})
+                    }}>
                     <img style={styles.like} src={likeButton?Images.likeRed:Images.like}/>
                 </div>
                 <div style={{flex:1}}/>
@@ -54,6 +53,8 @@ export default class CommentBottom extends Component {
                 </div>
 
             </div>
+        </footer>
+
         );
     }
 
@@ -69,19 +70,12 @@ const styles = {
         display:'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        bottom: 0,
-        zIndex: 99,
-        position:'absolute',
+
     },
     input: {
-        height: 30,
-        paddingTop: 5,
-        paddingBottom: 5,
-        paddingRight: 20,
-        backgroundColor: '#ECECEE',
-        borderRadius: 40,
         fontSize: 14,
-        color: '#CCCCCC'
+        color: '#CCCCCC',
+
     },
     search: {
         marginLeft: 17,
@@ -97,7 +91,7 @@ const styles = {
         height: 14,
         width: 14,
         marginLeft: 15,
-        marginRight:30,
+        marginRight:10,
     },
     commentWhiteView: {
         display:'flex',
