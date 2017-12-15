@@ -6,7 +6,8 @@
 import React, {PureComponent} from 'react';
 import {Flex, ListView, Text, I} from 'antd-mobile';
 import 'antd-mobile/dist/antd-mobile.css';
-import {Colors, Images} from '../../components/Themes'
+import {Colors, Images} from '../../components/Themes';
+
 
 export default class CommentList extends PureComponent {
 
@@ -116,7 +117,8 @@ const styles = {
     },
     txtName: {
         color: Colors._666,
-        fontSize: 14
+        fontSize: 14,
+        marginTop: 6
     },
     txtTime: {
         fontSize: 10,
@@ -146,7 +148,7 @@ const styles = {
     content: {
         fontSize: 16,
         color: Colors.txt_444,
-        marginTop: 6,
+        marginTop: 8,
     },
     flexNum: {
         backgroundColor: Colors._ECE,
