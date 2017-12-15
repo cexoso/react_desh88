@@ -28,7 +28,7 @@ export default class CommentBottom extends Component {
                     style={styles.search}>
                     <img
                         style={styles.searchImg}
-                        src={Images.pen}/>
+                        src={Images.pen} alt=""/>
                     <span style={styles.input}>{I18n.t('write_comment')}</span>
 
                 </div>
@@ -36,7 +36,7 @@ export default class CommentBottom extends Component {
 
                 <div
                     style={styles.commentWhiteView}>
-                    <img style={styles.commentWhite} src={Images.commentWhite}/>
+                    <img style={styles.commentWhite} src={Images.commentWhite} alt=""/>
                 </div>
 
                 <div
@@ -44,12 +44,12 @@ export default class CommentBottom extends Component {
                     onClick={()=>{
                         this.setState({likeButton:!likeButton})
                     }}>
-                    <img style={styles.like} src={likeButton?Images.likeRed:Images.like}/>
+                    <img style={styles.like} src={likeButton?Images.likeRed:Images.like} alt=""/>
                 </div>
                 <div style={{flex:1}}/>
                 <div
                     style={styles.forwardView}>
-                    <img style={styles.forward} src={Images.forward}/>
+                    <img style={styles.forward} src={Images.forward} alt=""/>
                 </div>
 
             </div>

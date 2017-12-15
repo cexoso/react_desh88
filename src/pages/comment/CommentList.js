@@ -4,7 +4,7 @@
  * Desc:
  */
 import React, {PureComponent} from 'react';
-import {Flex, ListView, Text, I} from 'antd-mobile';
+import {Flex, ListView, Text} from 'antd-mobile';
 import 'antd-mobile/dist/antd-mobile.css';
 import {Colors, Images} from '../../components/Themes'
 
@@ -59,10 +59,12 @@ export default class CommentList extends PureComponent {
         console.log(rowData)
 
         return <Flex style={styles.listItem}>
-            <img
-                alt={''}
-                style={styles.avatar}
-                src={'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png'}/>
+            <div style={styles.avatarView}>
+                <img
+                    alt=""
+                    style={styles.avatar}
+                    src={'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png'}/>
+            </div>
             <Flex style={styles.flexUser}>
                 <Flex style={{width: '100%'}}>
                     <Flex style={styles.flexName}>
@@ -74,7 +76,7 @@ export default class CommentList extends PureComponent {
                     <Flex.Item/>
 
                     <img style={styles.replayImg}
-                         src={Images.comment}/>
+                         src={Images.comment} alt=""/>
 
                 </Flex>
 
@@ -108,11 +110,16 @@ const styles = {
         color: Colors._AAA,
         marginLeft: 17
     },
+    avatarView:{
+        height: 50,
+        width: 50,
+        marginLeft: 17
+    },
     avatar: {
         height: 38,
         width: 38,
         borderRadius: 19,
-        marginLeft: 17
+
     },
     txtName: {
         color: Colors._666,
@@ -140,7 +147,7 @@ const styles = {
         flexDirection: 'column',
         width: '100%',
         alignItems: 'flex-start',
-        paddingLeft: 12,
+        marginLeft: 15,
         paddingRight: 17
     },
     content: {

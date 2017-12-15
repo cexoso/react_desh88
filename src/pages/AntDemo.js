@@ -13,8 +13,6 @@ export default class AntDemo extends PureComponent {
     render() {
         return <div>
             <CommentList/>
-
-
         </div>
     }
 }
