@@ -11,7 +11,8 @@ import {Colors, Fonts, Images} from '../components/Themes';
 export default class NewsInfo extends Component {
 
     state = {
-        news: {}
+        news: {},
+        likeChang:false
     };
 
     componentDidMount() {
@@ -79,7 +80,7 @@ export default class NewsInfo extends Component {
                         <div id="images" dangerouslySetInnerHTML={this.desc(description)}></div>
                   </div>
 
-                    {/*{this.read()}*/}
+                    {this.read()}
 
                 </div>
 
@@ -90,8 +91,13 @@ export default class NewsInfo extends Component {
     read=()=>{
         return(
             <div style={styles.readView}>
-                <div style={styles.likesView}>
-                    <img style={{width:16,height:16,marginRight:5}} src={Images.like}/>
+                <div style={styles.likesView}
+                onClick={()=>{
+                    this.setState({
+                        likeChang:!this.state.likeChang
+                    })
+                }}>
+                    <img style={{width:16,height:16,marginRight:5}} src={this.state.likeChang?Images.likeRed:Images.like}/>
                     <span style={styles.readTxt}>425</span>
                 </div>
 
@@ -108,7 +114,7 @@ export default class NewsInfo extends Component {
 
                 {this.content()}
 
-                {/*<Comment/>*/}
+                <Comment/>
                 <Footer/>
             </div>
         )
@@ -118,7 +124,7 @@ export default class NewsInfo extends Component {
 const styles={
     readView:{
         paddingBottom:16,
-        backgroundColor:'#FFFFFF',
+
         display:'flex',
         flexDirection:'row-reverse',
         alignItems:'center',

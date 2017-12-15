@@ -47,8 +47,10 @@ export default class Comment extends Component {
                                 style={styles.ItemView}
                                 thumb={Images.cart}
                                 arrow="horizontal"
-                                onClick={() => {}}
-                            >My wallet</Item>
+                                onClick={() => {
+
+                                }}
+                            >{item}</Item>
                         )
 
                     })}
