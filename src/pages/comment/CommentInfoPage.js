@@ -4,10 +4,23 @@ import I18n from '../../service/I18n';
 import CommentBottom from './CommentBottom';
 import CommentItem from './CommentItem';
 import ReleaseCommentInfo from './ReleaseCommentInfo';
+import {Flex, ListView, Text} from 'antd-mobile';
 
 export default class CommentInfoPage extends Component {
-    state={
-        releaseShow:false
+
+
+    constructor(props) {
+        super(props);
+        let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+
+        let array = [1, 2, 3, 5];
+        this.state = {
+            dataSource: ds.cloneWithRows(array),
+            height: 200 * array.length,
+            releaseShow:false
+
+        }
+
     };
 
     releaseInfo = () => {
@@ -17,51 +30,50 @@ export default class CommentInfoPage extends Component {
         console.log("releaseShow:",this.state.releaseShow);
     };
 
-    _renderItem=()=>{
-        return(
-            <CommentItem releaseInfo={this.releaseInfo}/>
+    renderItem = (rowData, sectionID, rowID) => {
+        return (
+            <Flex style={styles.listItem}
+                  onClick={()=>{
+
+                  }}>
+                <CommentItem releaseInfo={this.releaseInfo}/>
+            </Flex>
         )
     };
-    _separator = () => {
-        return <div style={{height: 0.5, marginLeft: 68, marginRight: 17, backgroundColor: '#DDDDDD'}}/>;
-    };
+
 
     render(){
-        let dataHosts =[1,2,3,4,5,6,7,8];
         const{releaseShow} = this.state;
 
         return(
             <div style={styles.bgContainer}>
-
-
-                <div style={{backgroundColor:'#FFFFFF',marginTop:1,paddingBottom:16}}>
+                <Flex style={{backgroundColor:'#FFFFFF'}}>
                     <CommentItem releaseInfo={this.releaseInfo}/>
-                </div>
+                </Flex>
 
+                <Flex style={{backgroundColor:'#ECECEE',marginTop:-1,paddingBottom:16}}>
+                    <ListView
+                        style={{
+                            height: this.state.height,
+                            overflow: 'auto',
+                            width: '100%'
+                        }}
+                        dataSource={this.state.dataSource}
+                        renderRow={this.renderItem}
+                        horizontal={true}
+                    />
 
+                </Flex>
 
-                <div  style={{backgroundColor:'#ECECEE',marginBottom:80,overflowX:'scroll'}}>
-
-                    <span style={styles.allComment}>全部评论（333）</span>
-                    {/*<FlatList*/}
-                        {/*style={{marginTop: 16,backgroundColor:'#ECECEE'}}*/}
-                        {/*data={dataHosts}*/}
-                        {/*showsHorizontalScrollIndicator={false}*/}
-                        {/*ItemSeparatorComponent={this._separator}*/}
-                        {/*renderItem={this._renderItem}*/}
-                        {/*keyExtractor={(item, index) => `comment${index}`}*/}
-                    {/*/>*/}
-
-                    <div style={{height:80}}/>
-
-                </div>
 
                 {releaseShow ? <ReleaseCommentInfo
                         releaseInfo={this.releaseInfo}/> : null}
+
                 <CommentBottom/>
             </div>
         )
     }
+
 }
 
 const styles= {
@@ -78,6 +90,11 @@ const styles= {
         color: '#AAAAAA',
         marginLeft:17,
         marginTop:11
+    },
+    listItem:{
+        backgroundColor: '#ECECEE',
+        paddingTop: 13,
+        alignItems: 'flex-start'
     }
 
 }

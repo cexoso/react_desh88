@@ -17,13 +17,21 @@ export default {
     choiseTicket_Info: choiseTicket_Info,
     videoGroup_Info: videoGroup_Info,
     product_Detail: product_Detail,
-    logistics_info: logistics_info
+    logistics_info: logistics_info,
+    news_comment_info:news_comment_info
 
 }
 
 function sub_race_info(body) {
     const {raceId, subId} = body;
-    return 'races/' + raceId + '/sub_races/' + subId;
+    return 'topic/' + raceId + '/sub_races/' + subId;
+}
+
+
+function news_comment_info(comments) {
+    const {info_id,pageId,pageSize} = comments;
+    return 'topic/infos/' + info_id + '/comments?page='+pageId+'&page_size='+pageSize;
+
 }
 
 

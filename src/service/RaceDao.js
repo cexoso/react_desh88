@@ -16,6 +16,12 @@ export function getLang() {
     return lang;
 }
 
+export function getCommentInfo(comments, resolve, reject) {
+    get(Api.news_comment_info(comments), ret => {
+        resolve(ret.data);
+    },reject)
+}
+
 export function getWeiXinSign(payload, resolve, reject) {
     post(Api.weixin_js_sign, payload, ret => {
         resolve(ret.data);

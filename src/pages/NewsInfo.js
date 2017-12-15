@@ -1,18 +1,20 @@
 import React, {Component} from 'react';
 import markdown from 'marked';
-import {getNewsInfo,setLang} from '../service/RaceDao';
+import {getNewsInfo,setLang,getCommentInfo} from '../service/RaceDao';
 import '../styles/NewsInfo.css';
 import {weiXinShare,isEmptyObject,message_desc} from '../service/utils';
 import {default_img} from '../components/constant';
 import Footer from '../components/Footer';
-import Comment from './comment/Comment';
+import CommentList from './comment/CommentList';
+import CommentBottom from './comment/CommentBottom';
 import {Colors, Fonts, Images} from '../components/Themes';
 
 export default class NewsInfo extends Component {
 
     state = {
         news: {},
-        likeChang:false
+        likeChang:false,
+        newsComments:{}
     };
 
     componentDidMount() {
@@ -24,14 +26,23 @@ export default class NewsInfo extends Component {
             console.log('NewsInfo', data)
             this.setState({
                 news: data
-            })
+            });
             document.title = data.title;
 
+            let comments={info_id:id,page:1,page_size:10};
+
+            //获取资讯评论列表
+            getCommentInfo(comments, data => {
+                console.log('newsComments', data)
+                this.setState({
+                    newsComments: data
+                });
+            }, err => {
+
+            });
+
             //微信二次分享
-            // const url = {url: "http://www.deshpro.com:3000/race/91/zh"};
-            // const url = {url: "http://h5-react.deshpro.com:3000/race/91/zh"};
             var image=document.getElementById("images").querySelectorAll('img')[0].src;
-            console.log("image:",image)
             const{title,source,date} =data;
             const message = {
                 title: title,
@@ -46,7 +57,9 @@ export default class NewsInfo extends Component {
             weiXinShare(url,message);
         }, err => {
 
-        })
+        });
+
+
 
     }
 
@@ -114,8 +127,9 @@ export default class NewsInfo extends Component {
 
                 {this.content()}
 
-                <Comment/>
-                <Footer/>
+                <CommentList/>
+                <CommentBottom/>
+                {/*<Footer/>*/}
             </div>
         )
     };
