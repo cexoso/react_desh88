@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import markdown from 'marked';
-import {getNewsInfo,setLang,getCommentInfo} from '../service/RaceDao';
+import {getNewsInfo,setLang,getNewCommentsInfo,getNewLikesInfo} from '../service/RaceDao';
 import '../styles/NewsInfo.css';
 import {weiXinShare,isEmptyObject,message_desc} from '../service/utils';
 import {default_img} from '../components/constant';
@@ -14,7 +14,8 @@ export default class NewsInfo extends Component {
     state = {
         news: {},
         likeChang:false,
-        newsComments:{}
+        newsComments:{},
+        likesComments:{}
     };
 
     componentDidMount() {
@@ -32,10 +33,21 @@ export default class NewsInfo extends Component {
             let comments={info_id:id,page:1,page_size:10};
 
             //获取资讯评论列表
-            getCommentInfo(comments, data => {
-                console.log('newsComments', data)
+            getNewCommentsInfo(comments, data => {
+                console.log('newsComments', data);
                 this.setState({
                     newsComments: data
+                });
+            }, err => {
+
+            });
+            //获取资讯点赞和取消点赞
+            let likes={info_id: id};
+            getNewLikesInfo(likes, data => {
+                alert("1")
+                console.log('likesComments', data)
+                this.setState({
+                    likesComments: data
                 });
             }, err => {
 
