@@ -42,7 +42,6 @@ export default class VideoInfo extends Component {
             //微信二次分享
             // const url = {url: "http://www.deshpro.com:3000/activities/1/zh"};
             // const url = {url: "http://h5-react.deshpro.com:3000/activities/1/zh"};
-            let img=cover_link;
             const message = {
                 title: name,
                 desc: description,//分享描述
@@ -262,6 +261,7 @@ const styles = {
     },
     title3Div: {
         height: 50,
+        width:149
     }
 
 };

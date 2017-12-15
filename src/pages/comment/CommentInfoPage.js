@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Colors, Fonts, Images} from '../../components/Themes';
+import {Colors, Fonts, Images} from '../../components';
 import I18n from '../../service/I18n';
 import CommentBottom from './CommentBottom';
 import CommentItem from './CommentItem';
