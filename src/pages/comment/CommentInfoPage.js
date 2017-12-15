@@ -38,7 +38,7 @@ export default class CommentInfoPage extends Component {
                     <CommentItem releaseInfo={this.releaseInfo}/>
                 </div>
 
-                <CommentBottom/>
+
 
                 <div  style={{backgroundColor:'#ECECEE',marginBottom:80,overflowX:'scroll'}}>
 
@@ -58,6 +58,7 @@ export default class CommentInfoPage extends Component {
 
                 {releaseShow ? <ReleaseCommentInfo
                         releaseInfo={this.releaseInfo}/> : null}
+                <CommentBottom/>
             </div>
         )
     }

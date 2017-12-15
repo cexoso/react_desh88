@@ -65,7 +65,7 @@ class App extends Component {
 
                     <Route path="shipments/search/:shipping_number/:express_code/:order_number/:lang" component={LogisticsPage}/>
 
-                    <Route path="/comment/:id/:lang" component={CommentInfoPage}/>
+                    <Route path="/comment" component={CommentInfoPage}/>
 
                 </div>
             </Router>
