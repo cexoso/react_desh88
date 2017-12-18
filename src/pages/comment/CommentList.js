@@ -98,7 +98,8 @@ const styles = {
     },
     txtName: {
         color: Colors._666,
-        fontSize: 14
+        fontSize: 14,
+        marginTop: 6
     },
     txtTime: {
         fontSize: 10,
@@ -111,4 +112,35 @@ const styles = {
         paddingTop: 13,
         alignItems: 'flex-start'
     },
-}
+    replayImg: {
+        height: 18,
+        width: 20,
+    },
+    flexName: {
+        flexDirection: 'column',
+        alignItems: 'flex-start'
+    },
+    flexUser: {
+        flexDirection: 'column',
+        width: '100%',
+        alignItems: 'flex-start',
+        paddingLeft: 12,
+        paddingRight: 17
+    },
+    content: {
+        fontSize: 16,
+        color: Colors.txt_444,
+        marginTop: 8,
+    },
+    flexNum: {
+        backgroundColor: Colors._ECE,
+        height: 20,
+        width: '100%',
+        marginTop: 6
+    },
+    txtNum: {
+        fontSize: 12,
+        color: '#4990E2',
+        marginLeft: 11
+    }
+};
