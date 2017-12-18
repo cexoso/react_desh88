@@ -55,19 +55,9 @@ export default class NewsInfo extends Component {
     }
 
     desc = (description) => {
-        var des = markdown(description)
+        let des = markdown(description)
         return {__html: des}
-    }
-
-    isEmptyObject(e) {
-        var t;
-        for (t in e)
-            return !1;
-        return !0
-    }
-
-    //click事件
-
+    };
 
     content = () => {
         if (!this.isEmptyObject(this.state.news)) {
