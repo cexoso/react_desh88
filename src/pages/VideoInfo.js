@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {getVideoInfo, getVideoGroup, setLang} from '../service/RaceDao';
+import {getVideoInfo, getVideoGroup, setLang, getVideoCommentsInfo,getVideoLikesInfo} from '../service/RaceDao';
 import {weiXinShare, isEmptyObject} from '../service/utils';
 import {default_img} from '../components/constant';
 import {MarkDown, Footer} from '../components';
@@ -11,14 +11,16 @@ import Slider from 'react-slick';
 export default class VideoInfo extends Component {
     state = {
         data: {},
-        videoGroup: {}
+        videoGroup: {},
+        videoComments: {},
+        likesComments:{}
     };
 
     componentDidMount() {
         const {video_id, lang} = this.props.match.params;
         setLang(lang);
 
-        let body = {video_id: video_id}
+        let body = {video_id: video_id};
         getVideoInfo(body, data => {
             console.log('VideoInfo', data)
 
@@ -33,6 +35,28 @@ export default class VideoInfo extends Component {
                     x.isSelect = false
                 });
 
+            }, err => {
+
+            });
+
+            //获取视频评论接口
+            let comments = {video_id: video_id, page: 1, page_size: 10};
+            getVideoCommentsInfo(comments, data => {
+                console.log('videoComments', data);
+                this.setState({
+                    videoComments: data
+                });
+            }, err => {
+
+            });
+            //获取视频点赞和取消点赞
+            let likes={video_id: video_id};
+            getVideoLikesInfo(likes, data => {
+                alert("1")
+                console.log('videoLieksComments', data)
+                this.setState({
+                    likesComments: data
+                });
             }, err => {
 
             });
@@ -74,10 +98,10 @@ export default class VideoInfo extends Component {
         })
     };
 
-    renderItem=(item)=>{
-        return(
+    renderItem = (item) => {
+        return (
             <div className="videoFlex"
-                style={styles.videoFlex}
+                 style={styles.videoFlex}
                  onClick={() => {
                      this._onPressItem(item)
                  }}>
@@ -175,7 +199,7 @@ export default class VideoInfo extends Component {
 
                     </div> : null}
 
-                <div style={{marginTop:1}}>
+                <div style={{marginTop: 1}}>
                     <MarkDown description={description}/>
                 </div>
 
@@ -187,15 +211,15 @@ export default class VideoInfo extends Component {
 }
 const styles = {
     root: {
-        marginLeft:17
+        marginLeft: 17
     },
     gridList: {
         display: 'flex',
-        display:'-webkit-box',
+        display: '-webkit-box',
         flexWrap: 'nowrap',
         overflowX: 'auto',
         marginLeft: 17,
-        backgroundColor:'red'
+        backgroundColor: 'red'
 
     },
     titleStyle: {},
@@ -223,13 +247,13 @@ const styles = {
     titleView: {
         padding: 17,
         backgroundColor: 'white',
-        display:'flex',
-        alignItems:'flex-start',
-        justifyContent:'flex-start'
+        display: 'flex',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start'
     },
     videoView: {
         height: 216,
-        marginTop:2
+        marginTop: 2
     },
     groupView: {
         display: 'flex',
@@ -256,12 +280,12 @@ const styles = {
         display: '-webkit-box',
         WebkitLineClamp: 2,
         WebkitBoxOrient: 'vertical',
-        lineHeight:1.5,
-        marginTop:2
+        lineHeight: 1.5,
+        marginTop: 2
     },
     title3Div: {
         height: 50,
-        width:149
+        width: 149
     }
 
 };

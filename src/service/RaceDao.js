@@ -2,7 +2,7 @@
  * Created by lorne on 2017/8/24.
  */
 import Api from './Api';
-import {get, post, setDpLang} from './HttpUtil';
+import {get, post, setDpLang,del} from './HttpUtil';
 import {strNotNull} from './utils'
 
 var lang = 'zh';
@@ -14,6 +14,34 @@ export function setLang(lan) {
 
 export function getLang() {
     return lang;
+}
+
+export function toPersonDynamic(dynamic, resolve, reject) {
+    get(Api.personDynamic_info(dynamic), {},ret => {
+        resolve(ret.data);
+    },reject)
+}
+export function getVideoCommentsInfo(comments, resolve, reject) {
+    get(Api.video_comment_info(comments), {},ret => {
+        resolve(ret.data);
+    },reject)
+}
+export function getVideoLikesInfo(likes, resolve, reject) {
+    post(Api.video_likes_info(likes), ret => {
+        resolve(ret.data);
+    },reject)
+}
+
+export function getNewCommentsInfo(comments, resolve, reject) {
+    get(Api.news_comment_info(comments), ret => {
+        resolve(ret.data);
+    },reject)
+}
+
+export function getNewLikesInfo(likes, resolve, reject) {
+    post(Api.new_likes_info(likes),{}, ret => {
+        resolve(ret.data);
+    },reject)
 }
 
 export function getWeiXinSign(payload, resolve, reject) {
