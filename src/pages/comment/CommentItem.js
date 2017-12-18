@@ -2,42 +2,46 @@ import React, {Component} from 'react';
 import {Colors, Fonts, Images} from '../../components/Themes';
 import PropTypes from 'prop-types';
 import I18n from '../../service/I18n';
-import {Flex, ListView, Text} from 'antd-mobile';
+import {Flex, Text} from '../../components';
+import {getDateDiff, postMsg} from '../../service/utils';
 
 export default class CommentItem extends Component {
-    state={
-        showMessage:true,
+    state = {
+        showMessage: true,
     };
 
 
-
-    read=()=>{
-        return(
-            <Flex style={styles.flexNum}>
+    read = () => {
+        return (
+            <Flex style={styles.flexNum}
+                  onClick={() => {
+                      postMsg(JSON.stringify({route: 'comments', param: this.props.item}))
+                  }}>
                 <Text style={styles.txtNum}>查看34条回复></Text>
             </Flex>
         )
     };
 
     render() {
-        // const{id,user_id,nick_name,avatar,official,body,recommended,created_at} = this.props.item;
-        return <Flex style={styles.listItem} onClick={()=>{
+
+        const {id, user_id, nick_name, avatar, official, body, recommended, created_at} = this.props.item;
+        return <Flex style={styles.listItem} onClick={() => {
 
         }}>
             <div style={styles.avatarView}
-            onClick={()=>{
+                 onClick={() => {
 
-            }}>
+                 }}>
                 <img
                     alt=""
                     style={styles.avatar}
-                    src={'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png'}/>
+                    src={avatar}/>
             </div>
             <Flex style={styles.flexUser}>
                 <Flex style={{width: '100%'}}>
                     <Flex style={styles.flexName}>
-                        <Text style={styles.txtName}>ddd</Text>
-                        <Text style={styles.txtTime}>3小时前</Text>
+                        <Text style={styles.txtName}>{nick_name}</Text>
+                        <Text style={styles.txtTime}>{getDateDiff(created_at)}</Text>
 
                     </Flex>
 
@@ -48,15 +52,11 @@ export default class CommentItem extends Component {
 
                 </Flex>
 
-                <div style={styles.contentView}>
-                    <span style={styles.content}>qqqwwdwdsdadaddadadefddsgdsgefsdagegrgefefeew
-                    sdadadaxsxassfdsgdf;h,fhf'hjfglhmfglhrkp'kp[kpsdsdqwfewfadwfewfe</span>
-                </div>
-
+                <Text style={styles.content}>{body}</Text>
 
                 {this.read()}
 
-                <div style={{width: '100%', height: 1, backgroundColor: '#DDDDDD', marginTop: 8,marginRight:17}}/>
+                <div style={{width: '100%', height: 1, backgroundColor: '#DDDDDD', marginTop: 8, marginRight: 17}}/>
             </Flex>
 
 
@@ -66,8 +66,7 @@ export default class CommentItem extends Component {
 const styles = {
     listItem: {
         paddingTop: 13,
-        alignItems: 'flex-start',
-        flex:1
+        alignItems: 'flex-start'
     },
     replayImg: {
         height: 18,
@@ -84,18 +83,11 @@ const styles = {
         marginLeft: 15,
         paddingRight: 17
     },
-    contentView:{
-        wordWrap:'break-word',
-        wordBreak:'break-all',
-        overflow:'hidden'
-
-    },
     content: {
         fontSize: 16,
         color: Colors.txt_444,
         marginTop: 6,
-        lineHeight:1.4,
-
+        lineHeight: 1.4
     },
     flexNum: {
         backgroundColor: Colors._ECE,
@@ -113,7 +105,7 @@ const styles = {
         color: Colors._AAA,
         marginLeft: 17
     },
-    avatarView:{
+    avatarView: {
         height: 50,
         width: 50,
         marginLeft: 17,

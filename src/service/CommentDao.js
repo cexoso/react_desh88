@@ -3,24 +3,20 @@
  * Function:
  * Desc:
  */
+
+
 import Api from './Api';
 import {get, post, setDpLang, del, setAccessToken} from './HttpUtil';
-import {strNotNull} from './utils';
+import {strNotNull} from './utils'
 
-var lang = 'zh';
-
-export function setToken(token) {
-    setAccessToken(token)
+/*资讯视频评论接口*/
+export function postComment(body, resolve, reject) {
+    post(Api.topic_comments, body, ret => {
+        resolve(ret.data)
+    }, reject)
 }
 
-export function setLang(lan) {
-    setDpLang(strNotNull(lan) ? lan : lang);
 
-}
-
-export function getLang() {
-    return lang;
-}
 //个人动态
 export function getPersonDynamic(body, resolve, reject) {
     get(Api.personDynamic_info(body), ret => {

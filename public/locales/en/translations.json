@@ -332,5 +332,11 @@
   "buy_count": "QTY",
   "ads_poker": "PokerPro bring you all fun",
   "write_comment": "写下评论....",
-  "read":"阅读"
+  "read":"阅读",
+  "time_month": "month ago",
+  "time_week": "week ago",
+  "time_day": "days ago",
+  "time_hour": "hours ago",
+  "time_min": "minutes ago",
+  "time_moment": "just"
 }
