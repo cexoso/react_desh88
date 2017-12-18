@@ -4,6 +4,7 @@ import I18n from '../../service/I18n';
 import PropTypes from 'prop-types';
 import {List, InputItem, Modal, Button} from '../../components';
 import 'antd-mobile/dist/antd-mobile.css';
+import {} from '../../service/RaceDao';
 
 export default class CommentBottom extends Component {
 
