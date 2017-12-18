@@ -30,7 +30,7 @@ export default class CommentList extends Component {
     render() {
         const{commentLists} = this.props;
         const{items} =commentLists;
-        return <Flex style={{flexDirection: 'column'}}>
+        return <Flex style={{flexDirection: 'column',marginBottom:50}}>
             <Flex style={styles.topTitle}>
                 <Text style={styles.txtTitle}>全部评论（{items.length}）</Text>
             </Flex>
