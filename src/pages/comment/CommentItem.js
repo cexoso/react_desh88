@@ -3,16 +3,16 @@ import {Colors, Fonts, Images} from '../../components/Themes';
 import PropTypes from 'prop-types';
 import I18n from '../../service/I18n';
 import {Flex, ListView, Text} from 'antd-mobile';
+import {getDateDiff} from '../../service/utils';
 
 export default class CommentItem extends Component {
-    state={
-        showMessage:true,
+    state = {
+        showMessage: true,
     };
 
 
-
-    read=()=>{
-        return(
+    read = () => {
+        return (
             <Flex style={styles.flexNum}>
                 <Text style={styles.txtNum}>查看34条回复></Text>
             </Flex>
@@ -20,14 +20,15 @@ export default class CommentItem extends Component {
     };
 
     render() {
-        const{id,user_id,nick_name,avatar,official,body,recommended,created_at} = this.props.item;
-        return <Flex style={styles.listItem} onClick={()=>{
+
+        const {id, user_id, nick_name, avatar, official, body, recommended, created_at} = this.props.item;
+        return <Flex style={styles.listItem} onClick={() => {
 
         }}>
             <div style={styles.avatarView}
-            onClick={()=>{
+                 onClick={() => {
 
-            }}>
+                 }}>
                 <img
                     alt=""
                     style={styles.avatar}
@@ -37,7 +38,7 @@ export default class CommentItem extends Component {
                 <Flex style={{width: '100%'}}>
                     <Flex style={styles.flexName}>
                         <Text style={styles.txtName}>{nick_name}</Text>
-                        <Text style={styles.txtTime}>{created_at}</Text>
+                        <Text style={styles.txtTime}>{getDateDiff(created_at)}</Text>
 
                     </Flex>
 
@@ -52,7 +53,7 @@ export default class CommentItem extends Component {
 
                 {this.read()}
 
-                <div style={{width: '100%', height: 1, backgroundColor: '#DDDDDD', marginTop: 8,marginRight:17}}/>
+                <div style={{width: '100%', height: 1, backgroundColor: '#DDDDDD', marginTop: 8, marginRight: 17}}/>
             </Flex>
 
 
@@ -83,7 +84,7 @@ const styles = {
         fontSize: 16,
         color: Colors.txt_444,
         marginTop: 6,
-        lineHeight:1.4
+        lineHeight: 1.4
     },
     flexNum: {
         backgroundColor: Colors._ECE,
@@ -101,7 +102,7 @@ const styles = {
         color: Colors._AAA,
         marginLeft: 17
     },
-    avatarView:{
+    avatarView: {
         height: 50,
         width: 50,
         marginLeft: 17,

@@ -14,7 +14,8 @@ export default class NewsInfo extends Component {
 
     state = {
         news: {},
-        likeChang: false
+        likeChang: false,
+        commentList: []
     };
 
     componentDidMount() {
@@ -66,6 +67,9 @@ export default class NewsInfo extends Component {
         };
 
         getNewCommentsInfo(body, data => {
+            this.setState({
+                commentList: data.items
+            });
             postMsg(JSON.stringify(data))
         }, err => {
             postMsg(err)
@@ -124,15 +128,17 @@ export default class NewsInfo extends Component {
 
     render() {
         const {id} = this.props.match.params;
+        const {commentList} = this.state;
         return (
             <div className='content'>
 
                 {this.content()}
 
-                <CommentList
+                {commentList.length > 0 ? <CommentList
+                    commentList={commentList}
                     {...this.props}
-                    topic_id={id}
-                    topic_type={'info'}/>
+                /> : null}
+
                 <CommentBottom
                     topic_id={id}
                     topic_type={'info'}

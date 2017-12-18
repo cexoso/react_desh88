@@ -10,7 +10,6 @@ import {Colors, Images} from '../../components/Themes';
 import CommentItem from './CommentItem';
 
 
-
 export default class CommentList extends Component {
 
 
@@ -18,11 +17,11 @@ export default class CommentList extends Component {
         super(props);
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
-        this.commentList = [1, 2, 3, 4, 5];
-        this.state = {
+        const {commentList} = props;
 
-            height: 200 * this.commentList.length,
-            dataSource: ds.cloneWithRows(this.commentList),
+        this.state = {
+            height: 200 * commentList.length,
+            dataSource: ds.cloneWithRows(commentList)
         }
 
     };
@@ -35,11 +34,7 @@ export default class CommentList extends Component {
                 <Text style={styles.txtTitle}>全部评论（200）</Text>
             </Flex>
             <ListView
-                style={{
-                    height: this.state.height,
-                    overflow: 'auto',
-                    width: '100%'
-                }}
+                useBodyScroll
                 dataSource={this.state.dataSource}
                 renderRow={this.renderItem}
                 horizontal={true}
@@ -65,9 +60,9 @@ export default class CommentList extends Component {
     renderItem = (item, sectionID, rowID) => {
         return (
             <div style={styles.listItem}
-                  onClick={() => {
+                 onClick={() => {
 
-                  }}>
+                 }}>
                 <CommentItem item={item}/>
             </div>
         )
