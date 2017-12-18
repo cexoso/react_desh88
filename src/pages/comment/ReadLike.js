@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import markdown from 'marked';
 import {Colors, Fonts, Images} from '../../components/Themes';
+import I18n from '../../service/I18n';
 
 export default class ReadLike extends Component {
 
@@ -46,7 +47,7 @@ export default class ReadLike extends Component {
                     <span style={styles.readTxt}>{this.state.likes}</span>
                 </div>
 
-                <span style={styles.readTxt}>阅读2444</span>
+                <span style={styles.readTxt}>{I18n.t('read')}2444</span>
                 <div style={{flex: 1}}/>
             </div>
         )

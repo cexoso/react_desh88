@@ -28,7 +28,7 @@ export default class NewsInfo extends Component {
         const body = {newsId: id};
 
         getNewsInfo(body, data => {
-            console.log('NewsInfo', data)
+            console.log('NewsInfo', data);
             this.setState({
                 news: data
             });
@@ -58,8 +58,6 @@ export default class NewsInfo extends Component {
 
             window.postMessage(JSON.stringify(data));
             //微信二次分享
-            // const url = {url: "http://www.deshpro.com:3000/race/91/zh"};
-            // const url = {url: "http://h5-react.deshpro.com:3000/race/91/zh"};
             const {title, source, date, image_thumb} = data;
             const message = {
                 title: title,
@@ -79,7 +77,7 @@ export default class NewsInfo extends Component {
     }
 
     desc = (description) => {
-        let des = markdown(description)
+        let des = markdown(description);
         return {__html: des}
     };
 
