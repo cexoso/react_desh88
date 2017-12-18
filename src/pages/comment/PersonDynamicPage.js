@@ -18,7 +18,7 @@ export default class PersonDynamicPage extends Component {
     componentDidMount() {
         let body ={};
         getPersonDynamic(body, data => {
-            console.log('PersonDynamic', data)
+            console.log('PersonDynamic', data);
             this.setState({
                 personDynamic: data
             });
