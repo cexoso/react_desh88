@@ -2,11 +2,12 @@ import React, {Component} from 'react';
 import markdown from 'marked';
 import {getNewsInfo, setLang, setToken} from '../service/RaceDao';
 import '../styles/NewsInfo.css';
-import {weiXinShare, isEmptyObject, message_desc, getURLParamKey} from '../service/utils';
+import {weiXinShare, isEmptyObject, message_desc, getURLParamKey, postMsg} from '../service/utils';
 import {default_img} from '../components/constant';
 import CommentList from './comment/CommentList'
 import CommentBottom from './comment/CommentBottom';
 import {Colors, Fonts, Images} from '../components/Themes';
+import {getNewCommentsInfo, getVideoCommentsInfo} from '../service/CommentDao';
 
 
 export default class NewsInfo extends Component {
@@ -30,7 +31,7 @@ export default class NewsInfo extends Component {
             });
             document.title = data.title;
 
-            window.postMessage(JSON.stringify(data));
+            postMsg(JSON.stringify(data));
             //微信二次分享
             // const url = {url: "http://www.deshpro.com:3000/race/91/zh"};
             // const url = {url: "http://h5-react.deshpro.com:3000/race/91/zh"};
@@ -52,7 +53,24 @@ export default class NewsInfo extends Component {
 
         })
 
+        this.getComment()
+
     }
+
+    getComment = () => {
+        const {id} = this.props.match.params;
+        const body = {
+            info_id: id,
+            page: 1,
+            page_size: 20
+        };
+
+        getNewCommentsInfo(body, data => {
+            postMsg(JSON.stringify(data))
+        }, err => {
+            postMsg(err)
+        })
+    };
 
     desc = (description) => {
         let des = markdown(description)

@@ -4,6 +4,55 @@ import moment from 'moment';
 import {Toast} from 'antd-mobile';
 
 
+export function postMsg(msg) {
+    if (window.originalPostMessage) {
+        window.postMessage(msg);
+    } else {
+        // alert('postMessage接口还未注入');
+    }
+}
+
+/*时间 1小时前*/
+export function getDateDiff(dateTimeStamp) {
+
+    var minute = 1000 * 60;
+    var hour = minute * 60;
+    var day = hour * 24;
+    var halfamonth = day * 15;
+    var month = day * 30;
+    var now = new Date().getTime();
+
+    var diffValue = now - dateTimeStamp * 1000;
+    if (diffValue < 0) {
+        return;
+    }
+    var monthC = diffValue / month;
+    var weekC = diffValue / (7 * day);
+    var dayC = diffValue / day;
+    var hourC = diffValue / hour;
+    var minC = diffValue / minute;
+
+    let result = '';
+    if (monthC >= 1) {
+        result = "" + parseInt(monthC) + I18n.t('time_month');
+    }
+    else if (weekC >= 1) {
+        result = "" + parseInt(weekC) + I18n.t('time_week');
+    }
+    else if (dayC >= 1) {
+        result = "" + parseInt(dayC) + I18n.t('time_day');
+    }
+    else if (hourC >= 1) {
+        result = "" + parseInt(hourC) + I18n.t('time_hour');
+    }
+    else if (minC >= 1) {
+        result = "" + parseInt(minC) + I18n.t('time_min');
+    } else
+        result = I18n.t('time_moment');
+    return result;
+}
+
+
 /*显示轻提示*/
 export function showToast(msg) {
     Toast.info(msg, 2)

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {List, InputItem, Modal, Button} from '../../components';
 import 'antd-mobile/dist/antd-mobile.css';
 import {postComment} from '../../service/CommentDao';
-import {strNotNull, showToast} from '../../service/utils';
+import {strNotNull, showToast,postMsg} from '../../service/utils';
 
 export default class CommentBottom extends Component {
 
@@ -119,10 +119,10 @@ export default class CommentBottom extends Component {
 
         postComment(body, data => {
             showToast('评论成功');
-            window.postMessage(JSON.stringify(data))
+            postMsg(JSON.stringify(data))
         }, err => {
             showToast('评论失败');
-            window.postMessage(JSON.stringify(err))
+            postMsg(JSON.stringify(err))
         })
 
     }

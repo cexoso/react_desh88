@@ -51,8 +51,8 @@ function video_likes_info(likes) {
 
 
 function news_comment_info(comments) {
-    const {info_id,pageId,pageSize} = comments;
-    return 'topic/infos/' + info_id + '/comments?page='+pageId+'&page_size='+pageSize;
+    const {info_id,page,pageSize} = comments;
+    return 'topic/infos/' + info_id + '/comments?page='+page+'&page_size='+pageSize;
 
 }
 function new_likes_info(likes) {

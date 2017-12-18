@@ -31,13 +31,13 @@ export default class CommentItem extends Component {
                 <img
                     alt=""
                     style={styles.avatar}
-                    src={'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png'}/>
+                    src={avatar}/>
             </div>
             <Flex style={styles.flexUser}>
                 <Flex style={{width: '100%'}}>
                     <Flex style={styles.flexName}>
                         <Text style={styles.txtName}>{nick_name}</Text>
-                        <Text style={styles.txtTime}>3小时前</Text>
+                        <Text style={styles.txtTime}>{created_at}</Text>
 
                     </Flex>
 
