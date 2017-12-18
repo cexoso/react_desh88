@@ -8,7 +8,7 @@ import {Flex, ListView, Text} from 'antd-mobile';
 import 'antd-mobile/dist/antd-mobile.css';
 import {Colors, Images} from '../../components/Themes';
 import CommentItem from './CommentItem';
-import {toPersonDynamic} from '../../service/RaceDao';
+
 
 export default class CommentList extends Component {
 
@@ -17,29 +17,23 @@ export default class CommentList extends Component {
         super(props);
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
-        let array = this.props.commentLists.items;
+        const {commentList} = props;
+
         this.state = {
-            dataSource: ds.cloneWithRows(array),
-            height: 200 * array.length
+            dataSource: ds.cloneWithRows(commentList)
         }
 
     };
 
 
-
     render() {
-        const{commentLists} = this.props;
-        const{items} =commentLists;
-        return <Flex style={{flexDirection: 'column',marginBottom:50}}>
+
+        return <Flex style={{flexDirection: 'column', marginBottom: 50}}>
             <Flex style={styles.topTitle}>
-                <Text style={styles.txtTitle}>全部评论（{items.length}）</Text>
+                <Text style={styles.txtTitle}>全部评论（200）</Text>
             </Flex>
             <ListView
-                style={{
-                    height: this.state.height,
-                    overflow: 'auto',
-                    width: '100%'
-                }}
+                useBodyScroll
                 dataSource={this.state.dataSource}
                 renderRow={this.renderItem}
                 horizontal={true}
@@ -64,12 +58,9 @@ export default class CommentList extends Component {
 
     renderItem = (item, sectionID, rowID) => {
         return (
-            <Flex style={styles.listItem}
-                  onClick={()=>{
-
-                  }}>
+            <div style={styles.listItem}>
                 <CommentItem item={item}/>
-            </Flex>
+            </div>
         )
     }
 
@@ -87,7 +78,7 @@ const styles = {
         color: Colors._AAA,
         marginLeft: 17
     },
-    avatarView:{
+    avatarView: {
         height: 50,
         width: 50,
         marginLeft: 17
@@ -110,9 +101,8 @@ const styles = {
     },
 
     listItem: {
-        backgroundColor: '#F5F5F5',
-        paddingTop: 13,
-        alignItems: 'flex-start'
+        width: '100%',
+        backgroundColor: '#F5F5F5'
     },
     replayImg: {
         height: 18,

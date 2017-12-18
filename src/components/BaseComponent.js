@@ -5,16 +5,25 @@
  */
 import React, {Component} from 'react';
 import 'antd-mobile/dist/antd-mobile.css';
+import {setLang, setToken} from '../service/RaceDao';
+import {getURLParamKey, postMsg, strNotNull} from '../service/utils';
 
-class BaseComponent extends Component {
+export default class BaseComponent extends Component {
+    constructor(props) {
+        super(props);
+        this._render = this._render.bind(this);
+        const {lang} = this.props.match.params;
+        let accessToken = getURLParamKey('accessToken', this.props.location.search);
+        this.body = getURLParamKey('body', this.props.location.search);
 
-    superFunc = (data) => {
-        alert(`在子类中调用了父类的函数，${data}`)
-    };
 
-    _render = () => {
-        return null;
-    };
+        setToken(accessToken);
+        setLang(lang);
+    }
+
+    _render() {
+        return null
+    }
 
     render() {
         return (
@@ -30,8 +39,12 @@ class BaseComponent extends Component {
 const styles = {
     container: {
         display: 'flex',
-        flex: 1,
-        flexDirection: 'column'
+        flexDirection: 'column',
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0
 
     }
 }

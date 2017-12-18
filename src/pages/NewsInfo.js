@@ -1,73 +1,54 @@
 import React, {Component} from 'react';
 import markdown from 'marked';
 import {getNewsInfo, setLang, setToken} from '../service/RaceDao';
-import {getNewCommentsInfo, postNewLikesInfo} from '../service/CommentDao';
 import '../styles/NewsInfo.css';
-import {weiXinShare, isEmptyObject, message_desc, getURLParamKey} from '../service/utils';
+import {weiXinShare, isEmptyObject, message_desc, getURLParamKey, postMsg} from '../service/utils';
 import {default_img} from '../components/constant';
 import CommentList from './comment/CommentList'
 import CommentBottom from './comment/CommentBottom';
 import {Colors, Fonts, Images} from '../components/Themes';
+import {getNewCommentsInfo} from '../service/CommentDao';
+import {BaseComponent} from '../components';
 
 
-export default class NewsInfo extends Component {
+export default class NewsInfo extends BaseComponent {
+
+    constructor(props) {
+        super(props)
+    }
 
     state = {
         news: {},
         likeChang: false,
-        newComments: {},
-        newLikes: {}
+        commentList: []
     };
 
     componentDidMount() {
-        const {id, lang} = this.props.match.params;
-        let accessToken = getURLParamKey('accessToken', this.props.location.search);
-        setToken(accessToken);
-        setLang(lang);
+        const {id} = this.props.match.params;
         const body = {newsId: id};
 
         getNewsInfo(body, data => {
-            console.log('NewsInfo', data)
+
             this.setState({
                 news: data
             });
             document.title = data.title;
 
-            //获取资讯评论列表接口
-            let newComments = {info_id: id, page: 1, page_size: 10};
-            getNewCommentsInfo(newComments, data => {
-                console.log('newComments', data);
-                this.setState({
-                    newComments: data
-                });
-            }, err => {
-
-            });
-            //获取资讯点赞和取消点赞
-            let newLikes = {info_id: id};
-            postNewLikesInfo(newLikes, data => {
-                console.log('newLieksComments', data);
-                this.setState({
-                    newLikes: data
-                });
-            }, err => {
-
-            });
-
-
-            window.postMessage(JSON.stringify(data));
+            postMsg(JSON.stringify(data));
             //微信二次分享
             // const url = {url: "http://www.deshpro.com:3000/race/91/zh"};
             // const url = {url: "http://h5-react.deshpro.com:3000/race/91/zh"};
-            const {title, source, date, image_thumb} = data;
+            var image = document.getElementById("images").querySelectorAll('img')[0].src;
+
+            const {title, source, date} = data;
             const message = {
                 title: title,
                 desc: message_desc(source, date),//分享描述
                 link: window.location.href, // 分享链接，该链接域名必须与当前企业的可信域名一致
-                imgUrl: isEmptyObject(image_thumb) ? default_img : image_thumb, // 分享图标
+                imgUrl: isEmptyObject(image) ? default_img : image, // 分享图标
                 type: '', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-            };
+            }
 
             const url = {url: window.location.href};
             weiXinShare(url, message);
@@ -75,7 +56,27 @@ export default class NewsInfo extends Component {
 
         })
 
+        this.getComment()
+
     }
+
+    getComment = () => {
+        const {id} = this.props.match.params;
+        const body = {
+            info_id: id,
+            page: 1,
+            page_size: 20
+        };
+
+        getNewCommentsInfo(body, data => {
+            this.setState({
+                commentList: data.items
+            });
+            postMsg(JSON.stringify(data))
+        }, err => {
+            postMsg(err)
+        })
+    };
 
     desc = (description) => {
         let des = markdown(description)
@@ -127,15 +128,23 @@ export default class NewsInfo extends Component {
     };
 
 
-    render() {
-        const {newComments} = this.state;
+    _render() {
+        const {id} = this.props.match.params;
+        const {commentList} = this.state;
+
         return (
             <div className='content'>
 
                 {this.content()}
 
-                {isEmptyObject(newComments) ? null : <CommentList commentLists={newComments}/>}
+                {commentList.length > 0 ? <CommentList
+                    commentList={commentList}
+                    {...this.props}
+                /> : null}
+
                 <CommentBottom
+                    topic_id={id}
+                    topic_type={'info'}
                     {...this.props}/>
             </div>
         )

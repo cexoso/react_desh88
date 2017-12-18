@@ -1,20 +1,22 @@
 import React, {Component} from 'react';
 import {getVideoInfo, getVideoGroup, setLang} from '../service/RaceDao';
-import {getVideoCommentsInfo,postVideoLikesInfo} from '../service/CommentDao';
+import {getVideoCommentsInfo, postVideoLikesInfo} from '../service/CommentDao';
 import {weiXinShare, isEmptyObject} from '../service/utils';
 import {default_img} from '../components/constant';
-import {MarkDown, Footer} from '../components';
+import {MarkDown, Footer, BaseComponent} from '../components';
 import '../styles/Video.css';
 import I18n from '../service/I18n';
 import {Images} from '../components/Themes';
 import Slider from 'react-slick';
 
-export default class VideoInfo extends Component {
+export default class VideoInfo extends BaseComponent {
+
+
     state = {
         data: {},
         videoGroup: {},
         videoComments: {},
-        likesComments:{}
+        likesComments: {}
     };
 
     componentDidMount() {
@@ -51,7 +53,7 @@ export default class VideoInfo extends Component {
 
             });
             //获取视频点赞和取消点赞
-            let videoLikes={video_id: video_id};
+            let videoLikes = {video_id: video_id};
             postVideoLikesInfo(videoLikes, data => {
                 console.log('videoLieksComments', data);
                 this.setState({
@@ -160,7 +162,7 @@ export default class VideoInfo extends Component {
         );
     };
 
-    render() {
+    _render() {
         if (isEmptyObject(this.state.data)) {
             return <div></div>;
         }
@@ -192,17 +194,16 @@ export default class VideoInfo extends Component {
                 </div>
 
                 {this.state.videoGroup.items.length > 1 ? <div style={styles.groupView}>
-                        <div style={styles.title2Div}>
-                            <span style={styles.title2}>{group_name}</span>
-                        </div>
-                        {this.videoGroupList()}
+                    <div style={styles.title2Div}>
+                        <span style={styles.title2}>{group_name}</span>
+                    </div>
+                    {this.videoGroupList()}
 
-                    </div> : null}
+                </div> : null}
 
                 <div style={{marginTop: 1}}>
                     <MarkDown description={description}/>
                 </div>
-
 
                 <Footer/>
             </div>

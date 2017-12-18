@@ -22,7 +22,8 @@ export default {
     new_likes_info:new_likes_info,
     video_comment_info:video_comment_info,
     video_likes_info:video_likes_info,
-    personDynamic_info:personDynamic_info
+    personDynamic_info:personDynamic_info,
+    topic_comments:'topic/comments'
 
 }
 
@@ -33,13 +34,13 @@ function sub_race_info(body) {
 
 
 function personDynamic_info(dynamic) {
-    const {user_id,pageId,pageSize} = dynamic;
-    return 'users/' + user_id + '/dynamics?page='+pageId+'&page_size='+pageSize;
+    const {user_id,page,page_size} = dynamic;
+    return 'users/' + user_id + '/dynamics?page='+page+'&page_size='+page_size;
 
 }
 function video_comment_info(comments) {
-    const {video_id,pageId,pageSize} = comments;
-    return 'topic/videos/' + video_id + '/comments?page='+pageId+'&page_size='+pageSize;
+    const {video_id,page,page_size} = comments;
+    return 'topic/videos/' + video_id + '/comments?page='+page+'&page_size='+page_size;
 
 }
 function video_likes_info(likes) {
@@ -50,8 +51,8 @@ function video_likes_info(likes) {
 
 
 function news_comment_info(comments) {
-    const {info_id,pageId,pageSize} = comments;
-    return 'topic/infos/' + info_id + '/comments?page='+pageId+'&page_size='+pageSize;
+    const {info_id,page,page_size} = comments;
+    return 'topic/infos/' + info_id + '/comments?page='+page+'&page_size='+page_size;
 
 }
 function new_likes_info(likes) {
