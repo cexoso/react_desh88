@@ -111,7 +111,7 @@ export default class NewsInfo extends Component {
                 <div style={{flex: 1}}/>
             </div>
         )
-    }
+    };
 
 
     render() {

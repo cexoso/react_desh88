@@ -79,7 +79,6 @@ export default class CommentBottom extends Component {
 
         return <Modal
             popup
-            maskClosable={true}
             visible={this.state.showInput}
             animationType="slide-up"
         >
