@@ -19,15 +19,15 @@ export default class CommentInfoPage extends BaseComponent {
     _render() {
 
 
-        const {id, body} = JSON.parse(this.body)
 
         return (
             <div style={styles.bgContainer}
                  onClick={() => {
 
                  }}>
-                <span>{body}</span>
+                {/*<span>{body}</span>*/}
                 <span>{this.body}</span>
+
 
             </div>
         )
