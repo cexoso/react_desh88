@@ -6,14 +6,17 @@
 import React, {Component} from 'react';
 import 'antd-mobile/dist/antd-mobile.css';
 import {setLang, setToken} from '../service/RaceDao';
-import {getURLParamKey, postMsg} from '../service/utils';
+import {getURLParamKey, postMsg, strNotNull} from '../service/utils';
 
 export default class BaseComponent extends Component {
     constructor(props) {
         super(props);
         this._render = this._render.bind(this);
-        const {id, lang} = this.props.match.params;
+        const {lang} = this.props.match.params;
         let accessToken = getURLParamKey('accessToken', this.props.location.search);
+        this.body = getURLParamKey('body', this.props.location.search);
+
+
         setToken(accessToken);
         setLang(lang);
     }

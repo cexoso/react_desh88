@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {Colors, Fonts, Images} from '../../components/Themes';
 import PropTypes from 'prop-types';
 import I18n from '../../service/I18n';
-import {Flex, ListView, Text} from 'antd-mobile';
-import {getDateDiff} from '../../service/utils';
+import {Flex, Text} from '../../components';
+import {getDateDiff, postMsg} from '../../service/utils';
 
 export default class CommentItem extends Component {
     state = {
@@ -13,7 +13,10 @@ export default class CommentItem extends Component {
 
     read = () => {
         return (
-            <Flex style={styles.flexNum}>
+            <Flex style={styles.flexNum}
+                  onClick={() => {
+                      postMsg(JSON.stringify({route: 'comments', param: this.props.item}))
+                  }}>
                 <Text style={styles.txtNum}>查看34条回复></Text>
             </Flex>
         )

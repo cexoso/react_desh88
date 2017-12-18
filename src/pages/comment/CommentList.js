@@ -58,10 +58,7 @@ export default class CommentList extends Component {
 
     renderItem = (item, sectionID, rowID) => {
         return (
-            <div style={styles.listItem}
-                 onClick={() => {
-
-                 }}>
+            <div style={styles.listItem}>
                 <CommentItem item={item}/>
             </div>
         )
@@ -105,7 +102,7 @@ const styles = {
 
     listItem: {
         width: '100%',
-        backgroundColor: 'white'
+        backgroundColor: '#F5F5F5'
     },
     replayImg: {
         height: 18,

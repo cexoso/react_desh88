@@ -4,10 +4,14 @@ import {Link} from 'react-router-dom';
 import '../styles/footer.css';
 
 export default class Footer extends Component {
-    render(){
-        return(
-            <footer><Link  to="/loadApp">
-                <span>{I18n.t('load_app')}</span></Link></footer>
-        );
+    render() {
+        if (window.originalPostMessage)
+            return null;
+        else
+            return (
+                <footer><Link to="/loadApp">
+                    <span>{I18n.t('load_app')}</span></Link></footer>
+            );
+
     }
 }
