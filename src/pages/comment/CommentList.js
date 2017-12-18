@@ -20,7 +20,6 @@ export default class CommentList extends Component {
         const {commentList} = props;
 
         this.state = {
-            height: 200 * commentList.length,
             dataSource: ds.cloneWithRows(commentList)
         }
 
