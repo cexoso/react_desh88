@@ -142,10 +142,6 @@ export default class NewsInfo extends BaseComponent {
                     {...this.props}
                 /> : null}
 
-                <CommentBottom
-                    topic_id={id}
-                    topic_type={'info'}
-                    {...this.props}/>
             </div>
         )
     };
