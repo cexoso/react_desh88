@@ -20,6 +20,7 @@ export default class CommentItem extends Component {
     };
 
     render() {
+        const{id,user_id,nick_name,avatar,official,body,recommended,created_at} = this.props.item;
         return <Flex style={styles.listItem} onClick={()=>{
 
         }}>
@@ -35,7 +36,7 @@ export default class CommentItem extends Component {
             <Flex style={styles.flexUser}>
                 <Flex style={{width: '100%'}}>
                     <Flex style={styles.flexName}>
-                        <Text style={styles.txtName}>花花公子</Text>
+                        <Text style={styles.txtName}>{nick_name}</Text>
                         <Text style={styles.txtTime}>3小时前</Text>
 
                     </Flex>
@@ -47,8 +48,7 @@ export default class CommentItem extends Component {
 
                 </Flex>
 
-                <Text style={styles.content}>已越来越多的德扑选手参加比赛已越来越已越来越多的德扑选手参加比赛已越来越
-                    多的德扑选手参加比赛</Text>
+                <Text style={styles.content}>{body}</Text>
 
                 {this.read()}
 

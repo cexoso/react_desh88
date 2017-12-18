@@ -6,7 +6,7 @@
 import React, {Component} from 'react';
 import {Flex, ListView, Text} from 'antd-mobile';
 import 'antd-mobile/dist/antd-mobile.css';
-import {toPersonDynamic} from '../../service/RaceDao';
+import {getPersonDynamic} from '../../service/CommentDao';
 
 export default class PersonDynamicPage extends Component {
 
@@ -16,9 +16,9 @@ export default class PersonDynamicPage extends Component {
     };
 
     componentDidMount() {
-        let body ={}
-        toPersonDynamic(body, data => {
-            console.log('PersonDynamic', data)
+        let body ={};
+        getPersonDynamic(body, data => {
+            console.log('PersonDynamic', data);
             this.setState({
                 personDynamic: data
             });

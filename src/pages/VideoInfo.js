@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {getVideoInfo, getVideoGroup, setLang, getVideoCommentsInfo,getVideoLikesInfo} from '../service/RaceDao';
+import {getVideoInfo, getVideoGroup, setLang} from '../service/RaceDao';
+import {getVideoCommentsInfo,postVideoLikesInfo} from '../service/CommentDao';
 import {weiXinShare, isEmptyObject} from '../service/utils';
 import {default_img} from '../components/constant';
 import {MarkDown, Footer} from '../components';
@@ -40,8 +41,8 @@ export default class VideoInfo extends Component {
             });
 
             //获取视频评论接口
-            let comments = {video_id: video_id, page: 1, page_size: 10};
-            getVideoCommentsInfo(comments, data => {
+            let videoComments = {video_id: video_id, page: 1, page_size: 10};
+            getVideoCommentsInfo(videoComments, data => {
                 console.log('videoComments', data);
                 this.setState({
                     videoComments: data
@@ -50,10 +51,9 @@ export default class VideoInfo extends Component {
 
             });
             //获取视频点赞和取消点赞
-            let likes={video_id: video_id};
-            getVideoLikesInfo(likes, data => {
-                alert("1")
-                console.log('videoLieksComments', data)
+            let videoLikes={video_id: video_id};
+            postVideoLikesInfo(videoLikes, data => {
+                console.log('videoLieksComments', data);
                 this.setState({
                     likesComments: data
                 });
