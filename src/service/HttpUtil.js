@@ -3,6 +3,7 @@
  */
 import {create} from 'apisauce';
 import I18n from './I18n';
+import {strNotNull} from './utils';
 
 let TAG = 'PuKeHttp:';
 
@@ -25,14 +26,15 @@ function getBaseUrl() {
 }
 
 export function setDpLang(lang) {
-    client.setHeader('X-DP-LANG', lang )
+    client.setHeader('X-DP-LANG', lang);
     I18n.changeLanguage(lang);
 
 }
 
 
 export function setAccessToken(token) {
-    client.setHeader('X-DP-ACCESS-TOKEN', token)
+    if (strNotNull(token))
+        client.setHeader('X-DP-ACCESS-TOKEN', token)
 }
 
 export function removeToken() {

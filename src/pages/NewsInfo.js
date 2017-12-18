@@ -7,10 +7,15 @@ import {default_img} from '../components/constant';
 import CommentList from './comment/CommentList'
 import CommentBottom from './comment/CommentBottom';
 import {Colors, Fonts, Images} from '../components/Themes';
-import {getNewCommentsInfo, getVideoCommentsInfo} from '../service/CommentDao';
+import {getNewCommentsInfo} from '../service/CommentDao';
+import {BaseComponent} from '../components';
 
 
-export default class NewsInfo extends Component {
+export default class NewsInfo extends BaseComponent {
+
+    constructor(props) {
+        super(props)
+    }
 
     state = {
         news: {},
@@ -19,14 +24,11 @@ export default class NewsInfo extends Component {
     };
 
     componentDidMount() {
-        const {id, lang} = this.props.match.params;
-        let accessToken = getURLParamKey('accessToken', this.props.location.search);
-        setToken(accessToken);
-        setLang(lang);
+        const {id} = this.props.match.params;
         const body = {newsId: id};
 
         getNewsInfo(body, data => {
-            console.log('NewsInfo', data)
+
             this.setState({
                 news: data
             });
@@ -126,9 +128,10 @@ export default class NewsInfo extends Component {
     };
 
 
-    render() {
+    _render() {
         const {id} = this.props.match.params;
         const {commentList} = this.state;
+
         return (
             <div className='content'>
 

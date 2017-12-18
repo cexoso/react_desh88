@@ -104,7 +104,8 @@ const styles = {
     },
 
     listItem: {
-        width: '100%'
+        width: '100%',
+        backgroundColor: 'white'
     },
     replayImg: {
         height: 18,
