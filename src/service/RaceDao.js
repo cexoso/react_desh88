@@ -2,10 +2,14 @@
  * Created by lorne on 2017/8/24.
  */
 import Api from './Api';
-import {get, post, setDpLang,del} from './HttpUtil';
+import {get, post, setDpLang, del, setAccessToken} from './HttpUtil';
 import {strNotNull} from './utils'
 
 var lang = 'zh';
+
+export function setToken(token) {
+    setAccessToken(token)
+}
 
 export function setLang(lan) {
     setDpLang(strNotNull(lan) ? lan : lang);
@@ -17,31 +21,33 @@ export function getLang() {
 }
 
 export function toPersonDynamic(dynamic, resolve, reject) {
-    get(Api.personDynamic_info(dynamic), {},ret => {
+    get(Api.personDynamic_info(dynamic), {}, ret => {
         resolve(ret.data);
-    },reject)
+    }, reject)
 }
+
 export function getVideoCommentsInfo(comments, resolve, reject) {
-    get(Api.video_comment_info(comments), {},ret => {
+    get(Api.video_comment_info(comments), {}, ret => {
         resolve(ret.data);
-    },reject)
+    }, reject)
 }
+
 export function getVideoLikesInfo(likes, resolve, reject) {
     post(Api.video_likes_info(likes), ret => {
         resolve(ret.data);
-    },reject)
+    }, reject)
 }
 
 export function getNewCommentsInfo(comments, resolve, reject) {
     get(Api.news_comment_info(comments), ret => {
         resolve(ret.data);
-    },reject)
+    }, reject)
 }
 
 export function getNewLikesInfo(likes, resolve, reject) {
-    post(Api.new_likes_info(likes),{}, ret => {
+    post(Api.new_likes_info(likes), {}, ret => {
         resolve(ret.data);
-    },reject)
+    }, reject)
 }
 
 export function getWeiXinSign(payload, resolve, reject) {
@@ -50,10 +56,10 @@ export function getWeiXinSign(payload, resolve, reject) {
     }, reject)
 }
 
-export function getLogisticsInfo(body, resolve, reject){
+export function getLogisticsInfo(body, resolve, reject) {
     get(Api.logistics_info(body), ret => {
         resolve(ret.data);
-    },reject)
+    }, reject)
 }
 
 export function getSubInfo(body, resolve, reject) {
@@ -85,46 +91,55 @@ export function getNewsInfo(body, resolve, reject) {
         resolve(ret.data);
     }, reject);
 }
+
 export function getPlayerInfo(body, resolve, reject) {
     get(Api.player_info(body), ret => {
         resolve(ret.data);
     }, reject);
 }
+
 export function getGameInfo(body, resolve, reject) {
     get(Api.game_info(body), ret => {
         resolve(ret.data);
     }, reject);
 }
+
 export function getRankInfo(body, resolve, reject) {
     get(Api.rank_info(body), ret => {
         resolve(ret.data);
     }, reject);
 }
+
 export function getActivitiesInfo(body, resolve, reject) {
     get(Api.activities_info(body), ret => {
         resolve(ret.data);
     }, reject);
 }
+
 export function getTicketInfo(body, resolve, reject) {
     get(Api.ticket_info(body), ret => {
         resolve(ret.data);
     }, reject);
 }
+
 export function getVideoInfo(body, resolve, reject) {
     get(Api.video_Info(body), ret => {
         resolve(ret.data);
     }, reject);
 }
+
 export function getChoiseTicketInfo(body, resolve, reject) {
     get(Api.choiseTicket_Info(body), ret => {
         resolve(ret.data);
     }, reject);
 }
+
 export function getVideoGroup(body, resolve, reject) {
     get(Api.videoGroup_Info(body), ret => {
         resolve(ret.data);
     }, reject);
 }
+
 export function getProductDetail(body, resolve, reject) {
     get(Api.product_Detail(body), ret => {
         resolve(ret.data);
