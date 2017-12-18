@@ -51,7 +51,7 @@ export default class CommentInfoPage extends Component {
                     <CommentItem releaseInfo={this.releaseInfo}/>
                 </Flex>
 
-                <Flex style={{backgroundColor:'#ECECEE',marginTop:-1,paddingBottom:16}}>
+                <Flex style={{backgroundColor:'#F5F5F5',marginTop:-1,paddingBottom:16}}>
                     <ListView
                         style={{
                             height: this.state.height,
@@ -92,7 +92,7 @@ const styles= {
         marginTop:11
     },
     listItem:{
-        backgroundColor: '#ECECEE',
+        backgroundColor: '#F5F5F5',
         paddingTop: 13,
         alignItems: 'flex-start'
     }

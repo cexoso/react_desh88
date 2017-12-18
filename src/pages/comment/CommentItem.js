@@ -20,7 +20,7 @@ export default class CommentItem extends Component {
     };
 
     render() {
-        const{id,user_id,nick_name,avatar,official,body,recommended,created_at} = this.props.item;
+        // const{id,user_id,nick_name,avatar,official,body,recommended,created_at} = this.props.item;
         return <Flex style={styles.listItem} onClick={()=>{
 
         }}>
@@ -36,7 +36,7 @@ export default class CommentItem extends Component {
             <Flex style={styles.flexUser}>
                 <Flex style={{width: '100%'}}>
                     <Flex style={styles.flexName}>
-                        <Text style={styles.txtName}>{nick_name}</Text>
+                        <Text style={styles.txtName}>ddd</Text>
                         <Text style={styles.txtTime}>3小时前</Text>
 
                     </Flex>
@@ -48,7 +48,11 @@ export default class CommentItem extends Component {
 
                 </Flex>
 
-                <Text style={styles.content}>{body}</Text>
+                <div style={styles.content}>
+                    <span style={styles.content}>qqqwwdwdsdadaddadadefddsgdsgefsdagegrgefefeew
+                    sdadadaxsxassfdsgdf;h,fhf'hjfglhmfglhrkp'kp[kpsdsdqwfewfadwfewfe</span>
+                </div>
+
 
                 {this.read()}
 
@@ -62,7 +66,8 @@ export default class CommentItem extends Component {
 const styles = {
     listItem: {
         paddingTop: 13,
-        alignItems: 'flex-start'
+        alignItems: 'flex-start',
+        flex:1
     },
     replayImg: {
         height: 18,
@@ -83,7 +88,11 @@ const styles = {
         fontSize: 16,
         color: Colors.txt_444,
         marginTop: 6,
-        lineHeight:1.4
+        lineHeight:1.4,
+        wordWrap:'break-word',
+        wordBreak:'break-all',
+        overflow:'hidden',
+        marginRight:17
     },
     flexNum: {
         backgroundColor: Colors._ECE,
