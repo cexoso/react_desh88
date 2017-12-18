@@ -48,7 +48,7 @@ export default class CommentItem extends Component {
 
                 </Flex>
 
-                <div style={styles.content}>
+                <div style={styles.contentView}>
                     <span style={styles.content}>qqqwwdwdsdadaddadadefddsgdsgefsdagegrgefefeew
                     sdadadaxsxassfdsgdf;h,fhf'hjfglhmfglhrkp'kp[kpsdsdqwfewfadwfewfe</span>
                 </div>
@@ -84,15 +84,18 @@ const styles = {
         marginLeft: 15,
         paddingRight: 17
     },
+    contentView:{
+        wordWrap:'break-word',
+        wordBreak:'break-all',
+        overflow:'hidden'
+
+    },
     content: {
         fontSize: 16,
         color: Colors.txt_444,
         marginTop: 6,
         lineHeight:1.4,
-        wordWrap:'break-word',
-        wordBreak:'break-all',
-        overflow:'hidden',
-        marginRight:17
+
     },
     flexNum: {
         backgroundColor: Colors._ECE,
