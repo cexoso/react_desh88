@@ -41,8 +41,8 @@ export default class VideoInfo extends Component {
             });
 
             //获取视频评论接口
-            let body = {video_id: video_id, page: 1, page_size: 10};
-            getVideoCommentsInfo(body, data => {
+            let videoComments = {video_id: video_id, page: 1, page_size: 10};
+            getVideoCommentsInfo(videoComments, data => {
                 console.log('videoComments', data);
                 this.setState({
                     videoComments: data
@@ -51,8 +51,8 @@ export default class VideoInfo extends Component {
 
             });
             //获取视频点赞和取消点赞
-            let body={video_id: video_id};
-            postVideoLikesInfo(body, data => {
+            let videoLikes={video_id: video_id};
+            postVideoLikesInfo(videoLikes, data => {
                 console.log('videoLieksComments', data);
                 this.setState({
                     likesComments: data

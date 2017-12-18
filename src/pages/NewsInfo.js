@@ -31,6 +31,28 @@ export default class NewsInfo extends Component {
             });
             document.title = data.title;
 
+            //获取资讯评论接口
+            let newComments = {info_id: id, page: 1, page_size: 10};
+            getNewCommentsInfo(newComments, data => {
+                console.log('newComments', data);
+                this.setState({
+                    videoComments: data
+                });
+            }, err => {
+
+            });
+            //获取资讯点赞和取消点赞
+            let newLikes={info_id: id};
+            postNewLikesInfo(newLikes, data => {
+                console.log('newLieksComments', data);
+                this.setState({
+                    likesComments: data
+                });
+            }, err => {
+
+            });
+
+
             window.postMessage(JSON.stringify(data));
             //微信二次分享
             // const url = {url: "http://www.deshpro.com:3000/race/91/zh"};
@@ -40,10 +62,10 @@ export default class NewsInfo extends Component {
                 title: title,
                 desc: message_desc(source, date),//分享描述
                 link: window.location.href, // 分享链接，该链接域名必须与当前企业的可信域名一致
-                imgUrl: isEmptyObject(image_thumb) ? default_img : image, // 分享图标
+                imgUrl: isEmptyObject(image_thumb) ? default_img : image_thumb, // 分享图标
                 type: '', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-            }
+            };
 
             const url = {url: window.location.href};
             weiXinShare(url, message);
