@@ -3,13 +3,14 @@
  * Function:
  * Desc:
  */
-import React, {PureComponent} from 'react';
-import {Flex, ListView, Text, I} from 'antd-mobile';
+import React, {Component} from 'react';
+import {Flex, ListView, Text} from 'antd-mobile';
 import 'antd-mobile/dist/antd-mobile.css';
 import {Colors, Images} from '../../components/Themes';
+import CommentItem from './CommentItem';
+import {toPersonDynamic} from '../../service/RaceDao';
 
-
-export default class CommentList extends PureComponent {
+export default class CommentList extends Component {
 
 
     constructor(props) {
@@ -19,10 +20,12 @@ export default class CommentList extends PureComponent {
         let array = [1, 2, 3, 5];
         this.state = {
             dataSource: ds.cloneWithRows(array),
-            height: 200 * array.length,
+            height: 200 * array.length
         }
 
-    }
+    };
+
+
 
     render() {
         return <Flex style={{flexDirection: 'column'}}>
@@ -44,6 +47,7 @@ export default class CommentList extends PureComponent {
         </Flex>
     }
 
+
     separator = (sectionID, rowID) => (
         <div
             key={`${sectionID}-${rowID}`}
@@ -57,42 +61,14 @@ export default class CommentList extends PureComponent {
     );
 
     renderItem = (rowData, sectionID, rowID) => {
-        console.log(rowData)
+        return (
+            <Flex style={styles.listItem}
+                  onClick={()=>{
 
-        return <Flex style={styles.listItem}>
-            <img
-                alt={''}
-                style={styles.avatar}
-                src={'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png'}/>
-            <Flex style={styles.flexUser}>
-                <Flex style={{width: '100%'}}>
-                    <Flex style={styles.flexName}>
-                        <Text style={styles.txtName}>花花公子</Text>
-                        <Text style={styles.txtTime}>3小时前</Text>
-
-                    </Flex>
-
-                    <Flex.Item/>
-
-                    <img style={styles.replayImg}
-                         src={Images.comment}/>
-
-                </Flex>
-
-                <Text style={styles.content}>已越来越多的德扑选手参加比赛已越来越已越来越多的德扑选手参加比赛已越来越
-                    多的德扑选手参加比赛</Text>
-
-                <Flex style={styles.flexNum}>
-                    <Text style={styles.txtNum}>查看34条回复></Text>
-                </Flex>
-
-                <div style={{width: '100%', height: 1, backgroundColor: Colors._ECE, marginTop: 8}}/>
-
-
+                  }}>
+                <CommentItem/>
             </Flex>
-
-
-        </Flex>
+        )
     }
 
 }
@@ -109,11 +85,16 @@ const styles = {
         color: Colors._AAA,
         marginLeft: 17
     },
+    avatarView:{
+        height: 50,
+        width: 50,
+        marginLeft: 17
+    },
     avatar: {
         height: 38,
         width: 38,
         borderRadius: 19,
-        marginLeft: 17
+
     },
     txtName: {
         color: Colors._666,
@@ -125,6 +106,7 @@ const styles = {
         color: Colors._CCC,
         marginTop: 3
     },
+
     listItem: {
         backgroundColor: '#F5F5F5',
         paddingTop: 13,
@@ -161,5 +143,4 @@ const styles = {
         color: '#4990E2',
         marginLeft: 11
     }
-
-}
+};

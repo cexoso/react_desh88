@@ -2,117 +2,123 @@ import React, {Component} from 'react';
 import {Colors, Fonts, Images} from '../../components/Themes';
 import PropTypes from 'prop-types';
 import I18n from '../../service/I18n';
+import {Flex, ListView, Text} from 'antd-mobile';
 
 export default class CommentItem extends Component {
     state={
         showMessage:true,
     };
 
-    static propTypes = {
-        releaseInfo: PropTypes.func.isRequired
-    };
 
-    moreMessage=()=>{
-        if(this.state.showMessage){
-            return (
-                <div
-                    style={styles.moreMessagesView}
-                    onClick={()=>{
-                        {/*global.router.toCommentInfoPage();*/}
-                    }}>
-                    <span style={styles.moreMessages}>查看34条回复></span>
-                </div>
-            )
-        }
 
+    read=()=>{
+        return(
+            <Flex style={styles.flexNum}>
+                <Text style={styles.txtNum}>查看34条回复></Text>
+            </Flex>
+        )
     };
 
     render() {
-        return (
-            <div style={styles.content}>
-                <div onClick={()=>{
-                    this.props.releaseInfo();
-                }}>
-                    <img style={styles.img} src={Images.empty_image}/>
-                </div>
-                <div style={styles.contentRight}>
-                    <div style={styles.commentTop}>
-                        <span style={styles.name}>花花公子</span>
-                        <div style={{flex:1}}/>
-                        <div
-                            style={styles.commentView}>
-                            <img style={styles.commentImg} src={Images.comment}/>
-                        </div>
+        return <Flex style={styles.listItem} onClick={()=>{
 
-                    </div>
-                    <span style={styles.time}>3小时前</span>
-                    <span style={styles.messages}>已越来越多的德扑选手参加比赛</span>
-                    {this.moreMessage()}
-                </div>
+        }}>
+            <div style={styles.avatarView}
+            onClick={()=>{
 
+            }}>
+                <img
+                    alt=""
+                    style={styles.avatar}
+                    src={'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png'}/>
             </div>
-        )
+            <Flex style={styles.flexUser}>
+                <Flex style={{width: '100%'}}>
+                    <Flex style={styles.flexName}>
+                        <Text style={styles.txtName}>花花公子</Text>
+                        <Text style={styles.txtTime}>3小时前</Text>
+
+                    </Flex>
+
+                    <Flex.Item/>
+
+                    <img style={styles.replayImg}
+                         src={Images.comment} alt=""/>
+
+                </Flex>
+
+                <Text style={styles.content}>已越来越多的德扑选手参加比赛已越来越已越来越多的德扑选手参加比赛已越来越
+                    多的德扑选手参加比赛</Text>
+
+                {this.read()}
+
+                <div style={{width: '100%', height: 1, backgroundColor: '#DDDDDD', marginTop: 8,marginRight:17}}/>
+            </Flex>
+
+
+        </Flex>
     }
 }
 const styles = {
-    content:{
-        width:'100%',
-        flexDirection:'row',
-        alignItems:'flex-start',
-        paddingBottom:6,
-        paddingTop:13
+    listItem: {
+        paddingTop: 13,
+        alignItems: 'flex-start'
     },
-    img:{
-        width:38,
-        height:38,
-        borderRadius:19,
-        marginLeft:17,
-        top:-2
+    replayImg: {
+        height: 18,
+        width: 20,
     },
-    contentRight:{
-        alignItems:'flex-start',
-        flex:1,
-        marginLeft:11,
-        marginRight:17
+    flexName: {
+        flexDirection: 'column',
+        alignItems: 'flex-start'
     },
-    name:{
-        fontSize: 14,
-        color: '#666666',
+    flexUser: {
+        flexDirection: 'column',
+        width: '100%',
+        alignItems: 'flex-start',
+        marginLeft: 15,
+        paddingRight: 17
     },
-    commentImg:{
-        width:20,
-        height:18
-    },
-    commentTop:{
-        flexDirection:'row',
-        alignItems:'flex-start',
-
-    },
-    time:{
-        fontSize: 10,
-        color: '#CCCCCC',
-    },
-    messages:{
+    content: {
         fontSize: 16,
-        color: '#444444',
-        marginTop:6
+        color: Colors.txt_444,
+        marginTop: 6,
+        lineHeight:1.4
     },
-    moreMessagesView:{
-        width:'100%',
-        height:20,
-        marginRight:17,
-        backgroundColor:'#ECECEE',
-        alignItems:'flex-start',
-        marginTop:10,
-        justifyContent:'center'
+    flexNum: {
+        backgroundColor: Colors._ECE,
+        height: 20,
+        width: '100%',
+        marginTop: 6
     },
-    moreMessages:{
+    txtNum: {
         fontSize: 12,
         color: '#4990E2',
-        marginLeft:11
+        marginLeft: 11
     },
-    commentView:{
-        alignItems:'center',
-        justifyContent:'center'
+    txtTitle: {
+        fontSize: 14,
+        color: Colors._AAA,
+        marginLeft: 17
+    },
+    avatarView:{
+        height: 50,
+        width: 50,
+        marginLeft: 17,
+    },
+    avatar: {
+        height: 38,
+        width: 38,
+        borderRadius: 19,
+
+    },
+    txtName: {
+        color: Colors._666,
+        fontSize: 14
+    },
+    txtTime: {
+        fontSize: 10,
+        color: Colors._CCC,
+        marginTop: 3
     }
 }

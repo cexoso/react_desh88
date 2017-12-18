@@ -17,13 +17,47 @@ export default {
     choiseTicket_Info: choiseTicket_Info,
     videoGroup_Info: videoGroup_Info,
     product_Detail: product_Detail,
-    logistics_info: logistics_info
+    logistics_info: logistics_info,
+    news_comment_info:news_comment_info,
+    new_likes_info:new_likes_info,
+    video_comment_info:video_comment_info,
+    video_likes_info:video_likes_info,
+    personDynamic_info:personDynamic_info
 
 }
 
 function sub_race_info(body) {
     const {raceId, subId} = body;
-    return 'races/' + raceId + '/sub_races/' + subId;
+    return 'topic/' + raceId + '/sub_races/' + subId;
+}
+
+
+function personDynamic_info(dynamic) {
+    const {user_id,pageId,pageSize} = dynamic;
+    return 'users/' + user_id + '/dynamics?page='+pageId+'&page_size='+pageSize;
+
+}
+function video_comment_info(comments) {
+    const {video_id,pageId,pageSize} = comments;
+    return 'topic/videos/' + video_id + '/comments?page='+pageId+'&page_size='+pageSize;
+
+}
+function video_likes_info(likes) {
+    const {video_id} = likes;
+    return 'topic/videos/' + video_id + '/likes';
+
+}
+
+
+function news_comment_info(comments) {
+    const {info_id,pageId,pageSize} = comments;
+    return 'topic/infos/' + info_id + '/comments?page='+pageId+'&page_size='+pageSize;
+
+}
+function new_likes_info(likes) {
+    const {info_id} = likes;
+    return 'topic/infos/' + info_id + '/likes';
+
 }
 
 
