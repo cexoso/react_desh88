@@ -8,13 +8,14 @@ import {default_img} from '../components/constant';
 import CommentList from './comment/CommentList'
 import CommentBottom from './comment/CommentBottom';
 import {Colors, Fonts, Images} from '../components/Themes';
+import ReadLike from './comment/ReadLike';
 
 
 export default class NewsInfo extends Component {
 
     state = {
         news: {},
-        likeChang: false,
+
         newComments: {},
         newLikes: {}
     };
@@ -98,7 +99,7 @@ export default class NewsInfo extends Component {
                         <div id="images" dangerouslySetInnerHTML={this.desc(description)}></div>
                     </div>
 
-                    {this.read()}
+                    <ReadLike likes={this.state.newLikes}/>
 
                 </div>
 
@@ -106,26 +107,6 @@ export default class NewsInfo extends Component {
         }
 
     };
-    read = () => {
-        return (
-            <div style={styles.readView}>
-                <div style={styles.likesView}
-                     onClick={() => {
-                         this.setState({
-                             likeChang: !this.state.likeChang
-                         })
-                     }}>
-                    <img style={{width: 16, height: 16, marginRight: 5}}
-                         src={this.state.likeChang ? Images.likeRed : Images.like}/>
-                    <span style={styles.readTxt}>425</span>
-                </div>
-
-                <span style={styles.readTxt}>阅读2444</span>
-                <div style={{flex: 1}}/>
-            </div>
-        )
-    };
-
 
     render() {
         const {newComments} = this.state;
