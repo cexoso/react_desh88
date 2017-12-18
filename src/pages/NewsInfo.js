@@ -111,7 +111,10 @@ export default class NewsInfo extends Component {
 
                 {this.content()}
 
-                <CommentList/>
+                <CommentList
+                    {...this.props}
+                    topic_id={id}
+                    topic_type={'info'}/>
                 <CommentBottom
                     topic_id={id}
                     topic_type={'info'}
