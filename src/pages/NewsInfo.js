@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import markdown from 'marked';
 import {getNewsInfo, setLang, setToken} from '../service/RaceDao';
-import {getNewCommentsInfo,postNewLikesInfo} from '../service/CommentDao';
+import {getNewCommentsInfo, postNewLikesInfo} from '../service/CommentDao';
 import '../styles/NewsInfo.css';
 import {weiXinShare, isEmptyObject, message_desc, getURLParamKey} from '../service/utils';
 import {default_img} from '../components/constant';
@@ -14,7 +14,9 @@ export default class NewsInfo extends Component {
 
     state = {
         news: {},
-        likeChang: false
+        likeChang: false,
+        newComments: {},
+        newLikes: {}
     };
 
     componentDidMount() {
@@ -31,22 +33,22 @@ export default class NewsInfo extends Component {
             });
             document.title = data.title;
 
-            //获取资讯评论接口
+            //获取资讯评论列表接口
             let newComments = {info_id: id, page: 1, page_size: 10};
             getNewCommentsInfo(newComments, data => {
                 console.log('newComments', data);
                 this.setState({
-                    videoComments: data
+                    newComments: data
                 });
             }, err => {
 
             });
             //获取资讯点赞和取消点赞
-            let newLikes={info_id: id};
+            let newLikes = {info_id: id};
             postNewLikesInfo(newLikes, data => {
                 console.log('newLieksComments', data);
                 this.setState({
-                    likesComments: data
+                    newLikes: data
                 });
             }, err => {
 
@@ -57,7 +59,7 @@ export default class NewsInfo extends Component {
             //微信二次分享
             // const url = {url: "http://www.deshpro.com:3000/race/91/zh"};
             // const url = {url: "http://h5-react.deshpro.com:3000/race/91/zh"};
-            const {title, source, date,image_thumb} = data;
+            const {title, source, date, image_thumb} = data;
             const message = {
                 title: title,
                 desc: message_desc(source, date),//分享描述
@@ -81,7 +83,7 @@ export default class NewsInfo extends Component {
     };
 
     content = () => {
-        if (!this.isEmptyObject(this.state.news)) {
+        if (!isEmptyObject(this.state.news)) {
             const {
                 title, date, source, description
             } = this.state.news;
@@ -126,12 +128,13 @@ export default class NewsInfo extends Component {
 
 
     render() {
+        const {newComments} = this.state;
         return (
             <div className='content'>
 
                 {this.content()}
 
-                <CommentList/>
+                {isEmptyObject(newComments) ? null : <CommentList commentLists={newComments}/>}
                 <CommentBottom
                     {...this.props}/>
             </div>

@@ -17,7 +17,7 @@ export default class CommentList extends Component {
         super(props);
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
-        let array = [1, 2, 3, 5];
+        let array = this.props.commentLists.items;
         this.state = {
             dataSource: ds.cloneWithRows(array),
             height: 200 * array.length
@@ -28,9 +28,11 @@ export default class CommentList extends Component {
 
 
     render() {
+        const{commentLists} = this.props;
+        const{items} =commentLists;
         return <Flex style={{flexDirection: 'column'}}>
             <Flex style={styles.topTitle}>
-                <Text style={styles.txtTitle}>全部评论（343）</Text>
+                <Text style={styles.txtTitle}>全部评论（{items.length}）</Text>
             </Flex>
             <ListView
                 style={{
@@ -60,13 +62,13 @@ export default class CommentList extends Component {
         />
     );
 
-    renderItem = (rowData, sectionID, rowID) => {
+    renderItem = (item, sectionID, rowID) => {
         return (
             <Flex style={styles.listItem}
                   onClick={()=>{
 
                   }}>
-                <CommentItem/>
+                <CommentItem item={item}/>
             </Flex>
         )
     }
