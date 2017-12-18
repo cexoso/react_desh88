@@ -23,7 +23,10 @@ export default class CommentItem extends Component {
         return <Flex style={styles.listItem} onClick={()=>{
 
         }}>
-            <div style={styles.avatarView}>
+            <div style={styles.avatarView}
+            onClick={()=>{
+
+            }}>
                 <img
                     alt=""
                     style={styles.avatar}

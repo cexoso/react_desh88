@@ -21,7 +21,8 @@ export default {
     news_comment_info:news_comment_info,
     new_likes_info:new_likes_info,
     video_comment_info:video_comment_info,
-    video_likes_info:video_likes_info
+    video_likes_info:video_likes_info,
+    personDynamic_info:personDynamic_info
 
 }
 
@@ -31,6 +32,11 @@ function sub_race_info(body) {
 }
 
 
+function personDynamic_info(dynamic) {
+    const {user_id,pageId,pageSize} = dynamic;
+    return 'users/' + user_id + '/dynamics?page='+pageId+'&page_size='+pageSize;
+
+}
 function video_comment_info(comments) {
     const {video_id,pageId,pageSize} = comments;
     return 'topic/videos/' + video_id + '/comments?page='+pageId+'&page_size='+pageSize;

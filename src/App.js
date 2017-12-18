@@ -22,6 +22,7 @@ import MallInfoPage from './pages/mall/MallInfoPage';
 import LogisticsPage from './pages/mall/LogisticsPage';
 import AntDemo from './pages/AntDemo';
 import CommentInfoPage from './pages/comment/CommentInfoPage';
+import PersonDynamicPage from './pages/comment/PersonDynamicPage';
 
     // global.console = {
     //     info: () => {
@@ -66,6 +67,7 @@ class App extends Component {
                     <Route path="shipments/search/:shipping_number/:express_code/:order_number/:lang" component={LogisticsPage}/>
 
                     <Route path="/comment" component={CommentInfoPage}/>
+                    <Route path="/personDynamic" component={PersonDynamicPage}/>
 
                 </div>
             </Router>

@@ -3,13 +3,14 @@
  * Function:
  * Desc:
  */
-import React, {PureComponent} from 'react';
+import React, {Component} from 'react';
 import {Flex, ListView, Text} from 'antd-mobile';
 import 'antd-mobile/dist/antd-mobile.css';
 import {Colors, Images} from '../../components/Themes';
 import CommentItem from './CommentItem';
+import {toPersonDynamic} from '../../service/RaceDao';
 
-export default class CommentList extends PureComponent {
+export default class CommentList extends Component {
 
 
     constructor(props) {
@@ -19,10 +20,12 @@ export default class CommentList extends PureComponent {
         let array = [1, 2, 3, 5];
         this.state = {
             dataSource: ds.cloneWithRows(array),
-            height: 200 * array.length,
+            height: 200 * array.length
         }
 
-    }
+    };
+
+
 
     render() {
         return <Flex style={{flexDirection: 'column'}}>

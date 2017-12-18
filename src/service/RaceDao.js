@@ -16,6 +16,11 @@ export function getLang() {
     return lang;
 }
 
+export function toPersonDynamic(dynamic, resolve, reject) {
+    get(Api.personDynamic_info(dynamic), {},ret => {
+        resolve(ret.data);
+    },reject)
+}
 export function getVideoCommentsInfo(comments, resolve, reject) {
     get(Api.video_comment_info(comments), {},ret => {
         resolve(ret.data);
