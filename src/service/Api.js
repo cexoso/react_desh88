@@ -22,7 +22,8 @@ export default {
     new_likes_info:new_likes_info,
     video_comment_info:video_comment_info,
     video_likes_info:video_likes_info,
-    personDynamic_info:personDynamic_info
+    personDynamic_info:personDynamic_info,
+    topic_comments:'topic/comments'
 
 }
 

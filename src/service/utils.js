@@ -1,7 +1,13 @@
 import I18n from '../service/I18n';
 import {getWeiXinSign} from '../service/RaceDao';
 import moment from 'moment';
+import {Toast} from 'antd-mobile';
 
+
+/*显示轻提示*/
+export function showToast(msg) {
+    Toast.info(msg, 2)
+}
 
 export function getURLParamKey(name, search) {
     let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");

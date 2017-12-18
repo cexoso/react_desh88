@@ -60,7 +60,7 @@ export default class NewsInfo extends Component {
     };
 
     content = () => {
-        if (!this.isEmptyObject(this.state.news)) {
+        if (!isEmptyObject(this.state.news)) {
             const {
                 title, date, source, description
             } = this.state.news;
@@ -105,6 +105,7 @@ export default class NewsInfo extends Component {
 
 
     render() {
+        const {id} = this.props.match.params;
         return (
             <div className='content'>
 
@@ -112,6 +113,8 @@ export default class NewsInfo extends Component {
 
                 <CommentList/>
                 <CommentBottom
+                    topic_id={id}
+                    topic_type={'info'}
                     {...this.props}/>
             </div>
         )

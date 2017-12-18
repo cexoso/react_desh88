@@ -4,7 +4,8 @@ import I18n from '../../service/I18n';
 import PropTypes from 'prop-types';
 import {List, InputItem, Modal, Button} from '../../components';
 import 'antd-mobile/dist/antd-mobile.css';
-import {} from '../../service/RaceDao';
+import {postComment} from '../../service/CommentDao';
+import {strNotNull, showToast} from '../../service/utils';
 
 export default class CommentBottom extends Component {
 
@@ -12,10 +13,6 @@ export default class CommentBottom extends Component {
         text: '',
         likeButton: false,
         showInput: false
-    };
-
-    componentDidMount() {
-
     };
 
 
@@ -90,17 +87,43 @@ export default class CommentBottom extends Component {
                         style={styles.inputComment}
                         placeholder="回复花花公子"
                         ref={el => this.autoFocusInst = el}
+                        onChange={comment => {
+                            this.comment = comment
+                        }}
                     />
 
                 </List>
 
-                <div style={styles.release}>
+                <div
+                    onClick={this.release}
+                    style={styles.release}>
                     <span style={{color: Colors.txt_444, fontSize: 15}}>评论</span>
                 </div>
 
 
             </div>
         </Modal>
+
+    };
+
+    release = () => {
+        if (!strNotNull(this.comment)) {
+            showToast('评论不能为空')
+        }
+
+        const body = {
+            topic_type: this.props.topic_type,
+            topic_id: this.props.topic_id,
+            body: this.comment
+        };
+
+        postComment(body, data => {
+            showToast('评论成功');
+            window.postMessage(JSON.stringify(data))
+        }, err => {
+            showToast('评论失败');
+            window.postMessage(JSON.stringify(err))
+        })
 
     }
 
