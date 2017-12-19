@@ -82,7 +82,10 @@ export default class CommentList extends Component {
                 renderRow={this.renderItem}
                 onEndReached={this.onEndReached}
                 onEndReachedThreshold={10}
+                pageSize={10}
             />
+
+            <Flex style={{height: 80}}/>
 
 
         </Flex>

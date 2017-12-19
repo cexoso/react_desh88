@@ -5,7 +5,6 @@ import '../styles/NewsInfo.css';
 import {weiXinShare, isEmptyObject, message_desc, getURLParamKey, postMsg} from '../service/utils';
 import {default_img} from '../components/constant';
 import CommentList from './comment/CommentList'
-import CommentBottom from './comment/CommentBottom';
 import {Colors, Fonts, Images} from '../components/Themes';
 import {BaseComponent} from '../components';
 import Footer from "../components/Footer";
@@ -109,7 +108,7 @@ export default class NewsInfo extends BaseComponent {
 
 
         return (
-            <div className='content'>
+            <div>
 
                 {this.content()}
 
