@@ -8,7 +8,8 @@ import {Flex, ListView, Text} from 'antd-mobile';
 import 'antd-mobile/dist/antd-mobile.css';
 import {Colors, Images} from '../../components/Themes';
 import CommentItem from './CommentItem';
-
+import {getCommentsInfo} from '../../service/CommentDao';
+import {postMsg} from '../../service/utils';
 
 export default class CommentList extends Component {
 
@@ -17,14 +18,57 @@ export default class CommentList extends Component {
         super(props);
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
-        const {commentList} = props;
+
+        let array = [];
 
         this.state = {
-            dataSource: ds.cloneWithRows(commentList)
+            dataSource: ds.cloneWithRows(array),
+            commentList: array,
+            page: 1,
+            loadMore: true
         }
 
     };
 
+    componentDidMount() {
+        this.getComment();
+    }
+
+    getComment = () => {
+        const {id, topic_type} = this.props.info;
+        const body = {
+            id: id,
+            page: this.state.page,
+            page_size: 10,
+            topic_type: topic_type
+        };
+
+        getCommentsInfo(body, data => {
+
+            let {page, commentList, dataSource, loadMore} = this.state;
+
+            let length = data.items.length;
+            if (length > 9) {
+                ++page;
+            } else {
+                loadMore = false;
+            }
+            if (length > 0) {
+                commentList = commentList.concat(data.items)
+            }
+            console.log(commentList);
+            this.setState({
+                commentList,
+                page: page,
+                dataSource: dataSource.cloneWithRows(commentList),
+                loadMore
+
+            });
+            postMsg(JSON.stringify(data))
+        }, err => {
+            postMsg(err)
+        })
+    };
 
     render() {
 
@@ -36,7 +80,8 @@ export default class CommentList extends Component {
                 useBodyScroll
                 dataSource={this.state.dataSource}
                 renderRow={this.renderItem}
-                horizontal={true}
+                onEndReached={this.onEndReached}
+                onEndReachedThreshold={10}
             />
 
 
@@ -44,17 +89,10 @@ export default class CommentList extends Component {
     }
 
 
-    separator = (sectionID, rowID) => (
-        <div
-            key={`${sectionID}-${rowID}`}
-            style={{
-                backgroundColor: '#F5F5F9',
-                height: 8,
-                borderTop: '1px solid #ECECED',
-                borderBottom: '1px solid #ECECED',
-            }}
-        />
-    );
+    onEndReached = () => {
+        if (this.state.loadMore)
+            this.getComment();
+    };
 
     renderItem = (item, sectionID, rowID) => {
         return (
