@@ -52,7 +52,7 @@ export default class CommentItem extends Component {
 
                 </Flex>
                 <div style={styles.contentView}>
-                    <Text style={styles.content}>{body}</Text>
+                    <span style={styles.content}>{body}</span>
                 </div>
 
 

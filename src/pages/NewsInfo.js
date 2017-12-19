@@ -56,7 +56,7 @@ export default class NewsInfo extends Component {
     }
 
     desc = (description) => {
-        let des = markdown(description)
+        let des = markdown(description);
         return {__html: des}
     };
 
@@ -89,6 +89,7 @@ export default class NewsInfo extends Component {
             <div className='content'>
 
                 {this.content()}
+
                 <Footer/>
             </div>
         )

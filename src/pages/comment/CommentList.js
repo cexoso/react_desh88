@@ -18,7 +18,7 @@ export default class CommentList extends Component {
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
         const {commentList} = props;
-
+        let data=[1,2,3,4,5,6,7,8];
         this.state = {
             dataSource: ds.cloneWithRows(commentList)
         }
@@ -27,7 +27,6 @@ export default class CommentList extends Component {
 
 
     render() {
-
         return <Flex style={{flexDirection: 'column', marginBottom: 50}}>
             <Flex style={styles.topTitle}>
                 <Text style={styles.txtTitle}>全部评论（200）</Text>
