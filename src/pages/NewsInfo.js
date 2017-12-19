@@ -35,7 +35,7 @@ export default class NewsInfo extends BaseComponent {
             });
             document.title = data.title;
 
-            postMsg(JSON.stringify(data));
+            // postMsg(JSON.stringify(data));
 
 
             const {title, source, date, image_thumb} = data;
