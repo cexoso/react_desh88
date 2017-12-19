@@ -24,16 +24,16 @@ import AntDemo from './pages/AntDemo';
 import CommentInfoPage from './pages/comment/CommentInfoPage';
 import PersonDynamicPage from './pages/comment/PersonDynamicPage';
 
-    // global.console = {
-    //     info: () => {
-    //     },
-    //     log: () => {
-    //     },
-    //     warn: () => {
-    //     },
-    //     error: () => {
-    //     },
-    // };
+    global.console = {
+        info: () => {
+        },
+        log: () => {
+        },
+        warn: () => {
+        },
+        error: () => {
+        },
+    };
 
 
 class App extends Component {
@@ -66,8 +66,6 @@ class App extends Component {
 
                     <Route path="shipments/search/:shipping_number/:express_code/:order_number/:lang" component={LogisticsPage}/>
 
-                    <Route path="/comment" component={CommentInfoPage}/>
-                    <Route path="/person/dynamic" component={PersonDynamicPage}/>
 
                 </div>
             </Router>

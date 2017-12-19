@@ -99,7 +99,7 @@ export default class NewsInfo extends BaseComponent {
                         <div id="images" dangerouslySetInnerHTML={this.desc(description)}></div>
                     </div>
 
-                    {this.read()}
+                    {/*{this.read()}*/}
 
                 </div>
 
@@ -137,10 +137,7 @@ export default class NewsInfo extends BaseComponent {
 
                 {this.content()}
 
-                {commentList.length > 0 ? <CommentList
-                    commentList={commentList}
-                    {...this.props}
-                /> : null}
+
 
             </div>
         )
