@@ -38,7 +38,7 @@ export default class CommentItem extends Component {
                     src={avatar}/>
             </div>
             <Flex style={styles.flexUser}>
-                <Flex style={{width: '100%'}}>
+                <Flex>
                     <Flex style={styles.flexName}>
                         <Text style={styles.txtName}>{nick_name}</Text>
                         <Text style={styles.txtTime}>{getDateDiff(created_at)}</Text>
@@ -47,8 +47,12 @@ export default class CommentItem extends Component {
 
                     <Flex.Item/>
 
-                    <img style={styles.replayImg}
-                         src={Images.comment} alt=""/>
+                    <img
+                        onClick={() => {
+                            this._replies(this.props.item)
+                        }}
+                        style={styles.replayImg}
+                        src={Images.comment} alt=""/>
 
                 </Flex>
                 <div style={styles.contentView}>
@@ -63,6 +67,10 @@ export default class CommentItem extends Component {
 
 
         </Flex>
+    }
+
+    _replies = (item) => {
+        postMsg(JSON.stringify({route: 'replies', param: item}))
     }
 }
 const styles = {
