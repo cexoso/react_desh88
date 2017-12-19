@@ -34,7 +34,7 @@ export default class NewsInfo extends Component {
             });
             document.title = data.title;
 
-            window.postMessage(JSON.stringify(data));
+            // window.postMessage(JSON.stringify(data));
 
             //微信二次分享
             const {title, source, date, image_thumb} = data;

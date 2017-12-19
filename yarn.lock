@@ -5995,6 +5995,10 @@ react-slick@^0.15.4:
     object-assign "^4.1.0"
     slick-carousel "^1.6.0"
 
+react-swipes@^1.0.9:
+  version "1.0.9"
+  resolved "http://registry.npm.taobao.org/react-swipes/download/react-swipes-1.0.9.tgz#6785e9e642cf09c83f9541f9ffd5cbf5a4be260a"
+
 react-time-format@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/react-time-format/-/react-time-format-0.0.5.tgz#d9c967ec68c9a262fc37c3dd3a381da5bde08e83"
