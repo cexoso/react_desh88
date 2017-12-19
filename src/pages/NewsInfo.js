@@ -1,42 +1,43 @@
 import React, {Component} from 'react';
 import markdown from 'marked';
 import {getNewsInfo, setLang, setToken} from '../service/RaceDao';
-import {getNewCommentsInfo, postNewLikesInfo} from '../service/CommentDao';
 import '../styles/NewsInfo.css';
-import {weiXinShare, isEmptyObject, message_desc, getURLParamKey} from '../service/utils';
+import {weiXinShare, isEmptyObject, message_desc, getURLParamKey, postMsg} from '../service/utils';
 import {default_img} from '../components/constant';
 import CommentList from './comment/CommentList'
 import CommentBottom from './comment/CommentBottom';
 import {Colors, Fonts, Images} from '../components/Themes';
-import {Footer} from '../components';
-import I18n from '../service/I18n';
+import {getNewCommentsInfo} from '../service/CommentDao';
+import {BaseComponent} from '../components';
+import Footer from "../components/Footer";
 
-export default class NewsInfo extends Component {
+
+export default class NewsInfo extends BaseComponent {
+
+    constructor(props) {
+        super(props)
+    }
 
     state = {
         news: {},
-
-        newComments: {},
-        newLikes: {}
+        likeChang: false,
+        commentList: []
     };
 
     componentDidMount() {
-        const {id, lang} = this.props.match.params;
-        let accessToken = getURLParamKey('accessToken', this.props.location.search);
-        setToken(accessToken);
-        setLang(lang);
+        const {id} = this.props.match.params;
         const body = {newsId: id};
 
         getNewsInfo(body, data => {
-            console.log('NewsInfo', data);
+
             this.setState({
                 news: data
             });
             document.title = data.title;
 
-            // window.postMessage(JSON.stringify(data));
+            postMsg(JSON.stringify(data));
 
-            //微信二次分享
+
             const {title, source, date, image_thumb} = data;
             const message = {
                 title: title,
@@ -53,7 +54,27 @@ export default class NewsInfo extends Component {
 
         })
 
+        this.getComment()
+
     }
+
+    getComment = () => {
+        const {id} = this.props.match.params;
+        const body = {
+            info_id: id,
+            page: 1,
+            page_size: 20
+        };
+
+        getNewCommentsInfo(body, data => {
+            this.setState({
+                commentList: data.items
+            });
+            postMsg(JSON.stringify(data))
+        }, err => {
+            postMsg(err)
+        })
+    };
 
     desc = (description) => {
         let des = markdown(description)
@@ -70,11 +91,13 @@ export default class NewsInfo extends Component {
                     <div className="App-header">
                         <h2>{title}</h2>
                         <span className="App-header-time">{date} </span>
-                        <span>{I18n.t('from_place')}: {source}  </span>
+                        <span>来源于: {source}  </span>
                     </div>
                     <div className="App-nav">
                         <div id="images" dangerouslySetInnerHTML={this.desc(description)}></div>
                     </div>
+
+                    {this.read()}
 
                 </div>
 
@@ -82,14 +105,43 @@ export default class NewsInfo extends Component {
         }
 
     };
+    read = () => {
+        return (
+            <div style={styles.readView}>
+                <div style={styles.likesView}
+                     onClick={() => {
+                         this.setState({
+                             likeChang: !this.state.likeChang
+                         })
+                     }}>
+                    <img style={{width: 16, height: 16, marginRight: 5}}
+                         src={this.state.likeChang ? Images.likeRed : Images.like}/>
+                    <span style={styles.readTxt}>425</span>
+                </div>
 
-    render() {
-        const {newComments} = this.state;
+                <span style={styles.readTxt}>阅读2444</span>
+                <div style={{flex: 1}}/>
+            </div>
+        )
+    };
+
+
+    _render() {
+        const {id} = this.props.match.params;
+        const {commentList} = this.state;
+
         return (
             <div className='content'>
 
                 {this.content()}
+
+                {commentList.length > 0 ? <CommentList
+                    commentList={commentList}
+                    {...this.props}
+                /> : null}
+
                 <Footer/>
+
             </div>
         )
     };
