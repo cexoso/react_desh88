@@ -55,8 +55,10 @@ export default class CommentItem extends Component {
                         src={Images.comment} alt=""/>
 
                 </Flex>
+                <div style={styles.contentView}>
+                    <Text style={styles.content}>{body}</Text>
+                </div>
 
-                <Text style={styles.content}>{body}</Text>
 
                 {this.read()}
 
@@ -90,6 +92,11 @@ const styles = {
         alignItems: 'flex-start',
         marginLeft: 15,
         paddingRight: 17
+    },
+    contentView:{
+        wordWrap:'break-word',
+        wordBreak:'break-all',
+        overflow:'hidden'
     },
     content: {
         fontSize: 16,
