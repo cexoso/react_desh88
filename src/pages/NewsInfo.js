@@ -9,6 +9,7 @@ import CommentBottom from './comment/CommentBottom';
 import {Colors, Fonts, Images} from '../components/Themes';
 import {getNewCommentsInfo} from '../service/CommentDao';
 import {BaseComponent} from '../components';
+import Footer from "../components/Footer";
 
 
 export default class NewsInfo extends BaseComponent {
@@ -138,6 +139,8 @@ export default class NewsInfo extends BaseComponent {
                     commentList={commentList}
                     {...this.props}
                 /> : null}
+
+                <Footer/>
 
             </div>
         )
