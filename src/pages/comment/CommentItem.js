@@ -38,7 +38,7 @@ export default class CommentItem extends Component {
                     src={avatar}/>
             </div>
             <Flex style={styles.flexUser}>
-                <Flex>
+                <Flex style={{width: '100%'}}>
                     <Flex style={styles.flexName}>
                         <Text style={styles.txtName}>{nick_name}</Text>
                         <Text style={styles.txtTime}>{getDateDiff(created_at)}</Text>
@@ -93,10 +93,10 @@ const styles = {
         marginLeft: 15,
         paddingRight: 17
     },
-    contentView:{
-        wordWrap:'break-word',
-        wordBreak:'break-all',
-        overflow:'hidden'
+    contentView: {
+        wordWrap: 'break-word',
+        wordBreak: 'break-all',
+        overflow: 'hidden'
     },
     content: {
         fontSize: 16,
