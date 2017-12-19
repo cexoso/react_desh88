@@ -24,16 +24,16 @@ import AntDemo from './pages/AntDemo';
 import CommentInfoPage from './pages/comment/CommentInfoPage';
 import PersonDynamicPage from './pages/comment/PersonDynamicPage';
 
-    global.console = {
-        info: () => {
-        },
-        log: () => {
-        },
-        warn: () => {
-        },
-        error: () => {
-        },
-    };
+    // global.console = {
+    //     info: () => {
+    //     },
+    //     log: () => {
+    //     },
+    //     warn: () => {
+    //     },
+    //     error: () => {
+    //     },
+    // };
 
 
 class App extends Component {

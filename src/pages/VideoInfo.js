@@ -42,26 +42,7 @@ export default class VideoInfo extends BaseComponent {
 
             });
 
-            //获取视频评论接口
-            let videoComments = {video_id: video_id, page: 1, page_size: 10};
-            getVideoCommentsInfo(videoComments, data => {
-                console.log('videoComments', data);
-                this.setState({
-                    videoComments: data
-                });
-            }, err => {
 
-            });
-            //获取视频点赞和取消点赞
-            let videoLikes = {video_id: video_id};
-            postVideoLikesInfo(videoLikes, data => {
-                console.log('videoLieksComments', data);
-                this.setState({
-                    likesComments: data
-                });
-            }, err => {
-
-            });
 
             document.title = name;
 

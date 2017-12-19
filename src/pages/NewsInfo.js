@@ -1,54 +1,51 @@
 import React, {Component} from 'react';
 import markdown from 'marked';
 import {getNewsInfo, setLang, setToken} from '../service/RaceDao';
+import {getNewCommentsInfo, postNewLikesInfo} from '../service/CommentDao';
 import '../styles/NewsInfo.css';
-import {weiXinShare, isEmptyObject, message_desc, getURLParamKey, postMsg} from '../service/utils';
+import {weiXinShare, isEmptyObject, message_desc, getURLParamKey} from '../service/utils';
 import {default_img} from '../components/constant';
 import CommentList from './comment/CommentList'
 import CommentBottom from './comment/CommentBottom';
 import {Colors, Fonts, Images} from '../components/Themes';
-import {getNewCommentsInfo} from '../service/CommentDao';
-import {BaseComponent} from '../components';
+import {Footer} from '../components';
+import I18n from '../service/I18n';
 
-
-export default class NewsInfo extends BaseComponent {
-
-    constructor(props) {
-        super(props)
-    }
+export default class NewsInfo extends Component {
 
     state = {
         news: {},
-        likeChang: false,
-        commentList: []
+
+        newComments: {},
+        newLikes: {}
     };
 
     componentDidMount() {
-        const {id} = this.props.match.params;
+        const {id, lang} = this.props.match.params;
+        let accessToken = getURLParamKey('accessToken', this.props.location.search);
+        setToken(accessToken);
+        setLang(lang);
         const body = {newsId: id};
 
         getNewsInfo(body, data => {
-
+            console.log('NewsInfo', data);
             this.setState({
                 news: data
             });
             document.title = data.title;
 
-            postMsg(JSON.stringify(data));
-            //微信二次分享
-            // const url = {url: "http://www.deshpro.com:3000/race/91/zh"};
-            // const url = {url: "http://h5-react.deshpro.com:3000/race/91/zh"};
-            var image = document.getElementById("images").querySelectorAll('img')[0].src;
+            window.postMessage(JSON.stringify(data));
 
-            const {title, source, date} = data;
+            //微信二次分享
+            const {title, source, date, image_thumb} = data;
             const message = {
                 title: title,
                 desc: message_desc(source, date),//分享描述
                 link: window.location.href, // 分享链接，该链接域名必须与当前企业的可信域名一致
-                imgUrl: isEmptyObject(image) ? default_img : image, // 分享图标
+                imgUrl: isEmptyObject(image_thumb) ? default_img : image_thumb, // 分享图标
                 type: '', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-            }
+            };
 
             const url = {url: window.location.href};
             weiXinShare(url, message);
@@ -56,27 +53,7 @@ export default class NewsInfo extends BaseComponent {
 
         })
 
-        this.getComment()
-
     }
-
-    getComment = () => {
-        const {id} = this.props.match.params;
-        const body = {
-            info_id: id,
-            page: 1,
-            page_size: 20
-        };
-
-        getNewCommentsInfo(body, data => {
-            this.setState({
-                commentList: data.items
-            });
-            postMsg(JSON.stringify(data))
-        }, err => {
-            postMsg(err)
-        })
-    };
 
     desc = (description) => {
         let des = markdown(description)
@@ -93,13 +70,11 @@ export default class NewsInfo extends BaseComponent {
                     <div className="App-header">
                         <h2>{title}</h2>
                         <span className="App-header-time">{date} </span>
-                        <span>来源于: {source}  </span>
+                        <span>{I18n.t('from_place')}: {source}  </span>
                     </div>
                     <div className="App-nav">
                         <div id="images" dangerouslySetInnerHTML={this.desc(description)}></div>
                     </div>
-
-                    {/*{this.read()}*/}
 
                 </div>
 
@@ -107,38 +82,14 @@ export default class NewsInfo extends BaseComponent {
         }
 
     };
-    read = () => {
-        return (
-            <div style={styles.readView}>
-                <div style={styles.likesView}
-                     onClick={() => {
-                         this.setState({
-                             likeChang: !this.state.likeChang
-                         })
-                     }}>
-                    <img style={{width: 16, height: 16, marginRight: 5}}
-                         src={this.state.likeChang ? Images.likeRed : Images.like}/>
-                    <span style={styles.readTxt}>425</span>
-                </div>
 
-                <span style={styles.readTxt}>阅读2444</span>
-                <div style={{flex: 1}}/>
-            </div>
-        )
-    };
-
-
-    _render() {
-        const {id} = this.props.match.params;
-        const {commentList} = this.state;
-
+    render() {
+        const {newComments} = this.state;
         return (
             <div className='content'>
 
                 {this.content()}
-
-
-
+                <Footer/>
             </div>
         )
     };
