@@ -29,13 +29,13 @@ export default class NewsInfo extends BaseComponent {
         const body = {newsId: id};
 
         getNewsInfo(body, data => {
-
+            // postMsg(JSON.stringify(data));
             this.setState({
                 news: data
             });
             document.title = data.title;
 
-            postMsg(JSON.stringify(data));
+
 
 
             const {title, source, date, image_thumb} = data;
@@ -52,7 +52,7 @@ export default class NewsInfo extends BaseComponent {
             weiXinShare(url, message);
         }, err => {
 
-        })
+        });
 
         this.getComment()
 
