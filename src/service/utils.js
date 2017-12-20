@@ -13,7 +13,8 @@ export class PostRoute {
 
 export function postMsg(msg) {
     if (window.originalPostMessage) {
-        window.postMessage(msg);
+        let random = Math.random().toString().slice(-6);
+        window.postMessage(random + msg);
     } else {
         // alert('postMessage接口还未注入');
     }
