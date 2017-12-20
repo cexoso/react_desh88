@@ -4,6 +4,13 @@ import moment from 'moment';
 import {Toast} from 'antd-mobile';
 
 
+export class PostRoute {
+    static NewsInfo = 'NewsInfo';
+    static CommentList = 'comments';
+    static RepliesComment = 'replies';
+}
+
+
 export function postMsg(msg) {
     if (window.originalPostMessage) {
         window.postMessage(msg);
