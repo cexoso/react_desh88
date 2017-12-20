@@ -7,9 +7,10 @@ import {default_img} from '../components/constant';
 import CommentList from './comment/CommentList'
 import CommentBottom from './comment/CommentBottom';
 import {Colors, Fonts, Images} from '../components/Themes';
-import {getNewCommentsInfo} from '../service/CommentDao';
+import {getNewCommentsInfo,postNewLikesInfo} from '../service/CommentDao';
 import {BaseComponent} from '../components';
 import Footer from "../components/Footer";
+import I18n from '../service/I18n';
 
 
 export default class NewsInfo extends BaseComponent {
@@ -21,7 +22,8 @@ export default class NewsInfo extends BaseComponent {
     state = {
         news: {},
         likeChang: false,
-        commentList: []
+        commentList: [],
+        newLikes:{}
     };
 
     componentDidMount() {
@@ -30,12 +32,11 @@ export default class NewsInfo extends BaseComponent {
 
         getNewsInfo(body, data => {
             // postMsg(JSON.stringify(data));
+            console.log('news', data);
             this.setState({
                 news: data
             });
             document.title = data.title;
-
-
 
 
             const {title, source, date, image_thumb} = data;
@@ -91,7 +92,7 @@ export default class NewsInfo extends BaseComponent {
                     <div className="App-header">
                         <h2>{title}</h2>
                         <span className="App-header-time">{date} </span>
-                        <span>来源于: {source}  </span>
+                        <span>{I18n.t('from_place')}: {source}  </span>
                     </div>
                     <div className="App-nav">
                         <div id="images" dangerouslySetInnerHTML={this.desc(description)}></div>
@@ -106,20 +107,18 @@ export default class NewsInfo extends BaseComponent {
 
     };
     read = () => {
+        const {
+            total_views, total_likes
+        } = this.state.news;
         return (
             <div style={styles.readView}>
-                <div style={styles.likesView}
-                     onClick={() => {
-                         this.setState({
-                             likeChang: !this.state.likeChang
-                         })
-                     }}>
+                <div style={styles.likesView}>
                     <img style={{width: 16, height: 16, marginRight: 5}}
                          src={this.state.likeChang ? Images.likeRed : Images.like}/>
-                    <span style={styles.readTxt}>425</span>
+                    <span style={styles.readTxt}>{total_likes}</span>
                 </div>
 
-                <span style={styles.readTxt}>阅读2444</span>
+                <span style={styles.readTxt}>{I18n.t('read')} {total_views}</span>
                 <div style={{flex: 1}}/>
             </div>
         )
@@ -150,11 +149,11 @@ export default class NewsInfo extends BaseComponent {
 const styles = {
     readView: {
         paddingBottom: 16,
-
         display: 'flex',
         flexDirection: 'row-reverse',
         alignItems: 'center',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
+        marginBottom:20
     },
     readTxt: {
         fontSize: 14,
