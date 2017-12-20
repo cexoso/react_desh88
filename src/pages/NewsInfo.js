@@ -5,9 +5,7 @@ import '../styles/NewsInfo.css';
 import {weiXinShare, isEmptyObject, message_desc, getURLParamKey, postMsg} from '../service/utils';
 import {default_img} from '../components/constant';
 import CommentList from './comment/CommentList'
-import CommentBottom from './comment/CommentBottom';
 import {Colors, Fonts, Images} from '../components/Themes';
-import {getNewCommentsInfo} from '../service/CommentDao';
 import {BaseComponent} from '../components';
 import Footer from "../components/Footer";
 
@@ -20,8 +18,7 @@ export default class NewsInfo extends BaseComponent {
 
     state = {
         news: {},
-        likeChang: false,
-        commentList: []
+        likeChang: false
     };
 
     componentDidMount() {
@@ -34,8 +31,6 @@ export default class NewsInfo extends BaseComponent {
                 news: data
             });
             document.title = data.title;
-
-
 
 
             const {title, source, date, image_thumb} = data;
@@ -54,27 +49,9 @@ export default class NewsInfo extends BaseComponent {
 
         });
 
-        this.getComment()
 
     }
 
-    getComment = () => {
-        const {id} = this.props.match.params;
-        const body = {
-            info_id: id,
-            page: 1,
-            page_size: 20
-        };
-
-        getNewCommentsInfo(body, data => {
-            this.setState({
-                commentList: data.items
-            });
-            postMsg(JSON.stringify(data))
-        }, err => {
-            postMsg(err)
-        })
-    };
 
     desc = (description) => {
         let des = markdown(description)
@@ -128,17 +105,17 @@ export default class NewsInfo extends BaseComponent {
 
     _render() {
         const {id} = this.props.match.params;
-        const {commentList} = this.state;
+
 
         return (
-            <div className='content'>
+            <div>
 
                 {this.content()}
 
-                {commentList.length > 0 ? <CommentList
-                    commentList={commentList}
+                <CommentList
+                    info={{id: id, topic_type: 'infos'}}
                     {...this.props}
-                /> : null}
+                />
 
                 <Footer/>
 

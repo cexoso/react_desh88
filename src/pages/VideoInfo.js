@@ -8,6 +8,7 @@ import '../styles/Video.css';
 import I18n from '../service/I18n';
 import {Images} from '../components/Themes';
 import Slider from 'react-slick';
+import CommentList from './comment/CommentList'
 
 export default class VideoInfo extends BaseComponent {
 
@@ -41,7 +42,6 @@ export default class VideoInfo extends BaseComponent {
             }, err => {
 
             });
-
 
 
             document.title = name;
@@ -144,6 +144,7 @@ export default class VideoInfo extends BaseComponent {
     };
 
     _render() {
+        const {video_id, lang} = this.props.match.params;
         if (isEmptyObject(this.state.data)) {
             return <div></div>;
         }
@@ -151,7 +152,7 @@ export default class VideoInfo extends BaseComponent {
         const {cover_link, video_link, name, group_name, description} = this.state.data;
 
         return (
-            <div style={styles.page}>
+            <div className="video">
 
 
                 <video
@@ -186,6 +187,11 @@ export default class VideoInfo extends BaseComponent {
                     <MarkDown description={description}/>
                 </div>
 
+                <CommentList
+                    info={{id: video_id, topic_type: 'videos'}}
+                    {...this.props}
+                />
+
                 <Footer/>
             </div>
         );
@@ -218,7 +224,7 @@ const styles = {
     },
     page: {
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'column'
     },
     title: {
         color: '#333333',

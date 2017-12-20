@@ -1,3 +1,6 @@
+.video .am-list-view-scrollview{
+    width:100% !important;
+}
 body,.videoInfo{
     margin:0;
     padding:0;
