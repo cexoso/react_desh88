@@ -40,7 +40,8 @@ export default class CommentList extends Component {
             id: id,
             page: this.state.page,
             page_size: 10,
-            topic_type: topic_type
+            topic_type: topic_type,
+            total_count: 0
         };
 
         getCommentsInfo(body, data => {
@@ -61,7 +62,8 @@ export default class CommentList extends Component {
                 commentList,
                 page: page,
                 dataSource: dataSource.cloneWithRows(commentList),
-                loadMore
+                loadMore,
+                total_count: data.total_count
 
             });
             postMsg(JSON.stringify(data))
@@ -74,7 +76,7 @@ export default class CommentList extends Component {
 
         return <Flex style={{flexDirection: 'column', marginBottom: 50}}>
             <Flex style={styles.topTitle}>
-                <Text style={styles.txtTitle}>全部评论（200）</Text>
+                <Text style={styles.txtTitle}>全部评论（{this.state.total_count}）</Text>
             </Flex>
             <ListView
                 useBodyScroll
