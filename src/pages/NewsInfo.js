@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 import markdown from 'marked';
 import {getNewsInfo, setLang, setToken} from '../service/RaceDao';
 import '../styles/NewsInfo.css';
-import {weiXinShare, isEmptyObject, message_desc, getURLParamKey, postMsg} from '../service/utils';
+import {weiXinShare, isEmptyObject, message_desc, getURLParamKey, postMsg, PostRoute} from '../service/utils';
 import {default_img} from '../components/constant';
 import CommentList from './comment/CommentList'
 import {Colors, Fonts, Images} from '../components/Themes';
 import {BaseComponent} from '../components';
 import Footer from "../components/Footer";
+import CommentBottom from './comment/CommentBottom';
 
 
 export default class NewsInfo extends BaseComponent {
@@ -31,6 +32,10 @@ export default class NewsInfo extends BaseComponent {
                 news: data
             });
             document.title = data.title;
+
+            setTimeout(() => {
+                postMsg(JSON.stringify({route: PostRoute.NewsInfo, param: data}));
+            }, 300);
 
 
             const {title, source, date, image_thumb} = data;
