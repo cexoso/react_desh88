@@ -18,12 +18,12 @@ export default {
     videoGroup_Info: videoGroup_Info,
     product_Detail: product_Detail,
     logistics_info: logistics_info,
-    news_comment_info:news_comment_info,
-    new_likes_info:new_likes_info,
-    video_comment_info:video_comment_info,
-    video_likes_info:video_likes_info,
-    personDynamic_info:personDynamic_info,
-    topic_comments:'topic/comments'
+    info_comment_info: info_comment_info,
+    new_likes_info: new_likes_info,
+    video_comment_info: video_comment_info,
+    video_likes_info: video_likes_info,
+    personDynamic_info: personDynamic_info,
+    topic_comments: 'topic/comments'
 
 }
 
@@ -34,15 +34,17 @@ function sub_race_info(body) {
 
 
 function personDynamic_info(dynamic) {
-    const {user_id,page,page_size} = dynamic;
-    return 'users/' + user_id + '/dynamics?page='+page+'&page_size='+page_size;
+    const {user_id, page, page_size} = dynamic;
+    return 'users/' + user_id + '/dynamics?page=' + page + '&page_size=' + page_size;
 
 }
+
 function video_comment_info(comments) {
-    const {video_id,page,page_size} = comments;
-    return 'topic/videos/' + video_id + '/comments?page='+page+'&page_size='+page_size;
+    const {video_id, page, page_size} = comments;
+    return 'topic/videos/' + video_id + '/comments?page=' + page + '&page_size=' + page_size;
 
 }
+
 function video_likes_info(likes) {
     const {video_id} = likes;
     return 'topic/videos/' + video_id + '/likes';
@@ -50,11 +52,12 @@ function video_likes_info(likes) {
 }
 
 
-function news_comment_info(comments) {
-    const {info_id,page,page_size} = comments;
-    return 'topic/infos/' + info_id + '/comments?page='+page+'&page_size='+page_size;
+function info_comment_info(comments) {
+    const {id, topic_type, page, page_size} = comments;
+    return `topic/${topic_type}/${id}/comments?page=${page}&page_size=${page_size}`
 
 }
+
 function new_likes_info(likes) {
     const {info_id} = likes;
     return 'topic/infos/' + info_id + '/likes';
@@ -72,18 +75,22 @@ function race_info(body) {
     const {raceId} = body;
     return 'u/0/races/' + raceId;
 }
+
 function news_info(body) {
     const {newsId} = body;
     return 'news/infos/' + newsId;
 }
+
 function player_info(body) {
     const {playerId} = body;
     return 'players/' + playerId;
 }
+
 function game_info(body) {
     const {gameId} = body;
     return 'u/0/races/' + gameId;
 }
+
 function rank_info(body) {
     const {playerId} = body;
     return 'players/' + playerId + '/ranks';
@@ -93,19 +100,23 @@ function activities_info(body) {
     const {activitiesId} = body;
     return 'activities/' + activitiesId;
 }
+
 function ticket_info(body) {
     const {ticketId, raceId} = body;
     return 'races/' + raceId + '/tickets/' + ticketId;
 
 }
+
 function video_Info(body) {
     const {video_id} = body;
     return 'news/videos/' + video_id;
 }
+
 function choiseTicket_Info(body) {
     const {choiseTicket_id} = body;
     return 'races/' + choiseTicket_id + "/tickets";
 }
+
 function videoGroup_Info(body) {
     const {video_id} = body;
     return 'videos/group/' + video_id + "/sub_videos";

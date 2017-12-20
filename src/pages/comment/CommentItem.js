@@ -11,20 +11,21 @@ export default class CommentItem extends Component {
     };
 
 
-    read = () => {
-        return (
-            <Flex style={styles.flexNum}
-                  onClick={() => {
-                      postMsg(JSON.stringify({route: 'comments', param: this.props.item}))
-                  }}>
-                <Text style={styles.txtNum}>查看34条回复></Text>
-            </Flex>
-        )
+    read = (total_count) => {
+        if (total_count > 0)
+            return (
+                <Flex style={styles.flexNum}
+                      onClick={() => {
+                          postMsg(JSON.stringify({route: 'comments', param: this.props.item}))
+                      }}>
+                    <Text style={styles.txtNum}>查看{total_count}条回复></Text>
+                </Flex>
+            )
     };
 
     render() {
 
-        const {id, user_id, nick_name, avatar, official, body, recommended, created_at} = this.props.item;
+        const {id, user_id, nick_name, avatar, official, body, total_count, created_at} = this.props.item;
         return <Flex style={styles.listItem} onClick={() => {
 
         }}>
@@ -60,7 +61,7 @@ export default class CommentItem extends Component {
                 </div>
 
 
-                {this.read()}
+                {this.read(total_count)}
 
                 <div style={{width: '100%', height: 1, backgroundColor: '#DDDDDD', marginTop: 8, marginRight: 17}}/>
             </Flex>

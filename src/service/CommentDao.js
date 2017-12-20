@@ -39,8 +39,8 @@ export function postVideoLikesInfo(body, resolve, reject) {
 }
 
 //获取资讯评论列表信息
-export function getNewCommentsInfo(body, resolve, reject) {
-    get(Api.news_comment_info(body), ret => {
+export function getCommentsInfo(body, resolve, reject) {
+    get(Api.info_comment_info(body), ret => {
         resolve(ret.data);
     }, reject)
 }

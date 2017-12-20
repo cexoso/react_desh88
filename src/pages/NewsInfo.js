@@ -2,15 +2,13 @@ import React, {Component} from 'react';
 import markdown from 'marked';
 import {getNewsInfo, setLang, setToken} from '../service/RaceDao';
 import '../styles/NewsInfo.css';
-import {weiXinShare, isEmptyObject, message_desc, getURLParamKey, postMsg} from '../service/utils';
+import {weiXinShare, isEmptyObject, message_desc, getURLParamKey, postMsg, PostRoute} from '../service/utils';
 import {default_img} from '../components/constant';
 import CommentList from './comment/CommentList'
-import CommentBottom from './comment/CommentBottom';
 import {Colors, Fonts, Images} from '../components/Themes';
-import {getNewCommentsInfo,postNewLikesInfo} from '../service/CommentDao';
 import {BaseComponent} from '../components';
 import Footer from "../components/Footer";
-import I18n from '../service/I18n';
+import CommentBottom from './comment/CommentBottom';
 
 
 export default class NewsInfo extends BaseComponent {
@@ -21,9 +19,7 @@ export default class NewsInfo extends BaseComponent {
 
     state = {
         news: {},
-        likeChang: false,
-        commentList: [],
-        newLikes:{}
+        likeChang: false
     };
 
     componentDidMount() {
@@ -32,11 +28,14 @@ export default class NewsInfo extends BaseComponent {
 
         getNewsInfo(body, data => {
             // postMsg(JSON.stringify(data));
-            console.log('news', data);
             this.setState({
                 news: data
             });
             document.title = data.title;
+
+            setTimeout(() => {
+                postMsg(JSON.stringify({route: PostRoute.NewsInfo, param: data}));
+            }, 300);
 
 
             const {title, source, date, image_thumb} = data;
@@ -55,27 +54,9 @@ export default class NewsInfo extends BaseComponent {
 
         });
 
-        this.getComment()
 
     }
 
-    getComment = () => {
-        const {id} = this.props.match.params;
-        const body = {
-            info_id: id,
-            page: 1,
-            page_size: 20
-        };
-
-        getNewCommentsInfo(body, data => {
-            this.setState({
-                commentList: data.items
-            });
-            postMsg(JSON.stringify(data))
-        }, err => {
-            postMsg(err)
-        })
-    };
 
     desc = (description) => {
         let des = markdown(description)
@@ -92,7 +73,7 @@ export default class NewsInfo extends BaseComponent {
                     <div className="App-header">
                         <h2>{title}</h2>
                         <span className="App-header-time">{date} </span>
-                        <span>{I18n.t('from_place')}: {source}  </span>
+                        <span>来源于: {source}  </span>
                     </div>
                     <div className="App-nav">
                         <div id="images" dangerouslySetInnerHTML={this.desc(description)}></div>
@@ -107,18 +88,20 @@ export default class NewsInfo extends BaseComponent {
 
     };
     read = () => {
-        const {
-            total_views, total_likes
-        } = this.state.news;
         return (
             <div style={styles.readView}>
-                <div style={styles.likesView}>
+                <div style={styles.likesView}
+                     onClick={() => {
+                         this.setState({
+                             likeChang: !this.state.likeChang
+                         })
+                     }}>
                     <img style={{width: 16, height: 16, marginRight: 5}}
                          src={this.state.likeChang ? Images.likeRed : Images.like}/>
-                    <span style={styles.readTxt}>{total_likes}</span>
+                    <span style={styles.readTxt}>425</span>
                 </div>
 
-                <span style={styles.readTxt}>{I18n.t('read')} {total_views}</span>
+                <span style={styles.readTxt}>阅读2444</span>
                 <div style={{flex: 1}}/>
             </div>
         )
@@ -127,17 +110,17 @@ export default class NewsInfo extends BaseComponent {
 
     _render() {
         const {id} = this.props.match.params;
-        const {commentList} = this.state;
+
 
         return (
-            <div className='content'>
+            <div>
 
                 {this.content()}
 
-                {commentList.length > 0 ? <CommentList
-                    commentList={commentList}
+                <CommentList
+                    info={{id: id, topic_type: 'infos'}}
                     {...this.props}
-                /> : null}
+                />
 
                 <Footer/>
 
@@ -149,11 +132,11 @@ export default class NewsInfo extends BaseComponent {
 const styles = {
     readView: {
         paddingBottom: 16,
+
         display: 'flex',
         flexDirection: 'row-reverse',
         alignItems: 'center',
-        justifyContent: 'flex-end',
-        marginBottom:20
+        justifyContent: 'flex-end'
     },
     readTxt: {
         fontSize: 14,
