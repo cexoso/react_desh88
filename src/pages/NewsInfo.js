@@ -26,7 +26,9 @@ export default class NewsInfo extends BaseComponent {
 
     state = {
         news: {},
-        likeChang: false
+        likeChang: false,
+        total_likes: 0,
+        current_user_like: false
     };
 
     componentDidMount() {
@@ -40,8 +42,17 @@ export default class NewsInfo extends BaseComponent {
                         this.refreshComment();
 
                         break;
-                    case 'REFRESH_NEWS':
-                        this.refreshNews();
+                    case 'ADD_TOTAL_LIKES':
+                        let {total_likes, current_user_like} = this.state;
+                        if (current_user_like) {
+                            --total_likes;
+                        } else {
+                            ++total_likes;
+                        }
+                        this.setState({
+                            total_likes,
+                            current_user_like: !current_user_like
+                        });
                         break;
 
                 }
@@ -53,7 +64,7 @@ export default class NewsInfo extends BaseComponent {
     }
 
     refreshComment = () => {
-        showToast('refreshComment')
+
         this.commentList && this.commentList.LoadComment();
     };
 
@@ -64,7 +75,9 @@ export default class NewsInfo extends BaseComponent {
         getNewsInfo(body, data => {
             // postMsg(JSON.stringify(data));
             this.setState({
-                news: data
+                news: data,
+                total_likes: data.total_likes,
+                current_user_like: data.current_user_like
             });
             document.title = data.title;
 
@@ -121,6 +134,9 @@ export default class NewsInfo extends BaseComponent {
 
     };
     read = () => {
+        const {
+            total_views
+        } = this.state.news;
         return (
             <div style={styles.readView}>
                 <div style={styles.likesView}
@@ -131,10 +147,10 @@ export default class NewsInfo extends BaseComponent {
                      }}>
                     <img style={{width: 16, height: 16, marginRight: 5}}
                          src={this.state.likeChang ? Images.likeRed : Images.like}/>
-                    <span style={styles.readTxt}>425</span>
+                    <span style={styles.readTxt}>{this.state.total_likes}</span>
                 </div>
 
-                <span style={styles.readTxt}>阅读2444</span>
+                <span style={styles.readTxt}>阅读 {total_views}</span>
                 <div style={{flex: 1}}/>
             </div>
         )
