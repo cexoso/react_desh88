@@ -2,8 +2,12 @@ import I18n from '../service/I18n';
 import {getWeiXinSign} from '../service/RaceDao';
 import moment from 'moment';
 import {Toast} from 'antd-mobile';
+import _ from 'lodash';
 
 
+export const _lodash = _;
+
+//WEB和NATIVE通行标签
 export class PostRoute {
     static NewsInfo = 'NewsInfo';
     static CommentList = 'comments';
@@ -13,9 +17,10 @@ export class PostRoute {
 
 export function postMsg(msg) {
     if (window.originalPostMessage) {
-        window.postMessage(msg);
+        let random = Math.random().toString().slice(-6);
+        window.postMessage(random + msg);
     } else {
-        // alert('postMessage接口还未注入');
+        // alert('请前往扑客APP查看');
     }
 }
 
