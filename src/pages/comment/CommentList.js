@@ -68,8 +68,8 @@ export default class CommentList extends Component {
                 loadMore = false;
             }
             if (length > 0) {
-                commentList = commentList.concat(data.items);
-                commentList = _lodash.uniqBy(commentList, 'id');
+
+                commentList = _lodash.unionBy(commentList, data.items, 'id');
 
             }
 
