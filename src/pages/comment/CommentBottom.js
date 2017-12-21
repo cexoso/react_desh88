@@ -119,10 +119,10 @@ export default class CommentBottom extends Component {
 
         postComment(body, data => {
             showToast('评论成功');
-            postMsg(JSON.stringify(data))
+
         }, err => {
             showToast('评论失败');
-            postMsg(JSON.stringify(err))
+            postMsg(JSON.stringify({err:err}))
         })
 
     }
