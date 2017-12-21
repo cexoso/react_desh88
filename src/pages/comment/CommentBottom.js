@@ -5,14 +5,17 @@ import PropTypes from 'prop-types';
 import {List, InputItem, Modal, Button} from '../../components';
 import 'antd-mobile/dist/antd-mobile.css';
 import {postComment} from '../../service/CommentDao';
-import {strNotNull, showToast,postMsg} from '../../service/utils';
+import {strNotNull, showToast, postMsg} from '../../service/utils';
+const clientHeight=document.documentElement.clientHeight;
+
 
 export default class CommentBottom extends Component {
 
     state = {
         text: '',
         likeButton: false,
-        showInput: false
+        showInput: false,
+        clickTime: 0
     };
 
 
@@ -25,7 +28,33 @@ export default class CommentBottom extends Component {
             </footer>
 
         );
-    }
+    };
+    changTime=()=>{
+        var timer = null;
+        var isTop = true;
+        let clickTime = this.state.clickTime;
+        clickTime=clickTime+1;
+        if (clickTime > 2) {
+            clickTime = 0;
+        }
+        this.setState({
+            clickTime: clickTime
+        });
+
+        if(clickTime === 1){
+            timer = setInterval(function(){
+                var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+                var speed = Math.floor(-osTop / 6);  //速度随距离动态变化，越来越小
+                document.documentElement.scrollTop = document.body.scrollTop = osTop + speed;
+                isTop = true;
+                if(osTop == 0){
+                    clearInterval(timer); //回到顶部时关闭定时器
+                }
+            },30);
+        }else if(clickTime === 2){
+            document.getElementById('clickName').find('#comment');
+        }
+    };
 
     likeShare = () => {
         const {likeButton, showInput} = this.state;
@@ -33,12 +62,12 @@ export default class CommentBottom extends Component {
             <div
                 onClick={() => {
                     this.setState({
-                        showInput: !showInput
+                        showInput: !this.state.showInput
                     });
-
                     setTimeout(() => {
                         this.autoFocusInst && this.autoFocusInst.focus();
-                    }, 500)
+                    }, 500);
+
                 }}
                 style={styles.search}>
                 <img
@@ -50,7 +79,13 @@ export default class CommentBottom extends Component {
             <div style={{flex: 1}}/>
 
             <div
-                style={styles.commentWhiteView}>
+                id="clickName"
+                ref ={this.state.clickTime}
+                style={styles.commentWhiteView}
+                onClick={() => {
+                    this.changTime();
+
+                }}>
                 <img style={styles.commentWhite} src={Images.commentWhite}/>
             </div>
 

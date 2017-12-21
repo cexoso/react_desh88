@@ -74,7 +74,7 @@ export default class CommentList extends Component {
 
     render() {
 
-        return <Flex style={{flexDirection: 'column', marginBottom: 50}}>
+        return <Flex style={{flexDirection: 'column', marginBottom: 50}} id="comment">
             <Flex style={styles.topTitle}>
                 <Text style={styles.txtTitle}>全部评论（{this.state.total_count}）</Text>
             </Flex>
