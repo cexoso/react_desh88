@@ -59,7 +59,7 @@ export default class CommentList extends Component {
             if (length > 0) {
                 commentList = commentList.concat(data.items)
             }
-            console.log(commentList);
+
             this.setState({
                 commentList,
                 page: page,
@@ -68,7 +68,7 @@ export default class CommentList extends Component {
                 total_count: data.total_count
 
             });
-            postMsg(JSON.stringify(data))
+            postMsg(JSON.stringify({route: 'addComment', param: data.total_count}))
         }, err => {
             postMsg(err)
         })
