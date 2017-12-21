@@ -2,19 +2,26 @@ import React, {Component} from 'react';
 import markdown from 'marked';
 import {getNewsInfo, setLang, setToken} from '../service/RaceDao';
 import '../styles/NewsInfo.css';
-import {weiXinShare, isEmptyObject, message_desc, getURLParamKey, postMsg, PostRoute} from '../service/utils';
+import {
+    weiXinShare,
+    isEmptyObject,
+    message_desc,
+    getURLParamKey,
+    postMsg,
+    PostRoute,
+    showToast
+} from '../service/utils';
 import {default_img} from '../components/constant';
 import CommentList from './comment/CommentList'
 import {Colors, Fonts, Images} from '../components/Themes';
 import {BaseComponent} from '../components';
 import Footer from "../components/Footer";
-import CommentBottom from './comment/CommentBottom';
 
 
 export default class NewsInfo extends BaseComponent {
 
     constructor(props) {
-        super(props)
+        super(props);
     }
 
     state = {
@@ -23,6 +30,28 @@ export default class NewsInfo extends BaseComponent {
     };
 
     componentDidMount() {
+        this.refreshNews();
+        document.addEventListener('message', (e) => {
+            let data = JSON.parse(e.data);
+
+            switch (data.action) {
+                case 'REFRESH_COMMENT':
+                    this.refreshComment();
+
+                    break;
+                case 'REFRESH_NEWS':
+                    this.refreshNews();
+                    break;
+
+            }
+        });
+    }
+
+    refreshComment = () => {
+        this.commentList && this.commentList.getComment();
+    };
+
+    refreshNews = () => {
         const {id} = this.props.match.params;
         const body = {newsId: id};
 
@@ -53,9 +82,7 @@ export default class NewsInfo extends BaseComponent {
         }, err => {
 
         });
-
-
-    }
+    };
 
 
     desc = (description) => {
@@ -118,6 +145,7 @@ export default class NewsInfo extends BaseComponent {
                 {this.content()}
 
                 <CommentList
+                    ref={ref => this.commentList = ref}
                     info={{id: id, topic_type: 'infos'}}
                     {...this.props}
                 />

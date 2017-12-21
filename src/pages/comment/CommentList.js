@@ -9,7 +9,7 @@ import 'antd-mobile/dist/antd-mobile.css';
 import {Colors, Images} from '../../components/Themes';
 import CommentItem from './CommentItem';
 import {getCommentsInfo} from '../../service/CommentDao';
-import {postMsg} from '../../service/utils';
+import {postMsg, showToast} from '../../service/utils';
 
 export default class CommentList extends Component {
 
@@ -25,7 +25,8 @@ export default class CommentList extends Component {
             dataSource: ds.cloneWithRows(array),
             commentList: array,
             page: 1,
-            loadMore: true
+            loadMore: true,
+            total_count: 0
         }
 
     };
@@ -35,21 +36,22 @@ export default class CommentList extends Component {
     }
 
     getComment = () => {
+
         const {id, topic_type} = this.props.info;
         const body = {
             id: id,
             page: this.state.page,
-            page_size: 10,
+            page_size: 20,
             topic_type: topic_type,
-            total_count: 0
         };
 
         getCommentsInfo(body, data => {
 
+
             let {page, commentList, dataSource, loadMore} = this.state;
 
             let length = data.items.length;
-            if (length > 9) {
+            if (length > 19) {
                 ++page;
             } else {
                 loadMore = false;
@@ -84,7 +86,7 @@ export default class CommentList extends Component {
                 renderRow={this.renderItem}
                 onEndReached={this.onEndReached}
                 onEndReachedThreshold={10}
-                pageSize={10}
+                pageSize={20}
             />
 
             <Flex style={{height: 80}}/>
