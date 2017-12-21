@@ -9,7 +9,8 @@ import 'antd-mobile/dist/antd-mobile.css';
 import {Colors, Images} from '../../components/Themes';
 import CommentItem from './CommentItem';
 import {getCommentsInfo} from '../../service/CommentDao';
-import {postMsg, showToast} from '../../service/utils';
+import {postMsg, showToast, _lodash} from '../../service/utils';
+
 
 export default class CommentList extends Component {
 
@@ -35,6 +36,16 @@ export default class CommentList extends Component {
         this.getComment();
     }
 
+
+    LoadComment = () => {
+        this.setState({
+            loadMore: true,
+        });
+        setTimeout(() => {
+            this.getComment()
+        }, 300)
+    };
+
     getComment = () => {
 
         const {id, topic_type} = this.props.info;
@@ -57,7 +68,9 @@ export default class CommentList extends Component {
                 loadMore = false;
             }
             if (length > 0) {
-                commentList = commentList.concat(data.items)
+                commentList = commentList.concat(data.items);
+                commentList = _lodash.uniqBy(commentList, 'id');
+
             }
 
             this.setState({
@@ -70,7 +83,7 @@ export default class CommentList extends Component {
             });
             postMsg(JSON.stringify({route: 'addComment', param: data.total_count}))
         }, err => {
-            postMsg(err)
+            postMsg(JSON.stringify({err: err}))
         })
     };
 

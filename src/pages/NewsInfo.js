@@ -48,7 +48,7 @@ export default class NewsInfo extends BaseComponent {
     }
 
     refreshComment = () => {
-        this.commentList && this.commentList.getComment();
+        this.commentList && this.commentList.LoadComment();
     };
 
     refreshNews = () => {
