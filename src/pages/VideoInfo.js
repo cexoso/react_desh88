@@ -16,13 +16,50 @@ export default class VideoInfo extends BaseComponent {
     state = {
         data: {},
         videoGroup: {},
-        videoComments: {},
-        likesComments: {}
+        total_likes: 0,
+        current_user_like: false
     };
 
     componentDidMount() {
-        const {video_id, lang} = this.props.match.params;
-        setLang(lang);
+      this.refresh();
+        document.addEventListener('message', (e) => {
+            try {
+                let data = JSON.parse(e.data);
+
+                switch (data.action) {
+                    case 'REFRESH_COMMENT':
+                        this.refreshComment();
+
+                        break;
+                    case 'ADD_TOTAL_LIKES':
+                        let {total_likes, current_user_like} = this.state;
+                        if (current_user_like) {
+                            --total_likes;
+                        } else {
+                            ++total_likes;
+                        }
+                        this.setState({
+                            total_likes,
+                            current_user_like: !current_user_like
+                        });
+                        break;
+
+                }
+            } catch (e) {
+                throw Error(e)
+            }
+
+        });
+
+    };
+
+    refreshComment = () => {
+
+        this.commentList && this.commentList.LoadComment();
+    };
+
+    refresh = ()=>{
+        const {video_id} = this.props.match.params;
 
         let body = {video_id: video_id};
         getVideoInfo(body, data => {
@@ -67,7 +104,6 @@ export default class VideoInfo extends BaseComponent {
         }, err => {
 
         });
-
     };
 
     _onPressItem = (item) => {
@@ -188,6 +224,7 @@ export default class VideoInfo extends BaseComponent {
                 </div>
 
                 <CommentList
+                    ref={ref => this.commentList = ref}
                     info={{id: video_id, topic_type: 'videos'}}
                     {...this.props}
                 />
@@ -241,7 +278,8 @@ const styles = {
     },
     videoView: {
         height: 216,
-        marginTop: 2
+        width:'100%',
+        marginTop:1
     },
     groupView: {
         display: 'flex',

@@ -26,7 +26,6 @@ export default class NewsInfo extends BaseComponent {
 
     state = {
         news: {},
-        likeChang: false,
         total_likes: 0,
         current_user_like: false
     };
@@ -139,14 +138,9 @@ export default class NewsInfo extends BaseComponent {
         } = this.state.news;
         return (
             <div style={styles.readView}>
-                <div style={styles.likesView}
-                     onClick={() => {
-                         this.setState({
-                             likeChang: !this.state.likeChang
-                         })
-                     }}>
+                <div style={styles.likesView}>
                     <img style={{width: 16, height: 16, marginRight: 5}}
-                         src={this.state.likeChang ? Images.likeRed : Images.like}/>
+                         src={Images.like}/>
                     <span style={styles.readTxt}>{this.state.total_likes}</span>
                 </div>
 
