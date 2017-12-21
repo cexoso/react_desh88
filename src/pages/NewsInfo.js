@@ -32,22 +32,28 @@ export default class NewsInfo extends BaseComponent {
     componentDidMount() {
         this.refreshNews();
         document.addEventListener('message', (e) => {
-            let data = JSON.parse(e.data);
+            try {
+                let data = JSON.parse(e.data);
 
-            switch (data.action) {
-                case 'REFRESH_COMMENT':
-                    this.refreshComment();
+                switch (data.action) {
+                    case 'REFRESH_COMMENT':
+                        this.refreshComment();
 
-                    break;
-                case 'REFRESH_NEWS':
-                    this.refreshNews();
-                    break;
+                        break;
+                    case 'REFRESH_NEWS':
+                        this.refreshNews();
+                        break;
 
+                }
+            } catch (e) {
+                throw Error(e)
             }
+
         });
     }
 
     refreshComment = () => {
+        showToast('refreshComment')
         this.commentList && this.commentList.LoadComment();
     };
 

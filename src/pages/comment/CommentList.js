@@ -17,7 +17,7 @@ export default class CommentList extends Component {
 
     constructor(props) {
         super(props);
-        let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.total_count !== r2.total_count});
 
 
         let array = [];
@@ -67,11 +67,9 @@ export default class CommentList extends Component {
             } else {
                 loadMore = false;
             }
-            if (length > 0) {
+            // postMsg(JSON.stringify({param: data}));
+            commentList = _lodash.unionBy(commentList, data.items, 'id');
 
-                commentList = _lodash.unionBy(commentList, data.items, 'id');
-
-            }
 
             this.setState({
                 commentList,
