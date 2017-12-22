@@ -16,7 +16,7 @@ import CommentList from './comment/CommentList'
 import {Colors, Fonts, Images} from '../components/Themes';
 import {BaseComponent} from '../components';
 import Footer from "../components/Footer";
-
+import CommentBottom from './comment/CommentBottom';
 
 export default class NewsInfo extends BaseComponent {
 

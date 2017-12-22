@@ -338,5 +338,8 @@
   "time_day": "days ago",
   "time_hour": "hours ago",
   "time_min": "minutes ago",
-  "time_moment": "just"
+  "time_moment": "just",
+  "look":"查看",
+  "count_reply":"条回复",
+  "all_comment":"全部评论"
 }
