@@ -30,7 +30,8 @@ const images = {
     commentWhite: require('../../assets/comment/commentWhite.png'),
     like: require('../../assets/comment/like.png'),
     likeRed: require('../../assets/comment/likeRed.png'),
-    forward: require('../../assets/comment/forward.png')
+    forward: require('../../assets/comment/forward.png'),
+    home_avatar: require('../../assets/images/home_avatar.png')
 
 }
 export default images

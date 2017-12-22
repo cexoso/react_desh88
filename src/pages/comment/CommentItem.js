@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {Colors, Fonts, Images} from '../../components/Themes';
 import PropTypes from 'prop-types';
 import I18n from '../../service/I18n';
-import {Flex, Text} from '../../components';
-import {getDateDiff, postMsg} from '../../service/utils';
+import {Flex, Text,} from '../../components';
+import {getDateDiff, postMsg,isEmptyObject,strNotNull} from '../../service/utils';
 
 export default class CommentItem extends Component {
     state = {
@@ -18,9 +18,18 @@ export default class CommentItem extends Component {
                       onClick={() => {
                           postMsg(JSON.stringify({route: 'comments', param: this.props.item}))
                       }}>
-                    <Text style={styles.txtNum}>查看{total_count}条回复></Text>
+                    <Text style={styles.txtNum}>{I18n.t('look')}{total_count}{I18n.t('count_reply')}></Text>
                 </Flex>
             )
+    };
+
+    _avatar = (avatar) => {
+        if (isEmptyObject(avatar))
+            return Images.home_avatar;
+        else if (strNotNull(avatar))
+            return avatar
+        else
+            return Images.home_avatar;
     };
 
     render() {
@@ -36,7 +45,7 @@ export default class CommentItem extends Component {
                 <img
                     alt=""
                     style={styles.avatar}
-                    src={avatar}/>
+                    src={this._avatar(avatar)}/>
             </div>
             <Flex style={styles.flexUser}>
                 <Flex style={{width: '100%'}}>

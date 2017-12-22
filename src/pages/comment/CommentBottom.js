@@ -52,7 +52,7 @@ export default class CommentBottom extends Component {
                 }
             },30);
         }else if(clickTime === 2){
-            document.getElementById('clickName').find('#comment');
+            window.location.hash = '#comment';
         }
     };
 
