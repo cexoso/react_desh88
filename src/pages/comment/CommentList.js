@@ -17,7 +17,7 @@ export default class CommentList extends Component {
 
     constructor(props) {
         super(props);
-        const dataSource = new ListView.DataSource({
+        let dataSource = new ListView.DataSource({
             rowHasChanged: (row1, row2) => row1.total_count !== row2.total_count
         });
 
