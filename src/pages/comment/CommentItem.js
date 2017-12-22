@@ -17,6 +17,7 @@ export default class CommentItem extends Component {
                 <Flex style={styles.flexNum}
                       onClick={() => {
                           postMsg(JSON.stringify({route: 'comments', param: this.props.item}))
+
                       }}>
                     <Text style={styles.txtNum}>{I18n.t('look')}{total_count}{I18n.t('count_reply')}></Text>
                 </Flex>
@@ -27,7 +28,7 @@ export default class CommentItem extends Component {
         if (isEmptyObject(avatar))
             return Images.home_avatar;
         else if (strNotNull(avatar))
-            return avatar
+            return avatar;
         else
             return Images.home_avatar;
     };

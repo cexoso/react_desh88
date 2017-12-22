@@ -10,7 +10,7 @@ import {Colors, Images} from '../../components/Themes';
 import CommentItem from './CommentItem';
 import {getCommentsInfo} from '../../service/CommentDao';
 import {postMsg, showToast, _lodash} from '../../service/utils';
-
+import I18n from '../../service/I18n';
 
 export default class CommentList extends Component {
 
@@ -91,7 +91,7 @@ export default class CommentList extends Component {
 
         return <Flex style={{flexDirection: 'column', marginBottom: 50}} id="comment">
             <Flex style={styles.topTitle}>
-                <Text style={styles.txtTitle}>全部评论（{this.state.total_count}）</Text>
+                <Text style={styles.txtTitle}>{I18n.t('all_comment')}（{this.state.total_count}）</Text>
             </Flex>
             <ListView
                 useBodyScroll
