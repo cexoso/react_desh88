@@ -26,28 +26,44 @@ export default class NewsInfo extends BaseComponent {
 
     state = {
         news: {},
-        likeChang: false
+        total_likes: 0,
+        current_user_like: false
     };
 
     componentDidMount() {
         this.refreshNews();
         document.addEventListener('message', (e) => {
-            let data = JSON.parse(e.data);
+            try {
+                let data = JSON.parse(e.data);
 
-            switch (data.action) {
-                case 'REFRESH_COMMENT':
-                    this.refreshComment();
+                switch (data.action) {
+                    case 'REFRESH_COMMENT':
+                        this.refreshComment();
 
-                    break;
-                case 'REFRESH_NEWS':
-                    this.refreshNews();
-                    break;
+                        break;
+                    case 'ADD_TOTAL_LIKES':
+                        let {total_likes, current_user_like} = this.state;
+                        if (current_user_like) {
+                            --total_likes;
+                        } else {
+                            ++total_likes;
+                        }
+                        this.setState({
+                            total_likes,
+                            current_user_like: !current_user_like
+                        });
+                        break;
 
+                }
+            } catch (e) {
+                throw Error(e)
             }
+
         });
     }
 
     refreshComment = () => {
+
         this.commentList && this.commentList.LoadComment();
     };
 
@@ -58,7 +74,9 @@ export default class NewsInfo extends BaseComponent {
         getNewsInfo(body, data => {
             // postMsg(JSON.stringify(data));
             this.setState({
-                news: data
+                news: data,
+                total_likes: data.total_likes,
+                current_user_like: data.current_user_like
             });
             document.title = data.title;
 
@@ -115,20 +133,18 @@ export default class NewsInfo extends BaseComponent {
 
     };
     read = () => {
+        const {
+            total_views
+        } = this.state.news;
         return (
             <div style={styles.readView}>
-                <div style={styles.likesView}
-                     onClick={() => {
-                         this.setState({
-                             likeChang: !this.state.likeChang
-                         })
-                     }}>
+                <div style={styles.likesView}>
                     <img style={{width: 16, height: 16, marginRight: 5}}
-                         src={this.state.likeChang ? Images.likeRed : Images.like}/>
-                    <span style={styles.readTxt}>425</span>
+                         src={Images.like}/>
+                    <span style={styles.readTxt}>{this.state.total_likes}</span>
                 </div>
 
-                <span style={styles.readTxt}>阅读2444</span>
+                <span style={styles.readTxt}>阅读 {total_views}</span>
                 <div style={{flex: 1}}/>
             </div>
         )
@@ -149,8 +165,8 @@ export default class NewsInfo extends BaseComponent {
                     info={{id: id, topic_type: 'infos'}}
                     {...this.props}
                 />
-                <CommentBottom/>
-                {/*<Footer/>*/}
+
+                <Footer/>
 
             </div>
         )

@@ -17,13 +17,15 @@ export default class CommentList extends Component {
 
     constructor(props) {
         super(props);
-        let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        let dataSource = new ListView.DataSource({
+            rowHasChanged: (row1, row2) => row1.total_count !== row2.total_count
+        });
 
 
         let array = [];
 
         this.state = {
-            dataSource: ds.cloneWithRows(array),
+            dataSource,
             commentList: array,
             page: 1,
             loadMore: true,
@@ -67,11 +69,9 @@ export default class CommentList extends Component {
             } else {
                 loadMore = false;
             }
-            if (length > 0) {
 
-                commentList = _lodash.unionBy(commentList, data.items, 'id');
+            commentList = _lodash.unionBy(commentList, data.items, 'id');
 
-            }
 
             this.setState({
                 commentList,
@@ -100,6 +100,9 @@ export default class CommentList extends Component {
                 onEndReached={this.onEndReached}
                 onEndReachedThreshold={10}
                 pageSize={20}
+                renderFooter={() => (<div style={{padding: 30, textAlign: 'center'}}>
+                    {this.state.loadMore ? 'Loading...' : ''}
+                </div>)}
             />
 
             <Flex style={{height: 80}}/>
