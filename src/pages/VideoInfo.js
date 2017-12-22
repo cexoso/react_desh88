@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {getVideoInfo, getVideoGroup, setLang} from '../service/RaceDao';
 import {getVideoCommentsInfo, postVideoLikesInfo} from '../service/CommentDao';
-import {weiXinShare, isEmptyObject} from '../service/utils';
+import {weiXinShare, isEmptyObject, PostRoute, postMsg} from '../service/utils';
 import {default_img} from '../components/constant';
 import {MarkDown, Footer, BaseComponent} from '../components';
 import '../styles/Video.css';
@@ -16,24 +16,67 @@ export default class VideoInfo extends BaseComponent {
     state = {
         data: {},
         videoGroup: {},
-        videoComments: {},
-        likesComments: {}
+        total_likes: 0,
+        current_user_like: false,
+        total_views: 0
     };
 
     componentDidMount() {
-        const {video_id, lang} = this.props.match.params;
-        setLang(lang);
+        this.refresh();
+        document.addEventListener('message', (e) => {
+            try {
+                let data = JSON.parse(e.data);
+
+                switch (data.action) {
+                    case 'REFRESH_COMMENT':
+                        this.refreshComment();
+
+                        break;
+                    case 'ADD_TOTAL_LIKES':
+                        let {total_likes, current_user_like} = this.state;
+                        if (current_user_like) {
+                            --total_likes;
+                        } else {
+                            ++total_likes;
+                        }
+                        this.setState({
+                            total_likes,
+                            current_user_like: !current_user_like
+                        });
+                        break;
+
+                }
+            } catch (e) {
+                throw Error(e)
+            }
+
+        });
+
+    };
+
+    refreshComment = () => {
+
+        this.commentList && this.commentList.LoadComment();
+    };
+
+    refresh = () => {
+        const {video_id} = this.props.match.params;
 
         let body = {video_id: video_id};
         getVideoInfo(body, data => {
-            console.log('VideoInfo', data)
 
+            setTimeout(() => {
+                postMsg(JSON.stringify({route: PostRoute.NewsInfo, param: data}));
+            }, 300);
 
-            const {name, cover_link, description, group_id} = data;
+            const {name, cover_link, description, group_id, current_user_like, total_likes, total_views} = data;
             getVideoGroup({video_id: group_id}, data => {
                 console.log('videoGroup', data)
                 this.setState({
-                    videoGroup: data
+                    videoGroup: data,
+                    total_likes: total_likes,
+                    current_user_like: current_user_like,
+                    total_views: total_views
                 });
                 this.state.videoGroup.items.map(function (x) {
                     x.isSelect = false
@@ -67,7 +110,6 @@ export default class VideoInfo extends BaseComponent {
         }, err => {
 
         });
-
     };
 
     _onPressItem = (item) => {
@@ -143,6 +185,24 @@ export default class VideoInfo extends BaseComponent {
         );
     };
 
+    read = () => {
+        const {
+            total_views, total_likes
+        } = this.state;
+        return (
+            <div style={styles.readView}>
+                <div style={styles.likesView}>
+                    <img style={{width: 16, height: 16, marginRight: 5}}
+                         src={Images.like}/>
+                    <span style={styles.readTxt}>{total_likes}</span>
+                </div>
+
+                <span style={styles.readTxt}>阅读 {total_views}</span>
+                <div style={{flex: 1}}/>
+            </div>
+        )
+    };
+
     _render() {
         const {video_id, lang} = this.props.match.params;
         if (isEmptyObject(this.state.data)) {
@@ -187,7 +247,10 @@ export default class VideoInfo extends BaseComponent {
                     <MarkDown description={description}/>
                 </div>
 
+                {this.read()}
+
                 <CommentList
+                    ref={ref => this.commentList = ref}
                     info={{id: video_id, topic_type: 'videos'}}
                     {...this.props}
                 />
@@ -241,7 +304,8 @@ const styles = {
     },
     videoView: {
         height: 216,
-        marginTop: 2
+        width: '100%',
+        marginTop: 1
     },
     groupView: {
         display: 'flex',
@@ -274,6 +338,25 @@ const styles = {
     title3Div: {
         height: 50,
         width: 149
+    },
+    readView: {
+        paddingBottom: 16,
+
+        display: 'flex',
+        flexDirection: 'row-reverse',
+        alignItems: 'center',
+        justifyContent: 'flex-end'
+    },
+    readTxt: {
+        fontSize: 14,
+        color: '#AAAAAA',
+        marginRight: 29
+    },
+    likesView: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 
 };
