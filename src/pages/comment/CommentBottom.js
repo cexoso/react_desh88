@@ -6,7 +6,7 @@ import {List, InputItem, Modal, Button} from '../../components';
 import 'antd-mobile/dist/antd-mobile.css';
 import {postComment} from '../../service/CommentDao';
 import {strNotNull, showToast, postMsg} from '../../service/utils';
-const clientHeight=document.documentElement.clientHeight;
+const clientHeight = document.documentElement.clientHeight;
 
 
 export default class CommentBottom extends Component {
@@ -29,30 +29,33 @@ export default class CommentBottom extends Component {
 
         );
     };
-    changTime=()=>{
+
+    changTime = () => {
         var timer = null;
         var isTop = true;
         let clickTime = this.state.clickTime;
-        clickTime=clickTime+1;
+        clickTime = clickTime + 1;
         if (clickTime > 2) {
-            clickTime = 0;
+            clickTime = 1;
         }
         this.setState({
             clickTime: clickTime
         });
 
-        if(clickTime === 1){
-            timer = setInterval(function(){
+        if (clickTime === 1) {
+            timer = setInterval(function () {
                 var osTop = document.documentElement.scrollTop || document.body.scrollTop;
                 var speed = Math.floor(-osTop / 6);  //速度随距离动态变化，越来越小
                 document.documentElement.scrollTop = document.body.scrollTop = osTop + speed;
                 isTop = true;
-                if(osTop == 0){
+                if (osTop == 0) {
                     clearInterval(timer); //回到顶部时关闭定时器
                 }
-            },30);
-        }else if(clickTime === 2){
-            window.location.hash = '#comment';
+            }, 30);
+        } else if (clickTime === 2) {
+            let height = document.getElementById('comment').offsetTop;
+            window.scrollTo(0,height);
+            clickTime = 0;
         }
     };
 
@@ -80,7 +83,7 @@ export default class CommentBottom extends Component {
 
             <div
                 id="clickName"
-                ref ={this.state.clickTime}
+                ref={this.state.clickTime}
                 style={styles.commentWhiteView}
                 onClick={() => {
                     this.changTime();
@@ -157,7 +160,7 @@ export default class CommentBottom extends Component {
 
         }, err => {
             showToast('评论失败');
-            postMsg(JSON.stringify({err:err}))
+            postMsg(JSON.stringify({err: err}))
         })
 
     }
