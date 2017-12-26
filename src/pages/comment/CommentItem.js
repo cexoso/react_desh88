@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import {Colors, Fonts, Images} from '../../components/Themes';
 import PropTypes from 'prop-types';
 import I18n from '../../service/I18n';
-import {Flex, Text,} from '../../components';
+import {Flex, Text} from '../../components';
 import {getDateDiff, postMsg, isEmptyObject, strNotNull, postClick, PostRoute} from '../../service/utils';
+import {delDeleteComment} from '../../service/CommentDao';
+import {showAlert,showToast} from '../../service/utils';
 
 export default class CommentItem extends Component {
     state = {
@@ -58,7 +60,19 @@ export default class CommentItem extends Component {
 
                             {official ? <Text style={styles.tagPoker}>{I18n.t('official')}</Text> : null}
                             {recommended ? <Text style={styles.featured}>{I18n.t('featured')}</Text> : null}
+                             <div style={{marginLeft:8}}
+                             onClick={()=>{
+                                 showAlert('',I18n.t('confirm_delete'),() => {
+                                     delDeleteComment({id:id}, data => {
+                                         showToast(I18n.t('buy_del_success'))
+                                     }, err => {
 
+                                     });
+                                 });
+
+                             }}>
+                                 <Text style={{fontSize:12,color:'#666666'}}>{I18n.t('buy_del')}</Text>
+                             </div>
                         </Flex>
 
                         <Text style={styles.txtTime}>{getDateDiff(created_at)}</Text>
@@ -66,19 +80,12 @@ export default class CommentItem extends Component {
                     </Flex>
 
                     <Flex.Item/>
+
+
                     <div
-                        style={{padding: 10, paddingRight: 0,display:'flex',flexDirection:'row',alignItems:'center',marginTop: -15}}
                         onClick={() => {
-                            this._like(this.props.item)
-                        }}>
-                        <img
-                            style={styles.likeImg}
-                            src={Images.like} alt=""/>
-                        <span style={styles.likeCount}></span>
-                    </div>
-
-
-                    <div
+                            this._replies(this.props.item)
+                        }}
                         style={{padding: 10, paddingRight: 0,marginLeft:15}}
                         >
                         <img
@@ -99,14 +106,11 @@ export default class CommentItem extends Component {
 
 
         </Flex>
-    }
+    };
 
     _replies = (item) => {
         postClick(JSON.stringify({route: 'replies', param: item}), this.props.history)
     };
-    _like = (item) => {
-        postClick(JSON.stringify({route: 'like', param: item}), this.props.history)
-    }
 }
 const styles = {
     listItem: {
