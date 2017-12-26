@@ -3,7 +3,7 @@ import {Colors, Fonts, Images} from '../../components/Themes';
 import PropTypes from 'prop-types';
 import I18n from '../../service/I18n';
 import {Flex, Text,} from '../../components';
-import {getDateDiff, postMsg, isEmptyObject, strNotNull} from '../../service/utils';
+import {getDateDiff, postMsg, isEmptyObject, strNotNull, postClick} from '../../service/utils';
 
 export default class CommentItem extends Component {
     state = {
@@ -16,7 +16,7 @@ export default class CommentItem extends Component {
             return (
                 <Flex style={styles.flexNum}
                       onClick={() => {
-                          postMsg(JSON.stringify({route: 'comments', param: this.props.item}))
+                          postClick(JSON.stringify({route: 'comments', param: this.props.item}), this.props.history)
 
                       }}>
                     <Text style={styles.txtNum}>{I18n.t('look')}{total_count}{I18n.t('count_reply')}></Text>
@@ -87,7 +87,7 @@ export default class CommentItem extends Component {
     }
 
     _replies = (item) => {
-        postMsg(JSON.stringify({route: 'replies', param: item}))
+        postClick(JSON.stringify({route: 'replies', param: item}),this.props.history)
     }
 }
 const styles = {

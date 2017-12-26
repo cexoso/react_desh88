@@ -120,7 +120,9 @@ export default class CommentList extends Component {
     renderItem = (item, sectionID, rowID) => {
         return (
             <div style={styles.listItem}>
-                <CommentItem item={item}/>
+                <CommentItem
+                    {...this.props}
+                    item={item}/>
             </div>
         )
     }

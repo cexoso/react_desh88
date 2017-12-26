@@ -1,11 +1,11 @@
 import I18n from '../service/I18n';
 import {getWeiXinSign} from '../service/RaceDao';
 import moment from 'moment';
-import {Toast} from 'antd-mobile';
+import {Toast, Modal, Button, WhiteSpace, WingBlank} from 'antd-mobile';
 import _ from 'lodash';
 
-
 export const _lodash = _;
+const alert = Modal.alert;
 
 //WEB和NATIVE通行标签
 export class PostRoute {
@@ -14,6 +14,25 @@ export class PostRoute {
     static RepliesComment = 'replies';
 }
 
+
+export function showAlert(title, content, funcCertain) {
+    const alertInstance = alert(title, content, [
+        {text: I18n.t('cancel'), onPress: () => console.log('cancel'), style: 'default'},
+        {text: I18n.t('certain'), onPress: funcCertain},
+    ]);
+}
+
+
+export function postClick(msg, history) {
+    if (window.originalPostMessage) {
+        let random = Math.random().toString().slice(-6);
+        window.postMessage(random + msg);
+    } else {
+        showAlert(I18n.t('app_name'), "请前往扑客APP查看", () => {
+            history.push(`/loadApp`)
+        })
+    }
+}
 
 export function postMsg(msg) {
     if (window.originalPostMessage) {
