@@ -34,7 +34,6 @@ export default class CommentItem extends Component {
     };
 
     render() {
-        console.log("item1111:", this.props.item)
         const {id, user_id, nick_name, avatar, official, body, total_count, created_at, recommended} = this.props.item;
         return <Flex style={styles.listItem} onClick={() => {
 
@@ -67,12 +66,21 @@ export default class CommentItem extends Component {
                     </Flex>
 
                     <Flex.Item/>
+                    <div
+                        style={{padding: 10, paddingRight: 0,display:'flex',flexDirection:'row',alignItems:'center',marginTop: -17}}
+                        onClick={() => {
+                            this._like(this.props.item)
+                        }}>
+                        <img
+                            style={styles.likeImg}
+                            src={Images.like} alt=""/>
+                        <span style={styles.likeCount}>23</span>
+                    </div>
+
 
                     <div
-                        style={{padding: 10, paddingRight: 0}}
-                        onClick={() => {
-                            this._replies(this.props.item)
-                        }}>
+                        style={{padding: 10, paddingRight: 0,marginLeft:15}}
+                        >
                         <img
                             style={styles.replayImg}
                             src={Images.comment} alt=""/>
@@ -95,12 +103,20 @@ export default class CommentItem extends Component {
 
     _replies = (item) => {
         postClick(JSON.stringify({route: 'replies', param: item}), this.props.history)
+    };
+    _like = (item) => {
+        postClick(JSON.stringify({route: 'like', param: item}), this.props.history)
     }
 }
 const styles = {
     listItem: {
         paddingTop: 13,
         alignItems: 'flex-start'
+    },
+    likeImg: {
+        height: 17,
+        width: 17,
+
     },
     replayImg: {
         height: 18,
@@ -188,5 +204,11 @@ const styles = {
         paddingBottom: 2,
         borderRadius: 2,
         marginLeft: 9
+    },
+    likeCount:{
+        color:'#AAAAAA',
+        fontSize:12,
+        marginLeft:7,
+        marginTop:2
     }
 }
