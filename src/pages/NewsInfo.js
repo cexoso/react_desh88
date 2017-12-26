@@ -165,7 +165,7 @@ export default class NewsInfo extends BaseComponent {
                     info={{id: id, topic_type: 'infos'}}
                     {...this.props}
                 />
-
+                {/*<CommentBottom/>*/}
                 <Footer/>
 
             </div>
