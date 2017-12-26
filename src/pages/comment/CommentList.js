@@ -44,6 +44,7 @@ export default class CommentList extends Component {
             loadMore: true,
             commentList: [],
             dataSource: this.state.dataSource.cloneWithRows([]),
+            page: 1
         });
         setTimeout(() => {
             this.getComment(1)
