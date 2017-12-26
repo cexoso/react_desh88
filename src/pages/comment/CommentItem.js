@@ -3,7 +3,7 @@ import {Colors, Fonts, Images} from '../../components/Themes';
 import PropTypes from 'prop-types';
 import I18n from '../../service/I18n';
 import {Flex, Text,} from '../../components';
-import {getDateDiff, postMsg,isEmptyObject,strNotNull} from '../../service/utils';
+import {getDateDiff, postMsg, isEmptyObject, strNotNull} from '../../service/utils';
 
 export default class CommentItem extends Component {
     state = {
@@ -51,7 +51,13 @@ export default class CommentItem extends Component {
             <Flex style={styles.flexUser}>
                 <Flex style={{width: '100%'}}>
                     <Flex style={styles.flexName}>
-                        <Text style={styles.txtName}>{nick_name}</Text>
+                        <Flex>
+                            <Text style={styles.txtName}>{nick_name}</Text>
+                            {official ? <Text style={styles.tagPoker}>{I18n.t('official')}</Text> : null}
+
+
+                        </Flex>
+
                         <Text style={styles.txtTime}>{getDateDiff(created_at)}</Text>
 
                     </Flex>
@@ -150,5 +156,16 @@ const styles = {
         fontSize: 10,
         color: Colors._CCC,
         marginTop: 3
+    },
+    tagPoker: {
+        color: "#FFE9AD",
+        backgroundColor: '#161718',
+        fontSize: 10,
+        paddingLeft: 5,
+        paddingRight: 5,
+        paddingTop: 2,
+        paddingBottom: 2,
+        borderRadius: 2,
+        marginLeft: 5
     }
 }
