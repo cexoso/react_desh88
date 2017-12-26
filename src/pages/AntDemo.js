@@ -5,14 +5,18 @@
  */
 import React, {PureComponent} from 'react';
 import {Flex, Button, WhiteSpace} from 'antd-mobile';
-import 'antd-mobile/dist/antd-mobile.css';
 import CommentList from './comment/CommentList'
 
 export default class AntDemo extends PureComponent {
 
     render() {
-        return <div>
-            <CommentList/>
-        </div>
+        return <Flex>
+            <Button>aksjhdfkljakjsdh</Button>
+            <Button>aksjhdfkljakjsdh</Button>
+            <Button>aksjhdfkljakjsdh</Button>
+            <Button>aksjhdfkljakjsdh</Button>
+            <Button>aksjhdfkljakjsdh</Button>
+
+        </Flex>
     }
 }

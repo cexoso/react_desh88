@@ -3,7 +3,6 @@ import {Colors, Fonts, Images} from '../../components/Themes';
 import I18n from '../../service/I18n';
 import PropTypes from 'prop-types';
 import {List, InputItem, Modal, Button} from '../../components';
-import 'antd-mobile/dist/antd-mobile.css';
 import {postComment} from '../../service/CommentDao';
 import {strNotNull, showToast, postMsg} from '../../service/utils';
 const clientHeight = document.documentElement.clientHeight;

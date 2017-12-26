@@ -5,7 +5,6 @@
  */
 import React, {Component} from 'react';
 import {Flex, ListView, Text} from 'antd-mobile';
-import 'antd-mobile/dist/antd-mobile.css';
 import {Colors, Images} from '../../components/Themes';
 import CommentItem from './CommentItem';
 import {getCommentsInfo} from '../../service/CommentDao';

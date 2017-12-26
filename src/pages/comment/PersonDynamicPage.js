@@ -5,7 +5,6 @@
  */
 import React, {Component} from 'react';
 import {Flex, ListView, Text} from 'antd-mobile';
-import 'antd-mobile/dist/antd-mobile.css';
 import {getPersonDynamic} from '../../service/CommentDao';
 
 export default class PersonDynamicPage extends Component {
