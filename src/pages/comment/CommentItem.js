@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import {Colors, Fonts, Images} from '../../components/Themes';
 import PropTypes from 'prop-types';
 import I18n from '../../service/I18n';
-import {Flex, Text,} from '../../components';
+import {Flex, Text} from '../../components';
 import {getDateDiff, postMsg, isEmptyObject, strNotNull, postClick, PostRoute} from '../../service/utils';
+import {delDeleteComment} from '../../service/CommentDao';
+import {showAlert,showToast} from '../../service/utils';
 
 export default class CommentItem extends Component {
     state = {
@@ -34,8 +36,7 @@ export default class CommentItem extends Component {
     };
 
     render() {
-
-        const {id, user_id, nick_name, avatar, official, body, total_count, created_at} = this.props.item;
+        const {id, user_id, nick_name, avatar, official, body, total_count, created_at, recommended} = this.props.item;
         return <Flex style={styles.listItem} onClick={() => {
 
         }}>
@@ -56,9 +57,22 @@ export default class CommentItem extends Component {
                     <Flex style={styles.flexName}>
                         <Flex>
                             <Text style={styles.txtName}>{nick_name}</Text>
+
                             {official ? <Text style={styles.tagPoker}>{I18n.t('official')}</Text> : null}
+                            {recommended ? <Text style={styles.featured}>{I18n.t('featured')}</Text> : null}
+                             <div style={{marginLeft:8}}
+                             onClick={()=>{
+                                 showAlert('',I18n.t('confirm_delete'),() => {
+                                     delDeleteComment({id:id}, data => {
+                                         showToast(I18n.t('buy_del_success'))
+                                     }, err => {
 
+                                     });
+                                 });
 
+                             }}>
+                                 <Text style={{fontSize:12,color:'#666666'}}>{I18n.t('buy_del')}</Text>
+                             </div>
                         </Flex>
 
                         <Text style={styles.txtTime}>{getDateDiff(created_at)}</Text>
@@ -67,11 +81,13 @@ export default class CommentItem extends Component {
 
                     <Flex.Item/>
 
+
                     <div
-                        style={{padding: 10, paddingRight: 0}}
                         onClick={() => {
                             this._replies(this.props.item)
-                        }}>
+                        }}
+                        style={{padding: 10, paddingRight: 0,marginLeft:15}}
+                        >
                         <img
                             style={styles.replayImg}
                             src={Images.comment} alt=""/>
@@ -90,20 +106,26 @@ export default class CommentItem extends Component {
 
 
         </Flex>
-    }
+    };
 
     _replies = (item) => {
         postClick(JSON.stringify({route: 'replies', param: item}), this.props.history)
-    }
+    };
 }
 const styles = {
     listItem: {
         paddingTop: 13,
         alignItems: 'flex-start'
     },
+    likeImg: {
+        height: 17,
+        width: 17,
+
+    },
     replayImg: {
         height: 18,
         width: 20,
+        marginTop: -10,
         marginLeft: 10
     },
     flexName: {
@@ -157,8 +179,8 @@ const styles = {
 
     },
     txtName: {
-        color: Colors._666,
-        fontSize: 14
+        color: '#4990E2',
+        fontSize: 12
     },
     txtTime: {
         fontSize: 10,
@@ -174,6 +196,23 @@ const styles = {
         paddingTop: 2,
         paddingBottom: 2,
         borderRadius: 2,
-        marginLeft: 5
+        marginLeft: 14
+    },
+    featured: {
+        color: "#FFFFFF",
+        backgroundColor: '#A1C1E6',
+        fontSize: 10,
+        paddingLeft: 5,
+        paddingRight: 5,
+        paddingTop: 2,
+        paddingBottom: 2,
+        borderRadius: 2,
+        marginLeft: 9
+    },
+    likeCount:{
+        color:'#AAAAAA',
+        fontSize:12,
+        marginLeft:7,
+        marginTop:2
     }
 }

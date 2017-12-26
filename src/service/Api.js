@@ -23,8 +23,14 @@ export default {
     video_comment_info: video_comment_info,
     video_likes_info: video_likes_info,
     personDynamic_info: personDynamic_info,
-    topic_comments: 'topic/comments'
+    topic_comments: 'topic/comments',
+    delete_comment:delete_comment
 
+}
+
+function delete_comment(body) {
+    const {id} = body;
+    return `topic/comments/${id}`;
 }
 
 function sub_race_info(body) {
