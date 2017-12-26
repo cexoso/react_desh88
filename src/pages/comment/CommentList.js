@@ -154,6 +154,8 @@ export default class CommentList extends Component {
         return (
             <div style={styles.listItem}>
                 <CommentItem
+                    LoadComment={this.LoadComment}
+                    user_id={this.props.user_id}
                     {...this.props}
                     item={item}/>
             </div>

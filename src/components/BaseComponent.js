@@ -13,8 +13,11 @@ export default class BaseComponent extends Component {
         super(props);
         this._render = this._render.bind(this);
         const {lang} = this.props.match.params;
-        let accessToken = getURLParamKey('accessToken', this.props.location.search);
-        this.body = getURLParamKey('body', this.props.location.search);
+        let search = this.props.location.search;
+        let accessToken = getURLParamKey('accessToken', search);
+        let user_id = getURLParamKey('user_id', search);
+        this.user_id = strNotNull(user_id) ? user_id : '';
+        this.body = getURLParamKey('body', search);
 
 
         setToken(accessToken);

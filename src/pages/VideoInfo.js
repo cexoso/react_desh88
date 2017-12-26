@@ -257,6 +257,7 @@ export default class VideoInfo extends BaseComponent {
                 {this.read()}
 
                 <CommentList
+                    user_id={this.user_id}
                     ref={ref => this.commentList = ref}
                     info={{id: video_id, topic_type: 'videos'}}
                     {...this.props}

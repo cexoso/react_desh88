@@ -169,6 +169,7 @@ export default class NewsInfo extends BaseComponent {
                 {this.content()}
 
                 <CommentList
+                    user_id={this.user_id}
                     ref={ref => this.commentList = ref}
                     info={{id: id, topic_type: 'infos'}}
                     {...this.props}
