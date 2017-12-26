@@ -68,7 +68,7 @@ export default class CommentItem extends Component {
                     <Flex.Item/>
 
                     <div
-                        style={{padding:10,paddingRight:0}}
+                        style={{padding: 10, paddingRight: 0}}
                         onClick={() => {
                             this._replies(this.props.item)
                         }}>
@@ -104,8 +104,8 @@ const styles = {
     replayImg: {
         height: 18,
         width: 20,
-        marginLeft:10,
-        marginTop:-10
+        marginTop:-10,
+        marginLeft: 10
     },
     flexName: {
         flexDirection: 'column',
@@ -149,7 +149,7 @@ const styles = {
         height: 50,
         width: 50,
         marginLeft: 17,
-        padding:5
+        padding: 5
     },
     avatar: {
         height: 38,

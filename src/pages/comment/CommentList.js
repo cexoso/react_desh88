@@ -35,25 +35,28 @@ export default class CommentList extends Component {
     };
 
     componentDidMount() {
-        this.getComment();
+        this.getComment(this.state.page);
     }
 
 
     LoadComment = () => {
         this.setState({
             loadMore: true,
+            commentList: [],
+            dataSource: this.state.dataSource.cloneWithRows([]),
+            page: 1
         });
         setTimeout(() => {
-            this.getComment()
+            this.getComment(1)
         }, 300)
     };
 
-    getComment = () => {
+    getComment = (page) => {
 
         const {id, topic_type} = this.props.info;
         const body = {
             id: id,
-            page: this.state.page,
+            page,
             page_size: 20,
             topic_type: topic_type,
         };
@@ -114,7 +117,7 @@ export default class CommentList extends Component {
 
     onEndReached = () => {
         if (this.state.loadMore)
-            this.getComment();
+            this.getComment(this.state.page);
     };
 
     renderItem = (item, sectionID, rowID) => {
