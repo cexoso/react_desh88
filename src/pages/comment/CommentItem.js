@@ -34,8 +34,8 @@ export default class CommentItem extends Component {
     };
 
     render() {
-
-        const {id, user_id, nick_name, avatar, official, body, total_count, created_at} = this.props.item;
+        console.log("item1111:", this.props.item)
+        const {id, user_id, nick_name, avatar, official, body, total_count, created_at, recommended} = this.props.item;
         return <Flex style={styles.listItem} onClick={() => {
 
         }}>
@@ -56,8 +56,9 @@ export default class CommentItem extends Component {
                     <Flex style={styles.flexName}>
                         <Flex>
                             <Text style={styles.txtName}>{nick_name}</Text>
-                            {official ? <Text style={styles.tagPoker}>{I18n.t('official')}</Text> : null}
 
+                            {official ? <Text style={styles.tagPoker}>{I18n.t('official')}</Text> : null}
+                            {recommended ? <Text style={styles.featured}>{I18n.t('featured')}</Text> : null}
 
                         </Flex>
 
@@ -104,7 +105,7 @@ const styles = {
     replayImg: {
         height: 18,
         width: 20,
-        marginTop:-10,
+        marginTop: -10,
         marginLeft: 10
     },
     flexName: {
@@ -175,6 +176,17 @@ const styles = {
         paddingTop: 2,
         paddingBottom: 2,
         borderRadius: 2,
-        marginLeft: 5
+        marginLeft: 14
+    },
+    featured: {
+        color: "#FFFFFF",
+        backgroundColor: '#A1C1E6',
+        fontSize: 10,
+        paddingLeft: 5,
+        paddingRight: 5,
+        paddingTop: 2,
+        paddingBottom: 2,
+        borderRadius: 2,
+        marginLeft: 9
     }
 }
