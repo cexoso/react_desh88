@@ -158,8 +158,8 @@ const styles = {
 
     },
     txtName: {
-        color: Colors._666,
-        fontSize: 14
+        color: '#4990E2',
+        fontSize: 12
     },
     txtTime: {
         fontSize: 10,
