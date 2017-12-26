@@ -12,6 +12,7 @@ export class PostRoute {
     static NewsInfo = 'NewsInfo';
     static CommentList = 'comments';
     static RepliesComment = 'replies';
+    static ClickAvatar = 'ClickAvatar';
 }
 
 

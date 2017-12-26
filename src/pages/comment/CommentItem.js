@@ -3,7 +3,7 @@ import {Colors, Fonts, Images} from '../../components/Themes';
 import PropTypes from 'prop-types';
 import I18n from '../../service/I18n';
 import {Flex, Text,} from '../../components';
-import {getDateDiff, postMsg, isEmptyObject, strNotNull, postClick} from '../../service/utils';
+import {getDateDiff, postMsg, isEmptyObject, strNotNull, postClick, PostRoute} from '../../service/utils';
 
 export default class CommentItem extends Component {
     state = {
@@ -41,7 +41,10 @@ export default class CommentItem extends Component {
         }}>
             <div style={styles.avatarView}
                  onClick={() => {
-
+                     postClick(JSON.stringify({
+                         route: PostRoute.ClickAvatar,
+                         param: this.props.item
+                     }), this.props.history)
                  }}>
                 <img
                     alt=""
@@ -87,7 +90,7 @@ export default class CommentItem extends Component {
     }
 
     _replies = (item) => {
-        postClick(JSON.stringify({route: 'replies', param: item}),this.props.history)
+        postClick(JSON.stringify({route: 'replies', param: item}), this.props.history)
     }
 }
 const styles = {
