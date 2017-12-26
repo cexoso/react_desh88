@@ -54,6 +54,10 @@ export default class NewsInfo extends BaseComponent {
                         });
                         break;
 
+                    case PostRoute.SCROLL_COMMENT_TOP:
+                        this.scrollComment();
+                        break;
+
                 }
             } catch (e) {
                 throw Error(e)
@@ -65,6 +69,10 @@ export default class NewsInfo extends BaseComponent {
     refreshComment = () => {
 
         this.commentList && this.commentList.LoadComment();
+    };
+
+    scrollComment = () => {
+        this.commentList && this.commentList.scrollTop();
     };
 
     refreshNews = () => {

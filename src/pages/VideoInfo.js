@@ -44,6 +44,9 @@ export default class VideoInfo extends BaseComponent {
                             current_user_like: !current_user_like
                         });
                         break;
+                    case PostRoute.SCROLL_COMMENT_TOP:
+                        this.scrollComment();
+                        break;
 
                 }
             } catch (e) {
@@ -57,6 +60,10 @@ export default class VideoInfo extends BaseComponent {
     refreshComment = () => {
 
         this.commentList && this.commentList.LoadComment();
+    };
+
+    scrollComment = () => {
+        this.commentList && this.commentList.scrollTop();
     };
 
     refresh = () => {
