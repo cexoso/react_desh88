@@ -67,14 +67,14 @@ export default class CommentItem extends Component {
 
                     <Flex.Item/>
                     <div
-                        style={{padding: 10, paddingRight: 0,display:'flex',flexDirection:'row',alignItems:'center',marginTop: -17}}
+                        style={{padding: 10, paddingRight: 0,display:'flex',flexDirection:'row',alignItems:'center',marginTop: -15}}
                         onClick={() => {
                             this._like(this.props.item)
                         }}>
                         <img
                             style={styles.likeImg}
                             src={Images.like} alt=""/>
-                        <span style={styles.likeCount}>23</span>
+                        <span style={styles.likeCount}></span>
                     </div>
 
 
