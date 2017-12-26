@@ -104,7 +104,8 @@ const styles = {
     replayImg: {
         height: 18,
         width: 20,
-        marginLeft:10
+        marginLeft:10,
+        marginTop:-10
     },
     flexName: {
         flexDirection: 'column',
