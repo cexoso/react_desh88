@@ -255,7 +255,7 @@ export default class VideoInfo extends BaseComponent {
                 </div>
 
                 {this.read()}
-                <div style={{height:1,width:'100%',backgroundColor:'#ECECEE'}}/>
+                <div style={{height:1,marginLeft:17,marginRight:16,backgroundColor:'#ECECEE'}}/>
                 <CommentList
                     user_id={this.user_id}
                     ref={ref => this.commentList = ref}
