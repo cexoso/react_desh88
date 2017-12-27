@@ -10,13 +10,26 @@ import CommentList from './comment/CommentList'
 export default class AntDemo extends PureComponent {
 
     render() {
-        return <Flex style={{flexDirection: 'column', width: '100%'}}>
-            <Button>aksjhdfkljakjsdh</Button>
-            <Button>aksjhdfkljakjsdh</Button>
-            <Button>aksjhdfkljakjsdh</Button>
-            <Button>aksjhdfkljakjsdh</Button>
-            <Button>aksjhdfkljakjsdh</Button>
+        return <div style={styles.container}>
+            <Button
+                style={{width: 100, fontSize: 14, color: 'red', backgroundColor: 'transparent', borderColor: 'red'}}
+                size={'small'}
+            >按钮</Button>
 
-        </Flex>
+
+        </div>
+    }
+}
+
+const styles = {
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+
     }
 }
