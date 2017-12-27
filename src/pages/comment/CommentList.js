@@ -200,7 +200,7 @@ const styles = {
 
     listItem: {
         width: '100%',
-        backgroundColor: '#F5F5F5'
+        backgroundColor: '#FFFFFF'
     },
     replayImg: {
         height: 18,
