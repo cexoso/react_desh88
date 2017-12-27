@@ -167,7 +167,7 @@ export default class NewsInfo extends BaseComponent {
             <div>
 
                 {this.content()}
-
+                <div style={{height:1,width:'100%',marginLeft:17,marginRight:17}}/>
                 <CommentList
                     user_id={this.user_id}
                     ref={ref => this.commentList = ref}
@@ -189,7 +189,8 @@ const styles = {
         display: 'flex',
         flexDirection: 'row-reverse',
         alignItems: 'center',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
+        backgroundColor:'#FFFFFF'
     },
     readTxt: {
         fontSize: 14,
