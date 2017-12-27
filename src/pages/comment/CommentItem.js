@@ -5,7 +5,7 @@ import I18n from '../../service/I18n';
 import {Flex, Text} from '../../components';
 import {getDateDiff, postMsg, isEmptyObject, strNotNull, postClick, PostRoute} from '../../service/utils';
 import {delDeleteComment} from '../../service/CommentDao';
-import {showAlert,showToast} from '../../service/utils';
+import {showAlert, showToast} from '../../service/utils';
 
 export default class CommentItem extends Component {
     state = {
@@ -35,6 +35,23 @@ export default class CommentItem extends Component {
             return Images.home_avatar;
     };
 
+
+    isMine = (user_id) => {
+        return this.props.user_id === user_id;
+    };
+
+
+    deleteComment = (id) => {
+        showAlert('', I18n.t('confirm_delete'), () => {
+            delDeleteComment({id: id}, data => {
+                showToast(I18n.t('buy_del_success'));
+                this.props.LoadComment && this.props.LoadComment()
+            }, err => {
+
+            });
+        });
+    };
+
     render() {
         const {id, user_id, nick_name, avatar, official, body, total_count, created_at, recommended} = this.props.item;
         return <Flex style={styles.listItem} onClick={() => {
@@ -60,19 +77,12 @@ export default class CommentItem extends Component {
 
                             {official ? <Text style={styles.tagPoker}>{I18n.t('official')}</Text> : null}
                             {recommended ? <Text style={styles.featured}>{I18n.t('featured')}</Text> : null}
-                             <div style={{marginLeft:8}}
-                                 onClick={()=>{
-                                     showAlert('',I18n.t('confirm_delete'),() => {
-                                         delDeleteComment({id:id}, data => {
-                                             showToast(I18n.t('buy_del_success'))
-                                         }, err => {
 
-                                         });
-                                     });
+                            {this.isMine(user_id) ? <div style={{marginLeft: 8}}
+                                                         onClick={() => this.deleteComment(id)}>
+                                <Text style={{fontSize: 12, color: '#666666'}}>{I18n.t('buy_del')}</Text>
+                            </div> : null}
 
-                                 }}>
-                                     <Text style={{fontSize:12,color:'#666666'}}>{I18n.t('buy_del')}</Text>
-                             </div>
                         </Flex>
 
                         <Text style={styles.txtTime}>{getDateDiff(created_at)}</Text>
@@ -86,8 +96,8 @@ export default class CommentItem extends Component {
                         onClick={() => {
                             this._replies(this.props.item)
                         }}
-                        style={{padding: 10, paddingRight: 0,marginLeft:15}}
-                        >
+                        style={{padding: 10, paddingRight: 0, marginLeft: 15}}
+                    >
                         <img
                             style={styles.replayImg}
                             src={Images.comment} alt=""/>
@@ -209,10 +219,10 @@ const styles = {
         borderRadius: 2,
         marginLeft: 9
     },
-    likeCount:{
-        color:'#AAAAAA',
-        fontSize:12,
-        marginLeft:7,
-        marginTop:2
+    likeCount: {
+        color: '#AAAAAA',
+        fontSize: 12,
+        marginLeft: 7,
+        marginTop: 2
     }
 }
