@@ -204,7 +204,7 @@ export default class VideoInfo extends BaseComponent {
                     <span style={styles.readTxt}>{total_likes}</span>
                 </div>
 
-                <span style={styles.readTxt}>阅读 {total_views}</span>
+                <span style={styles.readTxt}>{I18n.t('read')} {total_views}</span>
                 <div style={{flex: 1}}/>
             </div>
         )
@@ -255,7 +255,7 @@ export default class VideoInfo extends BaseComponent {
                 </div>
 
                 {this.read()}
-
+                <div style={{height:1,width:'100%',backgroundColor:'#ECECEE'}}/>
                 <CommentList
                     user_id={this.user_id}
                     ref={ref => this.commentList = ref}
