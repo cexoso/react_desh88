@@ -61,17 +61,17 @@ export default class CommentItem extends Component {
                             {official ? <Text style={styles.tagPoker}>{I18n.t('official')}</Text> : null}
                             {recommended ? <Text style={styles.featured}>{I18n.t('featured')}</Text> : null}
                              <div style={{marginLeft:8}}
-                             onClick={()=>{
-                                 showAlert('',I18n.t('confirm_delete'),() => {
-                                     delDeleteComment({id:id}, data => {
-                                         showToast(I18n.t('buy_del_success'))
-                                     }, err => {
+                                 onClick={()=>{
+                                     showAlert('',I18n.t('confirm_delete'),() => {
+                                         delDeleteComment({id:id}, data => {
+                                             showToast(I18n.t('buy_del_success'))
+                                         }, err => {
 
+                                         });
                                      });
-                                 });
 
-                             }}>
-                                 <Text style={{fontSize:12,color:'#666666'}}>{I18n.t('buy_del')}</Text>
+                                 }}>
+                                     <Text style={{fontSize:12,color:'#666666'}}>{I18n.t('buy_del')}</Text>
                              </div>
                         </Flex>
 

@@ -11,7 +11,7 @@ import {strNotNull} from './utils'
 
 /*删除评论接口*/
 export function delDeleteComment(body, resolve, reject) {
-    del(Api.delete_comment, body, {}, ret => {
+    del(Api.delete_comment, body, ret => {
         resolve(ret.data)
     }, reject)
 }
