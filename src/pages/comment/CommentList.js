@@ -5,7 +5,6 @@
  */
 import React, {Component} from 'react';
 import {Flex, ListView, Text} from 'antd-mobile';
-import 'antd-mobile/dist/antd-mobile.css';
 import {Colors, Images} from '../../components/Themes';
 import CommentItem from './CommentItem';
 import {getCommentsInfo} from '../../service/CommentDao';
@@ -29,10 +28,41 @@ export default class CommentList extends Component {
             commentList: array,
             page: 1,
             loadMore: true,
-            total_count: 0
+            total_count: 0,
+            clickTime: 0
         }
 
     };
+
+    scrollTop = () => {
+        let timer = null;
+        let isTop = true;
+        let clickTime = this.state.clickTime;
+        clickTime = clickTime + 1;
+        if (clickTime > 2) {
+            clickTime = 1;
+        }
+        this.setState({
+            clickTime: clickTime
+        });
+
+        if (clickTime === 1) {
+            timer = setInterval(function () {
+                let osTop = document.documentElement.scrollTop || document.body.scrollTop;
+                let speed = Math.floor(-osTop / 6);  //速度随距离动态变化，越来越小
+                document.documentElement.scrollTop = document.body.scrollTop = osTop + speed;
+                isTop = true;
+                if (osTop === 0) {
+                    clearInterval(timer); //回到顶部时关闭定时器
+                }
+            }, 30);
+        } else if (clickTime === 2) {
+            let height = document.getElementById('comment').offsetTop;
+            window.scrollTo(0, height);
+            clickTime = 0;
+        }
+    };
+
 
     componentDidMount() {
         this.getComment(this.state.page);
@@ -124,6 +154,8 @@ export default class CommentList extends Component {
         return (
             <div style={styles.listItem}>
                 <CommentItem
+                    LoadComment={this.LoadComment}
+                    user_id={this.props.user_id}
                     {...this.props}
                     item={item}/>
             </div>

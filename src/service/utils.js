@@ -13,6 +13,7 @@ export class PostRoute {
     static CommentList = 'comments';
     static RepliesComment = 'replies';
     static ClickAvatar = 'ClickAvatar';
+    static SCROLL_COMMENT_TOP = 'SCROLL_COMMENT_TOP';
 }
 
 
