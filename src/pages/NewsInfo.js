@@ -17,6 +17,7 @@ import {Colors, Fonts, Images} from '../components/Themes';
 import {BaseComponent,MarkDown} from '../components';
 import Footer from "../components/Footer";
 import CommentBottom from './comment/CommentBottom';
+import I18n from '../service/I18n';
 
 export default class NewsInfo extends BaseComponent {
 
@@ -152,7 +153,7 @@ export default class NewsInfo extends BaseComponent {
                     <span style={styles.readTxt}>{this.state.total_likes}</span>
                 </div>
 
-                <span style={styles.readTxt}>阅读 {total_views}</span>
+                <span style={styles.readTxt}>{I18n.t('read')} {total_views}</span>
                 <div style={{flex: 1}}/>
             </div>
         )
