@@ -212,7 +212,7 @@ const styles = {
     },
     flexUser: {
         flexDirection: 'column',
-        width: '100%',
+
         alignItems: 'flex-start',
         paddingLeft: 12,
         paddingRight: 17

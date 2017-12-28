@@ -32,7 +32,7 @@ export default class Comment extends Component {
         return(
             <div style={styles.container}>
 
-                <div style={{width:'100%',height:2,backgroundColor:'#ECECEE',marginLeft:16,marginRight:17}}/>
+                <div style={{height:2,backgroundColor:'#ECECEE',marginLeft:16,marginRight:17}}/>
                 <div style={styles.top}>
                     <span style={styles.topTxt}>全部评论（555）</span>
                 </div>
