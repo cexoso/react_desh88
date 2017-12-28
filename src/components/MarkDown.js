@@ -70,7 +70,7 @@ export default class MarkDown extends Component {
         if (this.state.modelVisible)
             return <div style={styles.container}>
                 <PhotoSwipeGallery
-                    isOpen={false}
+                    isOpen={true}
                     items={this.images}
                     onClose={this.handleClose}
                     options={options}
