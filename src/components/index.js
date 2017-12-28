@@ -5,8 +5,9 @@ import Colors from './Themes/Colors';
 import Carousel from './carousel';
 import {List, Button, WhiteSpace, InputItem,Flex,Modal,Text,ListView} from 'antd-mobile';
 import BaseComponent from './BaseComponent';
+import VideoPlayer from './VideoPlayer';
 
 export {
     MarkDown, Footer, Images, Colors, Carousel, List, Button, WhiteSpace,
-    InputItem,Flex,Modal,BaseComponent,Text,ListView
+    InputItem,Flex,Modal,BaseComponent,Text,ListView,VideoPlayer
 }

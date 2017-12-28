@@ -14,7 +14,7 @@ import {
 import {default_img} from '../components/constant';
 import CommentList from './comment/CommentList'
 import {Colors, Fonts, Images} from '../components/Themes';
-import {BaseComponent} from '../components';
+import {BaseComponent,MarkDown} from '../components';
 import Footer from "../components/Footer";
 import CommentBottom from './comment/CommentBottom';
 
@@ -129,7 +129,7 @@ export default class NewsInfo extends BaseComponent {
                         <span>来源于: {source}  </span>
                     </div>
                     <div className="App-nav">
-                        <div id="images" dangerouslySetInnerHTML={this.desc(description)}></div>
+                        <MarkDown description={description}/>
                     </div>
 
                     {this.read()}
