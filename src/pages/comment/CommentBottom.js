@@ -134,7 +134,7 @@ export default class CommentBottom extends Component {
                 <div
                     onClick={this.release}
                     style={styles.release}>
-                    <span style={{color: Colors.txt_444, fontSize: 15}}>评论</span>
+                    <span style={{color: Colors.txt_444, fontSize: 15}}>{I18n.t('comment')}</span>
                 </div>
 
 
@@ -145,7 +145,7 @@ export default class CommentBottom extends Component {
 
     release = () => {
         if (!strNotNull(this.comment)) {
-            showToast('评论不能为空')
+            showToast(I18n.t('comment_not_empty'))
         }
 
         const body = {
@@ -155,10 +155,10 @@ export default class CommentBottom extends Component {
         };
 
         postComment(body, data => {
-            showToast('评论成功');
+            showToast(I18n.t('comment_success'));
 
         }, err => {
-            showToast('评论失败');
+            showToast(I18n.t('comment_failed'));
             postMsg(JSON.stringify({err: err}))
         })
 
