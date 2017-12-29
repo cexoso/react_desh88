@@ -261,6 +261,7 @@ export default class CommentList extends Component {
         });
     };
 
+
     toDynanic = (item) => {
         postClick(JSON.stringify({
             route: PostRoute.ClickAvatar,
