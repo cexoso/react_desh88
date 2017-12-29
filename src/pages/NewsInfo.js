@@ -127,7 +127,7 @@ export default class NewsInfo extends BaseComponent {
                     <div className="App-header">
                         <h2>{title}</h2>
                         <span className="App-header-time">{date} </span>
-                        <span>来源于: {source}  </span>
+                        <span>{I18n.t('from_place')}: {source}  </span>
                     </div>
                     <div className="App-nav">
                         <MarkDown description={description}/>
@@ -153,7 +153,7 @@ export default class NewsInfo extends BaseComponent {
                     <span style={styles.readTxt}>{this.state.total_likes}</span>
                 </div>
 
-                <span style={styles.readTxt}>阅读 {total_views}</span>
+                <span style={styles.readTxt}>{I18n.t('read')} {total_views}</span>
                 <div style={{flex: 1}}/>
             </div>
         )
