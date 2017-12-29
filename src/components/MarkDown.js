@@ -41,13 +41,14 @@ export default class MarkDown extends Component {
         let imgs = document.getElementById('marked').getElementsByTagName('img');
         _lodash.forEach(imgs, (item, index) => {
 
+
             if (item.complete) {
-                console.log(item.src, item.width, item.height);
-                this.pushImgs(item, index);
+
+                this.pushImgs(item);
             } else {
                 item.onload = () => {
-                    console.log(item.src, item.width, item.height);
-                    this.pushImgs(item, index);
+
+                    this.pushImgs(item);
                 };
             }
 
@@ -55,7 +56,8 @@ export default class MarkDown extends Component {
         })
     }
 
-    pushImgs = (item, index) => {
+    pushImgs = (item) => {
+
         this.images.push({
             src: item.src,
             w: item.width,
@@ -64,28 +66,26 @@ export default class MarkDown extends Component {
 
         });
 
+
         item.addEventListener('click', () => {
-            this.markImageClick(index)
-        })
+            this.markImageClick(this.images.findIndex(function (img) {
+                return img.src === item.src
+            }))
+        });
+
+
     };
 
 
     markImageClick = (index) => {
 
+        console.log(index);
         this.setState({
             options: {
                 index
             },
             isOpen: true
         })
-    };
-
-    beforeChange = (instance, change) => {
-        // console.log(instance, change)
-    };
-
-    imageLoadComplete = (instance, index, item) => {
-        console.log(index, item)
     };
 
 
@@ -97,8 +97,7 @@ export default class MarkDown extends Component {
                 items={_lodash.uniqBy(this.images, 'src')}
                 options={options}
                 onClose={this.handleClose}
-                beforeChange={this.beforeChange}
-                imageLoadComplete={this.imageLoadComplete}
+
             />
     };
 
