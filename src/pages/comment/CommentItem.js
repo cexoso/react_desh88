@@ -52,6 +52,13 @@ export default class CommentItem extends Component {
         });
     };
 
+    toDynanic = (item) => {
+        postClick(JSON.stringify({
+            route: PostRoute.ClickAvatar,
+            param: item
+        }), this.props.history)
+    };
+
     render() {
         const {id, user_id, nick_name, avatar, official, body, total_count, created_at, recommended} = this.props.item;
         return <Flex style={styles.listItem} onClick={() => {
@@ -59,10 +66,7 @@ export default class CommentItem extends Component {
         }}>
             <div style={styles.avatarView}
                  onClick={() => {
-                     postClick(JSON.stringify({
-                         route: PostRoute.ClickAvatar,
-                         param: this.props.item
-                     }), this.props.history)
+                     this.toDynanic(this.props.item)
                  }}>
                 <img
                     alt=""
@@ -73,7 +77,11 @@ export default class CommentItem extends Component {
                 <Flex style={{width: '100%'}}>
                     <Flex style={styles.flexName}>
                         <Flex>
-                            <Text style={styles.txtName}>{nick_name}</Text>
+                            <Text
+                                onClick={() => {
+                                    this.toDynanic(this.props.item)
+                                }}
+                                style={styles.txtName}>{nick_name}</Text>
 
                             {official ? <Text style={styles.tagPoker}>{I18n.t('official')}</Text> : null}
                             {recommended ? <Text style={styles.featured}>{I18n.t('featured')}</Text> : null}

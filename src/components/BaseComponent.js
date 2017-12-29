@@ -4,7 +4,6 @@
  * Desc:
  */
 import React, {Component} from 'react';
-import 'antd-mobile/dist/antd-mobile.css';
 import {setLang, setToken} from '../service/RaceDao';
 import {getURLParamKey, postMsg, strNotNull} from '../service/utils';
 
