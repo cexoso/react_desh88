@@ -111,7 +111,7 @@ export default class CommentItem extends Component {
 
                 {this.read(total_count)}
 
-                <div style={{width: '100%', height: 1, backgroundColor: '#DDDDDD', marginTop: 8, marginRight: 17}}/>
+                <div style={{height: 1, backgroundColor: '#DDDDDD', marginTop: 8, marginRight: 17}}/>
             </Flex>
 
 
