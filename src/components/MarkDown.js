@@ -14,9 +14,7 @@ renderer.paragraph = function (text) {
 export default class MarkDown extends Component {
 
     state = {
-        options: {
-
-        },
+        options: {},
         isOpen: false
     };
 
@@ -43,20 +41,34 @@ export default class MarkDown extends Component {
         let imgs = document.getElementById('marked').getElementsByTagName('img');
         _lodash.forEach(imgs, (item, index) => {
 
-            console.log(item.src, item.width, item.height)
-            this.images.push({
-                src: item.src,
-                w: item.width,
-                h: item.height,
-                title: ''
+            if (item.complete) {
+                console.log(item.src, item.width, item.height);
+                this.pushImgs(item, index);
+            } else {
+                item.onload = () => {
+                    console.log(item.src, item.width, item.height);
+                    this.pushImgs(item, index);
+                };
+            }
 
-            });
 
-            item.addEventListener('click', () => {
-                this.markImageClick(index)
-            })
         })
     }
+
+    pushImgs = (item, index) => {
+        this.images.push({
+            src: item.src,
+            w: item.width,
+            h: item.height,
+            title: ''
+
+        });
+
+        item.addEventListener('click', () => {
+            this.markImageClick(index)
+        })
+    };
+
 
     markImageClick = (index) => {
 
@@ -79,14 +91,15 @@ export default class MarkDown extends Component {
 
     renderModel = () => {
         const {options, isOpen} = this.state;
-        return <PhotoSwipe
-            isOpen={isOpen}
-            items={this.images}
-            options={options}
-            onClose={this.handleClose}
-            beforeChange={this.beforeChange}
-            imageLoadComplete={this.imageLoadComplete}
-        />
+        if (this.images.length > 0)
+            return <PhotoSwipe
+                isOpen={isOpen}
+                items={_lodash.uniqBy(this.images, 'src')}
+                options={options}
+                onClose={this.handleClose}
+                beforeChange={this.beforeChange}
+                imageLoadComplete={this.imageLoadComplete}
+            />
     };
 
 
