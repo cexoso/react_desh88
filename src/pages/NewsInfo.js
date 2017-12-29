@@ -14,10 +14,9 @@ import {
 import {default_img} from '../components/constant';
 import CommentList from './comment/CommentList'
 import {Colors, Fonts, Images} from '../components/Themes';
-import {BaseComponent,MarkDown} from '../components';
+import {BaseComponent, MarkDown} from '../components';
 import Footer from "../components/Footer";
 import CommentBottom from './comment/CommentBottom';
-import I18n from '../service/I18n';
 
 export default class NewsInfo extends BaseComponent {
 
@@ -130,7 +129,7 @@ export default class NewsInfo extends BaseComponent {
                         <span>来源于: {source}  </span>
                     </div>
                     <div className="App-nav">
-                        <MarkDown id="images" description={description}/>
+                        <MarkDown description={description}/>
                     </div>
 
                     {this.read()}
@@ -153,7 +152,7 @@ export default class NewsInfo extends BaseComponent {
                     <span style={styles.readTxt}>{this.state.total_likes}</span>
                 </div>
 
-                <span style={styles.readTxt}>{I18n.t('read')} {total_views}</span>
+                <span style={styles.readTxt}>阅读 {total_views}</span>
                 <div style={{flex: 1}}/>
             </div>
         )
@@ -168,7 +167,7 @@ export default class NewsInfo extends BaseComponent {
             <div>
 
                 {this.content()}
-                <div style={{height:1,width:'100%',marginLeft:17,marginRight:17}}/>
+                <div style={{height: 1, width: '100%'}}/>
                 <CommentList
                     user_id={this.user_id}
                     ref={ref => this.commentList = ref}
@@ -191,7 +190,7 @@ const styles = {
         flexDirection: 'row-reverse',
         alignItems: 'center',
         justifyContent: 'flex-end',
-        backgroundColor:'#FFFFFF'
+        backgroundColor: '#FFFFFF'
     },
     readTxt: {
         fontSize: 14,
