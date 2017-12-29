@@ -14,7 +14,7 @@ import {
 import {default_img} from '../components/constant';
 import CommentList from './comment/CommentList'
 import {Colors, Fonts, Images} from '../components/Themes';
-import {BaseComponent,MarkDown} from '../components';
+import {BaseComponent, MarkDown} from '../components';
 import Footer from "../components/Footer";
 import CommentBottom from './comment/CommentBottom';
 
@@ -167,7 +167,7 @@ export default class NewsInfo extends BaseComponent {
             <div>
 
                 {this.content()}
-                <div style={{height:1,width:'100%',marginLeft:17,marginRight:17}}/>
+                <div style={{height: 1, width: '100%'}}/>
                 <CommentList
                     user_id={this.user_id}
                     ref={ref => this.commentList = ref}
@@ -190,7 +190,7 @@ const styles = {
         flexDirection: 'row-reverse',
         alignItems: 'center',
         justifyContent: 'flex-end',
-        backgroundColor:'#FFFFFF'
+        backgroundColor: '#FFFFFF'
     },
     readTxt: {
         fontSize: 14,

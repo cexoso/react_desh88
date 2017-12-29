@@ -14,16 +14,16 @@ renderer.paragraph = function (text) {
 export default class MarkDown extends Component {
 
     state = {
-        modelVisible: false,
         options: {
-            closeOnScroll: false
-        }
+
+        },
+        isOpen: false
     };
 
 
     handleClose = () => {
         this.setState({
-            modelVisible: false
+            isOpen: false
         });
     };
 
@@ -40,10 +40,12 @@ export default class MarkDown extends Component {
         _lodash.forEach(imgs, (item, index) => {
             let img = new Image();
             img.src = item.src;
+
+            console.log(item.src, item.width, item.height)
             this.images.push({
                 src: item.src,
-                w: img.width,
-                h: img.height,
+                w: item.width,
+                h: item.height,
                 title: ''
 
             });
@@ -57,25 +59,23 @@ export default class MarkDown extends Component {
     markImageClick = (index) => {
 
         this.setState({
-            modelVisible: !this.state.modelVisible,
             options: {
-                index,
-                closeOnScroll: false
-            }
+                index
+            },
+            isOpen: true
         })
     };
 
+
     renderModel = () => {
         const {options, isOpen} = this.state;
-        if (this.state.modelVisible)
-            return <div style={styles.container}>
-                <PhotoSwipeGallery
-                    isOpen={true}
-                    items={this.images}
-                    onClose={this.handleClose}
-                    options={options}
-                />
-            </div>
+        if (isOpen && this.images.length > 0)
+            return <PhotoSwipe
+                isOpen={isOpen}
+                items={this.images}
+                options={options}
+                onClose={this.handleClose}
+            />
     };
 
 
@@ -103,6 +103,7 @@ const styles = {
         bottom: 0,
         left: 0,
         right: 0,
+        overflow: 'hidden'
 
     }
 }
