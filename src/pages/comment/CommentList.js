@@ -7,8 +7,11 @@ import React, {Component} from 'react';
 import {Flex, ListView, Text} from 'antd-mobile';
 import {Colors, Images} from '../../components/Themes';
 import CommentItem from './CommentItem';
-import {getCommentsInfo} from '../../service/CommentDao';
-import {postMsg, showToast, _lodash} from '../../service/utils';
+import {getCommentsInfo, delDeleteComment} from '../../service/CommentDao';
+import {
+    postMsg, showToast, _lodash, PostRoute, getDateDiff,
+    postClick, showAlert, isEmptyObject, strNotNull
+} from '../../service/utils';
 import I18n from '../../service/I18n';
 
 export default class CommentList extends Component {
@@ -29,7 +32,8 @@ export default class CommentList extends Component {
             page: 1,
             loadMore: true,
             total_count: 0,
-            clickTime: 0
+            clickTime: 0,
+            showMessage: true,
         }
 
     };
@@ -120,9 +124,9 @@ export default class CommentList extends Component {
         })
     };
 
-    _renderSeparator=(sectionID,rowID)=>{
+    _renderSeparator=()=>{
         return(
-            <div key={`${sectionID}-${rowID}`} style={{height: 1, backgroundColor: '#ECECEE', marginTop: 8, marginRight: 17,marginLeft:68}}/>
+            <div style={{height: 1, backgroundColor: '#ECECEE', marginTop: 8, marginRight: 17,marginLeft:68}}/>
         )
     };
 
@@ -158,16 +162,122 @@ export default class CommentList extends Component {
     };
 
     renderItem = (item, sectionID, rowID) => {
-        return (
-            <div key={rowID}  style={styles.listItem}>
-                <CommentItem
-                    LoadComment={this.LoadComment}
-                    user_id={this.props.user_id}
-                    {...this.props}
-                    item={item}/>
-            </div>
+        const {id, user_id, nick_name, avatar, official, body, total_count, created_at, recommended} = item;
+        return (<Flex style={styles.listItem} onClick={() => {
+
+            }}>
+                <div style={styles.avatarView}
+                     onClick={() => {
+                         this.toDynanic(item)
+                     }}>
+                    <img
+                        alt=""
+                        style={styles.avatar}
+                        src={this._avatar(avatar)}/>
+                </div>
+                <Flex style={styles.flexUser}>
+                    <Flex style={{width: '100%'}}>
+                        <Flex style={styles.flexName}>
+                            <Flex>
+                                <Text
+                                    onClick={() => {
+                                        this.toDynanic(item)
+                                    }}
+                                    style={styles.txtName}>{nick_name}</Text>
+
+                                {official ? <Text style={styles.tagPoker}>{I18n.t('official')}</Text> : null}
+                                {recommended ? <Text style={styles.featured}>{I18n.t('featured')}</Text> : null}
+
+                                {this.isMine(user_id) ? <div style={{marginLeft: 8}}
+                                                             onClick={() => this.deleteComment(id)}>
+                                    <Text style={{fontSize: 12, color: '#666666'}}>{I18n.t('buy_del')}</Text>
+                                </div> : null}
+
+                            </Flex>
+
+                            <Text style={styles.txtTime}>{getDateDiff(created_at)}</Text>
+
+                        </Flex>
+
+                        <Flex.Item/>
+
+
+                        <div
+                            onClick={() => {
+                                this._replies(item)
+                            }}
+                            style={{padding: 10, paddingRight: 0, marginLeft: 15}}
+                        >
+                            <img
+                                style={styles.replayImg}
+                                src={Images.comment} alt=""/>
+                        </div>
+
+                    </Flex>
+                    <div style={styles.contentView}>
+                        <span style={styles.content}>{body}</span>
+                    </div>
+
+
+                    {this.read(total_count, item)}
+
+                    <div style={{height: 1, backgroundColor: '#DDDDDD', marginTop: 8, marginRight: 17}}/>
+                </Flex>
+
+
+            </Flex>
         )
-    }
+    };
+
+    read = (total_count, item) => {
+        if (total_count > 0)
+            return (
+                <Flex style={styles.flexNum}
+                      onClick={() => {
+                          postClick(JSON.stringify({route: 'comments', param: item}), this.props.history)
+
+                      }}>
+                    <Text style={styles.txtNum}>{I18n.t('look')}{total_count}{I18n.t('count_reply')}></Text>
+                </Flex>
+            )
+    };
+
+    _avatar = (avatar) => {
+        if (isEmptyObject(avatar))
+            return Images.home_avatar;
+        else if (strNotNull(avatar))
+            return avatar;
+        else
+            return Images.home_avatar;
+    };
+
+
+    isMine = (user_id) => {
+        return this.props.user_id === user_id;
+    };
+
+
+    deleteComment = (id) => {
+        showAlert('', I18n.t('confirm_delete'), () => {
+            delDeleteComment({id: id}, data => {
+                showToast(I18n.t('buy_del_success'));
+                this.LoadComment()
+            }, err => {
+
+            });
+        });
+    };
+
+    toDynanic = (item) => {
+        postClick(JSON.stringify({
+            route: PostRoute.ClickAvatar,
+            param: item
+        }), this.props.history)
+    };
+
+    _replies = (item) => {
+        postClick(JSON.stringify({route: 'replies', param: item}), this.props.history)
+    };
 
 }
 
@@ -183,35 +293,20 @@ const styles = {
         color: Colors._AAA,
         marginLeft: 17
     },
-    avatarView: {
-        height: 50,
-        width: 50,
-        marginLeft: 17
-    },
-    avatar: {
-        height: 38,
-        width: 38,
-        borderRadius: 19,
-
-    },
-    txtName: {
-        color: Colors._666,
-        fontSize: 14,
-        marginTop: 6
-    },
-    txtTime: {
-        fontSize: 10,
-        color: Colors._CCC,
-        marginTop: 3
-    },
-
     listItem: {
-        width: '100%',
-        backgroundColor: '#FFFFFF'
+        paddingTop: 13,
+        alignItems: 'flex-start'
+    },
+    likeImg: {
+        height: 17,
+        width: 17,
+
     },
     replayImg: {
         height: 18,
         width: 20,
+        marginTop: -10,
+        marginLeft: 10
     },
     flexName: {
         flexDirection: 'column',
@@ -219,15 +314,21 @@ const styles = {
     },
     flexUser: {
         flexDirection: 'column',
-
+        width: '100%',
         alignItems: 'flex-start',
-        paddingLeft: 12,
+        marginLeft: 15,
         paddingRight: 17
+    },
+    contentView: {
+        wordWrap: 'break-word',
+        wordBreak: 'break-all',
+        overflow: 'hidden'
     },
     content: {
         fontSize: 16,
         color: Colors.txt_444,
-        marginTop: 8,
+        marginTop: 6,
+        lineHeight: 1.4
     },
     flexNum: {
         backgroundColor: Colors._ECE,
@@ -239,5 +340,55 @@ const styles = {
         fontSize: 12,
         color: '#4990E2',
         marginLeft: 11
+    },
+    avatarView: {
+        height: 50,
+        width: 50,
+        marginLeft: 17,
+        padding: 5
+    },
+    avatar: {
+        height: 38,
+        width: 38,
+        borderRadius: 19,
+
+    },
+    txtName: {
+        color: '#4990E2',
+        fontSize: 12
+    },
+    txtTime: {
+        fontSize: 10,
+        color: Colors._CCC,
+        marginTop: 3
+    },
+    tagPoker: {
+        color: "#FFE9AD",
+        backgroundColor: '#161718',
+        fontSize: 10,
+        paddingLeft: 5,
+        paddingRight: 5,
+        paddingTop: 2,
+        paddingBottom: 2,
+        borderRadius: 2,
+        marginLeft: 14
+    },
+    featured: {
+        color: "#FFFFFF",
+        backgroundColor: '#A1C1E6',
+        fontSize: 10,
+        paddingLeft: 5,
+        paddingRight: 5,
+        paddingTop: 2,
+        paddingBottom: 2,
+        borderRadius: 2,
+        marginLeft: 9
+    },
+    likeCount: {
+        color: '#AAAAAA',
+        fontSize: 12,
+        marginLeft: 7,
+        marginTop: 2
     }
+
 };
