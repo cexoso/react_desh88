@@ -15,7 +15,7 @@ export default class MarkDown extends Component {
 
     state = {
         options: {
-            index: 0
+
         },
         isOpen: false
     };
