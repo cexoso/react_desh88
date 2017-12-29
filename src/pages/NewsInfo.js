@@ -17,6 +17,7 @@ import {Colors, Fonts, Images} from '../components/Themes';
 import {BaseComponent, MarkDown} from '../components';
 import Footer from "../components/Footer";
 import CommentBottom from './comment/CommentBottom';
+import I18n from '../service/I18n';
 
 export default class NewsInfo extends BaseComponent {
 
@@ -96,7 +97,7 @@ export default class NewsInfo extends BaseComponent {
             const {title, source, date, image_thumb} = data;
             const message = {
                 title: title,
-                desc: message_desc(source, date),//分享描述
+                desc: isEmptyObject(message_desc(source, date))?I18n.t('ads_poker'):message_desc(source, date),//分享描述
                 link: window.location.href, // 分享链接，该链接域名必须与当前企业的可信域名一致
                 imgUrl: isEmptyObject(image_thumb) ? default_img : image_thumb, // 分享图标
                 type: '', // 分享类型,music、video或link，不填默认为link
