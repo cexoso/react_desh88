@@ -15,7 +15,7 @@ export default class MarkDown extends Component {
 
     state = {
         options: {
-
+            index: 0
         },
         isOpen: false
     };
@@ -34,12 +34,14 @@ export default class MarkDown extends Component {
         return {__html: des}
     };
 
-    componentDidMount() {
+    componentWillMount() {
         this.images = [];
+    }
+
+    componentDidMount() {
+
         let imgs = document.getElementById('marked').getElementsByTagName('img');
         _lodash.forEach(imgs, (item, index) => {
-            let img = new Image();
-            img.src = item.src;
 
             console.log(item.src, item.width, item.height)
             this.images.push({
@@ -66,16 +68,25 @@ export default class MarkDown extends Component {
         })
     };
 
+    beforeChange = (instance, change) => {
+        // console.log(instance, change)
+    };
+
+    imageLoadComplete = (instance, index, item) => {
+        console.log(index, item)
+    };
+
 
     renderModel = () => {
         const {options, isOpen} = this.state;
-        if (isOpen && this.images.length > 0)
-            return <PhotoSwipe
-                isOpen={isOpen}
-                items={this.images}
-                options={options}
-                onClose={this.handleClose}
-            />
+        return <PhotoSwipe
+            isOpen={isOpen}
+            items={this.images}
+            options={options}
+            onClose={this.handleClose}
+            beforeChange={this.beforeChange}
+            imageLoadComplete={this.imageLoadComplete}
+        />
     };
 
 
