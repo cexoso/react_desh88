@@ -124,6 +124,12 @@ export default class CommentList extends Component {
         })
     };
 
+    _renderSeparator=()=>{
+        return(
+            <div style={{height: 1, backgroundColor: '#ECECEE', marginTop: 8, marginRight: 17,marginLeft:68}}/>
+        )
+    };
+
     render() {
 
         return <Flex style={{flexDirection: 'column', marginBottom: 50}} id="comment">
@@ -135,6 +141,7 @@ export default class CommentList extends Component {
                 dataSource={this.state.dataSource}
                 renderRow={this.renderItem}
                 onEndReached={this.onEndReached}
+                renderSeparator={this._renderSeparator}
                 onEndReachedThreshold={10}
                 pageSize={20}
                 renderFooter={() => (<div style={{padding: 30, textAlign: 'center'}}>
