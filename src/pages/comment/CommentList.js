@@ -120,9 +120,9 @@ export default class CommentList extends Component {
         })
     };
 
-    _renderSeparator=()=>{
+    _renderSeparator=(sectionID,rowID)=>{
         return(
-            <div style={{height: 1, backgroundColor: '#ECECEE', marginTop: 8, marginRight: 17,marginLeft:68}}/>
+            <div key={`${sectionID}-${rowID}`} style={{height: 1, backgroundColor: '#ECECEE', marginTop: 8, marginRight: 17,marginLeft:68}}/>
         )
     };
 
@@ -159,7 +159,7 @@ export default class CommentList extends Component {
 
     renderItem = (item, sectionID, rowID) => {
         return (
-            <div style={styles.listItem}>
+            <div key={rowID}  style={styles.listItem}>
                 <CommentItem
                     LoadComment={this.LoadComment}
                     user_id={this.props.user_id}
