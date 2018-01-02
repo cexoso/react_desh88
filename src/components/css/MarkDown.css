@@ -29,3 +29,11 @@
 .pswp__button--share {
     display: none !important;
 }
+
+.mark p{
+    line-height: 1.8 !important;
+}
+.mark img{
+    margin-top: -10px !important;
+    margin-bottom: -10px !important;
+}
