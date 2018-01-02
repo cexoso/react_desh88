@@ -6,6 +6,7 @@
 import React, {Component} from 'react';
 import {setLang, setToken} from '../service/RaceDao';
 import {getURLParamKey, postMsg, strNotNull} from '../service/utils';
+import 'antd-mobile/dist/antd-mobile.css';
 
 export default class BaseComponent extends Component {
     constructor(props) {
