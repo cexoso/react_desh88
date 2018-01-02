@@ -7,9 +7,7 @@ import {PhotoSwipeGallery, PhotoSwipe} from 'react-photoswipe';
 
 let renderer = new markdown.Renderer();
 
-renderer.paragraph = function (text) {
-    return '<p>' + text + '</p>' + '</br>';
-};
+
 
 export default class MarkDown extends Component {
 
@@ -100,7 +98,7 @@ export default class MarkDown extends Component {
     render() {
         const {description} = this.props;
         return (
-            <div style={{width: '100%', height: '100%', paddingTop: 20}}>
+            <div style={{width: '100%', height: '100%', paddingTop: 10}} className="mark">
                 <div id={'marked'}
                      className="introduceGame" dangerouslySetInnerHTML={this.desc(description)}/>
                 <div style={{height: 40}}/>
