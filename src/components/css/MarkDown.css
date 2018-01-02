@@ -24,3 +24,8 @@
     color:#000000 !important;
     line-height: 2 !important;
 }
+
+
+.pswp__button--share {
+    display: none !important;
+}
