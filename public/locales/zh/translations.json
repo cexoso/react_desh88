@@ -356,6 +356,12 @@
   "card_type": "卡类型",
   "card_limit": "单笔丨单日限额",
   "credit_card": "信用卡",
-  "debit_card": "储蓄卡"
+  "debit_card": "储蓄卡",
+  "pay_limit_weChat":"微信支付限额说明",
+  "pay_limit_yinlian":"微信支付限额说明",
+  "pay_count_beyond":"支付商品，但是超出限额怎么办？",
+  "click_button":"请点击上方支付渠道限额说明，选择单笔限额高的支付渠道支付",
+  "beyond_question":"请点击上方支付渠道限额说明，选择单笔限额高的支付渠道支付"
+
 }
 
