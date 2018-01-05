@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom'
 
 
 // global.console = {
@@ -26,7 +27,7 @@ class App extends Component {
     }
 }
 
-export default App;
+export default withRouter(props => <App {...props}/>);
 
 
 
