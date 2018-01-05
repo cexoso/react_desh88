@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import {
-    BrowserRouter as Router,Route
+    BrowserRouter as Router, Route
 } from 'react-router-dom';
 
 import RaceInfo from './pages/RaceInfo';
@@ -24,16 +24,16 @@ import AntDemo from './pages/AntDemo';
 import CommentInfoPage from './pages/comment/CommentInfoPage';
 import PersonDynamicPage from './pages/comment/PersonDynamicPage';
 
-    // global.console = {
-    //     info: () => {
-    //     },
-    //     log: () => {
-    //     },
-    //     warn: () => {
-    //     },
-    //     error: () => {
-    //     },
-    // };
+// global.console = {
+//     info: () => {
+//     },
+//     log: () => {
+//     },
+//     warn: () => {
+//     },
+//     error: () => {
+//     },
+// };
 
 
 class App extends Component {
@@ -41,7 +41,7 @@ class App extends Component {
         return (
             <Router>
                 <div>
-                <Route exact path="/ant" component={AntDemo}/>
+                    <Route exact path="/ant" component={AntDemo}/>
                     <Route exact path="/race/:id/:lang" component={RaceInfo}/>
 
                     <Route path="/loadApp" component={Download}/>
@@ -64,9 +64,8 @@ class App extends Component {
                     <Route path="/products/:id/:lang" component={MallInfoPage}/>
 
 
-                    <Route path="shipments/search/:shipping_number/:express_code/:order_number/:lang" component={LogisticsPage}/>
-
-
+                    <Route path="shipments/search/:shipping_number/:express_code/:order_number/:lang"
+                           component={LogisticsPage}/>
                 </div>
             </Router>
 
