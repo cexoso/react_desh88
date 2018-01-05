@@ -48,22 +48,4 @@
 .App-nav {
     background-color: #FFFFFF;
 }
-/*markdown里的样式*/
-
-.App div p{
-    margin: 0;
-    margin-bottom: 22px;
-    /*text-indent: 24px;*/
-    text-align: left;
-    font-family: PingFangSC-Regular;
-    font-size: 14px;
-    color: #444444;
-    line-height: 2;
-}
-.App div p img{
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    /*height: 207px;*/
-}
 

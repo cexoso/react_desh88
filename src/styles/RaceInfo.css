@@ -337,32 +337,6 @@ ul, ol {
     margin-bottom: 30px;
 }
 
-.introduceGame {
-    margin: 15px;
-}
 
-.introduceGame p img {
-    width: 100% !important;
-}
-
-.mainGame .remark {
-    margin: 33px 18px 20px 21px;
-}
-
-.introduceGame h2, .introduceGame p {
-    margin: 0;
-    font-family: PingFangSC-Regular;
-    font-size: 14px;
-    color: #888888;
-}
-
-.mainGame .remark h2 {
-    line-height: 22px;
-}
-
-.mainGame .remark p {
-    line-height: 20px;
-    text-indent: 20px;
-}
 
 /*主赛信息*/
