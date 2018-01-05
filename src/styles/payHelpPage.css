@@ -1,0 +1,63 @@
+.helpPage{
+    background-color: #F5F5F5;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.desView{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.desView span{
+    display: block;
+    margin-left: 30px;
+}
+.yinlian{
+    margin-top:5px;
+}
+.separated{
+    display: flex;
+    flex:1;
+}
+.image{
+    width:28px;
+    height:23px;
+    margin-left: 17px;
+}
+.image2{
+    width:32px;
+    height:30px;
+    margin-left: 17px;
+}
+.popImg{
+    width:7px;
+    height:13px;
+    margin-right:17px;
+}
+.desInfo{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left:17px ;
+    margin-right: 17px;
+}
+.count_beyond{
+    font-size: 15px;
+    color: #333333;
+    font-weight: bold;
+}
+.desTxt{
+    font-size: 14px;
+    color: #888888;
+}
+.click_button{
+    margin-top: 18px;
+}
+.beyond_question{
+    margin-top: 10px;
+}
