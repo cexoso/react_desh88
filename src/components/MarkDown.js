@@ -39,7 +39,6 @@ export default class MarkDown extends Component {
         let imgs = document.getElementById('marked').getElementsByTagName('img');
         _lodash.forEach(imgs, (item, index) => {
 
-
             if (item.complete) {
 
                 this.pushImgs(item);
@@ -63,14 +62,11 @@ export default class MarkDown extends Component {
             title: ''
 
         });
-
-
         item.addEventListener('click', () => {
             this.markImageClick(this.images.findIndex(function (img) {
                 return img.src === item.src
             }))
         });
-
 
     };
 
