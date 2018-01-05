@@ -26,11 +26,13 @@ function getBaseUrl() {
 }
 
 export function setDpLang(lang) {
-    client.setHeader('X-DP-LANG', lang);
-    I18n.changeLanguage(lang);
+    if (strNotNull(lang)) {
+        client.setHeader('X-DP-LANG', lang);
+        I18n.changeLanguage(lang);
+    }
+
 
 }
-
 
 export function setAccessToken(token) {
     if (strNotNull(token))
