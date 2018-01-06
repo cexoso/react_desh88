@@ -25,6 +25,8 @@ import ChoiseTicketPage from './pages/ChoiseTicketPage';
 import MallInfoPage from './pages/mall/MallInfoPage';
 import LogisticsPage from './pages/mall/LogisticsPage';
 import AntDemo from './pages/AntDemo';
+import PayInfoPage from './pages/pay/PayInfoPage';
+import PayHelpPage from './pages/pay/PayHelpPage';
 import CommentInfoPage from './pages/comment/CommentInfoPage';
 import PersonDynamicPage from './pages/comment/PersonDynamicPage';
 import App from './App';
@@ -57,6 +59,11 @@ const Routes = () => (
 
             <Route path="shipments/search/:shipping_number/:express_code/:order_number/:lang"
                    component={LogisticsPage}/>
+
+            <Route path="/pay/description" component={PayInfoPage}/>
+
+            <Route path="/pay/help" component={PayHelpPage}/>
+
         </App>
     </Router>
 );

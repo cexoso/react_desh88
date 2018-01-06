@@ -12,7 +12,7 @@ export function setToken(token) {
 }
 
 export function setLang(lan) {
-    setDpLang(strNotNull(lan) ? lan : lang);
+    setDpLang(strNotNull(lan) ? lan : 'zh');
 
 }
 
