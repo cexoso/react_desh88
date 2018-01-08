@@ -67,7 +67,6 @@ export default class PlayerInfo extends Component {
             avatar, country, dpi_total_score, dpi_total_earning,
             name, ranking
         } = this.state.player;
-            console.log("avatar:"+avatar);
             return (
                 <div className="player">
                     <div className='player-head'>
@@ -75,7 +74,7 @@ export default class PlayerInfo extends Component {
                             <h2></h2>
                         </div>
                         {this.image()}
-
+                        <br/>
                         <span className="personName">{name}</span><br/>
                         <span className="country">{country}</span>
 
