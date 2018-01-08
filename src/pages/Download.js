@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {default_img} from '../components/constant';
 import {weiXinShare} from '../service/utils';
 import '../styles/Download.css';
-import {MarkDown, Images,Drawer} from '../components';
+import {Images,Drawer} from '../components';
 
 export default class Download extends Component {
     state = {
