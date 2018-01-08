@@ -67,7 +67,6 @@ export default class PlayerInfo extends Component {
             avatar, country, dpi_total_score, dpi_total_earning,
             name, ranking
         } = this.state.player;
-            console.log("avatar:"+avatar);
             return (
                 <div className="player">
                     <div className='player-head'>
@@ -75,7 +74,7 @@ export default class PlayerInfo extends Component {
                             <h2></h2>
                         </div>
                         {this.image()}
-
+                        <br/>
                         <span className="personName">{name}</span><br/>
                         <span className="country">{country}</span>
 
@@ -133,7 +132,7 @@ export default class PlayerInfo extends Component {
 
                         console.log('list',race,rank)
                         return <tr key={i}>
-                            <td>
+                            <td className="marginTop">
                                 <a>
                                     <div className="table-header">
                                         <span>{race.name}</span>
@@ -176,7 +175,7 @@ export default class PlayerInfo extends Component {
             <div className='content'>
 
                 {this.content()}
-                <div style={{marginTop:'5%'}}></div>
+                <div style={{height:80}}></div>
                 <Footer/>
             </div>
         )

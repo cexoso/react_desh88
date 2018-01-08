@@ -29,7 +29,7 @@
 }
 .race-info-time{
     height: 20px;
-    background: url('../assets/images/home_clock.png') no-repeat left center;
+    background: url('http://h5.deshpro.com/static/images/home_clock.png') no-repeat left center;
     background-size: 10px 10px;
     padding-left: 18px;
     color: #666;
@@ -39,7 +39,7 @@
 }
 .race-info-location {
     height: 20px;
-    background: url('../assets/images/home_adr.png') no-repeat left center;
+    background: url('http://h5.deshpro.com/static/images/home_adr.png') no-repeat left center;
     background-size: 8px 11px;
     padding-left: 18px;
     color: #666;

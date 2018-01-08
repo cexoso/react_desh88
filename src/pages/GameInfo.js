@@ -125,6 +125,7 @@ export default class GameInfo extends Component {
                         </tbody>
                     </table>
                 </div>
+                <div style={{height:80}}/>
                 <Footer/>
             </div>
         )

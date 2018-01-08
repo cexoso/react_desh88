@@ -2,40 +2,77 @@ import React, {Component} from 'react';
 import {default_img} from '../components/constant';
 import {weiXinShare} from '../service/utils';
 import '../styles/Download.css';
+import {Images,Drawer} from '../components';
+import I18n from '../service/I18n';
 
-export default class DownloadSea extends Component {
+export default class Download extends Component {
+    state = {
+        show: false,
+        showAndroid:false
+    };
 
-    componentDidMount(){
+    componentDidMount() {
         //微信二次分享
         // const url = {url: "http://www.deshpro.com:3000/race/91/zh/loadApp"};
         const message = {
             title: 'PokerPro',
-            desc: '德州扑客下载',//分享描述
+            desc: I18n.t('poker_download'),//分享描述
             link: window.location.href, // 分享链接，该链接域名必须与当前企业的可信域名一致
             imgUrl: default_img, // 分享图标
             type: '', // 分享类型,music、video或link，不填默认为link
-            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-        }
+            dataUrl: '', // 如果type是music或video，则要提供数据链接`，默认为空
+        };
         const url = {url: window.location.href};
-        weiXinShare(url,message);
-    }
+        weiXinShare(url, message);
+    };
+
+    toIosApp = () => {
+        this.setState({
+            show: true
+        });
+        window.open('https://itunes.apple.com/cn/app/pokerpro/id1248197817?mt=8');
+
+    };
+    toAndroidApp = () => {
+        this.setState({
+            showAndroid: true
+        });
+        window.open('http://cdn-upyun.deshpro.com/deshpro_public/pokerpro.apk');
+
+    };
 
 
-    render(){
-        return(
+    render() {
+        return (
             <div className="Download">
                 <div className="black">
                 </div>
-                <a className="ios-app-a" href="https://itunes.apple.com/cn/app/pokerpro/id1248197817?mt=8">
-                    <div className="ios-app">
+                <a className="ios_app_a" onClick={this.toIosApp}>
+                    <div className="ios_app">
                         ios-app
                     </div>
                 </a>
-                <a className="android-app-a" href="https://play.google.com/store/apps/details?id=com.deshpro.pokerpro">
-                    <div className="android-app">
+                <a className="android_app_a" onClick={this.toAndroidApp}>
+                    <div className="android_app">
                         android-app
                     </div>
                 </a>
+                {this.state.show ? <div className="iosDownload" onClick={()=>{
+                        this.setState({
+                            show: false,
+                            showAndroid:false
+                        })
+                    }}>
+                        <img className="iosDownloadImg" src={Images.safari} alt=""/>
+                    </div> : null}
+                {this.state.showAndroid ? <div className="andoridDownload" onClick={()=>{
+                        this.setState({
+                            show: false,
+                            showAndroid:false
+                        })
+                    }}>
+                        <img className="andoridDownloadImg" src={Images.andorid} alt=""/>
+                    </div> : null}
             </div>
         )
     }

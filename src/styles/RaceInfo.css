@@ -230,7 +230,7 @@ body,.content {
 }
 
 .imgMe {
-    background: url('../assets/images/Triangle.png') no-repeat center bottom;
+    background: url('http://h5.deshpro.com/static/images/Triangle.png') no-repeat center bottom;
 }
 
 a {
@@ -245,7 +245,7 @@ ul, ol {
 .mainNav {
     width: 100%;
     height: 220px;
-    background: url('../assets/images/background.png') no-repeat;
+    background: url('http://h5.deshpro.com/static/images/background.png') no-repeat;
     background-size: 100% 100%;
     position:relative;
 
@@ -287,12 +287,12 @@ ul, ol {
 
 .mainNav .ul-1 .ul-1-2 li:nth-child(1) {
     padding-left: 25px;
-    background: url("../assets/images/stopwatch-icon.png") no-repeat left center;
+    background: url("http://h5.deshpro.com/static/images/stopwatch-icon.png") no-repeat left center;
 }
 
 .mainNav .ul-1 .ul-1-2 li:nth-child(2) {
     padding-left: 25px;
-    background: url("../assets/images/match_location.png") no-repeat left center;
+    background: url("http://h5.deshpro.com/static/images/match_location.png") no-repeat left center;
 }
 
 .mainNav .ul-1 .ul-1-2 .li-4 span {
@@ -325,7 +325,7 @@ ul, ol {
 }
 
 .mainNav .ul-2 li a.active {
-    background: url('../assets/images/Triangle.png') no-repeat center bottom;
+    background: url('http://h5.deshpro.com/static/images/Triangle.png') no-repeat center bottom;
 
 }
 

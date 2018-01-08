@@ -6,11 +6,15 @@ import Footer from '../../components/Footer';
 
 export default class PayInfoPage extends Component {
 
-
-
     state = {
         containerHeight: 0
     };
+
+    componentDidMount() {
+        console.log("this:",this);
+        const {lang} = this.props.match.params;
+        setLang('lang');
+    }
 
     render() {
         return (

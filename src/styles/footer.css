@@ -3,6 +3,7 @@ footer{
     bottom: 0;
     width:100%;
     background-color: #ffffff !important;
+    z-index: 9999;
 }
 
 footer a{
@@ -18,7 +19,7 @@ footer a{
     color: #D1BC91;
     background: #161718;
     opacity: 0.9;
-    background-image: url('../assets/images/footerImg.png');
+    background-image: url('http://h5.deshpro.com/static/images/footerImg.png');
     background-repeat: no-repeat;
     background-position: 26px center;
     background-size: 230px 25px;
