@@ -9,7 +9,8 @@ let TAG = 'PuKeHttp:';
 
 
 function getBaseUrl() {
-    return process.env.REACT_APP_DPAPI_ENV === "test" ? 'http://test.api.deshpro.com/v10' : 'https://api.deshpro.com/v10';
+    return 'https://api.deshpro.com/v10';
+    // process.env.REACT_APP_DPAPI_ENV === "test" ? 'http://test.api.deshpro.com/v10' : 'https://api.deshpro.com/v10';
 
 }
 // define the api
