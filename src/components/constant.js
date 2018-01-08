@@ -36,9 +36,9 @@ export const items = [
         '   海外的比赛则需要提供护照的信息了。而且购票时候会需要您的证件信息进行预订酒店车票等。'
     }
 ]
-export const default_img = "https://www.deshpro.com/pokerpro.png";
-export const image_url = 'http://cdn.deshpro.com';  //生产环境cdn地址
-var local_image_url = 'http://localhost:3000';  //本地环境
+export const default_img = "";
+export const image_url = '';  //生产环境cdn地址
+var local_image_url = '';  //本地环境
 
 export const sharePage01 = image_url + '/static/images/H5SahrePage01.png';
 export const sharePage02 = image_url + '/static/images/H5SahrePage02.png';
