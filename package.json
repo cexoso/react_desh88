@@ -27,8 +27,10 @@
     "weixin-js-sdk": "^1.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-app-rewired build",
+    "start": "REACT_APP_DPAPI_ENV=test react-scripts start",
+    "start-prod": "REACT_APP_DPAPI_ENV=prod react-scripts start",
+    "build": "REACT_APP_DPAPI_ENV=prod react-scripts build",
+    "build-test": "REACT_APP_DPAPI_ENV=test react-scripts start",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject"
   },

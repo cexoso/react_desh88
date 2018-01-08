@@ -8,11 +8,14 @@ import {strNotNull} from './utils';
 let TAG = 'PuKeHttp:';
 
 
+function getBaseUrl() {
+    return process.env.REACT_APP_DPAPI_ENV === "test" ? 'http://test.api.deshpro.com/v10' : 'https://api.deshpro.com/v10';
+
+}
 // define the api
 const client = create({
-    baseURL: 'https://api.deshpro.com/v10',
-    // baseURL: 'http://test.api.deshpro.com/v10',
-    // baseURL:getBaseUrl(),
+
+    baseURL: getBaseUrl(),
     headers: {
         'X-DP-APP-KEY': '467109f4b44be6398c17f6c058dfa7ee',
         'X-DP-CLIENT-IP': '192.168.2.231'
@@ -20,18 +23,12 @@ const client = create({
     timeout: 20000,
 });
 
-function getBaseUrl() {
-    return process.env.REACT_APP_ENV === "test" ? 'http://test.api.deshpro.com/v10' : 'https://api.deshpro.com/v10';
-
-}
 
 export function setDpLang(lang) {
     if (strNotNull(lang)) {
         client.setHeader('X-DP-LANG', lang);
         I18n.changeLanguage(lang);
     }
-
-
 }
 
 export function setAccessToken(token) {
