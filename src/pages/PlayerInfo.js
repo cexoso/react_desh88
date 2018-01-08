@@ -132,7 +132,7 @@ export default class PlayerInfo extends Component {
 
                         console.log('list',race,rank)
                         return <tr key={i}>
-                            <td>
+                            <td className="marginTop">
                                 <a>
                                     <div className="table-header">
                                         <span>{race.name}</span>
@@ -175,7 +175,7 @@ export default class PlayerInfo extends Component {
             <div className='content'>
 
                 {this.content()}
-                <div style={{marginTop:'5%'}}></div>
+                <div style={{height:80}}></div>
                 <Footer/>
             </div>
         )

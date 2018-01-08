@@ -125,8 +125,11 @@
     border-radius: 18px;
     padding:1px 10px 1px 10px;
 }
-
-player-body {
+.marginTop{
+    display: block;
+    margin-top: 5px;
+}
+.player-body {
     width: 100%;
 }
 
