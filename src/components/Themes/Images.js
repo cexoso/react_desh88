@@ -30,7 +30,7 @@ const images = {
     like: '/static/images/comment/like.png',
     likeRed: '/static/images/comment/likeRed.png',
     forward: '/static/images/comment/forward.png',
-    home_avatar: '/static/images/images/home_avatar.png'
+    home_avatar: '/static/images/home_avatar.png'
 
 }
 export default images
