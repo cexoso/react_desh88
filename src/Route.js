@@ -27,6 +27,7 @@ import LogisticsPage from './pages/mall/LogisticsPage';
 import AntDemo from './pages/AntDemo';
 import PayInfoPage from './pages/pay/PayInfoPage';
 import PayHelpPage from './pages/pay/PayHelpPage';
+import CrowdfundingPage from './pages/crowdfundings/CrowdfundingPage';
 import CommentInfoPage from './pages/comment/CommentInfoPage';
 import PersonDynamicPage from './pages/comment/PersonDynamicPage';
 import App from './App';
@@ -60,9 +61,10 @@ const Routes = () => (
             <Route path="shipments/search/:shipping_number/:express_code/:order_number/:lang"
                    component={LogisticsPage}/>
 
-            <Route path="/pay/description" component={PayInfoPage}/>
+            <Route path="/pay/description/:lang" component={PayInfoPage}/>
 
-            <Route path="/pay/help" component={PayHelpPage}/>
+            <Route path="/pay/help/:lang" component={PayHelpPage}/>
+            <Route path="/crowdfundings/:lang" component={CrowdfundingPage}/>
 
         </App>
     </Router>
