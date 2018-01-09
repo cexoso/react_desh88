@@ -34,6 +34,21 @@ export default class MatchNewspaper extends Component {
                 <div className="slide-div">
                    <Progress/>
                 </div>
+
+                <div className="flexRow numbers-page">
+                    <div className="flexColumn numbers">
+                        <span>5人</span>
+                        <span>选手人数</span>
+                    </div>
+                    <div className="flexColumn numbers">
+                        <span>5人</span>
+                        <span>选手人数</span>
+                    </div>
+                    <div className="flexColumn numbers">
+                        <span>5人</span>
+                        <span>选手人数</span>
+                    </div>
+                </div>
             </div>
 
         )

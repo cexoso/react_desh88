@@ -111,4 +111,24 @@ span{
     font-size: 14px;
     color: #F34A4A;
 }
+.numbers-page{
+    margin-top: 23px;
+    margin-left:47px;
+    margin-right:53px;
+    justify-content: space-around;
+}
+numbers-page .numbers{
+    width:60px;
+    align-items: center;
+}
+numbers-page .numbers:first-child{
+    font-family: PingFangHK-Medium;
+    font-size: 18px;
+    color: #F34A4A;
+}
+numbers-page .numbers:last-child{
+    font-family: PingFangHK-Medium;
+    font-size: 12px;
+    color: #888888;
+}
 /**MatchNewspaper end**/
