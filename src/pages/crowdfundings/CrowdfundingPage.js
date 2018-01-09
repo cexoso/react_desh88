@@ -4,6 +4,7 @@ import I18n from '../../service/I18n';
 import {MarkDown, Images,Drawer} from '../../components';
 import '../../styles/CrowdfundingPage.css';
 import Countdown from './Countdown';
+import MatchNewspaper from './MatchNewspaper';
 
 export default class CrowdfundingPage extends Component {
 
@@ -12,6 +13,7 @@ export default class CrowdfundingPage extends Component {
         return (
             <div className="Page">
                 <Countdown/>
+                <MatchNewspaper/>
             </div>
 
         )
