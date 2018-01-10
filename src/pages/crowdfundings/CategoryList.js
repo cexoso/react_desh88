@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {MarkDown, Images,Drawer} from '../../components';
 import '../../styles/CrowdfundingPage.css';
 import {postClick} from '../../service/utils';
+import {Button} from 'antd-mobile'
+
 const des=`彩云杯主赛day3，27人回归，为主赛FT荣耀而战，为争夺冠军奋斗。
 
 延续昨日的19个级别开打，今日的开局相当血腥，开场5手牌，就有五位选手被淘汰。
@@ -238,17 +240,17 @@ export default class CategoryList extends Component {
                 <div style={{height:50}}/>
 
                 <footer className="flexRow footer">
-                    <div className="flexRow race-div" onClick={()=>{
+                    <Button className="flexRow race-div" onClick={()=>{
                         postClick(JSON.stringify({route: 'race', param: ''}), this.props.history)
                     }}>
                         <img src="/static/images/android-load.png" alt=""/>
                         <span>及时赛报</span>
-                    </div>
-                    <div className="flexRow buy-div" onClick={()=>{
+                    </Button>
+                    <Button className="flexRow buy-div" onClick={()=>{
                         postClick(JSON.stringify({route: 'buy', param: ''}), this.props.history)
                     }}>
                         <span>我要认购</span>
-                    </div>
+                    </Button>
                 </footer>
             </div>
 

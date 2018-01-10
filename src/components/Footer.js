@@ -9,7 +9,7 @@ export default class Footer extends Component {
             return null;
         else
             return (
-                <footer><Link to="/loadApp">
+                <footer className="footer-load"><Link to="/loadApp">
                     <span>{I18n.t('load_app')}</span></Link></footer>
             );
 

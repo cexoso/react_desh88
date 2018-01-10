@@ -1,4 +1,4 @@
-footer{
+.footer-load{
     position:fixed;
     bottom: 0;
     width:100%;
@@ -6,7 +6,7 @@ footer{
     z-index: 9999;
 }
 
-footer a{
+.footer-load a{
     cursor: pointer;
     overflow: hidden;
     position: fixed;
@@ -26,7 +26,7 @@ footer a{
     text-decoration: none;
 
 }
-footer a span{
+.footer-load a span{
     float:right;
     width: 65px;
     height: 28px;
