@@ -56,7 +56,6 @@ export default class CategoryList extends Component {
     };
 
     render() {
-        console.log("this:",this);
         var items = ['项目介绍','众筹概况','项目公告','投资风险'];
         return (
             <div className="topBar-page">
@@ -74,8 +73,10 @@ export default class CategoryList extends Component {
                         );
                     })}
                 </ul>
-
+                <div className="margin-width"/>
                 {this.selectMenu()}
+
+                <div style={{height:50}}/>
 
                 <footer className="flexRow footer">
                     <div className="flexRow race-div" onClick={()=>{
@@ -98,28 +99,28 @@ export default class CategoryList extends Component {
 
     introduce=()=>{
         return(
-            <div>
+            <div className="item-page introduce-page">
                 introduce
             </div>
         )
     };
     overview=()=>{
         return(
-            <div>
+            <div className="item-page overview-page">
                 overview
             </div>
         )
     };
     announcement=()=>{
         return(
-            <div>
+            <div className="item-page announcement-page">
                 announcement
             </div>
         )
     };
     risk=()=>{
         return(
-            <div>
+            <div className="item-page risk-page">
                 risk
             </div>
         )

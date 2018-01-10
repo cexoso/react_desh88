@@ -14,7 +14,7 @@ export default class MatchNewspaper extends Component {
         return (
             <div className="flexColumn paper-page">
                 <div className="imgDiv">
-                    <img src="/static/images/H5SahrePage06.png" alt=""/>
+                    <img src="https://cdn-upyun.deshpro.com/uploads/photo/2018/01/77b94bfbfd2454e61a77f64a48caa59a.jpg" alt=""/>
                 </div>
                 <div className="flexRow paperDiv">
                     <span className="paperDiv-txt">
@@ -42,11 +42,11 @@ export default class MatchNewspaper extends Component {
                     </div>
                     <div className="flexColumn numbers">
                         <span>200万</span>
-                        <span>选手人数</span>
+                        <span>赞助总额</span>
                     </div>
                     <div className="flexColumn numbers">
                         <span>20万</span>
-                        <span>选手人数</span>
+                        <span>认购金额</span>
                     </div>
                 </div>
             </div>
