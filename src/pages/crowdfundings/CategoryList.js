@@ -1,10 +1,7 @@
-
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom'
-import {Colors} from '../../components';
-import I18n from '../../service/I18n';
 import {MarkDown, Images,Drawer} from '../../components';
 import '../../styles/CrowdfundingPage.css';
+import {postClick} from '../../service/utils';
 
 export default class CategoryList extends Component {
 
@@ -43,7 +40,6 @@ export default class CategoryList extends Component {
     };
     line=(index)=>{
         const {menu,liWidth} =this.state;
-        console.log(liWidth)
         if(menu === index){
             return <div className="line" style={{width:liWidth}}/>
         }else{
@@ -60,6 +56,7 @@ export default class CategoryList extends Component {
     };
 
     render() {
+        console.log("this:",this);
         var items = ['项目介绍','众筹概况','项目公告','投资风险'];
         return (
             <div className="topBar-page">
@@ -82,12 +79,14 @@ export default class CategoryList extends Component {
 
                 <footer className="flexRow footer">
                     <div className="flexRow race-div" onClick={()=>{
-
+                        postClick(JSON.stringify({route: 'race', param: ''}), this.props.history)
                     }}>
                         <img src="/static/images/android-load.png" alt=""/>
                         <span>及时赛报</span>
                     </div>
-                    <div className="flexRow buy-div">
+                    <div className="flexRow buy-div" onClick={()=>{
+                        postClick(JSON.stringify({route: 'buy', param: ''}), this.props.history)
+                    }}>
                         <span>我要认购</span>
                     </div>
                 </footer>

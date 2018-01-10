@@ -15,7 +15,7 @@ export default class CrowdfundingPage extends Component {
             <div className="Page">
                 <Countdown/>
                 <MatchNewspaper/>
-                <CategoryList/>
+                <CategoryList history = {this.props.history}/>
             </div>
 
         )
