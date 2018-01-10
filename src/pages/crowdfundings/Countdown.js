@@ -10,7 +10,7 @@ export default class Countdown extends Component {
     render() {
         return (
             <nav className="countdown-page">
-                <CrowdCountDown/>
+                <CrowdCountDown date='1515652285'/>
             </nav>
 
         )
