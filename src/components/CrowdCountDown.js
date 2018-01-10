@@ -21,6 +21,20 @@ class CrowdCountDown extends Component {
         segs: PropTypes.string,
         onEnd: PropTypes.func
     };
+
+    static defaultProps = {
+        date: new Date(),
+        days: {
+            plural: '天',
+            singular: '天',
+        },
+        hours: ':',
+        mins: ':',
+        segs: ':',
+        onEnd: () => {
+        }
+
+    };
     state = {
         days: 0,
         hours: 0,
