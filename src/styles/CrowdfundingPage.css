@@ -115,20 +115,88 @@ span{
     margin-top: 23px;
     margin-left:47px;
     margin-right:53px;
-    justify-content: space-around;
+    justify-content: space-between;
 }
-numbers-page .numbers{
+.numbers-page .numbers{
     width:60px;
     align-items: center;
 }
-numbers-page .numbers:first-child{
+.numbers-page .numbers span:first-child{
     font-family: PingFangHK-Medium;
     font-size: 18px;
     color: #F34A4A;
 }
-numbers-page .numbers:last-child{
+.numbers-page .numbers span:last-child{
     font-family: PingFangHK-Medium;
     font-size: 12px;
     color: #888888;
 }
 /**MatchNewspaper end**/
+
+/**CategoryList start**/
+.topBar-page{
+    margin-top: 19px;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #ECECEE;
+}
+.navbar-nav{
+    margin-left: 17px;
+    margin-right: 17px;
+}
+.navbar-nav li{
+    align-items: center;
+    font-size: 15px;
+    color: #AAAAAA;
+    list-style: none;
+    display: flex;
+    flex:1;
+}
+.navbar-nav .list .active{
+    color: #444444;
+    font-weight: bold;
+}
+.line {
+    background: #F34A4A;
+    width:60px;
+    height:3px;
+}
+.topBar-page .footer{
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #ECECEE;
+    height:50px;
+    width:100%;
+    justify-content:space-around;
+}
+.footer .race-div{
+    width:97px;
+    height:34px;
+    border: 1px solid #F34A4A;
+    border-radius: 2px;
+    margin-left: 17px;
+    justify-content: center;
+}
+.race-div img{
+    width:17px;
+    height:17px;
+}
+.race-div span{
+    font-size: 14px;
+    color: #F34A4A ;
+}
+.footer .buy-div{
+    width:224px;
+    height:34px;
+    background: #F34A4A;
+    border-radius: 2px;
+    margin-right: 17px;
+    justify-content: center;
+}
+.buy-div span{
+    font-family: PingFangHK-Regular;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+/**CategoryList end**/

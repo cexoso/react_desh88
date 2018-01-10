@@ -5,6 +5,7 @@ import {MarkDown, Images,Drawer} from '../../components';
 import '../../styles/CrowdfundingPage.css';
 import Countdown from './Countdown';
 import MatchNewspaper from './MatchNewspaper';
+import CategoryList from './CategoryList';
 
 export default class CrowdfundingPage extends Component {
 
@@ -14,6 +15,7 @@ export default class CrowdfundingPage extends Component {
             <div className="Page">
                 <Countdown/>
                 <MatchNewspaper/>
+                <CategoryList/>
             </div>
 
         )

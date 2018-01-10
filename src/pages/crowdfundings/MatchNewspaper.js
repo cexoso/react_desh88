@@ -41,11 +41,11 @@ export default class MatchNewspaper extends Component {
                         <span>选手人数</span>
                     </div>
                     <div className="flexColumn numbers">
-                        <span>5人</span>
+                        <span>200万</span>
                         <span>选手人数</span>
                     </div>
                     <div className="flexColumn numbers">
-                        <span>5人</span>
+                        <span>20万</span>
                         <span>选手人数</span>
                     </div>
                 </div>
