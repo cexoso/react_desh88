@@ -8,7 +8,9 @@ import '../styles/Video.css';
 import I18n from '../service/I18n';
 import {Images} from '../components/Themes';
 import Slider from 'react-slick';
-import CommentList from './comment/CommentList'
+import CommentList from './comment/CommentList';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default class VideoInfo extends BaseComponent {
 
