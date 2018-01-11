@@ -168,18 +168,34 @@ export default class CategoryList extends Component {
 
     state={
         menu: 0,
-        liWidth:0
+        liWidth:0,
+        navFixed:''
     };
 
     componentDidMount(){
         var liWidth = document.getElementById('list0').clientWidth-15;
         this.setState({
             liWidth
-        })
-    }
+        });
+
+        window.onscroll = ()=>{
+            //计算nav到顶部的距离
+            var navHeight=document.getElementById('navbar-nav').offsetTop-document.documentElement.scrollTop-15;
+            var marginWidthHeight=document.getElementById('margin-width').offsetTop-document.documentElement.scrollTop;
+            if(marginWidthHeight>0){
+                this.setState({
+                    navFixed:''
+                })
+            }else if(navHeight<=0){
+                this.setState({
+                    navFixed:'navbar-nav-fixed'
+                });
+            }
+        }
+    };
 
 
-    selectMenu = () => {
+        selectMenu = () => {
 
         switch (this.state.menu) {
             case 0:
@@ -220,7 +236,7 @@ export default class CategoryList extends Component {
         var items = ['项目介绍','众筹概况','项目公告','投资风险'];
         return (
             <div className="topBar-page">
-                <ul className="nav flexRow navbar-nav">
+                <ul className={`nav flexRow navbar-nav ${this.state.navFixed}`} id="navbar-nav">
                     {items.map((item,index)=>{
                         return(
                             <li id={`list${index}`} className="flexColumn list" key={index} onClick={()=>{
@@ -234,7 +250,7 @@ export default class CategoryList extends Component {
                         );
                     })}
                 </ul>
-                <div className="margin-width"/>
+                <div className="margin-width" id="margin-width"/>
                 {this.selectMenu()}
 
                 <div style={{height:50}}/>
