@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {MarkDown, Images,Drawer} from '../../components';
+import {MarkDown, Images, Drawer} from '../../components';
 import '../../styles/CrowdfundingPage.css';
 import {postClick} from '../../service/utils';
 import {Button} from 'antd-mobile'
 
-const des=`彩云杯主赛day3，27人回归，为主赛FT荣耀而战，为争夺冠军奋斗。
+const des = `彩云杯主赛day3，27人回归，为主赛FT荣耀而战，为争夺冠军奋斗。
 
 延续昨日的19个级别开打，今日的开局相当血腥，开场5手牌，就有五位选手被淘汰。
 
@@ -166,36 +166,69 @@ HJ玩家获胜，金天获主赛事17名。
 
 export default class CategoryList extends Component {
 
-    state={
+    state = {
         menu: 0,
-        liWidth:0,
-        navFixed:''
+        liWidth: 0,
+        navFixed: '',
+        itemPage: {}
     };
 
-    componentDidMount(){
-        var liWidth = document.getElementById('list0').clientWidth-15;
+    componentDidMount() {
+        var liWidth = document.getElementById('list0').clientWidth - 15;
         this.setState({
             liWidth
         });
-
-        window.onscroll = ()=>{
-            //计算nav到顶部的距离
-            var navHeight=document.getElementById('navbar-nav').offsetTop-document.documentElement.scrollTop-15;
-            var marginWidthHeight=document.getElementById('margin-width').offsetTop-document.documentElement.scrollTop;
-            if(marginWidthHeight>0){
-                this.setState({
-                    navFixed:''
-                })
-            }else if(navHeight<=0){
-                this.setState({
-                    navFixed:'navbar-nav-fixed'
-                });
-            }
+        this.itemPageHeight();
+        window.onscroll = () => {
+            this._changed()
+        };
+        document.addEventListener("touchstart", this._changed(), false);
+        window.onload=()=>{
+            this.itemPageHeight()
         }
+    };
+    _changed=()=>{
+        //计算nav到顶部的距离
+        var navHeight = document.getElementById('navbar-nav').offsetTop - document.documentElement.scrollTop;
+        var marginWidthHeight = document.getElementById('margin-width').offsetTop - document.documentElement.scrollTop;
+        console.log("navHeight:",navHeight);
+        console.log("marginWidthHeight:",marginWidthHeight);
+        var navFixed = "";
+        if (marginWidthHeight > 0) {
+            navFixed = "";
+        } else if (navHeight <= 0) {
+            navFixed = 'navbar-nav-fixed'
+        }
+        this.setState({
+            navFixed: navFixed
+        });
     };
 
 
-        selectMenu = () => {
+    itemPageHeight = () => {
+        var itemPageHeight = document.getElementById('item-page').clientHeight;
+        var navHeight = document.getElementById('navbar-nav').offsetTop;
+        var screenHeight = document.documentElement.clientHeight -  navHeight;
+        console.log("screenHeight:",screenHeight);
+        console.log("itemPageHeight:",itemPageHeight);
+        var itemPage = {
+            height:itemPageHeight
+        };
+        if (itemPageHeight < screenHeight) {
+            itemPage = {
+                height:screenHeight,
+                scrollY:'hidden',
+                overflow:'hidden'
+            }
+        }
+        this.setState({
+            itemPage: itemPage
+        });
+        console.log("itemPage:",this.state.itemPage)
+    };
+
+
+    selectMenu = () => {
 
         switch (this.state.menu) {
             case 0:
@@ -215,33 +248,34 @@ export default class CategoryList extends Component {
 
         }
     };
-    line=(index)=>{
-        const {menu,liWidth} =this.state;
-        if(menu === index){
-            return <div className="line" style={{width:liWidth}}/>
-        }else{
+    line = (index) => {
+        const {menu, liWidth} =this.state;
+        if (menu === index) {
+            return <div className="line" style={{width: liWidth}}/>
+        } else {
             return null
         }
     };
-    changStyle=(index)=>{
+    changStyle = (index) => {
         const {menu} =this.state;
-        if(menu === index){
+        if (menu === index) {
             return 'active'
-        }else{
+        } else {
             return ''
         }
     };
 
     render() {
-        var items = ['项目介绍','众筹概况','项目公告','投资风险'];
+        var items = ['项目介绍', '众筹概况', '项目公告', '投资风险'];
         return (
             <div className="topBar-page">
                 <ul className={`nav flexRow navbar-nav ${this.state.navFixed}`} id="navbar-nav">
-                    {items.map((item,index)=>{
-                        return(
-                            <li id={`list${index}`} className="flexColumn list" key={index} onClick={()=>{
+                    {items.map((item, index) => {
+                        return (
+                            <li id={`list${index}`} className="flexColumn list" key={index} onClick={() => {
+                                this.itemPageHeight();
                                 this.setState({
-                                    menu:index
+                                    menu: index
                                 })
                             }}>
                                 <span className={this.changStyle(index)}>{item}</span>
@@ -251,18 +285,21 @@ export default class CategoryList extends Component {
                     })}
                 </ul>
                 <div className="margin-width" id="margin-width"/>
-                {this.selectMenu()}
 
-                <div style={{height:50}}/>
+                <div id="item-page" style={this.state.itemPage}>
+                    {this.selectMenu()}
+                </div>
+
+                <div style={{height: 50}}/>
 
                 <footer className="flexRow footer">
-                    <Button className="flexRow race-div" onClick={()=>{
+                    <Button className="flexRow race-div" onClick={() => {
                         postClick(JSON.stringify({route: 'race', param: ''}), this.props.history)
                     }}>
                         <img src="/static/images/android-load.png" alt=""/>
                         <span>及时赛报</span>
                     </Button>
-                    <Button className="flexRow buy-div" onClick={()=>{
+                    <Button className="flexRow buy-div" onClick={() => {
                         postClick(JSON.stringify({route: 'buy', param: ''}), this.props.history)
                     }}>
                         <span>我要认购</span>
@@ -274,29 +311,29 @@ export default class CategoryList extends Component {
     };
 
 
-    introduce=(description)=>{
-        return(
+    introduce = (description) => {
+        return (
             <div className="item-page introduce-page">
                 <MarkDown description={description}/>
             </div>
         )
     };
-    overview=(description)=>{
-        return(
+    overview = (description) => {
+        return (
             <div className="item-page overview-page">
-                <MarkDown description={description}/>
+                sdssffgetgertyrthtuthbfhrtyrgrdjgjgjg
             </div>
         )
     };
-    announcement=(description)=>{
-        return(
+    announcement = (description) => {
+        return (
             <div className="item-page announcement-page">
                 <MarkDown description={description}/>
             </div>
         )
     };
-    risk=(description)=>{
-        return(
+    risk = (description) => {
+        return (
             <div className="item-page risk-page">
                 <MarkDown description={description}/>
             </div>
