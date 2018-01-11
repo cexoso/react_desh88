@@ -1,0 +1,212 @@
+.separated{
+    display: flex;
+    flex:1;
+}
+span{
+    line-height: 19px;
+}
+.Page{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    background-color: #FFFFFF;
+}
+.countdown-page{
+    height:35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+/**MatchNewspaper start**/
+.flexRow{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.flexColumn{
+    display: flex;
+    flex-direction: column;
+}
+
+.paper-page{
+    margin-top: 13px;
+}
+.imgDiv{
+    height:170px;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imgDiv img{
+    max-width:100%;
+    max-height: 100%;
+
+}
+.paperDiv{
+    align-items: flex-start;
+    margin-left: 17px;
+    margin-right: 17px;
+    margin-top: 13px;
+}
+.paperDiv-txt{
+    font-family: PingFangHK-Medium;
+    font-size: 14px;
+    color: #333333;
+    display: block;
+    word-wrap:break-word;
+    word-break:break-all;
+    overflow:hidden;
+    display: block;
+}
+.newsPaperDiv{
+    width:72px;
+    height:23px;
+    border: 1px solid #F34A4A;
+    border-radius: 2px;
+    text-align: center;
+    margin-left: 18px;
+}
+.newsPaperDiv img{
+    width:12px;
+    height:12px;
+    margin-left: 3px;
+}
+.newsPaperDiv span{
+    color: #F34A4A;
+    font-size: 12px;
+}
+.price-time-page{
+    margin-left: 17px;
+    margin-right: 17px;
+    font-family: PingFangHK-Regular;
+    font-size: 12px;
+    color: #888888;
+    margin-top: 7px;
+}
+.date-txt{
+    margin-left: 37px;
+}
+.location-txt{
+    display: block;
+    margin-top: 2px;
+    margin-left: 17px;
+    margin-right: 17px;
+    font-family: PingFangHK-Regular;
+    font-size: 12px;
+    color: #888888;
+}
+.slide-div{
+    margin-top: 25px;
+}
+.handle-view{
+    background: #FFFFFF;
+    border: 1px solid #F34A4A;
+    border-radius: 5px;
+    text-align: center;
+}
+.handle-view span{
+    font-family: PingFangHK-Regular;
+    font-size: 14px;
+    color: #F34A4A;
+}
+.numbers-page{
+    margin-top: 23px;
+    margin-left:47px;
+    margin-right:53px;
+    justify-content: space-between;
+}
+.numbers-page .numbers{
+    width:60px;
+    align-items: center;
+}
+.numbers-page .numbers span:first-child{
+    font-family: PingFangHK-Medium;
+    font-size: 18px;
+    color: #F34A4A;
+}
+.numbers-page .numbers span:last-child{
+    font-family: PingFangHK-Medium;
+    font-size: 12px;
+    color: #888888;
+}
+/**MatchNewspaper end**/
+
+/**CategoryList start**/
+.topBar-page{
+    margin-top: 19px;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #ECECEE;
+}
+.navbar-nav{
+    margin-left: 17px;
+    margin-right: 17px;
+    align-items: flex-start;
+}
+.navbar-nav li{
+    align-items: center;
+    font-size: 15px;
+    color: #AAAAAA;
+    list-style: none;
+    display: flex;
+    flex:1;
+}
+.navbar-nav .list .active{
+    color: #444444;
+    font-weight: bold;
+}
+.navbar-nav .line {
+    background: #F34A4A;
+    width:60px;
+    height:3px;
+}
+.topBar-page .footer{
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #ECECEE;
+    height:50px;
+    width:100%;
+    justify-content:space-between;
+    background-color: #FFFFFF;
+}
+.footer .race-div{
+    width:26%;
+    height:34px;
+    border: 1px solid #F34A4A;
+    border-radius: 2px;
+    margin-left: 17px;
+    justify-content: center;
+}
+.race-div img{
+    width:17px;
+    height:17px;
+}
+.race-div span{
+    font-size: 14px;
+    color: #F34A4A ;
+}
+.footer .buy-div{
+    width:60%;
+    height:34px;
+    background: #F34A4A;
+    border-radius: 2px;
+    margin-right: 17px;
+    justify-content: center;
+}
+.buy-div span{
+    font-family: PingFangHK-Regular;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+.item-page{
+    margin-top: 19px;
+}
+.margin-width{
+    height:10px;
+    width:100%;
+    background-color: #ECECEE;
+}
+/**CategoryList end**/
