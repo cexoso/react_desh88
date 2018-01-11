@@ -23,8 +23,9 @@ export default class PayHelpPage extends Component {
 
     render() {
         return (
-            <div className="helpPage">K
-                <Button className="desView weChat" onClick={() => {
+
+            <div className="helpPage">
+                <Button className="desView weChat"  onClick={()=>{
 
                 }}>
                     <img className="image" src="" alt=""/>
