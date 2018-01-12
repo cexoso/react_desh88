@@ -12,12 +12,12 @@ export default class TopNav extends PureComponent {
     render() {
         return <div className="top-bar">
             <a href={'https://www.deshpro.com/'}>
-                <img src="/static/images/home_bar.png" alt="PokerPro" height={25}/>
+                <img src="/static/images/home_bar.png" alt="PokerPro" height={20}/>
             </a>
 
             <div style={{flex: 1}}>
                 <img src="/static/images/footerImg.png" alt="PokerPro"
-                     height={25}/>
+                     height={20}/>
             </div>
 
             <div/>
