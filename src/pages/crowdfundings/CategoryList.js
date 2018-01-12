@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {MarkDown, Images, Drawer} from '../../components';
 import '../../styles/CrowdfundingPage.css';
 import {postClick} from '../../service/utils';
-import {Button} from 'antd-mobile'
+import {Button} from 'antd-mobile';
+import {isEmptyObject} from '../../service/utils';
 
 const des = `彩云杯主赛day3，27人回归，为主赛FT荣耀而战，为争夺冠军奋斗。
 
@@ -174,7 +175,7 @@ export default class CategoryList extends Component {
     };
 
     componentDidMount() {
-        var liWidth = document.getElementById('list0').clientWidth - 15;
+        let liWidth = document.getElementById('list0').clientWidth - 15;
         this.setState({
             liWidth
         });
@@ -189,9 +190,9 @@ export default class CategoryList extends Component {
     };
     _changed=()=>{
         //计算nav到顶部的距离
-        var navHeight = document.getElementById('navbar-nav').offsetTop - (document.documentElement.scrollTop || document.body.scrollTop)-30;
-        var marginWidthHeight = document.getElementById('margin-width').offsetTop - (document.documentElement.scrollTop || document.body.scrollTop);
-        var navFixed = "";
+        let navHeight = document.getElementById('navbar-nav').offsetTop - (document.documentElement.scrollTop || document.body.scrollTop)+30;
+        let marginWidthHeight = document.getElementById('margin-width').offsetTop - (document.documentElement.scrollTop || document.body.scrollTop);
+        let navFixed = "";
         if (marginWidthHeight > 0) {
             navFixed = "";
         } else if (navHeight <= 0) {
@@ -204,14 +205,16 @@ export default class CategoryList extends Component {
 
 
     itemPageHeight = () => {
-        var itemPageHeight = document.getElementById('item-page').clientHeight;
-        var itemPageTop = document.getElementById('item-page').offsetTop;
-        var navHeight = document.getElementById('navbar-nav').scrollHeight;
+        let itemPageHeight = document.getElementById('item-page').clientHeight;
+        let itemPageTop = document.getElementById('item-page').offsetTop;
+        let navHeight = document.getElementById('navbar-nav').scrollHeight;
         //点击切换按钮 markdown内容从头开始
-        window.scrollTo(navHeight, itemPageTop);
+        if(!isEmptyObject(this.state.navFixed)){
+            window.scrollTo(navHeight, itemPageTop);
+        }
         //如果内容少于屏幕高度，则高度默认为屏幕高度
-        var screenHeight = document.documentElement.clientHeight || document.body.clientHeight -  navHeight;
-        var itemPage = {
+        let screenHeight = document.documentElement.clientHeight || document.body.clientHeight -  navHeight;
+        let itemPage = {
             height:''
         };
         console.log("screenHeight:",screenHeight);
@@ -231,18 +234,14 @@ export default class CategoryList extends Component {
 
 
     selectMenu = () => {
-
         switch (this.state.menu) {
             case 0:
                 return this.introduce(des);
             case 1:
-
                 return this.overview(des);
             case 2:
-
                 return this.announcement(des);
             case 3:
-
                 return this.risk(des);
 
             default:
@@ -288,7 +287,7 @@ export default class CategoryList extends Component {
                 </ul>
                 <div className="margin-width" id="margin-width"/>
 
-                <div id="item-page" style={this.state.itemPage}>
+                <div id="item-page" style={this.state.itemPage} >
                     {this.selectMenu()}
                 </div>
 
