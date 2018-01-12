@@ -217,8 +217,6 @@ export default class CategoryList extends Component {
         let itemPage = {
             height:''
         };
-        console.log("screenHeight:",screenHeight);
-        console.log("itemPageHeight:",itemPageHeight);
         if (itemPageHeight < screenHeight) {
             itemPage = {
                 height:screenHeight,
@@ -229,7 +227,6 @@ export default class CategoryList extends Component {
         this.setState({
             itemPage: itemPage
         });
-        console.log("itemPage:",this.state.itemPage)
     };
 
 
