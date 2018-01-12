@@ -189,10 +189,8 @@ export default class CategoryList extends Component {
     };
     _changed=()=>{
         //计算nav到顶部的距离
-        var navHeight = document.getElementById('navbar-nav').offsetTop - document.documentElement.scrollTop;
-        var marginWidthHeight = document.getElementById('margin-width').offsetTop - document.documentElement.scrollTop;
-        console.log("navHeight:",navHeight);
-        console.log("marginWidthHeight:",marginWidthHeight);
+        var navHeight = document.getElementById('navbar-nav').offsetTop - (document.documentElement.scrollTop || document.body.scrollTop)-30;
+        var marginWidthHeight = document.getElementById('margin-width').offsetTop - (document.documentElement.scrollTop || document.body.scrollTop);
         var navFixed = "";
         if (marginWidthHeight > 0) {
             navFixed = "";
@@ -207,13 +205,17 @@ export default class CategoryList extends Component {
 
     itemPageHeight = () => {
         var itemPageHeight = document.getElementById('item-page').clientHeight;
-        var navHeight = document.getElementById('navbar-nav').offsetTop;
-        var screenHeight = document.documentElement.clientHeight -  navHeight;
+        var itemPageTop = document.getElementById('item-page').offsetTop;
+        var navHeight = document.getElementById('navbar-nav').scrollHeight;
+        //点击切换按钮 markdown内容从头开始
+        window.scrollTo(navHeight, itemPageTop);
+        //如果内容少于屏幕高度，则高度默认为屏幕高度
+        var screenHeight = document.documentElement.clientHeight || document.body.clientHeight -  navHeight;
+        var itemPage = {
+            height:''
+        };
         console.log("screenHeight:",screenHeight);
         console.log("itemPageHeight:",itemPageHeight);
-        var itemPage = {
-            height:itemPageHeight
-        };
         if (itemPageHeight < screenHeight) {
             itemPage = {
                 height:screenHeight,
@@ -269,7 +271,7 @@ export default class CategoryList extends Component {
         var items = ['项目介绍', '众筹概况', '项目公告', '投资风险'];
         return (
             <div className="topBar-page">
-                <ul className={`nav flexRow navbar-nav ${this.state.navFixed}`} id="navbar-nav">
+                <ul className={`flexRow navbar-nav ${this.state.navFixed}`} id="navbar-nav">
                     {items.map((item, index) => {
                         return (
                             <li id={`list${index}`} className="flexColumn list" key={index} onClick={() => {
