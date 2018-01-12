@@ -1,12 +1,36 @@
-.footer-load{
-    position:fixed;
+
+.top-bar {
+    display: flex;
+    background-color: black;
+    height: 44px;
+    align-items: center;
+}
+
+.top-bar a  {
+    height: 44px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-bar div{
+    height: 44px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-load {
+    position: fixed;
     bottom: 0;
-    width:100%;
+    width: 100%;
     background-color: #ffffff !important;
     z-index: 9999;
 }
 
-.footer-load a{
+.footer-load a {
     cursor: pointer;
     overflow: hidden;
     position: fixed;
@@ -19,15 +43,16 @@
     color: #D1BC91;
     background: #161718;
     opacity: 0.9;
-    background-image: url('http://h5.deshpro.com/static/images/footerImg.png');
+    background-image: url(/static/images/footerImg.png);
     background-repeat: no-repeat;
     background-position: 26px center;
     background-size: 230px 25px;
     text-decoration: none;
 
 }
-.footer-load a span{
-    float:right;
+
+.footer-load a span {
+    float: right;
     width: 65px;
     height: 28px;
     line-height: 28px;
