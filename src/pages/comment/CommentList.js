@@ -124,9 +124,11 @@ export default class CommentList extends Component {
         })
     };
 
-    _renderSeparator=()=>{
-        return(
-            <div style={{height: 1, backgroundColor: '#ECECEE', marginTop: 8, marginRight: 17,marginLeft:68}}/>
+    _renderSeparator = () => {
+        return (
+            <div
+                key={_lodash.uniqueId('comment')}
+                style={{height: 1, backgroundColor: '#ECECEE', marginTop: 8, marginRight: 17, marginLeft: 68}}/>
         )
     };
 
@@ -163,7 +165,9 @@ export default class CommentList extends Component {
 
     renderItem = (item, sectionID, rowID) => {
         const {id, user_id, nick_name, avatar, official, body, total_count, created_at, recommended} = item;
-        return (<Flex style={styles.listItem} onClick={() => {
+        return (<Flex
+                key={id}
+                style={styles.listItem} onClick={() => {
 
             }}>
                 <div style={styles.avatarView}
