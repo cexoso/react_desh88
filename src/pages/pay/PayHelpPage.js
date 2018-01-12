@@ -1,20 +1,29 @@
 import React, {Component} from 'react';
-import {Colors} from '../../components';
 import I18n from '../../service/I18n';
-import {MarkDown, Images,Drawer} from '../../components';
+import {MarkDown, Images, Drawer} from '../../components';
 import '../../styles/payHelpPage.css';
 import {Button} from 'antd-mobile';
 import {setLang} from '../../service/RaceDao';
 
 export default class PayHelpPage extends Component {
 
+    state = {
+        language: false
+    };
+
     componentDidMount() {
         const {lang} = this.props.match.params;
-        setLang('lang');
+        setLang(lang);
+        setTimeout(() => {
+            this.setState({
+                language: true
+            })
+        }, 300)
     }
 
     render() {
         return (
+
             <div className="helpPage">
                 <Button className="desView weChat"  onClick={()=>{
 
@@ -22,9 +31,9 @@ export default class PayHelpPage extends Component {
                     <img className="image" src="" alt=""/>
                     <span>{I18n.t('pay_limit_weChat')}</span>
                     <div className="separated"/>
-                    <img  className="popImg" src="/static/images/is>.png" alt=""/>
+                    <img className="popImg" src="/static/images/is>.png" alt=""/>
                 </Button>
-                <Button className="desView yinlian" onClick={()=>{
+                <Button className="desView yinlian" onClick={() => {
                     this.props.history.push(`/pay/description/${this.props.match.params.lang}`)
                 }}>
                     <img className="image2" src="" alt=""/>

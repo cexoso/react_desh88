@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom';
+import {TopNav} from './components';
 
 
 // global.console = {
@@ -20,6 +21,7 @@ class App extends Component {
             (child) => child
         );
         return (<div>
+                {window.originalPostMessage ? null : <TopNav/>}
                 {layout}
             </div>
 
