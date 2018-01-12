@@ -21,7 +21,7 @@ class App extends Component {
             (child) => child
         );
         return (<div>
-                <TopNav/>
+                {window.originalPostMessage ? null : <TopNav/>}
                 {layout}
             </div>
 
