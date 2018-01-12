@@ -20,8 +20,9 @@ class App extends Component {
         const layout = React.Children.map(this.props.children,
             (child) => child
         );
+        const {search} = this.props.location;
         return (<div>
-                {window.originalPostMessage ? null : <TopNav/>}
+                {search.includes('accessToken') ? null : <TopNav/>}
                 {layout}
             </div>
 
