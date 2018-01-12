@@ -146,6 +146,22 @@ span{
     margin-right: 17px;
     align-items: flex-start;
 }
+.navbar-nav-fixed{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+    position:fixed;
+    top:0;
+    left:0;right:0;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    z-index: 999;
+    background-color: #FFFFFF;
+    padding-top: 18px;
+    padding-bottom: 10px;
+}
 .navbar-nav li{
     align-items: center;
     font-size: 15px;
