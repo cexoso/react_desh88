@@ -10,7 +10,18 @@ export default class Footer extends Component {
         else
             return (
                 <footer className="footer-load"><Link to="/loadApp">
-                    <span>{I18n.t('load_app')}</span></Link></footer>
+                    <img src="/static/images/poker_footer.png" alt="PokerPro"
+                         height={20}/>
+
+                    <span>下载APP 从这里开始你扑客之旅</span>
+
+                    <button type="button">
+                        立即下载
+                    </button>
+
+
+                </Link>
+                </footer>
             );
 
     }
