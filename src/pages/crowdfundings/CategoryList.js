@@ -169,16 +169,12 @@ export default class CategoryList extends Component {
 
     state = {
         menu: 0,
-        liWidth: 0,
         navFixed: '',
         itemPage: {}
     };
 
     componentDidMount() {
-        let liWidth = document.getElementById('list0').clientWidth - 15;
-        this.setState({
-            liWidth
-        });
+
         this.itemPageHeight();
         window.onscroll = () => {
             this._changed()
@@ -247,9 +243,10 @@ export default class CategoryList extends Component {
         }
     };
     line = (index) => {
-        const {menu, liWidth} =this.state;
+        const {menu} =this.state;
+
         if (menu === index) {
-            return <div className="line" style={{width: liWidth}}/>
+            return <div className="line" style={{display:'flex',flex:1}}/>
         } else {
             return null
         }

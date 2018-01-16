@@ -191,7 +191,7 @@ span{
 .footer .race-div{
     width:26%;
     height:34px;
-    border: 1px solid #F34A4A;
+    border: 1px solid #444444;
     border-radius: 2px;
     margin-left: 17px;
     justify-content: center;
@@ -202,12 +202,12 @@ span{
 }
 .race-div span{
     font-size: 14px;
-    color: #F34A4A ;
+    color: #444444 ;
 }
 .footer .buy-div{
     width:60%;
     height:34px;
-    background: #F34A4A;
+    background: #161718;
     border-radius: 2px;
     margin-right: 17px;
     justify-content: center;
@@ -215,7 +215,7 @@ span{
 .buy-div span{
     font-family: PingFangHK-Regular;
     font-size: 14px;
-    color: #FFFFFF;
+    color: #FFE9AD;
 }
 .item-page{
     margin-top: 19px;

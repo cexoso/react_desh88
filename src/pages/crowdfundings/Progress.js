@@ -12,9 +12,9 @@ export default class Progress extends Component {
 
 
     componentDidMount(){
-        var vartext=0.22;
-        var totalWidth = document.getElementById('totalWidth').clientWidth;
-        var progressWidth = totalWidth*vartext;
+        let vartext=0.22;
+        let totalWidth = document.getElementById('totalWidth').clientWidth;
+        let progressWidth = totalWidth*vartext;
         this.setState({
             progressWidth:progressWidth
         })
