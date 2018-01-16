@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import {Colors, Fonts, Images} from '../../components/Themes';
-import PropTypes from 'prop-types';
+import {Colors, Images} from '../../components/Themes';
 import I18n from '../../service/I18n';
 import {Flex, Text} from '../../components';
-import {getDateDiff, postMsg, isEmptyObject, strNotNull, postClick, PostRoute} from '../../service/utils';
+import {getDateDiff, isEmptyObject, strNotNull, postClick, PostRoute} from '../../service/utils';
 import {delDeleteComment} from '../../service/CommentDao';
 import {showAlert, showToast} from '../../service/utils';
 
