@@ -27,7 +27,8 @@
     "build": "REACT_APP_DPAPI_ENV=prod react-scripts build",
     "build-test": "REACT_APP_DPAPI_ENV=test react-scripts start",
     "test": "react-app-rewired test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "react-scripts build && scp -r build/ prod-1:/deploy/production/h5/react-desh5"
   },
   "devDependencies": {
     "babel-plugin-import": "^1.6.3",
