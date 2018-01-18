@@ -1,36 +1,74 @@
-.App {
+.ant_page{
+    margin:0 auto;
+    width:100%;
+    height:100%;
+    background-color: #FFF;
+    opacity: 0.7;
+    padding-top: 30px;
+}
+.ant_page .table{
+    width:80%;
+    height:150px;
+    margin:0 auto;
+    background-color: #4dd865;
+    border-radius: 80px;
+    margin-top: 100px;
+
+}
+
+.poker{
+    width:60px;
+    height:60px;
+    background-color:rgba(0,0,0,0.2);
+    border-radius: 8px;
+    z-index: 99;
+    float: left;
+    margin-left: 100px;
+}
+.pokerTop{
+    margin-top:-200px;
+}
+.pokerBottom{
+    margin-top:190px;
+}
+.pokerLeft{
+    position: absolute;
+    margin-left:-100px;
+    margin-top:-150px;
+}
+.pokerLeft2{
+    margin-top: 30px;
+}
+.pokerLeft .poker{
+    float: none;
+}
+.pokerRight .poker{
+    float: none;
+}
+.pokerRight{
+    position: absolute;
+    margin-left:250px;
+    margin-top:-150px;
+}
+.poker2{
+    margin-left: 10px;
+}
+.poker3{
+    margin-left: 10px;
+}
+.select{
+    width:60px;
+    height:20px;
+    border-radius: 2px;
+    color:#FFFFFF;
     text-align: center;
 }
-
-.App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px;
+.select1{
+    background-color:rgba(0,0,0,1);
 }
-
-
-.App-intro {
-    font-size: large;
+.select2{
+    background-color:rgba(0,0,0,0.6);
 }
-
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.video-js .vjs-tech {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
-}
-
-.space-carousel {
-    padding: 16px;
-    background: #DEF1E5;
+.select3{
+    background-color:rgba(0,0,0,0.4);
 }
