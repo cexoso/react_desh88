@@ -99,9 +99,6 @@ export default class AntDemo extends PureComponent {
     setAction = (poker,index) => {
         setInterval(() => {
             console.log(`打印数字：${count++}`)
-            if(index === 0){
-                count=1
-            }
         }, 1000)
     }
 }
