@@ -1,24 +1,32 @@
 import React, {Component} from 'react';
 import {Colors} from '../../components';
 import I18n from '../../service/I18n';
-import {MarkDown, Images,Drawer} from '../../components';
+import {MarkDown, Images, Drawer} from '../../components';
 import '../../styles/CrowdfundingPage.css';
 import Progress from './Progress';
+import {isEmptyObject} from '../../service/utils';
+import moment from 'moment';
 
 export default class MatchNewspaper extends Component {
 
-
-
+    race_time = (race) => {
+        const {begin_date, end_date} = race;
+        return moment(begin_date).format('YYYY.MM.DD') + '-' + moment(end_date).format('YYYY.MM.DD')
+    };
     render() {
-
+        const {
+            master_image, categories, cf_cond, cf_offer_money, cf_total_money,
+            created_at, expire_date, player_count, publish_date, race
+        } = this.props.crowd;
+        let percent = cf_offer_money / cf_total_money;
         return (
             <div className="flexColumn paper-page">
                 <div className="imgDiv">
-                    <img src="https://cdn-upyun.deshpro.com/uploads/photo/2018/01/77b94bfbfd2454e61a77f64a48caa59a.jpg" alt=""/>
+                    <img src={master_image} alt=""/>
                 </div>
                 <div className="flexRow paperDiv">
                     <span className="paperDiv-txt">
-                        NCBP国家杯棋牌职业大师赛棋牌职业大师赛
+                        {isEmptyObject(race) ? '' : race.name}
                     </span>
                     <div className="separated"/>
                     <div className="flexRow newsPaperDiv">
@@ -27,25 +35,26 @@ export default class MatchNewspaper extends Component {
                     </div>
                 </div>
                 <div className="flexRow price-time-page">
-                    <span>入场资格：¥2000</span>
-                    <span className="date-txt">2017.09.11—2017.09.12</span>
+                    <span>入场资格：¥{cf_cond}</span>
+                    <span className="date-txt">{isEmptyObject(race) ? '' : this.race_time(race)}</span>
                 </div>
-                <span className="location-txt">地点：北京香格里拉酒店</span>
+                <span className="location-txt">地点：{isEmptyObject(race) ? '' : race.location}</span>
                 <div className="slide-div">
-                   <Progress/>
+                    <Progress
+                        percent={percent}/>
                 </div>
 
                 <div className="flexRow numbers-page">
                     <div className="flexColumn numbers">
-                        <span>5人</span>
+                        <span>{player_count}人</span>
                         <span>选手人数</span>
                     </div>
                     <div className="flexColumn numbers">
-                        <span>200万</span>
+                        <span>{cf_total_money}万</span>
                         <span>赞助总额</span>
                     </div>
                     <div className="flexColumn numbers">
-                        <span>20万</span>
+                        <span>{cf_offer_money}万</span>
                         <span>认购金额</span>
                     </div>
                 </div>
