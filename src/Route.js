@@ -64,7 +64,7 @@ const Routes = () => (
             <Route path="/pay/description/:lang" component={PayInfoPage}/>
 
             <Route path="/pay/help/:lang" component={PayHelpPage}/>
-            <Route path="/crowdfundings/:lang" component={CrowdfundingPage}/>
+            <Route path="/crowdfundings/id/:lang" component={CrowdfundingPage}/>
 
         </App>
     </Router>

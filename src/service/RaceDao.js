@@ -20,6 +20,13 @@ export function getLang() {
     return lang;
 }
 
+export function getCrowdDetail(body, resolve, reject) {
+    get(Api.crowd_detail(body), ret => {
+        resolve(ret.data);
+    }, reject);
+}
+
+
 export function getWeiXinSign(payload, resolve, reject) {
     post(Api.weixin_js_sign, payload, ret => {
         resolve(ret.data);

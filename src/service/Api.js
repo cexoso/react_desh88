@@ -24,10 +24,15 @@ export default {
     video_likes_info: video_likes_info,
     personDynamic_info: personDynamic_info,
     topic_comments: 'topic/comments',
-    delete_comment:delete_comment
+    delete_comment:delete_comment,
+    crowd_detail:crowd_detail
 
 }
 
+function crowd_detail(body) {
+    const {id} = body;
+    return `crowdfundings/${id}`;
+}
 function delete_comment(body) {
     const {id} = body;
     return `topic/comments/${id}`;

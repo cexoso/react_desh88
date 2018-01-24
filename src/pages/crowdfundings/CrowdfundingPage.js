@@ -6,9 +6,25 @@ import '../../styles/CrowdfundingPage.css';
 import Countdown from './Countdown';
 import MatchNewspaper from './MatchNewspaper';
 import CategoryList from './CategoryList';
+import {getCrowdDetail,setLang} from '../../service/RaceDao';
 
 export default class CrowdfundingPage extends Component {
+    state={
+        crowd:{}
+    };
 
+    componentDidMount() {
+        const {id, lang} = this.props.match.params;
+        setLang(lang);
+        const body = {raceId: id};
+        getCrowdDetail(body, data => {
+            this.setState({
+                crowd: data
+            })
+        }, err => {
+
+        })
+    }
 
     render() {
         return (
