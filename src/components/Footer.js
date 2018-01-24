@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import I18n from '../service/I18n';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import '../styles/footer.css';
 
-export default class Footer extends Component {
+class Footer extends Component {
     render() {
-        if (window.originalPostMessage)
+        const {search} = this.props.location;
+        if (search.includes('accessToken'))
             return null;
         else
             return (
@@ -26,3 +27,5 @@ export default class Footer extends Component {
 
     }
 }
+
+export default withRouter(Footer)
