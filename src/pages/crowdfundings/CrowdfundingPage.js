@@ -15,8 +15,8 @@ export default class CrowdfundingPage extends Component {
     };
 
     componentDidMount() {
-        const {id} = this.props.match.params;
-
+        const {id,lang} = this.props.match.params;
+        setLang(lang);
         const body = {id: id};
         getCrowdDetail(body, data => {
             console.log("crowd:",data)
