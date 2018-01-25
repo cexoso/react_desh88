@@ -336,6 +336,45 @@ ul, ol {
     height:100%;
     margin-bottom: 30px;
 }
+.raceResult{
+    margin-top: 15px;
+}
+
+
+.race-table {
+    display: table !important;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 6px;
+    margin-bottom: 50px;
+    background-color: #fff;
+}
+
+.race-table thead {
+    background-color: #CECDBB !important;
+    opacity: 1;
+    line-height: 32px;
+    color: #fff;
+    font-size: 14px;
+
+}
+.race-table tbody tr{
+    height:48px;
+}
+.race-table tbody tr:nth-child(2n){
+    background: #F5F5F5;
+}
+.race-table tbody tr td {
+    height: 24px;
+    line-height: 24px;
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+}
+.race-table tbody tr td:nth-child(2){
+    width:50px;
+    color:#3F9FFF !important;
+}
 
 
 

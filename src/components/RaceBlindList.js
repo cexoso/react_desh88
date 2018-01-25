@@ -48,13 +48,40 @@ export default class RaceBlindList extends PureComponent {
             </div>
         )
     };
+    race_result=(ranks)=>{
+        return (
+            <div>
+                <table className="race-table">
+                    <thead>
+                    <tr>
+                        <th>{I18n.t('ranking')}</th>
+                        <th>{I18n.t('contestant')}</th>
+                        <th>{I18n.t('bonus')}</th>
+                        <th>{I18n.t('integral')}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {ranks.map((item, key) => {
+                        return <tr key={key}>
+                            <td>{item.ranking}</td>
+                            <td className="table-name">{item.player.name}</td>
+                            <td>{item.earning}¥</td>
+                            <td>{item.score}</td>
+                        </tr>
+                    })}
+
+                    </tbody>
+                </table>
+            </div>
+        )
+    };
+
     btnActive = () => {
         const {selectBtn, btns} = this.state;
         if(btns.length === 0){
             return <div/>
         }
         if (btns.length === 1) {
-
             return (<div className="infoView-nav">
 
                 <div className={selectBtn === btns[0] ? 'btn2' : 'btn1'} onClick={() => {
@@ -69,7 +96,6 @@ export default class RaceBlindList extends PureComponent {
             </div>)
         }
         if (btns.length === 2) {
-
             return (<div className="infoView-nav">
 
                 <div className={selectBtn === btns[0] ? 'btn2' : 'btn1'} onClick={() => {
@@ -92,7 +118,6 @@ export default class RaceBlindList extends PureComponent {
         }
 
         if (btns.length === 3) {
-
             return (<div className="infoView-nav">
                 <div className={selectBtn === 0 ? 'btn2' : 'btn1'} onClick={() => {
                     this.setState({
@@ -212,6 +237,17 @@ export default class RaceBlindList extends PureComponent {
         )
     };
 
+    raceResultView=()=>{
+        const {
+            ranks
+        } = this.props;
+        return <div className="raceResult">
+
+            {(isEmptyObject(ranks)||ranks.length <1)?<div/>:this.race_result(ranks)}
+
+        </div>
+    };
+
     blindStructureView = () => {
         const {
             blinds
@@ -249,6 +285,8 @@ export default class RaceBlindList extends PureComponent {
                 return this.scheduleView();
             case 1:
                 return this.blindStructureView();
+            case 2:
+                return this.raceResultView();
         }
     }
 
