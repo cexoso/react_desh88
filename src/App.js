@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {withRouter} from 'react-router-dom';
-import {TopNav} from './components';
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { TopNav } from './components';
 
 
 // global.console = {
@@ -17,20 +17,15 @@ import {TopNav} from './components';
 
 class App extends Component {
     render() {
-        const layout = React.Children.map(this.props.children,
-            (child) => child
-        );
-        const {search} = this.props.location;
-        return (<div>
-                {search.includes('accessToken') ? null : <TopNav/>}
-                {layout}
-            </div>
-
-        );
+        const { search } = this.props.location;
+        return <div>
+            {search.includes('accessToken') ? null : <TopNav />}
+            {this.props.children}
+        </div>
     }
 }
 
-export default withRouter(props => <App {...props}/>);
+export default withRouter(App);
 
 
 
